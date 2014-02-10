@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DCD9CF2D18A14908008B3444"
-               BuildableName = "libSB+SpriteKit-iOS.a"
+               BuildableName = "libSB+KoboldKit-iOS.a"
                BlueprintName = "SB+KoboldKit-iOS"
                ReferencedContainer = "container:SB+KoboldKit.xcodeproj">
             </BuildableReference>
