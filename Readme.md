@@ -1,4 +1,5 @@
-** Sprite Kit support project for SpriteBuilder **
+Sprite Kit support project for SpriteBuilder
+====
 
 Contains:
 
