@@ -1,0 +1,875 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DC0F9B4118A4EED4001749BB /* NSValue+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */; };
+		DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
+		DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
+		DC0F9B4418A4EED4001749BB /* SKEmitterNode+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */; };
+		DC0F9B4518A4EED4001749BB /* SKEmitterNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2B18A4EED4001749BB /* SKEmitterNode+CCBReader.m */; };
+		DC0F9B4618A4EED4001749BB /* SKEmitterNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2B18A4EED4001749BB /* SKEmitterNode+CCBReader.m */; };
+		DC0F9B4718A4EED4001749BB /* SKLabelNode+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2C18A4EED4001749BB /* SKLabelNode+CCBReader.h */; };
+		DC0F9B4818A4EED4001749BB /* SKLabelNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2D18A4EED4001749BB /* SKLabelNode+CCBReader.m */; };
+		DC0F9B4918A4EED4001749BB /* SKLabelNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2D18A4EED4001749BB /* SKLabelNode+CCBReader.m */; };
+		DC0F9B4A18A4EED4001749BB /* SKNode+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2E18A4EED4001749BB /* SKNode+CCBReader.h */; };
+		DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2F18A4EED4001749BB /* SKNode+CCBReader.m */; };
+		DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2F18A4EED4001749BB /* SKNode+CCBReader.m */; };
+		DC0F9B4D18A4EED4001749BB /* SKPhysicsBody+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3018A4EED4001749BB /* SKPhysicsBody+CCBReader.h */; };
+		DC0F9B4E18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3118A4EED4001749BB /* SKPhysicsBody+CCBReader.m */; };
+		DC0F9B4F18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3118A4EED4001749BB /* SKPhysicsBody+CCBReader.m */; };
+		DC0F9B5018A4EED4001749BB /* SKSpriteNode+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3218A4EED4001749BB /* SKSpriteNode+CCBReader.h */; };
+		DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3318A4EED4001749BB /* SKSpriteNode+CCBReader.m */; };
+		DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3318A4EED4001749BB /* SKSpriteNode+CCBReader.m */; };
+		DC0F9B5318A4EED4001749BB /* SKTexture+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3418A4EED4001749BB /* SKTexture+CCBReader.h */; };
+		DC0F9B5418A4EED4001749BB /* SKTexture+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */; };
+		DC0F9B5518A4EED4001749BB /* SKTexture+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */; };
+		DC0F9B5618A4EED4001749BB /* CCColor.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3718A4EED4001749BB /* CCColor.h */; };
+		DC0F9B5718A4EED4001749BB /* CCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3818A4EED4001749BB /* CCColor.m */; };
+		DC0F9B5818A4EED4001749BB /* CCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3818A4EED4001749BB /* CCColor.m */; };
+		DC0F9B5918A4EED4001749BB /* CCConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3918A4EED4001749BB /* CCConfiguration.h */; };
+		DC0F9B5A18A4EED4001749BB /* CCConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3A18A4EED4001749BB /* CCConfiguration.m */; };
+		DC0F9B5B18A4EED4001749BB /* CCConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3A18A4EED4001749BB /* CCConfiguration.m */; };
+		DC0F9B5C18A4EED4001749BB /* CCFileUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3B18A4EED4001749BB /* CCFileUtils.h */; };
+		DC0F9B5D18A4EED4001749BB /* CCFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3C18A4EED4001749BB /* CCFileUtils.m */; };
+		DC0F9B5E18A4EED4001749BB /* CCFileUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3C18A4EED4001749BB /* CCFileUtils.m */; };
+		DC0F9B5F18A4EED4001749BB /* CCSpriteFrameCache.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3D18A4EED4001749BB /* CCSpriteFrameCache.h */; };
+		DC0F9B6018A4EED4001749BB /* CCSpriteFrameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3E18A4EED4001749BB /* CCSpriteFrameCache.m */; };
+		DC0F9B6118A4EED4001749BB /* CCSpriteFrameCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B3E18A4EED4001749BB /* CCSpriteFrameCache.m */; };
+		DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3F18A4EED4001749BB /* CGPointExtension.h */; };
+		DC0F9B6318A4EED4001749BB /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B4018A4EED4001749BB /* CGPointExtension.m */; };
+		DC0F9B6418A4EED4001749BB /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B4018A4EED4001749BB /* CGPointExtension.m */; };
+		DC0F9B6918A4EFAC001749BB /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B6718A4EFAC001749BB /* JRSwizzle.h */; };
+		DC0F9B6A18A4EFAC001749BB /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */; };
+		DC0F9B6B18A4EFAC001749BB /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */; };
+		DCD9CF0418A148AA008B3444 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF0318A148AA008B3444 /* Cocoa.framework */; };
+		DCD9CF3018A14908008B3444 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF2F18A14908008B3444 /* Foundation.framework */; };
+		DCD9CF8018A149D7008B3444 /* CCBSpriteKitCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */; };
+		DCD9CF8118A149D7008B3444 /* CCBSpriteKitDummy.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */; };
+		DCD9CF8218A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */; };
+		DCD9CF8318A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */; };
+		DCD9CF8418A149D7008B3444 /* CCBSpriteKitMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF5F18A149D7008B3444 /* CCBSpriteKitMacros.h */; };
+		DCD9CF8518A149D7008B3444 /* CCBSpriteKitReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF6018A149D7008B3444 /* CCBSpriteKitReader.h */; };
+		DCD9CF8618A149D7008B3444 /* CCBSpriteKitReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CF6118A149D7008B3444 /* CCBSpriteKitReader.m */; };
+		DCD9CF8718A149D7008B3444 /* CCBSpriteKitReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CF6118A149D7008B3444 /* CCBSpriteKitReader.m */; };
+		DCD9CFBB18A14B08008B3444 /* CCBAnimationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFAD18A14B08008B3444 /* CCBAnimationManager.h */; };
+		DCD9CFBC18A14B08008B3444 /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFAE18A14B08008B3444 /* CCBAnimationManager.m */; };
+		DCD9CFBD18A14B08008B3444 /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFAE18A14B08008B3444 /* CCBAnimationManager.m */; };
+		DCD9CFBE18A14B08008B3444 /* CCBKeyframe.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFAF18A14B08008B3444 /* CCBKeyframe.h */; };
+		DCD9CFBF18A14B08008B3444 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB018A14B08008B3444 /* CCBKeyframe.m */; };
+		DCD9CFC018A14B08008B3444 /* CCBKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB018A14B08008B3444 /* CCBKeyframe.m */; };
+		DCD9CFC118A14B08008B3444 /* CCBLocalizationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFB118A14B08008B3444 /* CCBLocalizationManager.h */; };
+		DCD9CFC218A14B08008B3444 /* CCBLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB218A14B08008B3444 /* CCBLocalizationManager.m */; };
+		DCD9CFC318A14B08008B3444 /* CCBLocalizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB218A14B08008B3444 /* CCBLocalizationManager.m */; };
+		DCD9CFC418A14B08008B3444 /* CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFB318A14B08008B3444 /* CCBReader.h */; };
+		DCD9CFC518A14B08008B3444 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB418A14B08008B3444 /* CCBReader.m */; };
+		DCD9CFC618A14B08008B3444 /* CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB418A14B08008B3444 /* CCBReader.m */; };
+		DCD9CFC718A14B08008B3444 /* CCBReader_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFB518A14B08008B3444 /* CCBReader_Private.h */; };
+		DCD9CFC818A14B08008B3444 /* CCBSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFB618A14B08008B3444 /* CCBSequence.h */; };
+		DCD9CFC918A14B08008B3444 /* CCBsequence.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB718A14B08008B3444 /* CCBsequence.m */; };
+		DCD9CFCA18A14B08008B3444 /* CCBsequence.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB718A14B08008B3444 /* CCBsequence.m */; };
+		DCD9CFCB18A14B08008B3444 /* CCBSequenceProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFB818A14B08008B3444 /* CCBSequenceProperty.h */; };
+		DCD9CFCC18A14B08008B3444 /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB918A14B08008B3444 /* CCBSequenceProperty.m */; };
+		DCD9CFCD18A14B08008B3444 /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD9CFB918A14B08008B3444 /* CCBSequenceProperty.m */; };
+		DCD9CFCE18A14B08008B3444 /* CCBuilderReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CFBA18A14B08008B3444 /* CCBuilderReader.h */; };
+		DCD9CFD018A14B52008B3444 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CFCF18A14B52008B3444 /* CoreGraphics.framework */; };
+		DCD9CFD218A14B58008B3444 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CFD118A14B58008B3444 /* CoreGraphics.framework */; };
+		DCE082C618A154B900A0C368 /* KKAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082BA18A154B900A0C368 /* KKAppDelegate.h */; };
+		DCE082C718A154B900A0C368 /* KKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082BB18A154B900A0C368 /* KKAppDelegate.m */; };
+		DCE082C818A154B900A0C368 /* KKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082BB18A154B900A0C368 /* KKAppDelegate.m */; };
+		DCE082C918A154B900A0C368 /* KKMacApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082BC18A154B900A0C368 /* KKMacApplication.h */; };
+		DCE082CA18A154B900A0C368 /* KKMacApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082BD18A154B900A0C368 /* KKMacApplication.m */; };
+		DCE082CB18A154B900A0C368 /* KKMacApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082BD18A154B900A0C368 /* KKMacApplication.m */; };
+		DCE082CC18A154B900A0C368 /* KKFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082BE18A154B900A0C368 /* KKFramework.h */; };
+		DCE082CD18A154B900A0C368 /* KKMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082BF18A154B900A0C368 /* KKMacros.h */; };
+		DCE082CE18A154B900A0C368 /* KKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082C018A154B900A0C368 /* KKTypes.h */; };
+		DCE082CF18A154B900A0C368 /* KKView.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082C218A154B900A0C368 /* KKView.h */; };
+		DCE082D018A154B900A0C368 /* KKView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082C318A154B900A0C368 /* KKView.m */; };
+		DCE082D118A154B900A0C368 /* KKView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082C318A154B900A0C368 /* KKView.m */; };
+		DCE082D218A154B900A0C368 /* KKViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082C418A154B900A0C368 /* KKViewController.h */; };
+		DCE082D318A154B900A0C368 /* KKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082C518A154B900A0C368 /* KKViewController.m */; };
+		DCE082D418A154B900A0C368 /* KKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082C518A154B900A0C368 /* KKViewController.m */; };
+		DCE082D618A154D800A0C368 /* KKConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082D518A154D800A0C368 /* KKConfig.h */; };
+		DCE082D918A154F300A0C368 /* KKVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082D718A154F300A0C368 /* KKVersion.h */; };
+		DCE082DA18A154F300A0C368 /* KKVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082D818A154F300A0C368 /* KKVersion.m */; };
+		DCE082DB18A154F300A0C368 /* KKVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082D818A154F300A0C368 /* KKVersion.m */; };
+		DCE082EC18A1563300A0C368 /* KKEmitterNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082DE18A1563300A0C368 /* KKEmitterNode.h */; };
+		DCE082ED18A1563300A0C368 /* KKEmitterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082DF18A1563300A0C368 /* KKEmitterNode.m */; };
+		DCE082EE18A1563300A0C368 /* KKEmitterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082DF18A1563300A0C368 /* KKEmitterNode.m */; };
+		DCE082EF18A1563300A0C368 /* KKLabelNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082E018A1563300A0C368 /* KKLabelNode.h */; };
+		DCE082F018A1563300A0C368 /* KKLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E118A1563300A0C368 /* KKLabelNode.m */; };
+		DCE082F118A1563300A0C368 /* KKLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E118A1563300A0C368 /* KKLabelNode.m */; };
+		DCE082F218A1563300A0C368 /* KKNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082E218A1563300A0C368 /* KKNode.h */; };
+		DCE082F318A1563300A0C368 /* KKNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E318A1563300A0C368 /* KKNode.m */; };
+		DCE082F418A1563300A0C368 /* KKNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E318A1563300A0C368 /* KKNode.m */; };
+		DCE082F518A1563300A0C368 /* KKNodeShared.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082E418A1563300A0C368 /* KKNodeShared.h */; };
+		DCE082F618A1563300A0C368 /* KKNodeShared.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E518A1563300A0C368 /* KKNodeShared.m */; };
+		DCE082F718A1563300A0C368 /* KKNodeShared.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E518A1563300A0C368 /* KKNodeShared.m */; };
+		DCE082F818A1563300A0C368 /* KKScene.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082E618A1563300A0C368 /* KKScene.h */; };
+		DCE082F918A1563300A0C368 /* KKScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E718A1563300A0C368 /* KKScene.m */; };
+		DCE082FA18A1563300A0C368 /* KKScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E718A1563300A0C368 /* KKScene.m */; };
+		DCE082FB18A1563300A0C368 /* KKSpriteNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082E818A1563300A0C368 /* KKSpriteNode.h */; };
+		DCE082FC18A1563300A0C368 /* KKSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E918A1563300A0C368 /* KKSpriteNode.m */; };
+		DCE082FD18A1563300A0C368 /* KKSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082E918A1563300A0C368 /* KKSpriteNode.m */; };
+		DCE082FE18A1563300A0C368 /* KKViewOriginNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE082EA18A1563300A0C368 /* KKViewOriginNode.h */; };
+		DCE082FF18A1563300A0C368 /* KKViewOriginNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */; };
+		DCE0830018A1563300A0C368 /* KKViewOriginNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */; };
+		DCE0830518A156CC00A0C368 /* KKPhysicsContactEventDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */; };
+		DCE0830618A156CC00A0C368 /* KKSceneEventDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */; };
+		DCE0830F18A1571B00A0C368 /* SKAction+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830918A1571B00A0C368 /* SKAction+KoboldKit.h */; };
+		DCE0831018A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */; };
+		DCE0831118A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */; };
+		DCE0831218A1571B00A0C368 /* SKNode+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830B18A1571B00A0C368 /* SKNode+KoboldKit.h */; };
+		DCE0831318A1571B00A0C368 /* SKNode+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830C18A1571B00A0C368 /* SKNode+KoboldKit.m */; };
+		DCE0831418A1571B00A0C368 /* SKNode+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830C18A1571B00A0C368 /* SKNode+KoboldKit.m */; };
+		DCE0831518A1571B00A0C368 /* SKScene+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830D18A1571B00A0C368 /* SKScene+KoboldKit.h */; };
+		DCE0831618A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */; };
+		DCE0831718A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */; };
+		DCE0831918A159C000A0C368 /* SB+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0831818A159C000A0C368 /* SB+KoboldKit.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCD9CF2C18A14908008B3444 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B2B18A4EED4001749BB /* SKEmitterNode+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEmitterNode+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B2C18A4EED4001749BB /* SKLabelNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKLabelNode+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B2D18A4EED4001749BB /* SKLabelNode+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKLabelNode+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B2E18A4EED4001749BB /* SKNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B2F18A4EED4001749BB /* SKNode+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B3018A4EED4001749BB /* SKPhysicsBody+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKPhysicsBody+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B3118A4EED4001749BB /* SKPhysicsBody+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKPhysicsBody+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B3218A4EED4001749BB /* SKSpriteNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B3318A4EED4001749BB /* SKSpriteNode+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B3418A4EED4001749BB /* SKTexture+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKTexture+CCBReader.h"; sourceTree = "<group>"; };
+		DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKTexture+CCBReader.m"; sourceTree = "<group>"; };
+		DC0F9B3718A4EED4001749BB /* CCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCColor.h; sourceTree = "<group>"; };
+		DC0F9B3818A4EED4001749BB /* CCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCColor.m; sourceTree = "<group>"; };
+		DC0F9B3918A4EED4001749BB /* CCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCConfiguration.h; sourceTree = "<group>"; };
+		DC0F9B3A18A4EED4001749BB /* CCConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCConfiguration.m; sourceTree = "<group>"; };
+		DC0F9B3B18A4EED4001749BB /* CCFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtils.h; sourceTree = "<group>"; };
+		DC0F9B3C18A4EED4001749BB /* CCFileUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCFileUtils.m; sourceTree = "<group>"; };
+		DC0F9B3D18A4EED4001749BB /* CCSpriteFrameCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteFrameCache.h; sourceTree = "<group>"; };
+		DC0F9B3E18A4EED4001749BB /* CCSpriteFrameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteFrameCache.m; sourceTree = "<group>"; };
+		DC0F9B3F18A4EED4001749BB /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointExtension.h; sourceTree = "<group>"; };
+		DC0F9B4018A4EED4001749BB /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointExtension.m; sourceTree = "<group>"; };
+		DC0F9B6718A4EFAC001749BB /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD9CF0318A148AA008B3444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DCD9CF0618A148AA008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DCD9CF0718A148AA008B3444 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DCD9CF0818A148AA008B3444 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DCD9CF1418A148AA008B3444 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD9CF2F18A14908008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DCD9CF3F18A14908008B3444 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		DCD9CF5218A14989008B3444 /* SB+KoboldKit-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DCD9CF5318A14989008B3444 /* SB+KoboldKit-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit-OSX-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitCompatibility.h; sourceTree = "<group>"; };
+		DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitDummy.h; sourceTree = "<group>"; };
+		DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSpriteKitDummy.m; sourceTree = "<group>"; };
+		DCD9CF5F18A149D7008B3444 /* CCBSpriteKitMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitMacros.h; sourceTree = "<group>"; };
+		DCD9CF6018A149D7008B3444 /* CCBSpriteKitReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitReader.h; sourceTree = "<group>"; };
+		DCD9CF6118A149D7008B3444 /* CCBSpriteKitReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSpriteKitReader.m; sourceTree = "<group>"; };
+		DCD9CFAD18A14B08008B3444 /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
+		DCD9CFAE18A14B08008B3444 /* CCBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBAnimationManager.m; sourceTree = "<group>"; };
+		DCD9CFAF18A14B08008B3444 /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
+		DCD9CFB018A14B08008B3444 /* CCBKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBKeyframe.m; sourceTree = "<group>"; };
+		DCD9CFB118A14B08008B3444 /* CCBLocalizationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBLocalizationManager.h; sourceTree = "<group>"; };
+		DCD9CFB218A14B08008B3444 /* CCBLocalizationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBLocalizationManager.m; sourceTree = "<group>"; };
+		DCD9CFB318A14B08008B3444 /* CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader.h; sourceTree = "<group>"; };
+		DCD9CFB418A14B08008B3444 /* CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReader.m; sourceTree = "<group>"; };
+		DCD9CFB518A14B08008B3444 /* CCBReader_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReader_Private.h; sourceTree = "<group>"; };
+		DCD9CFB618A14B08008B3444 /* CCBSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequence.h; sourceTree = "<group>"; };
+		DCD9CFB718A14B08008B3444 /* CCBsequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBsequence.m; sourceTree = "<group>"; };
+		DCD9CFB818A14B08008B3444 /* CCBSequenceProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequenceProperty.h; sourceTree = "<group>"; };
+		DCD9CFB918A14B08008B3444 /* CCBSequenceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequenceProperty.m; sourceTree = "<group>"; };
+		DCD9CFBA18A14B08008B3444 /* CCBuilderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBuilderReader.h; sourceTree = "<group>"; };
+		DCD9CFCF18A14B52008B3444 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		DCD9CFD118A14B58008B3444 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DCE082BA18A154B900A0C368 /* KKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKAppDelegate.h; sourceTree = "<group>"; };
+		DCE082BB18A154B900A0C368 /* KKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKAppDelegate.m; sourceTree = "<group>"; };
+		DCE082BC18A154B900A0C368 /* KKMacApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMacApplication.h; sourceTree = "<group>"; };
+		DCE082BD18A154B900A0C368 /* KKMacApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKMacApplication.m; sourceTree = "<group>"; };
+		DCE082BE18A154B900A0C368 /* KKFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKFramework.h; sourceTree = "<group>"; };
+		DCE082BF18A154B900A0C368 /* KKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKMacros.h; sourceTree = "<group>"; };
+		DCE082C018A154B900A0C368 /* KKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKTypes.h; sourceTree = "<group>"; };
+		DCE082C218A154B900A0C368 /* KKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKView.h; sourceTree = "<group>"; };
+		DCE082C318A154B900A0C368 /* KKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKView.m; sourceTree = "<group>"; };
+		DCE082C418A154B900A0C368 /* KKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKViewController.h; sourceTree = "<group>"; };
+		DCE082C518A154B900A0C368 /* KKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKViewController.m; sourceTree = "<group>"; };
+		DCE082D518A154D800A0C368 /* KKConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKConfig.h; sourceTree = "<group>"; };
+		DCE082D718A154F300A0C368 /* KKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKVersion.h; sourceTree = "<group>"; };
+		DCE082D818A154F300A0C368 /* KKVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKVersion.m; sourceTree = "<group>"; };
+		DCE082DE18A1563300A0C368 /* KKEmitterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKEmitterNode.h; sourceTree = "<group>"; };
+		DCE082DF18A1563300A0C368 /* KKEmitterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKEmitterNode.m; sourceTree = "<group>"; };
+		DCE082E018A1563300A0C368 /* KKLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKLabelNode.h; sourceTree = "<group>"; };
+		DCE082E118A1563300A0C368 /* KKLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKLabelNode.m; sourceTree = "<group>"; };
+		DCE082E218A1563300A0C368 /* KKNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKNode.h; sourceTree = "<group>"; };
+		DCE082E318A1563300A0C368 /* KKNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKNode.m; sourceTree = "<group>"; };
+		DCE082E418A1563300A0C368 /* KKNodeShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKNodeShared.h; sourceTree = "<group>"; };
+		DCE082E518A1563300A0C368 /* KKNodeShared.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKNodeShared.m; sourceTree = "<group>"; };
+		DCE082E618A1563300A0C368 /* KKScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKScene.h; sourceTree = "<group>"; };
+		DCE082E718A1563300A0C368 /* KKScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKScene.m; sourceTree = "<group>"; };
+		DCE082E818A1563300A0C368 /* KKSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKSpriteNode.h; sourceTree = "<group>"; };
+		DCE082E918A1563300A0C368 /* KKSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKSpriteNode.m; sourceTree = "<group>"; };
+		DCE082EA18A1563300A0C368 /* KKViewOriginNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKViewOriginNode.h; sourceTree = "<group>"; };
+		DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKViewOriginNode.m; sourceTree = "<group>"; };
+		DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPhysicsContactEventDelegate.h; sourceTree = "<group>"; };
+		DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKSceneEventDelegate.h; sourceTree = "<group>"; };
+		DCE0830918A1571B00A0C368 /* SKAction+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+KoboldKit.h"; sourceTree = "<group>"; };
+		DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+KoboldKit.m"; sourceTree = "<group>"; };
+		DCE0830B18A1571B00A0C368 /* SKNode+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+KoboldKit.h"; sourceTree = "<group>"; };
+		DCE0830C18A1571B00A0C368 /* SKNode+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+KoboldKit.m"; sourceTree = "<group>"; };
+		DCE0830D18A1571B00A0C368 /* SKScene+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKScene+KoboldKit.h"; sourceTree = "<group>"; };
+		DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKScene+KoboldKit.m"; sourceTree = "<group>"; };
+		DCE0831818A159C000A0C368 /* SB+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DCD9CEFD18A148AA008B3444 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD9CFD218A14B58008B3444 /* CoreGraphics.framework in Frameworks */,
+				DCD9CF0418A148AA008B3444 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD9CF2B18A14908008B3444 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCD9CFD018A14B52008B3444 /* CoreGraphics.framework in Frameworks */,
+				DCD9CF3018A14908008B3444 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DC0F9B2718A4EED4001749BB /* reader-categories */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */,
+				DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */,
+				DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */,
+				DC0F9B2B18A4EED4001749BB /* SKEmitterNode+CCBReader.m */,
+				DC0F9B2C18A4EED4001749BB /* SKLabelNode+CCBReader.h */,
+				DC0F9B2D18A4EED4001749BB /* SKLabelNode+CCBReader.m */,
+				DC0F9B2E18A4EED4001749BB /* SKNode+CCBReader.h */,
+				DC0F9B2F18A4EED4001749BB /* SKNode+CCBReader.m */,
+				DC0F9B3018A4EED4001749BB /* SKPhysicsBody+CCBReader.h */,
+				DC0F9B3118A4EED4001749BB /* SKPhysicsBody+CCBReader.m */,
+				DC0F9B3218A4EED4001749BB /* SKSpriteNode+CCBReader.h */,
+				DC0F9B3318A4EED4001749BB /* SKSpriteNode+CCBReader.m */,
+				DC0F9B3418A4EED4001749BB /* SKTexture+CCBReader.h */,
+				DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */,
+			);
+			path = "reader-categories";
+			sourceTree = "<group>";
+		};
+		DC0F9B3618A4EED4001749BB /* cocos2d-classes */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F9B3718A4EED4001749BB /* CCColor.h */,
+				DC0F9B3818A4EED4001749BB /* CCColor.m */,
+				DC0F9B3918A4EED4001749BB /* CCConfiguration.h */,
+				DC0F9B3A18A4EED4001749BB /* CCConfiguration.m */,
+				DC0F9B3B18A4EED4001749BB /* CCFileUtils.h */,
+				DC0F9B3C18A4EED4001749BB /* CCFileUtils.m */,
+				DC0F9B3D18A4EED4001749BB /* CCSpriteFrameCache.h */,
+				DC0F9B3E18A4EED4001749BB /* CCSpriteFrameCache.m */,
+				DC0F9B3F18A4EED4001749BB /* CGPointExtension.h */,
+				DC0F9B4018A4EED4001749BB /* CGPointExtension.m */,
+			);
+			path = "cocos2d-classes";
+			sourceTree = "<group>";
+		};
+		DC0F9B6518A4EFAC001749BB /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F9B6618A4EFAC001749BB /* JRSwizzle */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		DC0F9B6618A4EFAC001749BB /* JRSwizzle */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F9B6718A4EFAC001749BB /* JRSwizzle.h */,
+				DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */,
+			);
+			path = JRSwizzle;
+			sourceTree = "<group>";
+		};
+		DCD9CEF718A148AA008B3444 = {
+			isa = PBXGroup;
+			children = (
+				DCE0831818A159C000A0C368 /* SB+KoboldKit.h */,
+				DCE082B818A154B900A0C368 /* KoboldKit */,
+				DCD9CFAC18A14B08008B3444 /* CCBReader */,
+				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
+				DC0F9B6518A4EFAC001749BB /* libs */,
+				DCD9CF0918A148AA008B3444 /* SB+KoboldKit */,
+				DCD9CF0218A148AA008B3444 /* Frameworks */,
+				DCD9CF0118A148AA008B3444 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DCD9CF0118A148AA008B3444 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */,
+				DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DCD9CF0218A148AA008B3444 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CFD118A14B58008B3444 /* CoreGraphics.framework */,
+				DCD9CFCF18A14B52008B3444 /* CoreGraphics.framework */,
+				DCD9CF0318A148AA008B3444 /* Cocoa.framework */,
+				DCD9CF1418A148AA008B3444 /* XCTest.framework */,
+				DCD9CF2F18A14908008B3444 /* Foundation.framework */,
+				DCD9CF3F18A14908008B3444 /* UIKit.framework */,
+				DCD9CF0518A148AA008B3444 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCD9CF0518A148AA008B3444 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CF0618A148AA008B3444 /* Foundation.framework */,
+				DCD9CF0718A148AA008B3444 /* CoreData.framework */,
+				DCD9CF0818A148AA008B3444 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		DCD9CF0918A148AA008B3444 /* SB+KoboldKit */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CF5218A14989008B3444 /* SB+KoboldKit-iOS-Prefix.pch */,
+				DCD9CF5318A14989008B3444 /* SB+KoboldKit-OSX-Prefix.pch */,
+			);
+			name = "SB+KoboldKit";
+			path = "SB+SpriteKit";
+			sourceTree = "<group>";
+		};
+		DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				DC0F9B2718A4EED4001749BB /* reader-categories */,
+				DC0F9B3618A4EED4001749BB /* cocos2d-classes */,
+				DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */,
+				DCD9CF5F18A149D7008B3444 /* CCBSpriteKitMacros.h */,
+				DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */,
+				DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */,
+				DCD9CF6018A149D7008B3444 /* CCBSpriteKitReader.h */,
+				DCD9CF6118A149D7008B3444 /* CCBSpriteKitReader.m */,
+			);
+			path = "CCBReader+SpriteKitExtensions";
+			sourceTree = "<group>";
+		};
+		DCD9CFAC18A14B08008B3444 /* CCBReader */ = {
+			isa = PBXGroup;
+			children = (
+				DCD9CFAD18A14B08008B3444 /* CCBAnimationManager.h */,
+				DCD9CFAE18A14B08008B3444 /* CCBAnimationManager.m */,
+				DCD9CFAF18A14B08008B3444 /* CCBKeyframe.h */,
+				DCD9CFB018A14B08008B3444 /* CCBKeyframe.m */,
+				DCD9CFB118A14B08008B3444 /* CCBLocalizationManager.h */,
+				DCD9CFB218A14B08008B3444 /* CCBLocalizationManager.m */,
+				DCD9CFB318A14B08008B3444 /* CCBReader.h */,
+				DCD9CFB418A14B08008B3444 /* CCBReader.m */,
+				DCD9CFB518A14B08008B3444 /* CCBReader_Private.h */,
+				DCD9CFB618A14B08008B3444 /* CCBSequence.h */,
+				DCD9CFB718A14B08008B3444 /* CCBsequence.m */,
+				DCD9CFB818A14B08008B3444 /* CCBSequenceProperty.h */,
+				DCD9CFB918A14B08008B3444 /* CCBSequenceProperty.m */,
+				DCD9CFBA18A14B08008B3444 /* CCBuilderReader.h */,
+			);
+			name = CCBReader;
+			path = "../cocos2d-iphone/cocos2d-ui/CCBReader";
+			sourceTree = "<group>";
+		};
+		DCE082B818A154B900A0C368 /* KoboldKit */ = {
+			isa = PBXGroup;
+			children = (
+				DCE082D518A154D800A0C368 /* KKConfig.h */,
+				DCE082BE18A154B900A0C368 /* KKFramework.h */,
+				DCE082BF18A154B900A0C368 /* KKMacros.h */,
+				DCE082C018A154B900A0C368 /* KKTypes.h */,
+				DCE082D718A154F300A0C368 /* KKVersion.h */,
+				DCE082D818A154F300A0C368 /* KKVersion.m */,
+				DCE082B918A154B900A0C368 /* App */,
+				DCE082DC18A1563200A0C368 /* Nodes */,
+				DCE082C118A154B900A0C368 /* View */,
+			);
+			path = KoboldKit;
+			sourceTree = "<group>";
+		};
+		DCE082B918A154B900A0C368 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DCE082BA18A154B900A0C368 /* KKAppDelegate.h */,
+				DCE082BB18A154B900A0C368 /* KKAppDelegate.m */,
+				DCE082BC18A154B900A0C368 /* KKMacApplication.h */,
+				DCE082BD18A154B900A0C368 /* KKMacApplication.m */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DCE082C118A154B900A0C368 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DCE082C218A154B900A0C368 /* KKView.h */,
+				DCE082C318A154B900A0C368 /* KKView.m */,
+				DCE082C418A154B900A0C368 /* KKViewController.h */,
+				DCE082C518A154B900A0C368 /* KKViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DCE082DC18A1563200A0C368 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				DCE0830818A1571B00A0C368 /* Categories */,
+				DCE0830118A156CC00A0C368 /* Protocols */,
+				DCE082DD18A1563300A0C368 /* Subclasses */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		DCE082DD18A1563300A0C368 /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				DCE082DE18A1563300A0C368 /* KKEmitterNode.h */,
+				DCE082DF18A1563300A0C368 /* KKEmitterNode.m */,
+				DCE082E018A1563300A0C368 /* KKLabelNode.h */,
+				DCE082E118A1563300A0C368 /* KKLabelNode.m */,
+				DCE082E218A1563300A0C368 /* KKNode.h */,
+				DCE082E318A1563300A0C368 /* KKNode.m */,
+				DCE082E418A1563300A0C368 /* KKNodeShared.h */,
+				DCE082E518A1563300A0C368 /* KKNodeShared.m */,
+				DCE082E618A1563300A0C368 /* KKScene.h */,
+				DCE082E718A1563300A0C368 /* KKScene.m */,
+				DCE082E818A1563300A0C368 /* KKSpriteNode.h */,
+				DCE082E918A1563300A0C368 /* KKSpriteNode.m */,
+				DCE082EA18A1563300A0C368 /* KKViewOriginNode.h */,
+				DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */,
+			);
+			path = Subclasses;
+			sourceTree = "<group>";
+		};
+		DCE0830118A156CC00A0C368 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */,
+				DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DCE0830818A1571B00A0C368 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DCE0830918A1571B00A0C368 /* SKAction+KoboldKit.h */,
+				DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */,
+				DCE0830B18A1571B00A0C368 /* SKNode+KoboldKit.h */,
+				DCE0830C18A1571B00A0C368 /* SKNode+KoboldKit.m */,
+				DCE0830D18A1571B00A0C368 /* SKScene+KoboldKit.h */,
+				DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DCD9CEFE18A148AA008B3444 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCE082F818A1563300A0C368 /* KKScene.h in Headers */,
+				DCD9CF8518A149D7008B3444 /* CCBSpriteKitReader.h in Headers */,
+				DCD9CF8118A149D7008B3444 /* CCBSpriteKitDummy.h in Headers */,
+				DCE082F518A1563300A0C368 /* KKNodeShared.h in Headers */,
+				DCD9CF8418A149D7008B3444 /* CCBSpriteKitMacros.h in Headers */,
+				DCD9CFC118A14B08008B3444 /* CCBLocalizationManager.h in Headers */,
+				DCE082F218A1563300A0C368 /* KKNode.h in Headers */,
+				DCE082EC18A1563300A0C368 /* KKEmitterNode.h in Headers */,
+				DCE0831218A1571B00A0C368 /* SKNode+KoboldKit.h in Headers */,
+				DC0F9B6918A4EFAC001749BB /* JRSwizzle.h in Headers */,
+				DC0F9B4A18A4EED4001749BB /* SKNode+CCBReader.h in Headers */,
+				DCD9CFBE18A14B08008B3444 /* CCBKeyframe.h in Headers */,
+				DC0F9B4D18A4EED4001749BB /* SKPhysicsBody+CCBReader.h in Headers */,
+				DCE082EF18A1563300A0C368 /* KKLabelNode.h in Headers */,
+				DCD9CFBB18A14B08008B3444 /* CCBAnimationManager.h in Headers */,
+				DCE082D618A154D800A0C368 /* KKConfig.h in Headers */,
+				DC0F9B5318A4EED4001749BB /* SKTexture+CCBReader.h in Headers */,
+				DCD9CF8018A149D7008B3444 /* CCBSpriteKitCompatibility.h in Headers */,
+				DC0F9B5C18A4EED4001749BB /* CCFileUtils.h in Headers */,
+				DCE082FB18A1563300A0C368 /* KKSpriteNode.h in Headers */,
+				DC0F9B5F18A4EED4001749BB /* CCSpriteFrameCache.h in Headers */,
+				DCE0830F18A1571B00A0C368 /* SKAction+KoboldKit.h in Headers */,
+				DCD9CFC418A14B08008B3444 /* CCBReader.h in Headers */,
+				DCE082CD18A154B900A0C368 /* KKMacros.h in Headers */,
+				DCE082CC18A154B900A0C368 /* KKFramework.h in Headers */,
+				DCE082CF18A154B900A0C368 /* KKView.h in Headers */,
+				DCE0831918A159C000A0C368 /* SB+KoboldKit.h in Headers */,
+				DCE082D918A154F300A0C368 /* KKVersion.h in Headers */,
+				DCE082FE18A1563300A0C368 /* KKViewOriginNode.h in Headers */,
+				DCD9CFC818A14B08008B3444 /* CCBSequence.h in Headers */,
+				DC0F9B5618A4EED4001749BB /* CCColor.h in Headers */,
+				DC0F9B4718A4EED4001749BB /* SKLabelNode+CCBReader.h in Headers */,
+				DCE082C918A154B900A0C368 /* KKMacApplication.h in Headers */,
+				DCE0830518A156CC00A0C368 /* KKPhysicsContactEventDelegate.h in Headers */,
+				DC0F9B5018A4EED4001749BB /* SKSpriteNode+CCBReader.h in Headers */,
+				DC0F9B4418A4EED4001749BB /* SKEmitterNode+CCBReader.h in Headers */,
+				DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */,
+				DCE082CE18A154B900A0C368 /* KKTypes.h in Headers */,
+				DCD9CFC718A14B08008B3444 /* CCBReader_Private.h in Headers */,
+				DCE0830618A156CC00A0C368 /* KKSceneEventDelegate.h in Headers */,
+				DC0F9B5918A4EED4001749BB /* CCConfiguration.h in Headers */,
+				DCD9CFCB18A14B08008B3444 /* CCBSequenceProperty.h in Headers */,
+				DCE082D218A154B900A0C368 /* KKViewController.h in Headers */,
+				DCD9CFCE18A14B08008B3444 /* CCBuilderReader.h in Headers */,
+				DC0F9B4118A4EED4001749BB /* NSValue+CCBReader.h in Headers */,
+				DCE082C618A154B900A0C368 /* KKAppDelegate.h in Headers */,
+				DCE0831518A1571B00A0C368 /* SKScene+KoboldKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DCD9CEFF18A148AA008B3444 /* SB+KoboldKit-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-OSX" */;
+			buildPhases = (
+				DCD9CEFC18A148AA008B3444 /* Sources */,
+				DCD9CEFD18A148AA008B3444 /* Frameworks */,
+				DCD9CEFE18A148AA008B3444 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SB+KoboldKit-OSX";
+			productName = "SB+SpriteKit";
+			productReference = DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DCD9CF2D18A14908008B3444 /* SB+KoboldKit-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-iOS" */;
+			buildPhases = (
+				DCD9CF2A18A14908008B3444 /* Sources */,
+				DCD9CF2B18A14908008B3444 /* Frameworks */,
+				DCD9CF2C18A14908008B3444 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SB+KoboldKit-iOS";
+			productName = "SB+SpriteKit-iOS";
+			productReference = DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DCD9CEF818A148AA008B3444 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Apportable;
+			};
+			buildConfigurationList = DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+KoboldKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DCD9CEF718A148AA008B3444;
+			productRefGroup = DCD9CF0118A148AA008B3444 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DCD9CF2D18A14908008B3444 /* SB+KoboldKit-iOS */,
+				DCD9CEFF18A148AA008B3444 /* SB+KoboldKit-OSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DCD9CEFC18A148AA008B3444 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0F9B4618A4EED4001749BB /* SKEmitterNode+CCBReader.m in Sources */,
+				DCD9CFC318A14B08008B3444 /* CCBLocalizationManager.m in Sources */,
+				DC0F9B5518A4EED4001749BB /* SKTexture+CCBReader.m in Sources */,
+				DCE082DB18A154F300A0C368 /* KKVersion.m in Sources */,
+				DCD9CF8318A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */,
+				DCE0831118A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */,
+				DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
+				DCD9CFC018A14B08008B3444 /* CCBKeyframe.m in Sources */,
+				DCD9CFCD18A14B08008B3444 /* CCBSequenceProperty.m in Sources */,
+				DC0F9B5818A4EED4001749BB /* CCColor.m in Sources */,
+				DCE082FA18A1563300A0C368 /* KKScene.m in Sources */,
+				DC0F9B4F18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
+				DCD9CFCA18A14B08008B3444 /* CCBsequence.m in Sources */,
+				DCE082D418A154B900A0C368 /* KKViewController.m in Sources */,
+				DC0F9B6118A4EED4001749BB /* CCSpriteFrameCache.m in Sources */,
+				DCD9CFBD18A14B08008B3444 /* CCBAnimationManager.m in Sources */,
+				DCE082EE18A1563300A0C368 /* KKEmitterNode.m in Sources */,
+				DCE082F718A1563300A0C368 /* KKNodeShared.m in Sources */,
+				DC0F9B6418A4EED4001749BB /* CGPointExtension.m in Sources */,
+				DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
+				DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
+				DCE082C818A154B900A0C368 /* KKAppDelegate.m in Sources */,
+				DCE0830018A1563300A0C368 /* KKViewOriginNode.m in Sources */,
+				DC0F9B5B18A4EED4001749BB /* CCConfiguration.m in Sources */,
+				DCE082F118A1563300A0C368 /* KKLabelNode.m in Sources */,
+				DCD9CFC618A14B08008B3444 /* CCBReader.m in Sources */,
+				DC0F9B5E18A4EED4001749BB /* CCFileUtils.m in Sources */,
+				DCE082CB18A154B900A0C368 /* KKMacApplication.m in Sources */,
+				DCE0831718A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */,
+				DC0F9B4918A4EED4001749BB /* SKLabelNode+CCBReader.m in Sources */,
+				DCE082D118A154B900A0C368 /* KKView.m in Sources */,
+				DCD9CF8718A149D7008B3444 /* CCBSpriteKitReader.m in Sources */,
+				DCE082FD18A1563300A0C368 /* KKSpriteNode.m in Sources */,
+				DCE082F418A1563300A0C368 /* KKNode.m in Sources */,
+				DC0F9B6B18A4EFAC001749BB /* JRSwizzle.m in Sources */,
+				DCE0831418A1571B00A0C368 /* SKNode+KoboldKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCD9CF2A18A14908008B3444 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0F9B4518A4EED4001749BB /* SKEmitterNode+CCBReader.m in Sources */,
+				DCD9CFC218A14B08008B3444 /* CCBLocalizationManager.m in Sources */,
+				DC0F9B5418A4EED4001749BB /* SKTexture+CCBReader.m in Sources */,
+				DCE082DA18A154F300A0C368 /* KKVersion.m in Sources */,
+				DCD9CF8218A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */,
+				DCE0831018A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */,
+				DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
+				DCD9CFBF18A14B08008B3444 /* CCBKeyframe.m in Sources */,
+				DCD9CFCC18A14B08008B3444 /* CCBSequenceProperty.m in Sources */,
+				DC0F9B5718A4EED4001749BB /* CCColor.m in Sources */,
+				DCE082F918A1563300A0C368 /* KKScene.m in Sources */,
+				DC0F9B4E18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
+				DCD9CFC918A14B08008B3444 /* CCBsequence.m in Sources */,
+				DCE082D318A154B900A0C368 /* KKViewController.m in Sources */,
+				DC0F9B6018A4EED4001749BB /* CCSpriteFrameCache.m in Sources */,
+				DCD9CFBC18A14B08008B3444 /* CCBAnimationManager.m in Sources */,
+				DCE082ED18A1563300A0C368 /* KKEmitterNode.m in Sources */,
+				DCE082F618A1563300A0C368 /* KKNodeShared.m in Sources */,
+				DC0F9B6318A4EED4001749BB /* CGPointExtension.m in Sources */,
+				DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
+				DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
+				DCE082C718A154B900A0C368 /* KKAppDelegate.m in Sources */,
+				DCE082FF18A1563300A0C368 /* KKViewOriginNode.m in Sources */,
+				DC0F9B5A18A4EED4001749BB /* CCConfiguration.m in Sources */,
+				DCE082F018A1563300A0C368 /* KKLabelNode.m in Sources */,
+				DCD9CFC518A14B08008B3444 /* CCBReader.m in Sources */,
+				DC0F9B5D18A4EED4001749BB /* CCFileUtils.m in Sources */,
+				DCE082CA18A154B900A0C368 /* KKMacApplication.m in Sources */,
+				DCE0831618A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */,
+				DC0F9B4818A4EED4001749BB /* SKLabelNode+CCBReader.m in Sources */,
+				DCE082D018A154B900A0C368 /* KKView.m in Sources */,
+				DCD9CF8618A149D7008B3444 /* CCBSpriteKitReader.m in Sources */,
+				DCE082FC18A1563300A0C368 /* KKSpriteNode.m in Sources */,
+				DCE082F318A1563300A0C368 /* KKNode.m in Sources */,
+				DC0F9B6A18A4EFAC001749BB /* JRSwizzle.m in Sources */,
+				DCE0831318A1571B00A0C368 /* SKNode+KoboldKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DCD9CF2218A148AA008B3444 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"CCB_SPRITEKIT_READER=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DCD9CF2318A148AA008B3444 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "CCB_SPRITEKIT_READER=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DCD9CF2518A148AA008B3444 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				PRODUCT_NAME = "SB+KoboldKit-OSX";
+			};
+			name = Debug;
+		};
+		DCD9CF2618A148AA008B3444 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				PRODUCT_NAME = "SB+KoboldKit-OSX";
+			};
+			name = Release;
+		};
+		DCD9CF4D18A14908008B3444 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SB+KoboldKit-iOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "SB+KoboldKit-iOS";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DCD9CF4E18A14908008B3444 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SB+KoboldKit-iOS-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "SB+KoboldKit-iOS";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+KoboldKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD9CF2218A148AA008B3444 /* Debug */,
+				DCD9CF2318A148AA008B3444 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD9CF2518A148AA008B3444 /* Debug */,
+				DCD9CF2618A148AA008B3444 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCD9CF4D18A14908008B3444 /* Debug */,
+				DCD9CF4E18A14908008B3444 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DCD9CEF818A148AA008B3444 /* Project object */;
+}
