@@ -51,3 +51,5 @@ Backup[ ]of[ ]*.numbers/
 
 # Private keys
 *priv.pem
+
+UserInterfaceState.xcuserstate
