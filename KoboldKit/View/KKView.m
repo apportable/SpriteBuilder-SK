@@ -6,15 +6,10 @@
 
 #import "KKView.h"
 #import "KKScene.h"
-//#import "KKModel.h"
-//#import "KKLua.h"
-//#import "NSDictionary+KoboldKit.h"
-//#import "NSBundle+KoboldKit.h"
-//#import "KKClassVarSetter.h"
 
-static BOOL _showsPhysicsShapes = NO;
-static BOOL _showsNodeFrames = NO;
-static BOOL _showsNodeAnchorPoints = NO;
+static BOOL _drawsPhysicsShapes = NO;
+static BOOL _drawsNodeFrames = NO;
+static BOOL _drawsNodeAnchorPoints = NO;
 
 @implementation KKView
 
@@ -51,141 +46,7 @@ static BOOL _showsNodeAnchorPoints = NO;
 -(void) initDefaults
 {
 	_sceneStack = [NSMutableArray array];
-	//_model = [KKModel model];
-
-	//[KKLua setup];
-	//[self reloadConfig];
 }
-
-#pragma mark Properties
-
-/*
--(KKGLContext*) context
-{
-#if TARGET_OS_IPHONE
-	return [EAGLContext currentContext];
-#else
-	return [NSOpenGLContext currentContext];
-#endif
-}
-*/
-
-#pragma mark Config
-
-@dynamic showsCPUStats, showsGPUStats;
--(void) setShowsCPUStats:(BOOL)showsCPUStats
-{
-	[self setValue:[NSNumber numberWithBool:showsCPUStats] forKey:@"_showsCPUStats"];
-}
--(BOOL) showsCPUStats
-{
-	return [[self valueForKey:@"_showsCPUStats"] boolValue];
-}
-
--(void) setShowsGPUStats:(BOOL)showsGPUStats
-{
-	[self setValue:[NSNumber numberWithBool:showsGPUStats] forKey:@"_showsGPUStats"];
-}
--(BOOL) showsGPUStats
-{
-	return [[self valueForKey:@"_showsGPUStats"] boolValue];
-}
-
-/*
--(void) reloadConfig
-{
-	[self loadConfig:@"config.lua"];
-	[self loadConfig:@"devconfig.lua"];
-	[self loadConfig:@"objectTemplates.lua" inheritProperties:YES];
-	[self loadConfig:@"behaviorTemplates.lua"];
-
-	BOOL disableAllDebugLabels = [_model boolForKeyPath:@"devconfig.disableAllDebugLabels"];
-	if (disableAllDebugLabels == NO)
-	{
-		self.showsDrawCount = [_model boolForKeyPath:@"devconfig.showsDrawCount"];
-		self.showsFPS = [_model boolForKeyPath:@"devconfig.showsFPS"];
-		self.showsNodeCount = [_model boolForKeyPath:@"devconfig.showsNodeCount"];
-		self.showsPhysicsShapes = [_model boolForKeyPath:@"devconfig.showsPhysicsShapes"];
-		self.showsNodeFrames = [_model boolForKeyPath:@"devconfig.showsNodeFrames"];
-		self.showsNodeAnchorPoints = [_model boolForKeyPath:@"devconfig.showsNodeAnchorPoints"];
-		
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsCoreAnimationFPS"]) forKey:@"_showsCoreAnimationFPS"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsGPUStats"]) forKey:@"_showsGPUStats"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsCPUStats"]) forKey:@"_showsCPUStats"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsCulledNodesInNodeCount"]) forKey:@"_showsCulledNodesInNodeCount"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsTotalAreaRendered"]) forKey:@"_showsTotalAreaRendered"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.showsSpriteBounds"]) forKey:@"_showsSpriteBounds"];
-		[self setValue:@([_model boolForKeyPath:@"devconfig.shouldCenterStats"]) forKey:@"_shouldCenterStats"];
-	}
-}
-
--(void) loadConfig:(NSString*)configFile
-{
-	[self loadConfig:configFile inheritProperties:NO];
-}
-
--(void) loadConfig:(NSString*)configFile inheritProperties:(BOOL)flattenHierarchy
-{
-	NSString* path = [NSBundle pathForFile:configFile];
-	if (path)
-	{
-		NSMutableDictionary* config = [NSMutableDictionary dictionaryWithContentsOfLuaScript:path];
-		if (config)
-		{
-			if (flattenHierarchy)
-			{
-				[self flattenHierarchyWithConfig:config];
-			}
-			
-			NSString* key = [[configFile lastPathComponent] stringByDeletingPathExtension];
-			[_model setObject:config forKey:key];
-		}
-	}
-}
-
--(void) flattenHierarchyWithConfig:(NSMutableDictionary*)config
-{
-	for (id key in config)
-	{
-		id value = [config valueForKey:key];
-		if ([value isKindOfClass:[NSMutableDictionary class]])
-		{
-			// check for inheritance
-			NSMutableDictionary* objectDef = (NSMutableDictionary*)value;
-			NSString* parentName = [objectDef objectForKey:@"inheritsFrom"];
-			
-			while (parentName.length)
-			{
-				// inherit values from the parent object
-				NSDictionary* parentObjectDef = [config objectForKey:parentName];
-				NSAssert2(parentObjectDef, @"object type '%@' tries to inherit from unknown parent object type '%@'", key, parentName);
-				if (parentObjectDef)
-				{
-					[self inheritValuesFrom:parentObjectDef childObject:objectDef];
-					parentName = [parentObjectDef objectForKey:@"inheritsFrom"];
-				}
-			}
-		}
-	}
-}
-
--(void) inheritValuesFrom:(NSDictionary*)parentObject childObject:(NSMutableDictionary*)childObject
-{
-	Class dictionaryClass = [NSDictionary class];
-	for (id parentKey in parentObject)
-	{
-		id object = [childObject objectForKey:parentKey];
-		if (object == nil)
-		{
-			[childObject setObject:[parentObject objectForKey:parentKey] forKey:parentKey];
-		}
-		else if ([object isKindOfClass:dictionaryClass])
-		{
-			[NSException raise:NSInternalInconsistencyException format:@"inheriting table properties not yet implemented"];
-		}
-	}
-}
-*/
 
 #pragma mark Present Scene
 
@@ -220,6 +81,8 @@ static BOOL _showsNodeAnchorPoints = NO;
 
 	transition ? [super presentScene:scene transition:transition] : [super presentScene:scene];
 }
+
+#pragma mark Push/Pop Scene
 
 -(void) pushScene:(KKScene*)scene
 {
@@ -301,46 +164,80 @@ static BOOL _showsNodeAnchorPoints = NO;
 
 #pragma mark Debug
 
-@dynamic showsPhysicsShapes;
-+(BOOL) showsPhysicsShapes
+@dynamic drawsPhysicsShapes;
++(BOOL) drawsPhysicsShapes
 {
-	return _showsPhysicsShapes;
+	return _drawsPhysicsShapes;
 }
--(BOOL) showsPhysicsShapes
+-(BOOL) drawsPhysicsShapes
 {
-	return _showsPhysicsShapes;
+	return _drawsPhysicsShapes;
 }
--(void) setShowsPhysicsShapes:(BOOL)showsPhysicsShapes
+-(void) setDrawsPhysicsShapes:(BOOL)drawsPhysicsShapes
 {
-	_showsPhysicsShapes = showsPhysicsShapes;
-}
-
-@dynamic showsNodeFrames;
-+(BOOL) showsNodeFrames
-{
-	return _showsNodeFrames;
-}
--(BOOL) showsNodeFrames
-{
-	return _showsNodeFrames;
-}
--(void) setShowsNodeFrames:(BOOL)showsNodeFrames
-{
-	_showsNodeFrames = showsNodeFrames;
+	_drawsPhysicsShapes = drawsPhysicsShapes;
 }
 
-@dynamic showsNodeAnchorPoints;
-+(BOOL) showsNodeAnchorPoints
+@dynamic drawsNodeFrames;
++(BOOL) drawsNodeFrames
 {
-	return _showsNodeAnchorPoints;
+	return _drawsNodeFrames;
 }
--(BOOL) showsNodeAnchorPoints
+-(BOOL) drawsNodeFrames
 {
-	return _showsNodeAnchorPoints;
+	return _drawsNodeFrames;
 }
--(void) setShowsNodeAnchorPoints:(BOOL)showsNodeAnchorPoints
+-(void) setDrawsNodeFrames:(BOOL)drawsNodeFrames
 {
-	_showsNodeAnchorPoints = showsNodeAnchorPoints;
+	_drawsNodeFrames = drawsNodeFrames;
+}
+
+@dynamic drawsNodeAnchorPoints;
++(BOOL) drawsNodeAnchorPoints
+{
+	return _drawsNodeAnchorPoints;
+}
+-(BOOL) drawsNodeAnchorPoints
+{
+	return _drawsNodeAnchorPoints;
+}
+-(void) setDrawsNodeAnchorPoints:(BOOL)drawsNodeAnchorPoints
+{
+	_drawsNodeAnchorPoints = drawsNodeAnchorPoints;
+}
+
+@dynamic showsCPUStats;
+-(void) setShowsCPUStats:(BOOL)showsCPUStats
+{
+	[self setValue:[NSNumber numberWithBool:showsCPUStats] forKey:@"_showsCPUStats"];
+}
+-(BOOL) showsCPUStats
+{
+	return [[self valueForKey:@"_showsCPUStats"] boolValue];
+}
+
+@dynamic showsGPUStats;
+-(void) setShowsGPUStats:(BOOL)showsGPUStats
+{
+	[self setValue:[NSNumber numberWithBool:showsGPUStats] forKey:@"_showsGPUStats"];
+}
+-(BOOL) showsGPUStats
+{
+	return [[self valueForKey:@"_showsGPUStats"] boolValue];
+}
+
+@dynamic showsAllStats;
+-(void) setShowsAllStats:(BOOL)showsAllStats
+{
+	self.showsCPUStats = showsAllStats;
+	self.showsGPUStats = showsAllStats;
+	self.showsDrawCount = showsAllStats;
+	self.showsNodeCount = showsAllStats;
+	self.showsFPS = showsAllStats;
+}
+-(BOOL) showsAllStats
+{
+	return self.showsCPUStats && self.showsGPUStats && self.showsDrawCount && self.showsNodeCount && self.showsFPS;
 }
 
 @end

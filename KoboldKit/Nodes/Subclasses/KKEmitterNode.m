@@ -11,11 +11,11 @@
 @implementation KKEmitterNode
 KKNODE_SHARED_CODE
 
-/*
 +(id) emitterWithFile:(NSString*)file
 {
-	return [NSKeyedUnarchiver unarchiveObjectWithFile:[NSBundle pathForFile:file]];
+	NSString* filePath = [[NSBundle mainBundle] pathForResource:[file stringByDeletingPathExtension]
+														 ofType:@"sks"];
+	return [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
 }
- */
 
 @end

@@ -39,7 +39,6 @@
 #import "CCFileUtils.h"
 #import "CCSpriteFrameCache.h"
 #import "CGPointExtension.h"
-
 #import "CCBSpriteKitDummy.h"
 
 typedef NS_ENUM(unsigned char, CCPositionUnit)
@@ -112,13 +111,7 @@ typedef NS_ENUM(unsigned char, CCPhysicsBodyType)
 #import "SKPhysicsBody+CCBReader.h"
 #import "SKTexture+CCBReader.h"
 
-typedef double CCTime;
-typedef SKNode CCNode;
-typedef SKPhysicsBody CCPhysicsBody;
-typedef SKScene CCScene;
-typedef SKSpriteNode CCSprite;
-typedef SKTexture CCSpriteFrame;
-typedef SKTexture CCTexture;
+#import "ccTypes.h"
 
 // just forward all unsupported features to a dummy class to make the compiler happy
 @class CCBSpriteKitDummy;

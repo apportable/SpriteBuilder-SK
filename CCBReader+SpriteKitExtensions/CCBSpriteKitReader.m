@@ -27,6 +27,14 @@
 #import "JRSwizzle.h"
 #import "NSValue+CCBReader.h"
 
+#import "KKScene.h"
+#import "KKNode.h"
+#import "KKSpriteNode.h"
+#import "KKLabelNode.h"
+#import "KKEmitterNode.h"
+#import "KKViewOriginNode.h"
+#import "KKNodeShared.h"
+
 static CGSize CCBSpriteKitReaderSceneSize;
 
 @implementation CCBSpriteKitReader
@@ -69,27 +77,31 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	// map CC nodes to SK nodes
 	CCNode* node = nil;
 
-	if ([nodeClassName isEqualToString:@"CCNode"])
+	if ([nodeClassName isEqualToString:@"CCNode"] ||
+		[nodeClassName isEqualToString:@"SKNode"])
 	{
-		node = [SKNode node];
+		node = [KKNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"CCSprite"] ||
 			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
-			 [nodeClassName isEqualToString:@"CCNodeGradient"])
+			 [nodeClassName isEqualToString:@"CCNodeGradient"] ||
+			 [nodeClassName isEqualToString:@"SKSpriteNode"])
 	{
-		node = [SKSpriteNode node];
+		node = (CCNode*)[KKSpriteNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"SKColorSpriteNode"])
 	{
-		node = [SKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(32, 32)];
+		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(32, 32)];
 	}
-	else if ([nodeClassName isEqualToString:@"CCLabelTTF"])
+	else if ([nodeClassName isEqualToString:@"CCLabelTTF"] ||
+			 [nodeClassName isEqualToString:@"SKLabelNode"])
 	{
-		node = [SKLabelNode node];
+		node = (CCNode*)[KKLabelNode node];
 	}
-	else if ([nodeClassName isEqualToString:@"CCParticleSystem"])
+	else if ([nodeClassName isEqualToString:@"CCParticleSystem"] ||
+			 [nodeClassName isEqualToString:@"SKEmitterNode"])
 	{
-		node = [SKEmitterNode node];
+		node = (CCNode*)[KKEmitterNode node];
 	}
 	else
 	{
@@ -102,12 +114,17 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 #if DEBUG
 	NSLog(@" ");
-	NSLog(@"~~~~~~~~~~~~~~~~~~ %@ - %p ~~~~~~~~~~~~~~~~~~", nodeClassName, node);
 	if ([node class] != NSClassFromString(nodeClassName))
 	{
-		NSLog(@"MAPPED CLASS: %@ => %@", nodeClassName, NSStringFromClass([node class]));
+		NSLog(@"~~~~~~~~~~~~~~~~~~ %@ aka %@ (%@) - %p ~~~~~~~~~~~~~~~~~~", nodeClassName, NSStringFromClass([node class]), NSStringFromClass([node superclass]), node);
+	}
+	else
+	{
+		NSLog(@"~~~~~~~~~~~~~~~~~~ %@ (%@) - %p ~~~~~~~~~~~~~~~~~~", nodeClassName, NSStringFromClass([node superclass]), node);
 	}
 #endif
+
+	NSAssert2([node respondsToSelector:@selector(isKoboldKitNode)], @"CCBSpriteKitReader: not a Kobold Kit node: %@ (%@)", node, NSStringFromClass([node class]));
 
 	return node;
 }
@@ -122,7 +139,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	NSAssert(CCBSpriteKitReaderSceneSize.width > 0.0 && CCBSpriteKitReaderSceneSize.height > 0.0,
 			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
 	
-	return [SKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
+	return [KKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
 }
 
 #pragma mark Property Overrides

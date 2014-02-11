@@ -7,5 +7,19 @@
 //
 
 #import "KKFramework.h"
+
+#import "KKAppDelegate.h"
+#import "KKMacApplication.h"
+#import "KKView.h"
+#import "KKViewController.h"
+#import "KKScene.h"
+#import "KKNode.h"
+#import "KKEmitterNode.h"
+#import "KKLabelNode.h"
+#import "KKSpriteNode.h"
+#import "KKViewOriginNode.h"
+
+#import "CCScheduler.h"
+
 #import "CCBSpriteKitCompatibility.h"
 #import "CCBReader.h"

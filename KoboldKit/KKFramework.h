@@ -46,8 +46,3 @@ typedef SKPhysicsJointSliding KKPhysicsJointSliding;
 typedef SKPhysicsJointSpring KKPhysicsJointSpring;
 typedef SKPhysicsWorld KKPhysicsWorld;
 
-
-#import "KKAppDelegate.h"
-#import "KKMacApplication.h"
-#import "KKView.h"
-#import "KKViewController.h"

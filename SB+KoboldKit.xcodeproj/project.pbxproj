@@ -66,6 +66,9 @@
 		DC8C7BA618A95F96000D29DC /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */; };
 		DC8C7BA718A95F96000D29DC /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */; };
 		DC8C7BA818A95F96000D29DC /* CCBuilderReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC8C7B9418A95F96000D29DC /* CCBuilderReader.h */; };
+		DC8C8B4318AA763B000D29DC /* CCScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = DC8C8B4118AA763B000D29DC /* CCScheduler.h */; };
+		DC8C8B4418AA763B000D29DC /* CCScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C8B4218AA763B000D29DC /* CCScheduler.m */; };
+		DC8C8B4518AA763B000D29DC /* CCScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C8B4218AA763B000D29DC /* CCScheduler.m */; };
 		DCD9CF0418A148AA008B3444 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF0318A148AA008B3444 /* Cocoa.framework */; };
 		DCD9CF3018A14908008B3444 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF2F18A14908008B3444 /* Foundation.framework */; };
 		DCD9CF8018A149D7008B3444 /* CCBSpriteKitCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */; };
@@ -185,6 +188,9 @@
 		DC8C7B9218A95F96000D29DC /* CCBSequenceProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSequenceProperty.h; sourceTree = "<group>"; };
 		DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequenceProperty.m; sourceTree = "<group>"; };
 		DC8C7B9418A95F96000D29DC /* CCBuilderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBuilderReader.h; sourceTree = "<group>"; };
+		DC8C7BCC18AA7375000D29DC /* ccTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
+		DC8C8B4118AA763B000D29DC /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScheduler.h; sourceTree = "<group>"; };
+		DC8C8B4218AA763B000D29DC /* CCScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScheduler.m; sourceTree = "<group>"; };
 		DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF0318A148AA008B3444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DCD9CF0618A148AA008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -289,6 +295,7 @@
 		DC0F9B3618A4EED4001749BB /* cocos2d-classes */ = {
 			isa = PBXGroup;
 			children = (
+				DC8C7BCC18AA7375000D29DC /* ccTypes.h */,
 				DC0F9B3718A4EED4001749BB /* CCColor.h */,
 				DC0F9B3818A4EED4001749BB /* CCColor.m */,
 				DC0F9B3918A4EED4001749BB /* CCConfiguration.h */,
@@ -341,11 +348,21 @@
 			path = CCBReader;
 			sourceTree = "<group>";
 		};
+		DC8C8B4018AA763B000D29DC /* cocos2d */ = {
+			isa = PBXGroup;
+			children = (
+				DC8C8B4118AA763B000D29DC /* CCScheduler.h */,
+				DC8C8B4218AA763B000D29DC /* CCScheduler.m */,
+			);
+			path = cocos2d;
+			sourceTree = "<group>";
+		};
 		DCD9CEF718A148AA008B3444 = {
 			isa = PBXGroup;
 			children = (
 				DCE0831818A159C000A0C368 /* SB+KoboldKit.h */,
 				DCE082B818A154B900A0C368 /* KoboldKit */,
+				DC8C8B4018AA763B000D29DC /* cocos2d */,
 				DC8C7B8618A95F96000D29DC /* CCBReader */,
 				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
 				DC0F9B6518A4EFAC001749BB /* libs */,
@@ -535,6 +552,7 @@
 				DCE082CD18A154B900A0C368 /* KKMacros.h in Headers */,
 				DCE082CC18A154B900A0C368 /* KKFramework.h in Headers */,
 				DCE082CF18A154B900A0C368 /* KKView.h in Headers */,
+				DC8C8B4318AA763B000D29DC /* CCScheduler.h in Headers */,
 				DCE0831918A159C000A0C368 /* SB+KoboldKit.h in Headers */,
 				DCE082D918A154F300A0C368 /* KKVersion.h in Headers */,
 				DCE082FE18A1563300A0C368 /* KKViewOriginNode.h in Headers */,
@@ -613,6 +631,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = DCD9CEF718A148AA008B3444;
 			productRefGroup = DCD9CF0118A148AA008B3444 /* Products */;
@@ -635,6 +654,7 @@
 				DC0F9B5518A4EED4001749BB /* SKTexture+CCBReader.m in Sources */,
 				DCE082DB18A154F300A0C368 /* KKVersion.m in Sources */,
 				DCD9CF8318A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */,
+				DC8C8B4518AA763B000D29DC /* CCScheduler.m in Sources */,
 				DC8C7B9A18A95F96000D29DC /* CCBKeyframe.m in Sources */,
 				DCE0831118A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */,
 				DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
@@ -678,6 +698,7 @@
 				DC0F9B5418A4EED4001749BB /* SKTexture+CCBReader.m in Sources */,
 				DCE082DA18A154F300A0C368 /* KKVersion.m in Sources */,
 				DCD9CF8218A149D7008B3444 /* CCBSpriteKitDummy.m in Sources */,
+				DC8C8B4418AA763B000D29DC /* CCScheduler.m in Sources */,
 				DC8C7B9918A95F96000D29DC /* CCBKeyframe.m in Sources */,
 				DCE0831018A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */,
 				DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
@@ -747,6 +768,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/CCBReader+SpriteKitExtensions",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -780,6 +805,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/CCBReader+SpriteKitExtensions",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -790,6 +819,14 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glew/lib/Release/Win32",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glfw/lib-msvc100",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
+				);
 				PRODUCT_NAME = "SB+KoboldKit-OSX";
 			};
 			name = Debug;
@@ -799,6 +836,14 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glew/lib/Release/Win32",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glfw/lib-msvc100",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
+				);
 				PRODUCT_NAME = "SB+KoboldKit-OSX";
 			};
 			name = Release;
@@ -816,6 +861,14 @@
 					"$(inherited)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glew/lib/Release/Win32",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glfw/lib-msvc100",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
+				);
 				PRODUCT_NAME = "SB+KoboldKit-iOS";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -831,6 +884,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SB+KoboldKit-iOS-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glew/lib/Release/Win32",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/msvc/glfw/lib-msvc100",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
+					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
+				);
 				PRODUCT_NAME = "SB+KoboldKit-iOS";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

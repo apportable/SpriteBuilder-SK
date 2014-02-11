@@ -25,33 +25,23 @@
  @returns An array with 1 or more scenes currently suspended. The presented scene is always the lastObject. */
 @property (atomic, readonly) NSArray* sceneStack;
 
-/** Model of the view, can be used to store values and objects whose lifetime should be equal to that of the view (ie global values/objects).
- ®returns The view's model object. */
-//@property (atomic, readonly) KKModel* model;
-
-/** This returns the EAGLContext for the view using a public API call. This enables custom OpenGL code on the Sprite Kit GL context.
- Note: the context is not valid (is nil) before the view controller's viewDidAppear: method runs. In other words the viewDidAppear: method
- is the earliest point where you will get a valid EAGLContext.
- @returns The view's EAGLContext, or nil if the view controller's viewDidAppear method hasn't run yet. */
-//@property (atomic, readonly) KKGLContext* context;
-
 /** If YES, will render physics shape outlines. */
-@property (nonatomic) BOOL showsPhysicsShapes;
+@property (nonatomic) BOOL drawsPhysicsShapes;
 /** If YES, will render node outlines according to their frame property. */
-@property (nonatomic) BOOL showsNodeFrames;
+@property (nonatomic) BOOL drawsNodeFrames;
 /** If YES, will render a dot on the node's position. */
-@property (nonatomic) BOOL showsNodeAnchorPoints;
+@property (nonatomic) BOOL drawsNodeAnchorPoints;
 /** If YES, will render CPU stats. */
 @property (nonatomic) BOOL showsCPUStats;
 /** If YES, will render GPU stats. */
 @property (nonatomic) BOOL showsGPUStats;
+/** Toggles various shows*** flags on/off. If YES, will show all stats. */
+@property (nonatomic) BOOL showsAllStats;
 
-/** @returns Whether physics shape outlines are drawn. */
-+(BOOL) showsPhysicsShapes;
-/** @returns Whether node frame outlines are drawn. */
-+(BOOL) showsNodeFrames;
-/** @returns Whether node positions are drawn. */
-+(BOOL) showsNodeAnchorPoints;
+// internal use
++(BOOL) drawsPhysicsShapes;
++(BOOL) drawsNodeFrames;
++(BOOL) drawsNodeAnchorPoints;
 
 /** Presents a scene. 
  
@@ -68,7 +58,8 @@
 
 /** Presents a scene.
  
- If unwindSceneStack is YES, all scenes will be removed from the scene stack before presenting the new scene.
+ If unwindSceneStack is YES, all scenes will be removed from the scene stack before presenting the new scene. 
+ Useful only in cooperation with pushScene: methods.
  @param scene The scene to present. 
  @param unwindStack If YES removes all scenes from the stack before adding the new scene. */
 -(void) presentScene:(KKScene *)scene unwindStack:(BOOL)unwindStack;
@@ -76,6 +67,7 @@
 /** Presents a scene.
  
  Replaces the topmost scene on the scene stack.
+ Useful only in cooperation with pushScene: methods.
  @param scene The scene to present.
  @param transition A transition used to animate between the two scenes.
  @param unwindStack If YES removes all scenes from the stack before adding the new scene. */
@@ -128,8 +120,5 @@
  @param name The name of a scene on the stack to be presented.
  @param transition A transition used to animate between the two scenes. */
 -(void) popToSceneNamed:(NSString*)name transition:(KKTransition*)transition;
-
-/** Reloads the config files, replacing the existing "config" and "devconfig" entries in the model. */
-//-(void) reloadConfig;
 
 @end

@@ -4,12 +4,16 @@
  * KoboldAid/licenses/KoboldKitFree.License.txt
  */
 
+#import <SpriteKit/SpriteKit.h>
+#import "KKNodeShared.h"
 
-#import "KKFramework.h"
-//#import "KKTilemapObjectSpawnDelegate.h"
+@interface KKEmitterNode : SKEmitterNode <KKNodeProtocol>
 
-@interface KKEmitterNode : SKEmitterNode //<KKTilemapObjectSpawnDelegate>
+/** Scheduler targets are sorted by priority, lower priority targets are called first.
+ @returns The node's priority used by the scheduler. */
+@property (nonatomic, readonly) NSInteger priority;
 
-//+(id) emitterWithFile:(NSString*)file;
+
++(id) emitterWithFile:(NSString*)file;
 
 @end

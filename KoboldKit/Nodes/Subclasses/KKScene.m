@@ -7,10 +7,16 @@
 #import "KKScene.h"
 #import "KKNode.h"
 #import "KKView.h"
-//#import "KKNodeController.h"
 #import "SKNode+KoboldKit.h"
-//#import "KKViewOriginNode.h"
+#import "KKViewOriginNode.h"
 #import "KKNodeShared.h"
+#import "CCScheduler.h"
+#import "CCBSpriteKitCompatibility.h"
+
+// TODO: pause/resume scheduler when scene is pushed/popped
+// TODO: pause/resume scheduler when scene paused changes
+
+static NSUInteger KKSceneFrameCount = 0;
 
 @implementation KKScene
 KKNODE_SHARED_CODE
@@ -46,6 +52,8 @@ KKNODE_SHARED_CODE
 
 -(void) initDefaults
 {
+	_scheduler = [[CCScheduler alloc] init];
+
 	self.physicsWorld.contactDelegate = self;
 	
 	const NSUInteger kInitialCapacity = 4;
@@ -53,8 +61,6 @@ KKNODE_SHARED_CODE
 	_sceneUpdateObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	_sceneDidEvaluateActionsObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	_sceneDidSimulatePhysicsObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-	_sceneWillMoveFromViewObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-	_sceneDidMoveToViewObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	_physicsContactObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	
 	_mainLoopStage = KKMainLoopStageDidSimulatePhysics;
@@ -67,6 +73,12 @@ KKNODE_SHARED_CODE
 	return (KKView*)self.view;
 }
 
+@dynamic frameCount;
+-(NSUInteger) frameCount
+{
+	return KKSceneFrameCount;
+}
+
 #pragma mark Update
 
 -(void) update:(NSTimeInterval)currentTime
@@ -74,12 +86,21 @@ KKNODE_SHARED_CODE
 	NSAssert(_mainLoopStage == KKMainLoopStageDidSimulatePhysics, @"Main Loop Error: it seems you implemented didSimulatePhysics but did not call [super didSimulatePhysics]");
 	_mainLoopStage = KKMainLoopStageDidUpdate;
 	
-	++_frameCount;
+	KKSceneFrameCount++;
 	
 	for (id observer in _sceneUpdateObservers)
 	{
 		[observer update:currentTime];
 	}
+	
+	CCTime delta = currentTime - _lastUpdateTime;
+	if (_lastUpdateTime == 0)
+	{
+		delta = 0;
+	}
+	
+	[_scheduler update:delta];
+	_lastUpdateTime = currentTime;
 }
 
 -(void) didEvaluateActions
@@ -104,38 +125,50 @@ KKNODE_SHARED_CODE
 	}
 }
 
+#pragma mark Move to/from View
+
 -(void) willMoveFromView:(SKView *)view
 {
-	NSLog(@"KKScene - willMoveFromView");
+	NSLog(@"KKScene:%@ willMoveFromView:%@", self, view);
 
-	for (id observer in _sceneWillMoveFromViewObservers)
-	{
-		[observer willMoveFromView:view];
-	}
-
-	// make sure no node is still hooked into the notification center when the scene changes
-	NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter removeObserver:self];
+	// send this to all nodes
 	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-		[notificationCenter removeObserver:node];
+		if ([node respondsToSelector:@selector(sceneWillMoveFromView:)])
+		{
+			[(id<KKNodeProtocol>)node sceneWillMoveFromView:(KKView*)view];
+		}
 	}];
 }
 
 -(void) didMoveToView:(SKView *)view
 {
-	NSLog(@"KKScene - didMoveToView - scene: %p", self);
-	
-	for (id observer in _sceneDidMoveToViewObservers)
-	{
-		[observer didMoveToView:view];
-	}
+	NSLog(@"KKScene:%@ didMoveToView:%@", self, view);
+
+	// send this to all nodes
+	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
+		if ([node respondsToSelector:@selector(sceneDidMoveToView:)])
+		{
+			[(id<KKNodeProtocol>)node sceneDidMoveToView:(KKView*)view];
+		}
+	}];
 }
 
--(void) didChangeSize:(CGSize)oldSize
+#pragma mark Change Size
+
+-(void) didChangeSize:(CGSize)previousSize
 {
-	NSLog(@"KKScene - didChangeSize:{%.1f, %.1f} - scene: %p", self.size.width, self.size.height, self);
+	NSLog(@"KKScene:%@ didChangeSize:{%f, %f}", self, self.size.width, self.size.height);
+
+	// send this to all nodes
+	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
+		if ([node respondsToSelector:@selector(sceneDidChangeSize:previousSize:)])
+		{
+			[(id<KKNodeProtocol>)node sceneDidChangeSize:self.size previousSize:previousSize];
+		}
+	}];
 }
 
+/*
 #pragma mark Scene Events Observer
 
 -(void) addSceneEventsObserver:(id)observer
@@ -394,13 +427,27 @@ DEVELOPER_FIXME("remove calls to respondsToSelector by separating observers into
 		}
 	}
 }
+*/
+
+#pragma mark AnchorPoint
+
+-(void) setAnchorPoint:(CGPoint)anchorPoint
+{
+	[super setAnchorPoint:anchorPoint];
+	
+	// update all view origin nodes
+	[self enumerateChildNodesWithName:@"//KKViewOriginNode" usingBlock:^(SKNode *node, BOOL *stop) {
+		KKViewOriginNode* originNode = (KKViewOriginNode*)node;
+		[originNode updatePositionFromSceneFrame];
+	}];
+}
+
 
 #pragma mark Debugging
 
--(NSString*) dumpSceneGraph:(KKSceneGraphDumpOptions)options
+-(NSString*) stringFromSceneGraph:(KKSceneGraphDumpOptions)options
 {
 	NSMutableString* dump = [NSMutableString stringWithCapacity:4096];
-	[dump appendString:@"\nDump of scene graph:\n"];
 	[dump appendFormat:@"%@\n", self];
 	
 	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -410,114 +457,10 @@ DEVELOPER_FIXME("remove calls to respondsToSelector by separating observers into
 	return dump;
 }
 
-#pragma mark AnchorPoint
-
--(void) setAnchorPoint:(CGPoint)anchorPoint
+-(void) logSceneGraph:(KKSceneGraphDumpOptions)options
 {
-	[super setAnchorPoint:anchorPoint];
-	
-	/*
-	// update all view origin nodes
-	[self enumerateChildNodesWithName:@"//KKViewOriginNode" usingBlock:^(SKNode *node, BOOL *stop) {
-		KKViewOriginNode* originNode = (KKViewOriginNode*)node;
-		[originNode updatePositionFromSceneFrame];
-	}];
-	 */
+	NSString* dump = [self stringFromSceneGraph:options];
+	NSLog(@"\nDump of scene graph:\n%@", dump);
 }
-
-#pragma mark Description
-
-/*
--(NSString*) description
-{
-	return [NSString stringWithFormat:@"%@ controller:%@ behaviors:%@", [super description], self.controller, self.controller.behaviors];
-}
-*/
-
-#pragma mark !! Update methods below whenever class layout changes !!
-#pragma mark NSCoding
-
-/*
-static NSString* const ArchiveKeyForControllers = @"controllers";
-static NSString* const ArchiveKeyForInputObservers = @"inputObservers";
-static NSString* const ArchiveKeyForSceneUpdateObservers = @"sceneUpdateObservers";
-static NSString* const ArchiveKeyForSceneDidEvaluateActionsObservers = @"sceneDidEvaluateActionsObservers";
-static NSString* const ArchiveKeyForSceneDidSimulatePhysicsObservers = @"sceneDidSimulatePhysicsObservers";
-static NSString* const ArchiveKeyForSceneWillMoveFromViewObservers = @"sceneWillMoveFromViewObservers";
-static NSString* const ArchiveKeyForSceneDidMoveToViewObservers = @"sceneDidMoveToViewObservers";
-static NSString* const ArchiveKeyForFrameCount = @"frameCount";
-
--(id) initWithCoder:(NSCoder*)decoder
-{
-	self = [super initWithCoder:decoder];
-	if (self)
-	{
-		_inputObservers = [decoder decodeObjectForKey:ArchiveKeyForInputObservers];
-		_sceneUpdateObservers = [decoder decodeObjectForKey:ArchiveKeyForSceneUpdateObservers];
-		_sceneDidEvaluateActionsObservers = [decoder decodeObjectForKey:ArchiveKeyForSceneDidEvaluateActionsObservers];
-		_sceneDidSimulatePhysicsObservers = [decoder decodeObjectForKey:ArchiveKeyForSceneDidSimulatePhysicsObservers];
-		_sceneWillMoveFromViewObservers = [decoder decodeObjectForKey:ArchiveKeyForSceneWillMoveFromViewObservers];
-		_sceneDidMoveToViewObservers = [decoder decodeObjectForKey:ArchiveKeyForSceneDidMoveToViewObservers];
-		_frameCount = [decoder decodeIntegerForKey:ArchiveKeyForFrameCount];
-	}
-	return self;
-}
-
--(void) encodeWithCoder:(NSCoder*)encoder
-{
-	[super encodeWithCoder:encoder];
-	[encoder encodeObject:_inputObservers forKey:ArchiveKeyForInputObservers];
-	[encoder encodeObject:_sceneUpdateObservers forKey:ArchiveKeyForSceneUpdateObservers];
-	[encoder encodeObject:_sceneDidEvaluateActionsObservers forKey:ArchiveKeyForSceneDidEvaluateActionsObservers];
-	[encoder encodeObject:_sceneDidSimulatePhysicsObservers forKey:ArchiveKeyForSceneDidSimulatePhysicsObservers];
-	[encoder encodeObject:_sceneWillMoveFromViewObservers forKey:ArchiveKeyForSceneWillMoveFromViewObservers];
-	[encoder encodeObject:_sceneDidMoveToViewObservers forKey:ArchiveKeyForSceneDidMoveToViewObservers];
-	[encoder encodeInteger:_frameCount forKey:ArchiveKeyForFrameCount];
-}
-
-#pragma mark NSCopying
-
--(id) copyWithZone:(NSZone*)zone
-{
-	KKScene* copy = [super copyWithZone:zone];
-DEVELOPER_FIXME("this array copy is wrong, will make separate copies of observers!")
-	copy->_inputObservers = [[NSMutableArray alloc] initWithArray:_inputObservers copyItems:YES];
-	copy->_sceneUpdateObservers = [[NSMutableArray alloc] initWithArray:_sceneUpdateObservers copyItems:YES];
-	// TODO ...
-	copy->_frameCount = _frameCount;
-	return copy;
-}
-
--(void) duplicateObserver:(id)observer withCopy:(id)copy
-{
-	// called by observing classes on copy to replace their observers
-}
-
-#pragma mark Equality
-
--(BOOL) isEqualToScene:(KKScene*)scene
-{
-	if ([self isEqualToSceneProperties:scene] == NO)
-		return NO;
-	
-	return [self isEqualToNode:scene];
-}
-
--(BOOL) isEqualToSceneTree:(KKScene*)scene
-{
-	if ([self isEqualToSceneProperties:scene] == NO)
-		return NO;
-	
-	return [self isEqualToNodeTree:scene];
-}
-
--(BOOL) isEqualToSceneProperties:(KKScene*)scene
-{
-	if (_frameCount != scene.frameCount)
-		return NO;
-	
-	return YES;
-}
-*/
 
 @end
