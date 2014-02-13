@@ -27,6 +27,9 @@
 {
 	NSAssert(selector, @"schedule: selector is nil");
 	NSAssert(interval >= 0, @"schedule: interval is negative, must be 0 or greater");
+	NSAssert(selector != @selector(frameUpdate:) && selector != @selector(fixedUpdate:) && selector != @selector(didEvaluateActions) && selector != @selector(didSimulatePhysics),
+			 @"The frameUpdate: / fixedUpdate: / didEvaluateActions / didSimulatePhysics selectors are scheduled automatically when implemented.");
+	NSAssert(selector != @selector(update:), @"Instead of scheduling update: implement -(void)frameUpdate:(CCTime)delta to receive once-per-frame updates.");
 	NSAssert([node respondsToSelector:selector], @"schedule: selector '%@' not implemented by target: %@ (%p)", NSStringFromSelector(selector), node, node);
 	
 	[KKNodeShared node:node unschedule:selector];
@@ -47,13 +50,20 @@
 +(void) node:(id<KKNodeProtocol>)node unschedule:(SEL)selector
 {
 	NSString* selectorName = NSStringFromSelector(selector);
+	BOOL didInvalidate = NO;
 	
 	for (CCTimer* timer in [node.scheduler timersForTarget:(id<CCSchedulerTarget>)node])
 	{
 		if ([selectorName isEqual:timer.userData])
 		{
 			[timer invalidate];
+			didInvalidate = YES;
 		}
+	}
+	
+	if (didInvalidate == NO)
+	{
+		NSLog(@"unschedule: selector %@ is not scheduled on target %@ (%p).", NSStringFromSelector(selector), node, node);
 	}
 }
 
@@ -77,25 +87,21 @@
 	
 	if (scheduler)
 	{
-		if ([scheduler isTargetScheduled:(id<CCSchedulerTarget>)node] == NO)
-		{
 #if DEBUG
-			BOOL update = [node respondsToSelector:@selector(frameUpdate:)];
-			BOOL fixedUpdate = [node respondsToSelector:@selector(fixedUpdate:)];
-			BOOL evaluateActions = [node respondsToSelector:@selector(didEvaluateActions)] && [node isKindOfClass:[SKScene class]] == NO;
-			BOOL simulatePhysics = [node respondsToSelector:@selector(didSimulatePhysics)] && [node isKindOfClass:[SKScene class]] == NO;
-			if (update || fixedUpdate || evaluateActions || simulatePhysics)
-			{
-				NSLog(@"Scheduling%@%@%@%@ for node %@ (%p)",
-					  update ? @" frameUpdate:" : @"", fixedUpdate ? @" fixedUpdate:" : @"",
-					  evaluateActions ? @" didEvaluateActions" : @"", simulatePhysics ? @" didSimulatePhysics" : @"",
-					  NSStringFromClass([node class]), node);
-			}
+		BOOL update = [node respondsToSelector:@selector(frameUpdate:)];
+		BOOL fixedUpdate = [node respondsToSelector:@selector(fixedUpdate:)];
+		BOOL evaluateActions = [node respondsToSelector:@selector(didEvaluateActions)] && [node isKindOfClass:[SKScene class]] == NO;
+		BOOL simulatePhysics = [node respondsToSelector:@selector(didSimulatePhysics)] && [node isKindOfClass:[SKScene class]] == NO;
+		if (update || fixedUpdate || evaluateActions || simulatePhysics)
+		{
+			NSLog(@"Scheduling%@%@%@%@ for node %@ (%p)",
+				  update ? @" frameUpdate:" : @"", fixedUpdate ? @" fixedUpdate:" : @"",
+				  evaluateActions ? @" didEvaluateActions" : @"", simulatePhysics ? @" didSimulatePhysics" : @"",
+				  NSStringFromClass([node class]), node);
+		}
 #endif
 
-			[scheduler scheduleTarget:(id<CCSchedulerTarget>)node];
-		}
-		
+		[scheduler scheduleTarget:(id<CCSchedulerTarget>)node];
 		[scheduler setPaused:node.paused target:(id<CCSchedulerTarget>)node];
 	}
 }

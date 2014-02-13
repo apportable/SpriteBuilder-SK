@@ -116,7 +116,7 @@
 } \
 -(CCTimer*) scheduleOnce:(SEL)selector delay:(CCTime)delay \
 { \
-	return [self schedule:selector interval:0.0 repeat:0 delay:delay]; \
+	return [self schedule:selector interval:INFINITY repeat:0 delay:delay]; \
 } \
 -(CCTimer*) schedule:(SEL)selector interval:(CCTime)interval repeat:(NSUInteger)repeat delay:(CCTime)delay \
 { \
