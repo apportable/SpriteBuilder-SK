@@ -12,6 +12,7 @@
  
  @Caution: This node must be a added as child to a KKScene object for it to work. */
 @interface KKViewOriginNode : KKNode
+KKNODE_SHARED_HEADER
 
 // internal use only, called by scene's setAnchorPoint: method
 -(void) updatePositionFromSceneFrame;

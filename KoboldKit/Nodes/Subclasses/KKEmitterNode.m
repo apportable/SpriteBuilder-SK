@@ -7,6 +7,7 @@
 
 #import "KKEmitterNode.h"
 #import "KKNodeShared.h"
+#import "CCScheduler.h"
 
 @implementation KKEmitterNode
 KKNODE_SHARED_CODE

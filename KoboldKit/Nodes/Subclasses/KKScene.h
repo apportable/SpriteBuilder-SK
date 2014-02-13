@@ -5,8 +5,8 @@
  */
 
 #import <SpriteKit/SpriteKit.h>
-#import "KKSceneEventDelegate.h"
 #import "KKPhysicsContactEventDelegate.h"
+#import "KKNodeShared.h"
 
 @class KKView;
 @class CCScheduler;
@@ -28,36 +28,28 @@ typedef enum
 
 /** KKScene is the scene class used in Kobold Kit projects. KKScene updates the controllers and behaviors, receives and
  dispatches events (input, physics). */
-@interface KKScene : SKScene <SKPhysicsContactDelegate, KKSceneEventDelegate>
+@interface KKScene : SKScene <SKPhysicsContactDelegate>
 {
 	@private
 	NSMutableArray* _inputObservers;
-	
-	NSMutableArray* _sceneUpdateObservers;
-	NSMutableArray* _sceneDidEvaluateActionsObservers;
-	NSMutableArray* _sceneDidSimulatePhysicsObservers;
-	
 	NSMutableArray* _physicsContactObservers;
 	
 	NSTimeInterval _lastUpdateTime;
+	
+	__weak KKView* _kkView;
 	
 	// used to detect missing super calls
 	KKMainLoopStage _mainLoopStage;
 }
 
-/** Scheduler targets are sorted by priority, lower priority targets are called first.
- @returns The node's priority used by the scheduler. */
-@property (nonatomic, readonly) NSInteger priority;
+KKNODE_SHARED_HEADER
 
 /** @returns The number of frames rendered since the start of the app. Useful if you need to lock your game's update cycle to the framerate.
  For example by comparing against frameCount this allows you to perform certain actions n frames from now, instead of n seconds. */
 @property (nonatomic, readonly) NSUInteger frameCount;
 
 /** @returns The view cast to a KKView object. */
-@property (atomic, readonly) KKView* kkView;
-
-/** @returns The scheduler that handles repeating callback blocks/selectors in this scene. */
-@property (nonatomic, readonly) CCScheduler* scheduler;
+@property (nonatomic, weak, readonly) KKView* kkView;
 
 /** Returns the scene graph as a string.
  @param options Determines what will be included in the dump.

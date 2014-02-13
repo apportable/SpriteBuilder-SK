@@ -13,9 +13,6 @@
 #import "CCScheduler.h"
 #import "CCBSpriteKitCompatibility.h"
 
-// TODO: pause/resume scheduler when scene is pushed/popped
-// TODO: pause/resume scheduler when scene paused changes
-
 static NSUInteger KKSceneFrameCount = 0;
 
 @implementation KKScene
@@ -52,15 +49,10 @@ KKNODE_SHARED_CODE
 
 -(void) initDefaults
 {
-	_scheduler = [[CCScheduler alloc] init];
-
 	self.physicsWorld.contactDelegate = self;
 	
 	const NSUInteger kInitialCapacity = 4;
 	_inputObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-	_sceneUpdateObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-	_sceneDidEvaluateActionsObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-	_sceneDidSimulatePhysicsObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	_physicsContactObservers = [NSMutableArray arrayWithCapacity:kInitialCapacity];
 	
 	_mainLoopStage = KKMainLoopStageDidSimulatePhysics;
@@ -69,8 +61,8 @@ KKNODE_SHARED_CODE
 @dynamic kkView;
 -(KKView*) kkView
 {
-	NSAssert1([self.view isKindOfClass:[KKView class]], @"Scene's view (%@) is not a KKView class", self.view);
-	return (KKView*)self.view;
+	NSAssert(_kkView, @"Scene's view not yet available (scene not presented)");
+	return _kkView;
 }
 
 @dynamic frameCount;
@@ -83,74 +75,75 @@ KKNODE_SHARED_CODE
 
 -(void) update:(NSTimeInterval)currentTime
 {
-	NSAssert(_mainLoopStage == KKMainLoopStageDidSimulatePhysics, @"Main Loop Error: it seems you implemented didSimulatePhysics but did not call [super didSimulatePhysics]");
+	NSAssert(_mainLoopStage == KKMainLoopStageDidSimulatePhysics, @"Main Loop Error: it seems your scene implements didSimulatePhysics but does not call [super didSimulatePhysics]");
 	_mainLoopStage = KKMainLoopStageDidUpdate;
 	
 	KKSceneFrameCount++;
 	
-	for (id observer in _sceneUpdateObservers)
-	{
-		[observer update:currentTime];
-	}
-	
-	CCTime delta = currentTime - _lastUpdateTime;
-	if (_lastUpdateTime == 0)
-	{
-		delta = 0;
-	}
-	
-	[_scheduler update:delta];
+	CCTime delta = (_lastUpdateTime == 0) ? 0 : currentTime - _lastUpdateTime;
+	[_kkView.scheduler update:delta];
 	_lastUpdateTime = currentTime;
 }
 
 -(void) didEvaluateActions
 {
-	NSAssert(_mainLoopStage == KKMainLoopStageDidUpdate, @"Main Loop Error: it seems you implemented update: but did not call [super update:currentTime]");
+	NSAssert(_mainLoopStage == KKMainLoopStageDidUpdate, @"Main Loop Error: it seems your scene implements update: but does not call [super update:currentTime]");
 	_mainLoopStage = KKMainLoopStageDidEvaluateActions;
 
-	for (id observer in _sceneDidEvaluateActionsObservers)
-	{
-		[observer didEvaluateActions];
-	}
+	[_kkView.scheduler didEvaluateActions];
 }
 
 -(void) didSimulatePhysics
 {
-	NSAssert(_mainLoopStage == KKMainLoopStageDidEvaluateActions, @"Main Loop Error: it seems you implemented didEvaluateActions: but did not call [super didEvaluateActions]");
+	NSAssert(_mainLoopStage == KKMainLoopStageDidEvaluateActions, @"Main Loop Error: it seems your scene implements didEvaluateActions: but does not call [super didEvaluateActions]");
 	_mainLoopStage = KKMainLoopStageDidSimulatePhysics;
 
-	for (id observer in _sceneDidSimulatePhysicsObservers)
-	{
-		[observer didSimulatePhysics];
-	}
+	[_kkView.scheduler didSimulatePhysics];
 }
 
 #pragma mark Move to/from View
-
--(void) willMoveFromView:(SKView *)view
-{
-	NSLog(@"KKScene:%@ willMoveFromView:%@", self, view);
-
-	// send this to all nodes
-	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-		if ([node respondsToSelector:@selector(sceneWillMoveFromView:)])
-		{
-			[(id<KKNodeProtocol>)node sceneWillMoveFromView:(KKView*)view];
-		}
-	}];
-}
 
 -(void) didMoveToView:(SKView *)view
 {
 	NSLog(@"KKScene:%@ didMoveToView:%@", self, view);
 
+	NSAssert1([self.view isKindOfClass:[KKView class]], @"Scene's view (%@) is not a KKView class", self.view);
+	_kkView = (KKView*)self.view;
+
+	CCScheduler* scheduler = _kkView.scheduler;
+	[scheduler setPaused:self.paused target:(id<CCSchedulerTarget>)self];
+	
 	// send this to all nodes
+	[self scene:self didMoveToView:_kkView];
 	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-		if ([node respondsToSelector:@selector(sceneDidMoveToView:)])
+		if ([node respondsToSelector:@selector(scene:didMoveToView:)])
 		{
-			[(id<KKNodeProtocol>)node sceneDidMoveToView:(KKView*)view];
+			[(id<KKNodeProtocol>)node scene:self didMoveToView:_kkView];
 		}
+		
+		[scheduler setPaused:node.paused target:(id<CCSchedulerTarget>)node];
 	}];
+}
+
+-(void) willMoveFromView:(SKView *)view
+{
+	NSLog(@"KKScene:%@ willMoveFromView:%@", self, view);
+
+	CCScheduler* scheduler = _kkView.scheduler;
+	[scheduler setPaused:YES target:(id<CCSchedulerTarget>)self];
+
+	// send this to all nodes
+	[self scene:self willMoveFromView:_kkView];
+	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
+		if ([node respondsToSelector:@selector(scene:willMoveFromView:)])
+		{
+			[(id<KKNodeProtocol>)node scene:self willMoveFromView:_kkView];
+		}
+
+		[scheduler setPaused:YES target:(id<CCSchedulerTarget>)node];
+	}];
+	
+	_kkView = nil;
 }
 
 #pragma mark Change Size
@@ -160,67 +153,17 @@ KKNODE_SHARED_CODE
 	NSLog(@"KKScene:%@ didChangeSize:{%f, %f}", self, self.size.width, self.size.height);
 
 	// send this to all nodes
+	CGSize currentSize = self.size;
+	[self scene:self didChangeSize:currentSize previousSize:previousSize];
 	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-		if ([node respondsToSelector:@selector(sceneDidChangeSize:previousSize:)])
+		if ([node respondsToSelector:@selector(scene:didChangeSize:previousSize:)])
 		{
-			[(id<KKNodeProtocol>)node sceneDidChangeSize:self.size previousSize:previousSize];
+			[(id<KKNodeProtocol>)node scene:self didChangeSize:currentSize previousSize:previousSize];
 		}
 	}];
 }
 
 /*
-#pragma mark Scene Events Observer
-
--(void) addSceneEventsObserver:(id)observer
-{
-	// prevent users from registering the scene, because it will always call these methods if implemented
-	if (observer && observer != self)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if ([observer respondsToSelector:@selector(update:)] &&
-				[_sceneUpdateObservers indexOfObject:observer] == NSNotFound)
-			{
-				[_sceneUpdateObservers addObject:observer];
-			}
-			if ([observer respondsToSelector:@selector(didEvaluateActions)] &&
-				[_sceneDidEvaluateActionsObservers indexOfObject:observer] == NSNotFound)
-			{
-				[_sceneDidEvaluateActionsObservers addObject:observer];
-			}
-			if ([observer respondsToSelector:@selector(didSimulatePhysics)] &&
-				[_sceneDidSimulatePhysicsObservers indexOfObject:observer] == NSNotFound)
-			{
-				[_sceneDidSimulatePhysicsObservers addObject:observer];
-			}
-			if ([observer respondsToSelector:@selector(willMoveFromView:)] &&
-				[_sceneWillMoveFromViewObservers indexOfObject:observer] == NSNotFound)
-			{
-				[_sceneWillMoveFromViewObservers addObject:observer];
-			}
-			if ([observer respondsToSelector:@selector(didMoveToView:)] &&
-				[_sceneDidMoveToViewObservers indexOfObject:observer] == NSNotFound)
-			{
-				[_sceneDidMoveToViewObservers addObject:observer];
-			}
-		});
-	}
-}
-
--(void) removeSceneEventsObserver:(id)observer
-{
-	if (observer)
-	{
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[_sceneUpdateObservers removeObject:observer];
-			[_sceneDidEvaluateActionsObservers removeObject:observer];
-			[_sceneDidSimulatePhysicsObservers removeObject:observer];
-			[_sceneWillMoveFromViewObservers removeObject:observer];
-			[_sceneDidMoveToViewObservers removeObject:observer];
-			[_physicsContactObservers removeObject:observer];
-		});
-	}
-}
-
 #pragma mark Physics Contact Observer
 
 -(void) addPhysicsContactEventsObserver:(id<KKPhysicsContactEventDelegate>)observer
@@ -447,13 +390,43 @@ DEVELOPER_FIXME("remove calls to respondsToSelector by separating observers into
 
 -(NSString*) stringFromSceneGraph:(KKSceneGraphDumpOptions)options
 {
+	__block NSInteger currentBranch = 1;
+	NSMutableDictionary* parentNodes = [NSMutableDictionary dictionary];
+	[parentNodes setObject:[NSNumber numberWithInteger:currentBranch] forKey:[NSNumber numberWithUnsignedInteger:[self hash]]];
+	
 	NSMutableString* dump = [NSMutableString stringWithCapacity:4096];
-	[dump appendFormat:@"%@\n", self];
+	[dump appendFormat:@"\n%@%@ (%p), parent: %@%@ (%p)\n",
+	 NSStringFromClass([self class]), self.name.length ? [NSString stringWithFormat:@" '%@'", self.name] : @"", self,
+	 NSStringFromClass([self.parent class]), self.parent.name.length ? [NSString stringWithFormat:@" '%@'", self.parent.name] : @"", self.parent];
 	
 	[self enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-		[dump appendFormat:@"%@\n", node];
+		NSString* tabs = @"";
+		
+		if (node.parent)
+		{
+			NSNumber* parentNodeBranchNumber = [parentNodes objectForKey:[NSNumber numberWithUnsignedInteger:[node.parent hash]]];
+			if (parentNodeBranchNumber == nil)
+			{
+				currentBranch++;
+				parentNodeBranchNumber = [NSNumber numberWithInteger:currentBranch];
+				[parentNodes setObject:parentNodeBranchNumber forKey:[NSNumber numberWithUnsignedInteger:[node.parent hash]]];
+			}
+			
+			NSInteger numTabs = [parentNodeBranchNumber integerValue];
+			if (numTabs > 0)
+			{
+				const NSUInteger tabLength = 4;
+				tabs = [tabs stringByPaddingToLength:numTabs * tabLength withString:@" " startingAtIndex:0];
+			}
+		}
+		
+		[dump appendFormat:@"%@%@%@ (%p), parent: %@%@ (%p)\n", tabs,
+		 NSStringFromClass([node class]), node.name.length ? [NSString stringWithFormat:@" '%@'", node.name] : @"", node,
+		 NSStringFromClass([node.parent class]), node.parent.name.length ? [NSString stringWithFormat:@" '%@'", node.parent.name] : @"", node.parent];
 	}];
-	
+
+	[dump appendString:@"\n"];
+		
 	return dump;
 }
 

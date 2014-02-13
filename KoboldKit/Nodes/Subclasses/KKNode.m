@@ -8,6 +8,7 @@
 #import "KKNode.h"
 #import "SKNode+KoboldKit.h"
 #import "KKNodeShared.h"
+#import "CCScheduler.h"
 
 @implementation KKNode
 KKNODE_SHARED_CODE

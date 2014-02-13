@@ -87,6 +87,14 @@ InvokeMethods(NSArray *methods, SEL selector, CCTime dt)
 	}
 }
 
+static void
+InvokeMethodsNoDelta(NSArray *methods, SEL selector)
+{
+	for(CCScheduledTarget *scheduledTarget in [methods copy]){
+		if(!scheduledTarget->_paused) objc_msgSend(scheduledTarget->_target, selector);
+	}
+}
+
 -(id)initWithTarget:(NSObject<CCSchedulerTarget> *)target
 {
 	if((self = [super init])){
@@ -189,6 +197,18 @@ static CCTimerBlock INVALIDATED_BLOCK = ^(CCTimer *timer){};
 
 -(BOOL)invalid {return (_block == INVALIDATED_BLOCK);}
 
+-(NSString*) description
+{
+	return [NSString stringWithFormat:@"%@ (%p) %@ interval:%f repeatCount:%lu paused:%@",
+			NSStringFromClass([self class]), self, _userData ? [NSString stringWithFormat:@"@selector(%@)", _userData] : [NSString stringWithFormat:@"block:%p", _block],
+			_repeatInterval, (unsigned long)_repeatCount, _paused ? @"YES" : @"NO"];
+}
+
+-(NSString*) debugDescription
+{
+	return [self description];
+}
+
 @end
 
 
@@ -230,6 +250,8 @@ static CCTimerBlock INVALIDATED_BLOCK = ^(CCTimer *timer){};
 	
 	NSMutableArray *_updates;
 	NSMutableArray *_fixedUpdates;
+	NSMutableArray *_evaluateActions;
+	NSMutableArray *_simulatePhysics;
 	
 	CCTimer *_fixedUpdateTimer;
 }
@@ -288,6 +310,8 @@ CompareTimers(const void *a, const void *b, void *context)
 		
 		_updates = [NSMutableArray array];
 		_fixedUpdates = [NSMutableArray array];
+		_evaluateActions = [NSMutableArray array];
+		_simulatePhysics = [NSMutableArray array];
 		
 		// Annoyance to avoid a retain cycle.
 		__block __weak __typeof(self) _self = self;
@@ -310,6 +334,7 @@ CompareTimers(const void *a, const void *b, void *context)
 
 -(void)dealloc
 {
+	NSLog(@"dealloc CCScheduler: %@", self);
 	CFRelease(_heap);
 	CFRelease(_scheduledTargets);
 }
@@ -414,11 +439,14 @@ PrioritySearch(NSArray *array, NSInteger priority)
 
 -(void)scheduleTarget:(NSObject<CCSchedulerTarget> *)target
 {
-	BOOL update = [target respondsToSelector:@selector(deltaUpdate:)];
+	BOOL update = [target respondsToSelector:@selector(frameUpdate:)];
 	BOOL fixedUpdate = [target respondsToSelector:@selector(fixedUpdate:)];
+	BOOL evaluateActions = [target respondsToSelector:@selector(didEvaluateActions)] && [target isKindOfClass:[SKScene class]] == NO;
+	BOOL simulatePhysics = [target respondsToSelector:@selector(didSimulatePhysics)] && [target isKindOfClass:[SKScene class]] == NO;
 	
 	// Don't bother scheduling anything if it doesn't implement any methods.
-	if(update || fixedUpdate){
+	if(update || fixedUpdate || evaluateActions || simulatePhysics)
+	{
 		CCScheduledTarget *scheduledTarget = [self scheduledTargetForTarget:target insert:YES];
 		
 		// Don't schedule something more than once.
@@ -428,6 +456,8 @@ PrioritySearch(NSArray *array, NSInteger priority)
 			
 			if(update) [_updates insertObject:scheduledTarget atIndex:PrioritySearch(_updates, priority)];
 			if(fixedUpdate) [_fixedUpdates insertObject:scheduledTarget atIndex:PrioritySearch(_fixedUpdates, priority)];
+			if (evaluateActions) [_evaluateActions insertObject:scheduledTarget atIndex:PrioritySearch(_evaluateActions, priority)];
+			if (simulatePhysics) [_simulatePhysics insertObject:scheduledTarget atIndex:PrioritySearch(_simulatePhysics, priority)];
 		}
 	}
 }
@@ -439,12 +469,20 @@ PrioritySearch(NSArray *array, NSInteger priority)
 	if(scheduledTarget){
 		// Remove the update methods if they are scheduled
 		if(scheduledTarget.enableUpdates){
-			if([scheduledTarget.target respondsToSelector:@selector(deltaUpdate:)]){
+			if([scheduledTarget.target respondsToSelector:@selector(frameUpdate:)]){
 				[_updates removeObject:scheduledTarget];
 			}
 			
 			if([scheduledTarget.target respondsToSelector:@selector(fixedUpdate:)]){
 				[_fixedUpdates removeObject:scheduledTarget];
+			}
+
+			if ([scheduledTarget.target respondsToSelector:@selector(didEvaluateActions)]) {
+				[_evaluateActions removeObject:scheduledTarget];
+			}
+
+			if ([scheduledTarget.target respondsToSelector:@selector(didSimulatePhysics)]) {
+				[_simulatePhysics removeObject:scheduledTarget];
 			}
 		}
 		
@@ -488,8 +526,18 @@ PrioritySearch(NSArray *array, NSInteger priority)
 	CCTime clampedDelta = MIN(dt*_timeScale, _maxTimeStep);
 	[self updateTo:_currentTime + clampedDelta];
 	
-	InvokeMethods(_updates, @selector(deltaUpdate:), clampedDelta);
+	InvokeMethods(_updates, @selector(frameUpdate:), clampedDelta);
 	_lastUpdateTime = _currentTime;
+}
+
+-(void) didEvaluateActions
+{
+	InvokeMethodsNoDelta(_evaluateActions, @selector(didEvaluateActions));
+}
+
+-(void) didSimulatePhysics
+{
+	InvokeMethodsNoDelta(_simulatePhysics, @selector(didSimulatePhysics));
 }
 
 @end

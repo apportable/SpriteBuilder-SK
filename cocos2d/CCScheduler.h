@@ -40,8 +40,7 @@
 
 @optional
 
--(void) deltaUpdate:(CCTime)delta;
-
+-(void) frameUpdate:(CCTime)delta;
 -(void) fixedUpdate:(CCTime)delta;
 
 @end
@@ -133,6 +132,8 @@ typedef void (^CCTimerBlock)(CCTimer *timer);
  You should NEVER call this method, unless you know what you are doing.
  */
 -(void) update:(CCTime)dt;
+-(void) didEvaluateActions;
+-(void) didSimulatePhysics;
 
 -(CCTimer *)scheduleBlock:(CCTimerBlock)block forTarget:(NSObject<CCSchedulerTarget> *)target withDelay:(CCTime)delay;
 

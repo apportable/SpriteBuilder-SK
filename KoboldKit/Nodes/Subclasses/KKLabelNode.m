@@ -7,6 +7,7 @@
 
 #import "KKLabelNode.h"
 #import "KKNodeShared.h"
+#import "CCScheduler.h"
 
 @implementation KKLabelNode
 KKNODE_SHARED_CODE

@@ -8,6 +8,7 @@
 
 @class KKScene;
 @class KKModel;
+@class CCScheduler;
 
 /** Kobold Kit apps use KKView as their view. It provides additional features like the ability to push & pop scenes. */
 @interface KKView : SKView
@@ -15,6 +16,17 @@
 	@private
 	NSMutableArray* _sceneStack;
 }
+
+/** Accessing the View */
+
+/** The default view is the most recently created view.
+ @returns The default Kobold Kit view. */
++(instancetype) defaultView;
+
+/** @name Scheduling */
+
+/** @returns The scheduler that handles repeating callback blocks/selectors for the view's scene and its nodes (and other objects). */
+@property (nonatomic, readonly) CCScheduler* scheduler;
 
 /** @name Presenting Scenes */
 

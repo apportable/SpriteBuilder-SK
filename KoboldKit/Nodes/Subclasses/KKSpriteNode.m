@@ -6,6 +6,7 @@
 
 #import "KKSpriteNode.h"
 #import "KKNodeShared.h"
+#import "CCScheduler.h"
 
 @implementation KKSpriteNode
 KKNODE_SHARED_CODE

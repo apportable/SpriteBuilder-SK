@@ -46,6 +46,7 @@
 		DC0F9B6918A4EFAC001749BB /* JRSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B6718A4EFAC001749BB /* JRSwizzle.h */; };
 		DC0F9B6A18A4EFAC001749BB /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */; };
 		DC0F9B6B18A4EFAC001749BB /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */; };
+		DC66E1DB18ABC67A005E642F /* KKNodeProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = DC66E1DA18ABC67A005E642F /* KKNodeProtocol.h */; };
 		DC8C7B9518A95F96000D29DC /* CCBAnimationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = DC8C7B8718A95F96000D29DC /* CCBAnimationManager.h */; };
 		DC8C7B9618A95F96000D29DC /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B8818A95F96000D29DC /* CCBAnimationManager.m */; };
 		DC8C7B9718A95F96000D29DC /* CCBAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B8818A95F96000D29DC /* CCBAnimationManager.m */; };
@@ -122,7 +123,6 @@
 		DCE082FF18A1563300A0C368 /* KKViewOriginNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */; };
 		DCE0830018A1563300A0C368 /* KKViewOriginNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */; };
 		DCE0830518A156CC00A0C368 /* KKPhysicsContactEventDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */; };
-		DCE0830618A156CC00A0C368 /* KKSceneEventDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */; };
 		DCE0830F18A1571B00A0C368 /* SKAction+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830918A1571B00A0C368 /* SKAction+KoboldKit.h */; };
 		DCE0831018A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */; };
 		DCE0831118A1571B00A0C368 /* SKAction+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */; };
@@ -174,6 +174,7 @@
 		DC0F9B4018A4EED4001749BB /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointExtension.m; sourceTree = "<group>"; };
 		DC0F9B6718A4EFAC001749BB /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
 		DC0F9B6818A4EFAC001749BB /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		DC66E1DA18ABC67A005E642F /* KKNodeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKNodeProtocol.h; sourceTree = "<group>"; };
 		DC8C7B8718A95F96000D29DC /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
 		DC8C7B8818A95F96000D29DC /* CCBAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBAnimationManager.m; sourceTree = "<group>"; };
 		DC8C7B8918A95F96000D29DC /* CCBKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBKeyframe.h; sourceTree = "<group>"; };
@@ -239,7 +240,6 @@
 		DCE082EA18A1563300A0C368 /* KKViewOriginNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKViewOriginNode.h; sourceTree = "<group>"; };
 		DCE082EB18A1563300A0C368 /* KKViewOriginNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKViewOriginNode.m; sourceTree = "<group>"; };
 		DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPhysicsContactEventDelegate.h; sourceTree = "<group>"; };
-		DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKSceneEventDelegate.h; sourceTree = "<group>"; };
 		DCE0830918A1571B00A0C368 /* SKAction+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+KoboldKit.h"; sourceTree = "<group>"; };
 		DCE0830A18A1571B00A0C368 /* SKAction+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+KoboldKit.m"; sourceTree = "<group>"; };
 		DCE0830B18A1571B00A0C368 /* SKNode+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+KoboldKit.h"; sourceTree = "<group>"; };
@@ -487,6 +487,7 @@
 				DCE082E118A1563300A0C368 /* KKLabelNode.m */,
 				DCE082E218A1563300A0C368 /* KKNode.h */,
 				DCE082E318A1563300A0C368 /* KKNode.m */,
+				DC66E1DA18ABC67A005E642F /* KKNodeProtocol.h */,
 				DCE082E418A1563300A0C368 /* KKNodeShared.h */,
 				DCE082E518A1563300A0C368 /* KKNodeShared.m */,
 				DCE082E618A1563300A0C368 /* KKScene.h */,
@@ -503,7 +504,6 @@
 			isa = PBXGroup;
 			children = (
 				DCE0830218A156CC00A0C368 /* KKPhysicsContactEventDelegate.h */,
-				DCE0830318A156CC00A0C368 /* KKSceneEventDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -532,6 +532,7 @@
 				DCD9CF8518A149D7008B3444 /* CCBSpriteKitReader.h in Headers */,
 				DCD9CF8118A149D7008B3444 /* CCBSpriteKitDummy.h in Headers */,
 				DCE082F518A1563300A0C368 /* KKNodeShared.h in Headers */,
+				DC66E1DB18ABC67A005E642F /* KKNodeProtocol.h in Headers */,
 				DCD9CF8418A149D7008B3444 /* CCBSpriteKitMacros.h in Headers */,
 				DCE082F218A1563300A0C368 /* KKNode.h in Headers */,
 				DCE082EC18A1563300A0C368 /* KKEmitterNode.h in Headers */,
@@ -567,7 +568,6 @@
 				DC8C7B9818A95F96000D29DC /* CCBKeyframe.h in Headers */,
 				DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */,
 				DCE082CE18A154B900A0C368 /* KKTypes.h in Headers */,
-				DCE0830618A156CC00A0C368 /* KKSceneEventDelegate.h in Headers */,
 				DC0F9B5918A4EED4001749BB /* CCConfiguration.h in Headers */,
 				DCE082D218A154B900A0C368 /* KKViewController.h in Headers */,
 				DC8C7BA218A95F96000D29DC /* CCBSequence.h in Headers */,

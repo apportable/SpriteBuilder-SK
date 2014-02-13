@@ -6,28 +6,80 @@
 //
 
 #import "MainScene.h"
+#import "KKScene.h"
+#import "KKView.h"
+#import "CCScheduler.h"
 
 @implementation MainScene
 
-/*
--(id)initWithSize:(CGSize)size
+-(void) dealloc
 {
-	self = [super initWithSize:size];
-    if (self)
-	{
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
-    }
-    return self;
+	NSLog(@"dealloc: %@ scheduler: %@", self, self.scheduler);
 }
- */
+
+-(void) didMoveToParent
+{
+	[super didMoveToParent];
+	
+	CCTimer* t;
+	t = [self schedule:@selector(scheduledSelectorRepeat:) interval:0.111 repeat:9 delay:1];
+	NSLog(@"timer: %@", t);
+	t = [self schedule:@selector(scheduledSelector:) interval:3];
+	NSLog(@"timer: %@", t);
+	t = [self scheduleOnce:@selector(scheduledOnce:) delay:2];
+	NSLog(@"timer: %@", t);
+	
+	t = [self scheduleBlock:^(CCTimer *timer) {
+		NSLog(@"[%u] scheduledBlock: %@", (unsigned int)self.kkScene.frameCount, timer);
+	} delay:2.5];
+	NSLog(@"timer: %@", t);
+}
+
+-(void) scheduledOnce:(CCTime)delta
+{
+	NSLog(@"[%u] scheduledOnce: %f", (unsigned int)self.kkScene.frameCount, delta);
+}
+
+-(void) scheduledSelector:(CCTime)delta
+{
+	NSLog(@"[%u] scheduledSelector: %f", (unsigned int)self.kkScene.frameCount, delta);
+}
+
+-(void) scheduledSelectorRepeat:(CCTime)delta
+{
+	NSLog(@"[%u] scheduledSelectorRepeat: %f", (unsigned int)self.kkScene.frameCount, delta);
+}
+
+-(void) frameUpdate:(CCTime)delta
+{
+	if (self.kkScene.frameCount <= 4)
+	{
+		NSLog(@"[%u] frameUpdate %@: %f", (unsigned int)self.kkScene.frameCount, NSStringFromClass([self class]), delta);
+	}
+}
+
+-(void) fixedUpdate:(CCTime)delta
+{
+	if (self.kkScene.frameCount <= 4)
+	{
+		NSLog(@"[%u] fixedUpdate %@: %f", (unsigned int)self.kkScene.frameCount, NSStringFromClass([self class]), delta);
+	}
+}
+
+-(void) didEvaluateActions
+{
+	if (self.kkScene.frameCount <= 4)
+	{
+		NSLog(@"[%u] didEvaluateActions %@", (unsigned int)self.kkScene.frameCount, NSStringFromClass([self class]));
+	}
+}
+
+-(void) didSimulatePhysics
+{
+	if (self.kkScene.frameCount <= 4)
+	{
+		NSLog(@"[%u] didSimulatePhysics %@", (unsigned int)self.kkScene.frameCount, NSStringFromClass([self class]));
+	}
+}
 
 @end

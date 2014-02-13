@@ -6,12 +6,20 @@
 
 #import "KKView.h"
 #import "KKScene.h"
+#import "CCScheduler.h"
 
 static BOOL _drawsPhysicsShapes = NO;
 static BOOL _drawsNodeFrames = NO;
 static BOOL _drawsNodeAnchorPoints = NO;
 
+static __weak KKView* _defaultView = nil;
+
 @implementation KKView
+
++(instancetype) defaultView
+{
+	return _defaultView;
+}
 
 -(id) initWithFrame:(CGRect)frame
 {
@@ -45,7 +53,21 @@ static BOOL _drawsNodeAnchorPoints = NO;
 
 -(void) initDefaults
 {
+	// this assert may be too restrictive but I want to know the exact situation if and when this ever happens (besides users trying to create "split-view" apps)
+	NSAssert1(_defaultView == nil, @"An instance of KKView (%p) already exists! You can only have one Sprite Kit view at any one time on iOS.", _defaultView);
+	
+	[_defaultView end];
+	_defaultView = self;
+	
 	_sceneStack = [NSMutableArray array];
+	_scheduler = [[CCScheduler alloc] init];
+}
+
+-(void) end
+{
+	_scheduler.paused = YES;
+	_scheduler = nil;
+	_sceneStack = nil;
 }
 
 #pragma mark Present Scene
@@ -62,8 +84,8 @@ static BOOL _drawsNodeAnchorPoints = NO;
 		[_sceneStack removeLastObject];
 	}
 	[_sceneStack addObject:scene];
-	
-	transition ? [super presentScene:scene transition:transition] : [super presentScene:scene];
+
+	[self doPresentScene:scene transition:transition];
 }
 
 -(void) presentScene:(KKScene *)scene unwindStack:(BOOL)unwindStack
@@ -79,6 +101,11 @@ static BOOL _drawsNodeAnchorPoints = NO;
 		[_sceneStack addObject:scene];
 	}
 
+	[self doPresentScene:scene transition:transition];
+}
+
+-(void) doPresentScene:(SKScene*)scene transition:(SKTransition*)transition
+{
 	transition ? [super presentScene:scene transition:transition] : [super presentScene:scene];
 }
 

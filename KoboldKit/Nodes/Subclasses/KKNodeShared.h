@@ -6,6 +6,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "KKView.h"
+#import "KKNodeProtocol.h"
+#import "SKNode+KoboldKit.h"
 
 @class CCScheduler;
 
@@ -16,66 +18,47 @@
  subclass and the actual functionality is in a class method in this class. */
 @interface KKNodeShared : NSObject
 +(void) deallocWithNode:(SKNode*)node;
-+(void) sendChildrenWillMoveFromParentWithNode:(SKNode*)node;
-+(void) didMoveToParentWithNode:(SKNode*)node;
-+(void) willMoveFromParentWithNode:(SKNode*)node;
+
+
++(CCTimer*) node:(NSObject<KKNodeProtocol>*)node schedule:(SEL)selector interval:(CCTime)interval repeat:(NSUInteger)repeat delay:(CCTime)delay;
++(void) node:(id<KKNodeProtocol>)node unschedule:(SEL)selector;
++(void) unscheduleAllSelectorsWithNode:(id<KKNodeProtocol>)node;
 
 +(void) scheduleNode:(SKNode*)node;
-+(void) unscheduleNode:(SKNode*)node;
++(void) pauseSchedulerForNode:(SKNode*)node paused:(BOOL)paused;
+
++(void) didMoveToParentWithNode:(SKNode*)node;
++(void) willMoveFromParentWithNode:(SKNode*)node;
++(void) sendChildrenWillMoveFromParentWithNode:(SKNode*)node;
 
 +(void) addNodeFrameShapeToNode:(SKNode*)node;
 +(void) addNodeAnchorPointShapeToNode:(SKNode*)node;
++(void) forgotToCallToSuperMethodWithName:(NSString*)methodName node:(SKNode*)node;
 @end
-
-// declared here again to avoid compile issues
-typedef double CCTime;
 
 // prevent compiler from complaining that this selector is undeclared
 @protocol KKKoboldKitNode_UndeclaredSelector <NSObject>
 -(BOOL) isKoboldKitNode;
 @end
 
-/** Implemented by all Kobold Kit node classes. */
-@protocol KKNodeProtocol <NSObject>
 
-/** Called after addChild / insertChild. The self.scene and self.parent properties are valid in this method. Equivalent to onEnter method in cocos2d.
- @WARNING: you must call [super didMoveToParent] in your own implementation! */
--(void) didMoveToParent;
-/** Called after removeFromParent and other remove child methods. The self.scene and self.parent properties are still valid. Equivalent to onExit method in cocos2d.
- @WARNING: you must call [super didMoveToParent] in your own implementation! */
--(void) willMoveFromParent;
-
-/** Sent to a scene's nodes when the scene is about to be detached from the view.
- @WARNING: you must call [super didMoveToParent] in your own implementation!
- @param view The KKView the scene will be removed from. */
--(void) sceneWillMoveFromView:(KKView*)view;
-/** Sent to a scene's nodes when the scene was attached to a view.
- @WARNING: you must call [super didMoveToParent] in your own implementation!
- @param view The KKView the scene was attached to. */
--(void) sceneDidMoveToView:(KKView*)view;
-/** Sent to a scene's nodes when the scene size changed.
- @WARNING: you must call [super didMoveToParent] in your own implementation!
- @param newSize The scene's new size.
- @param previousSize The scene's previous size. */
--(void) sceneDidChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize;
-
-@optional
-
-/** Update method with delta time, automatically called when implemented.
- @param delta The delta time since the previous call to update. */
--(void) deltaUpdate:(CCTime)delta;
-/** Update method with delta time that runs at a fixed interval, automatically called when implemented.
- @param delta The delta time since the previous call to update. Delta will vary less compared to the deltaUpdate: method. */
--(void) fixedUpdate:(CCTime)delta;
-
-@end
-
-//#define KKNODE_SHARED_HEADER \
-
+#define KKNODE_SHARED_HEADER \
+@property (nonatomic, weak, readonly) CCScheduler* scheduler; \
+@property (nonatomic, readonly) NSInteger priority; \
 
 #define KKNODE_SHARED_CODE \
 { \
-	CCScheduler* _scheduler; \
+	__weak CCScheduler* _scheduler; \
+} \
+\
+-(CCScheduler*) scheduler \
+{ \
+	if (_scheduler == nil) \
+	{ \
+		_scheduler = [KKView defaultView].scheduler; \
+		NSAssert(_scheduler, @"[KKView defaultView].scheduler is nil!"); \
+	} \
+	return _scheduler; \
 } \
 \
 -(BOOL) isKoboldKitNode \
@@ -112,29 +95,50 @@ typedef double CCTime;
 	[super removeChildrenInArray:array]; \
 } \
 \
--(void) didMoveToParent /* to be overridden by subclasses */ \
+-(void) setPaused:(BOOL)paused \
 { \
-	if ([KKView drawsNodeFrames]) \
-		[KKNodeShared addNodeFrameShapeToNode:self]; \
-	if ([KKView drawsNodeAnchorPoints]) \
-		[KKNodeShared addNodeAnchorPointShapeToNode:self]; \
+	if (self.paused != paused) \
+	{ \
+		[super setPaused:paused]; \
+		[KKNodeShared pauseSchedulerForNode:self paused:paused]; \
+	} \
 } \
 \
--(void) willMoveFromParent { /* to be overridden by subclasses */ } \
+-(void) didMoveToParent { [KKNodeShared scheduleNode:self]; } /* to be overridden by subclasses */ \
+-(void) willMoveFromParent { [KKNodeShared pauseSchedulerForNode:self paused:YES]; } /* to be overridden by subclasses */ \
+-(void) scene:(KKScene*)scene didChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize { } /* to be overridden by subclasses */ \
+-(void) scene:(KKScene*)scene didMoveToView:(KKView *)view { } /* to be overridden by subclasses */ \
+-(void) scene:(KKScene*)scene willMoveFromView:(KKView *)view { } /* to be overridden by subclasses */ \
 \
--(void) sceneWillMoveFromView:(KKView *)view \
+-(CCTimer*) schedule:(SEL)selector interval:(CCTime)seconds \
 { \
-	[KKNodeShared unscheduleNode:self]; \
+	return [self schedule:selector interval:seconds repeat:NSUIntegerMax delay:0]; \
 } \
-\
--(void) sceneDidMoveToView:(KKView *)view \
+-(CCTimer*) scheduleOnce:(SEL)selector delay:(CCTime)delay \
 { \
-	[KKNodeShared scheduleNode:self]; \
+	return [self schedule:selector interval:0.0 repeat:0 delay:delay]; \
 } \
-\
--(void) sceneDidChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize { } \
-\
+-(CCTimer*) schedule:(SEL)selector interval:(CCTime)interval repeat:(NSUInteger)repeat delay:(CCTime)delay \
+{ \
+	return [KKNodeShared node:(NSObject<KKNodeProtocol>*)self schedule:selector interval:interval repeat:repeat delay:delay]; \
+} \
+-(CCTimer*) scheduleBlock:(CCTimerBlock)block delay:(CCTime)delay \
+{ \
+	return [_scheduler scheduleBlock:block forTarget:(id<CCSchedulerTarget>)self withDelay:delay]; \
+} \
+-(void) unschedule:(SEL)selector \
+{ \
+	[KKNodeShared node:(id<KKNodeProtocol>)self unschedule:selector]; \
+} \
+-(void) unscheduleAllSelectors \
+{ \
+	[KKNodeShared unscheduleAllSelectorsWithNode:(id<KKNodeProtocol>)self]; \
+} \
+-(NSInteger) priority \
+{ \
+	return 0; \
+} \
 /*
--(void) deltaUpdate:(CCTime)delta { NSLog(@"deltaUpdate %@: %f", NSStringFromClass([self class]), delta); } \
+-(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 */

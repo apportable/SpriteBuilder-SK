@@ -8,10 +8,6 @@
 #import "KKNodeShared.h"
 
 @interface KKLabelNode : SKLabelNode <KKNodeProtocol>
-
-/** Scheduler targets are sorted by priority, lower priority targets are called first.
- @returns The node's priority used by the scheduler. */
-@property (nonatomic, readonly) NSInteger priority;
-
+KKNODE_SHARED_HEADER
 
 @end
