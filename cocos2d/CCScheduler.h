@@ -36,11 +36,13 @@
 
 // Used to break ties for scheduled blocks, updated: and fixedUpdate: methods.
 // Targets are sorted by priority so lower priorities are called first.
+// The priority value for a given object should be constant.
 @property(nonatomic, readonly) NSInteger priority;
 
 @optional
 
 -(void) frameUpdate:(CCTime)delta;
+
 -(void) fixedUpdate:(CCTime)delta;
 
 @end
@@ -143,8 +145,6 @@ typedef void (^CCTimerBlock)(CCTimer *timer);
  This also includes the "update" selector.
  */
 -(void) unscheduleTarget:(NSObject<CCSchedulerTarget> *)target;
-
--(BOOL) isTargetScheduled:(NSObject<CCSchedulerTarget> *)target;
 
 -(void)setPaused:(BOOL)paused target:(NSObject<CCSchedulerTarget> *)target;
 
