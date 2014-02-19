@@ -143,6 +143,7 @@
 	return 0; \
 } \
 \
+/*
 -(void) runAction:(SKAction *)action \
 { \
 	int actionTag = [action getAndClearTag]; \
@@ -158,6 +159,7 @@
 	} \
 } \
 \
+*/
 /*
 -(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \
