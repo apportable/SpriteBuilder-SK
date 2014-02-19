@@ -242,8 +242,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>441.99996948242188</real>
-							<real>106</real>
+							<real>281.99996948242188</real>
+							<real>147</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -570,6 +570,56 @@
 				<dict>
 					<key>0</key>
 					<dict>
+						<key>color</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>color</string>
+									<key>time</key>
+									<real>0.63333332538604736</real>
+									<key>type</key>
+									<integer>6</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>0.0</real>
+										<real>0.0</real>
+										<real>0.65799999237060547</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>color</string>
+									<key>time</key>
+									<real>3.5999999046325684</real>
+									<key>type</key>
+									<integer>6</integer>
+									<key>value</key>
+									<array>
+										<real>0.0</real>
+										<real>0.0</real>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>color</string>
+							<key>type</key>
+							<integer>6</integer>
+						</dict>
 						<key>opacity</key>
 						<dict>
 							<key>keyframes</key>
@@ -775,8 +825,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.3662838935852051</real>
-							<real>1.3676018714904785</real>
+							<real>5.7771944999694824</real>
+							<real>2.0206027030944824</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -827,15 +877,22 @@
 						</array>
 					</dict>
 					<dict>
+						<key>baseValue</key>
+						<array>
+							<real>1</real>
+							<real>0.0</real>
+							<real>0.0</real>
+							<real>0.65799999237060547</real>
+						</array>
 						<key>name</key>
 						<string>color</string>
 						<key>type</key>
 						<string>Color3</string>
 						<key>value</key>
 						<array>
+							<real>0.0</real>
+							<real>0.0</real>
 							<real>1</real>
-							<real>0.0</real>
-							<real>0.0</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -989,9 +1046,9 @@
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
-			<real>0.50877618789672852</real>
+			<real>0.0</real>
 			<key>position</key>
-			<real>7.9666666984558105</real>
+			<real>5.0999999046325684</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

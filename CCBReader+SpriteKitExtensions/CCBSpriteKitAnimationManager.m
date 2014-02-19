@@ -55,23 +55,21 @@
 		CGFloat alpha = [kf1.value doubleValue];
 		action = [SKAction fadeAlphaTo:alpha duration:duration];
     }
-	/*
     else if ([name isEqualToString:@"color"])
     {
         CCColor* color = kf1.value;
-        return [CCActionTintTo actionWithDuration:duration color:color];
+		action = [SKAction colorizeWithColor:[color skColor] colorBlendFactor:1.0 duration:duration];
     }
     else if ([name isEqualToString:@"visible"])
     {
-        if ([kf1.value boolValue])
-        {
-            return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCActionShow action]];
-        }
-        else
-        {
-            return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCActionHide action]];
-        }
+		BOOL visible = [kf1.value boolValue];
+		id wait = [SKAction waitForDuration:duration];
+		id showHide = [SKAction runBlock:^{
+			node.hidden = !visible;
+		}];
+		action = [SKAction sequence:@[wait, showHide]];
     }
+	/*
     else if ([name isEqualToString:@"spriteFrame"])
     {
         return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCBSetSpriteFrame actionWithSpriteFrame:kf1.value]];
