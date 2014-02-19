@@ -34,6 +34,7 @@
 #import "KKEmitterNode.h"
 #import "KKViewOriginNode.h"
 #import "KKNodeShared.h"
+#import "CCBSpriteKitAnimationManager.h"
 
 static CGSize CCBSpriteKitReaderSceneSize;
 
@@ -46,6 +47,11 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	{
 		[CCBReader configureCCFileUtils];
 		
+		// replace action manager with sprite-kit animation manager instance
+		self.animationManager = [[CCBSpriteKitAnimationManager alloc] init];
+		// Setup resolution scale and default container size
+		animationManager.rootContainerSize = [KKView defaultView].designSize;
+
 		[self swizzleMethodNamed:@"setAnchorPoint:" classNames:@[@"SKScene", @"SKSpriteNode", @"SKVideoNode"]];
 	}
 	return self;

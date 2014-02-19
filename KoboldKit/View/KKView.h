@@ -19,7 +19,8 @@
 
 /** Accessing the View */
 
-/** The default view is the most recently created view.
+/** The default view is the most recently created KKView instance. Usually this will be the Sprite Kit view used by your app, 
+ unless you happen to be managing multiple views in your OS X app (multiple Sprite Kit views at the same time is functional only on OS X).
  @returns The default Kobold Kit view. */
 +(instancetype) defaultView;
 
@@ -36,6 +37,11 @@
  If sceneStack.count returns 1 then there are currently no scenes in the background.
  @returns An array with 1 or more scenes currently suspended. The presented scene is always the lastObject. */
 @property (atomic, readonly) NSArray* sceneStack;
+
+/** @name View Properties */
+
+/** The design size as set by Spritebuilder. */
+@property CGSize designSize;
 
 /** If YES, will render physics shape outlines. */
 @property (nonatomic) BOOL drawsPhysicsShapes;

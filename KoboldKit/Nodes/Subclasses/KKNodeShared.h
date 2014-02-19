@@ -8,6 +8,7 @@
 #import "KKView.h"
 #import "KKNodeProtocol.h"
 #import "SKNode+KoboldKit.h"
+#import "SKAction+CCBReader.h"
 
 @class CCScheduler;
 
@@ -140,6 +141,19 @@
 -(NSInteger) priority \
 { \
 	return 0; \
+} \
+\
+-(void) runAction:(SKAction *)action \
+{ \
+	int actionTag = [action getAndClearTag]; \
+	if (actionTag == CCActionTagInvalid) \
+		[super runAction:action]; \
+	else \
+	{ \
+		NSString* stringTag = [NSString stringWithFormat:@"tag:%i", actionTag]; \
+		NSLog(@"running action with cocos tag: '%@'", stringTag); \
+		[super runAction:action withKey:stringTag]; \
+	} \
 } \
 \
 /*

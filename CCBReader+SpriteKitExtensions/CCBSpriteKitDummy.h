@@ -30,14 +30,6 @@
 
 @interface CCBSpriteKitDummy : NSObject
 
-+(instancetype) sharedDirector;
-@property CGSize designSize;
-@property CCBSpriteKitDummy* actionManager;
-@property (readonly) CGFloat UIScaleFactor;
-
--(CCBSpriteKitDummyAction*) getActionByTag:(int)tag target:(id)target;
--(void) removeActionByTag:(int)tag target:(id)target;
-
 +(instancetype) sharedInstance;
 -(void) playEffect:(NSString*)soundFile volume:(CGFloat)gain pitch:(CGFloat)pitch pan:(CGFloat)pan loop:(BOOL)loop;
 
@@ -56,8 +48,6 @@
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action;
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action rate:(CGFloat)rate;
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action period:(CGFloat)period;
-+(instancetype) actionOne:(CCBSpriteKitDummyAction*)one two:(CCBSpriteKitDummyAction*)two;
-+(instancetype) actionWithArray:(NSArray*)array;
 +(instancetype) actionWithDuration:(double)duration;
 +(instancetype) actionWithDuration:(double)duration opacity:(uint8_t)opacity;
 +(instancetype) actionWithDuration:(double)duration color:(CCColor*)color;

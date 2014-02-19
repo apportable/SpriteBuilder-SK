@@ -27,37 +27,6 @@
 
 @implementation CCBSpriteKitDummy
 
-#pragma mark Director
-
-+(instancetype) sharedDirector
-{
-	static CCBSpriteKitDummy* sharedDirector = nil;
-	if (sharedDirector == nil)
-	{
-		sharedDirector = [[CCBSpriteKitDummy alloc] init];
-	}
-	return sharedDirector;
-}
-
--(CGFloat) UIScaleFactor
-{
-	return 1.0;
-}
-
-#pragma mark Action Manager
-
--(CCBSpriteKitDummyAction*) getActionByTag:(int)tag target:(id)target
-{
-	NOTIMPLEMENTED();
-	return nil;
-}
-
--(void) removeActionByTag:(int)tag target:(id)target
-{
-	NOTIMPLEMENTED();
-}
-
-
 #pragma mark ObjectAL
 
 +(instancetype) sharedInstance
@@ -101,18 +70,6 @@
 }
 
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action period:(CGFloat)period
-{
-	NOTIMPLEMENTED();
-	return nil;
-}
-
-+(instancetype) actionOne:(CCBSpriteKitDummyAction*)one two:(CCBSpriteKitDummyAction*)two
-{
-	NOTIMPLEMENTED();
-	return nil;
-}
-
-+(instancetype) actionWithArray:(NSArray*)array
 {
 	NOTIMPLEMENTED();
 	return nil;

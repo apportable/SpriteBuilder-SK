@@ -18,6 +18,7 @@ static __weak KKView* _defaultView = nil;
 
 +(instancetype) defaultView
 {
+	NSAssert(_defaultView, @"KKView: defaultView is nil - create a KKView instance first");
 	return _defaultView;
 }
 

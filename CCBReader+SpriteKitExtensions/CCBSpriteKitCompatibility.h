@@ -46,19 +46,22 @@
 #import "SKNode+CCBReader.h"
 #import "SKPhysicsBody+CCBReader.h"
 #import "SKTexture+CCBReader.h"
+#import "SKAction+CCBReader.h"
+
+#import "CCDirector.h"
+#import "CCActionManager.h"
+#import "CCActions.h"
 
 #import "ccTypes.h"
 
 // just forward all unsupported features to a dummy class to make the compiler happy
 @class CCBSpriteKitDummy;
-typedef CCBSpriteKitDummy CCActionManager;
-typedef CCBSpriteKitDummy CCDirector;
+@class CCBSpriteKitDummyAction;
+
 typedef CCBSpriteKitDummy OALSimpleAudio;
 
-@class CCBSpriteKitDummyAction;
 typedef CCBSpriteKitDummyAction CCAction;
-typedef CCBSpriteKitDummyAction CCActionCallFunc;
-typedef CCBSpriteKitDummyAction CCActionDelay;
+typedef CCBSpriteKitDummyAction CCActionInterval;
 typedef CCBSpriteKitDummyAction CCActionEase;
 typedef CCBSpriteKitDummyAction CCActionEaseBackIn;
 typedef CCBSpriteKitDummyAction CCActionEaseBackInOut;
@@ -76,10 +79,9 @@ typedef CCBSpriteKitDummyAction CCActionEaseOut;
 typedef CCBSpriteKitDummyAction CCActionFadeTo;
 typedef CCBSpriteKitDummyAction CCActionHide;
 typedef CCBSpriteKitDummyAction CCActionInstant;
-typedef CCBSpriteKitDummyAction CCActionInterval;
 typedef CCBSpriteKitDummyAction CCActionMoveTo;
 typedef CCBSpriteKitDummyAction CCActionScaleTo;
-typedef CCBSpriteKitDummyAction CCActionSequence;
+//typedef CCBSpriteKitDummyAction CCActionSequence;
 typedef CCBSpriteKitDummyAction CCActionShow;
 typedef CCBSpriteKitDummyAction CCActionSkewTo;
 typedef CCBSpriteKitDummyAction CCActionTintTo;
