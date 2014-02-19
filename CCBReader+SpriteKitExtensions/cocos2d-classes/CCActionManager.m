@@ -15,19 +15,15 @@
 
 -(SKAction*) getActionByTag:(int)tag target:(id)target
 {
-	SKNode* targetNode = (SKNode*)target;
-	NSAssert2([targetNode isKindOfClass:[SKNode class]], @"CCActionManager: target %@ (%@) is not a node class", target, NSStringFromClass([target class]));
-	
-	SKAction* action = [targetNode actionForKey:[NSString stringWithFormat:@"tag:%i", tag]];
-	return action;
+	// does nothing
+	[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
+	return nil;
 }
 
 -(void) removeActionByTag:(int)tag target:(id)target
 {
-	SKNode* targetNode = (SKNode*)target;
-	NSAssert2([targetNode isKindOfClass:[SKNode class]], @"CCActionManager: target %@ (%@) is not a node class", target, NSStringFromClass([target class]));
-	
-	[targetNode removeActionForKey:[NSString stringWithFormat:@"tag:%i", tag]];
+	// does nothing
+	[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
 }
 
 @end

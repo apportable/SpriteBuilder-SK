@@ -150,8 +150,10 @@
 		[super runAction:action]; \
 	else \
 	{ \
-		NSString* stringTag = [NSString stringWithFormat:@"tag:%i", actionTag]; \
-		NSLog(@"running action with cocos tag: '%@'", stringTag); \
+		NSString* stringTag = action.tagAsUniqueString; \
+		action.tag = CCActionTagInvalid; \
+		NSLog(@"running action with tag: '%@'", stringTag); \
+		NSAssert1([self actionForKey:stringTag] == nil, @"an action with tag '%@' is already running!", stringTag); \
 		[super runAction:action withKey:stringTag]; \
 	} \
 } \

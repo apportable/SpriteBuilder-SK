@@ -16,7 +16,10 @@ enum {
 @interface SKAction (CCBReader)
 
 @property (nonatomic) int tag;
+@property (nonatomic, readonly) NSString* tagAsUniqueString;
 
 -(int) getAndClearTag;
+
++(NSString*) tagAsString:(int)tag;
 
 @end

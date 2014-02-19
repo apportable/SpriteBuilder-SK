@@ -50,20 +50,13 @@
 +(void) node:(id<KKNodeProtocol>)node unschedule:(SEL)selector
 {
 	NSString* selectorName = NSStringFromSelector(selector);
-	BOOL didInvalidate = NO;
 	
 	for (CCTimer* timer in [node.scheduler timersForTarget:(id<CCSchedulerTarget>)node])
 	{
 		if ([selectorName isEqual:timer.userData])
 		{
 			[timer invalidate];
-			didInvalidate = YES;
 		}
-	}
-	
-	if (didInvalidate == NO)
-	{
-		NSLog(@"unschedule: selector %@ is not scheduled on target %@ (%p).", NSStringFromSelector(selector), node, node);
 	}
 }
 

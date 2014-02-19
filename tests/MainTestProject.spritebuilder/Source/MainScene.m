@@ -20,7 +20,7 @@
 -(void) didMoveToParent
 {
 	[super didMoveToParent];
-	
+
 	CCTimer* t;
 	t = [self schedule:@selector(scheduledSelectorRepeat:) interval:0.111 repeat:9 delay:1];
 	NSLog(@"timer: %@", t);

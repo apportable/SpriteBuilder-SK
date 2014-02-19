@@ -29,4 +29,17 @@ static int _tempTag = CCActionTagInvalid;
 	return tag;
 }
 
+@dynamic tagAsUniqueString;
+static uint32_t SKActionUniqueTagCounter = 0;
+
+-(NSString*) tagAsUniqueString
+{
+	return [NSString stringWithFormat:@"%@ uniqueTag=%u", [SKAction tagAsString:_tempTag], SKActionUniqueTagCounter++];
+}
+
++(NSString*) tagAsString:(int)tag
+{
+	return [NSString stringWithFormat:@"actionTag=%i", tag];
+}
+
 @end
