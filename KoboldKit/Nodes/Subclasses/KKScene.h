@@ -7,6 +7,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "KKPhysicsContactEventDelegate.h"
 #import "KKNodeShared.h"
+#import "CCBCocosTypes.h"
 
 @class KKView;
 @class CCScheduler;

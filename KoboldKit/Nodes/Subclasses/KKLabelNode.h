@@ -6,6 +6,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "KKNodeShared.h"
+#import "CCBCocosTypes.h"
 
 @interface KKLabelNode : SKLabelNode <KKNodeProtocol>
 KKNODE_SHARED_HEADER

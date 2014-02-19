@@ -102,19 +102,6 @@ const NSString* kNodeUserObjectKey = @"CCBReader:UserObject";
 	return !self.hidden;
 }
 
--(void) setPositionType:(CCPositionType)positionType
-{
-	NOTIMPLEMENTED();
-}
--(CCPositionType) positionType
-{
-	CCPositionType type;
-	type.xUnit = 0;
-	type.yUnit = 0;
-	type.corner = 0;
-	return type;
-}
-
 -(void) setSpriteFrame:(SKTexture *)spriteFrame
 {
 	if ([self isKindOfClass:[SKSpriteNode class]])

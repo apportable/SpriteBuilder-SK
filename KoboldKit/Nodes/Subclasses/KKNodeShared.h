@@ -45,6 +45,9 @@
 #define KKNODE_SHARED_HEADER \
 @property (nonatomic, weak, readonly) CCScheduler* scheduler; \
 @property (nonatomic, readonly) NSInteger priority; \
+@property (nonatomic) CCPositionType positionType; \
+@property (nonatomic) CCScaleType scaleType; \
+@property (nonatomic) CCSizeType sizeType; \
 
 #define KKNODE_SHARED_CODE \
 { \
@@ -138,6 +141,7 @@
 { \
 	return 0; \
 } \
+\
 /*
 -(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \

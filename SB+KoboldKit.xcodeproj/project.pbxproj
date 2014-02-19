@@ -192,6 +192,7 @@
 		DC8C7BCC18AA7375000D29DC /* ccTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
 		DC8C8B4118AA763B000D29DC /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScheduler.h; sourceTree = "<group>"; };
 		DC8C8B4218AA763B000D29DC /* CCScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScheduler.m; sourceTree = "<group>"; };
+		DCD08A4118B4C5CE00B211C8 /* CCBCocosTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBCocosTypes.h; sourceTree = "<group>"; };
 		DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF0318A148AA008B3444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DCD9CF0618A148AA008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -421,6 +422,7 @@
 				DC0F9B2718A4EED4001749BB /* reader-categories */,
 				DC0F9B3618A4EED4001749BB /* cocos2d-classes */,
 				DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */,
+				DCD08A4118B4C5CE00B211C8 /* CCBCocosTypes.h */,
 				DCD9CF5F18A149D7008B3444 /* CCBSpriteKitMacros.h */,
 				DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */,
 				DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */,

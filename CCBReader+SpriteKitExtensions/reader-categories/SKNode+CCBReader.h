@@ -36,7 +36,6 @@
 @property CGFloat scaleX;
 @property CGFloat scaleY;
 @property BOOL visible;
-@property CCPositionType positionType;
 @property SKTexture* spriteFrame;
 //@property CGPoint anchorPoint;
 
