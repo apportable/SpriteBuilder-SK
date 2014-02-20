@@ -17,6 +17,7 @@ static NSUInteger KKSceneFrameCount = 0;
 
 @implementation KKScene
 KKNODE_SHARED_CODE
+KKNODE_SHARED_OVERRIDE_ANCHORPOINT
 
 #pragma mark Init / Dealloc
 
@@ -373,7 +374,7 @@ DEVELOPER_FIXME("remove calls to respondsToSelector by separating observers into
 */
 
 #pragma mark AnchorPoint
-
+/*
 -(void) setAnchorPoint:(CGPoint)anchorPoint
 {
 	[super setAnchorPoint:anchorPoint];
@@ -384,7 +385,7 @@ DEVELOPER_FIXME("remove calls to respondsToSelector by separating observers into
 		[originNode updatePositionFromSceneFrame];
 	}];
 }
-
+*/
 
 #pragma mark Debugging
 

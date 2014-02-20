@@ -104,6 +104,9 @@ typedef void (^CCTimerBlock)(CCTimer* timer);
 /** @returns The node's contentSizeType determines how contentSize is interpreted. */
 @property (nonatomic) CCSizeType contentSizeType;
 
+/** @returns The node's anchorPoint. Will return 0,0 for SK nodes that don't originally implement the anchorPoint property. */
+@property (nonatomic) CGPoint anchorPoint;
+
 /// redefinition of regular SKNode properties/methods
 @property (nonatomic, readonly) SKNode* parent;
 @property (nonatomic, readonly) CGRect frame;

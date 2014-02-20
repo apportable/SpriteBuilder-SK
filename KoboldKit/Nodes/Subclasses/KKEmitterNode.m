@@ -11,6 +11,7 @@
 
 @implementation KKEmitterNode
 KKNODE_SHARED_CODE
+KKNODE_SHARED_ADD_ANCHORPOINT
 
 +(id) emitterWithFile:(NSString*)file
 {

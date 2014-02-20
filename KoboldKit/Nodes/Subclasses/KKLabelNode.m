@@ -11,5 +11,6 @@
 
 @implementation KKLabelNode
 KKNODE_SHARED_CODE
+KKNODE_SHARED_ADD_ANCHORPOINT
 
 @end

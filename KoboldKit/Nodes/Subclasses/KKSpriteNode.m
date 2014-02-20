@@ -11,6 +11,7 @@
 
 @implementation KKSpriteNode
 KKNODE_SHARED_CODE
+KKNODE_SHARED_OVERRIDE_ANCHORPOINT
 
 @dynamic startColor, endColor;
 -(void) setStartColor:(CCColor*)startColor

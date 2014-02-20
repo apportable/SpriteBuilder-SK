@@ -48,6 +48,7 @@
 #define KKNODE_SHARED_HEADER \
 @property (nonatomic, weak, readonly) CCScheduler* scheduler; \
 @property (nonatomic, readonly) NSInteger priority; \
+@property (nonatomic) CGPoint anchorPoint; \
 @property (nonatomic) CGSize contentSize; \
 @property (nonatomic) CCPositionType positionType; \
 @property (nonatomic) CCScaleType scaleType; \
@@ -177,3 +178,23 @@
 -(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 */
+
+#define KKNODE_SHARED_ADD_ANCHORPOINT \
+@dynamic anchorPoint; \
+-(void) setAnchorPoint:(CGPoint)anchorPoint \
+{ \
+} \
+-(CGPoint) anchorPoint \
+{ \
+	return CGPointZero; \
+} \
+
+#define KKNODE_SHARED_OVERRIDE_ANCHORPOINT \
+@dynamic anchorPoint; \
+-(void) setAnchorPoint:(CGPoint)anchorPoint \
+{ \
+} \
+-(CGPoint) anchorPoint \
+{ \
+	return [super anchorPoint]; \
+} \
