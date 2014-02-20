@@ -23,9 +23,14 @@
     return sharedInstance;
 }
 
+@dynamic UIScaleFactor;
 -(CGFloat) UIScaleFactor
 {
-	return 1.0;
+	return [KKView defaultView].uiScaleFactor;
+}
+-(void) setUIScaleFactor:(CGFloat)uiScaleFactor
+{
+	[KKView defaultView].uiScaleFactor = uiScaleFactor;
 }
 
 @dynamic designSize;

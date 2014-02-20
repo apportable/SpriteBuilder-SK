@@ -9,6 +9,7 @@
 #import "KKScene.h"
 #import "KKView.h"
 #import "CCScheduler.h"
+#import "KKNodeProtocol.h"
 
 @implementation KKNodeShared
 
@@ -145,6 +146,148 @@
 			}
 		}
 	}
+}
+
+#pragma mark ContentSize
+
++(void) setSizeFromContentSizeForNode:(id<KKNodeProtocol>)node
+{
+	if ([node respondsToSelector:@selector(setSize:)])
+	{
+		((SKSpriteNode*)node).size = [KKNodeShared convertContentSizeToPointsForNode:node];
+	}
+}
+
++(CGSize) convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node
+{
+	CGSize size = CGSizeZero;
+	CCSizeType type = node.contentSizeType;
+
+	if (node)
+	{
+		NSAssert2([node respondsToSelector:@selector(contentSizeType)], @"node %@ (%@) does not have a contentSize(Type) property", node, NSStringFromClass([node class]));
+		
+		CGSize nodeContentSize = node.contentSize;
+		
+		switch (type.widthUnit)
+		{
+			case CCSizeUnitPoints:
+				size.width = nodeContentSize.width;
+				break;
+			case CCSizeUnitUIPoints:
+				size.width = nodeContentSize.width * [KKView defaultView].uiScaleFactor;
+				break;
+			case CCSizeUnitNormalized:
+				size.width = nodeContentSize.width * [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width;
+				break;
+			case CCSizeUnitInsetPoints:
+				size.width = -nodeContentSize.width + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width;
+				break;
+			case CCSizeUnitInsetUIPoints:
+				size.width = (-nodeContentSize.width * [KKView defaultView].uiScaleFactor) + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width;
+				break;
+				
+			default:
+				[NSException raise:NSInternalInconsistencyException format:@"unknown size type %i", type.widthUnit];
+				break;
+		}
+		
+		switch (type.heightUnit)
+		{
+			case CCSizeUnitPoints:
+				size.height = nodeContentSize.height;
+				break;
+			case CCSizeUnitUIPoints:
+				size.height = nodeContentSize.height * [KKView defaultView].uiScaleFactor;
+				break;
+			case CCSizeUnitNormalized:
+				size.height = nodeContentSize.height * [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height;
+				break;
+			case CCSizeUnitInsetPoints:
+				size.height = -nodeContentSize.height + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height;
+				break;
+			case CCSizeUnitInsetUIPoints:
+				size.height = (-nodeContentSize.height * [KKView defaultView].uiScaleFactor) + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height;
+				break;
+				
+			default:
+				[NSException raise:NSInternalInconsistencyException format:@"unknown size type %i", type.heightUnit];
+				break;
+		}
+	}
+	else
+	{
+		size.width = 1.0;
+		size.height = 1.0;
+	}
+
+    return size;
+}
+
++(CGSize) node:(id<KKNodeProtocol>)node convertContentSizeFromPoints:(CGSize)pointSize
+{
+	CCSizeType type = node.contentSizeType;
+    CGSize size = CGSizeZero;
+
+	switch (type.widthUnit)
+	{
+		case CCSizeUnitPoints:
+			size.width = pointSize.width;
+			break;
+		case CCSizeUnitUIPoints:
+			size.width = pointSize.width / [KKView defaultView].uiScaleFactor;
+			break;
+		case CCSizeUnitNormalized:
+		{
+			CGFloat parentWidthInPoints = [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width;
+			if (parentWidthInPoints > 0.0)
+			{
+				size.width = pointSize.width / parentWidthInPoints;
+			}
+			break;
+		}
+		case CCSizeUnitInsetPoints:
+			size.width = -pointSize.width + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width;
+			break;
+		case CCSizeUnitInsetUIPoints:
+			size.width = (-pointSize.width + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].width) / [KKView defaultView].uiScaleFactor;
+			break;
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unknown size type %i", type.widthUnit];
+			break;
+	}
+	
+	switch (type.widthUnit)
+	{
+		case CCSizeUnitPoints:
+			size.height = pointSize.height;
+			break;
+		case CCSizeUnitUIPoints:
+			size.height = pointSize.height / [KKView defaultView].uiScaleFactor;
+			break;
+		case CCSizeUnitNormalized:
+		{
+			CGFloat parentHeightInPoints = [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height;
+			if (parentHeightInPoints > 0.0)
+			{
+				size.height = pointSize.height / parentHeightInPoints;
+			}
+			break;
+		}
+		case CCSizeUnitInsetPoints:
+			size.height = -pointSize.height + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height;
+			break;
+		case CCSizeUnitInsetUIPoints:
+			size.height = (-pointSize.height + [KKNodeShared convertContentSizeToPointsForNode:(id<KKNodeProtocol>)node.parent].height) / [KKView defaultView].uiScaleFactor;
+			break;
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unknown size type %i", type.heightUnit];
+			break;
+	}
+
+    return size;
 }
 
 #pragma mark Debug

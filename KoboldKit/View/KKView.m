@@ -62,6 +62,8 @@ static __weak KKView* _defaultView = nil;
 	
 	_sceneStack = [NSMutableArray array];
 	_scheduler = [[CCScheduler alloc] init];
+	
+	_uiScaleFactor = 1.0;
 }
 
 -(void) end

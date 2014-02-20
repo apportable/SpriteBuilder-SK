@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CCBCocosTypes.h"
 
 @class CCScheduler;
 @class CCTimer;
@@ -21,19 +22,22 @@ typedef void (^CCTimerBlock)(CCTimer* timer);
 @required
 
 /** Called after addChild / insertChild. The self.scene and self.parent properties are valid in this method. Equivalent to onEnter method in cocos2d.
- @WARNING: you must call [super didMoveToParent] in your own implementation! */
+ @WARNING: you must call [super didMoveToParent] from your implementation! */
 -(void) didMoveToParent;
 /** Called after removeFromParent and other remove child methods. The self.scene and self.parent properties are still valid. Equivalent to onExit method in cocos2d.
- @WARNING: you must call [super willMoveFromParent] in your own implementation! */
+ @WARNING: you must call [super willMoveFromParent] from your implementation! */
 -(void) willMoveFromParent;
 
 /** Sent to a scene's nodes when the scene is about to be detached from the view.
+ @WARNING: you must call [super scene:willMoveFromView:] from your implementation!
  @param view The KKView the scene will be removed from. */
 -(void) scene:(KKScene*)scene willMoveFromView:(KKView*)view;
 /** Sent to a scene's nodes when the scene was attached to a view.
+ @WARNING: you must call [super scene:didMoveToView:] from your implementation!
  @param view The KKView the scene was attached to. */
 -(void) scene:(KKScene*)scene didMoveToView:(KKView*)view;
 /** Sent to a scene's nodes when the scene size changed.
+ @WARNING: you must call [super scene:didChangeSize:previousSize:] from your implementation!
  @param newSize The scene's new size.
  @param previousSize The scene's previous size. */
 -(void) scene:(KKScene*)scene didChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize;
@@ -94,6 +98,15 @@ typedef void (^CCTimerBlock)(CCTimer* timer);
  
  @returns The node's priority used by the scheduler. Defaults to 0. */
 @property (nonatomic, readonly) NSInteger priority;
+
+/** @returns The node's contentSize is usually the same as size but may have a different meaning depending on contentSizeType. */
+@property (nonatomic) CGSize contentSize;
+/** @returns The node's contentSizeType determines how contentSize is interpreted. */
+@property (nonatomic) CCSizeType contentSizeType;
+
+/// redefinition of regular SKNode properties/methods
+@property (nonatomic, readonly) SKNode* parent;
+@property (nonatomic, readonly) CGRect frame;
 
 @optional
 

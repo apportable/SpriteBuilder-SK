@@ -118,9 +118,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>0.0</real>
-							<real>1</real>
+							<real>0.60000002384185791</real>
+							<real>0.40000000596046448</real>
+							<real>0.20000000298023224</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -1082,8 +1082,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.53662300109863281</real>
+							<real>-0.529052734375</real>
 						</array>
 					</dict>
 					<dict>
@@ -1124,6 +1124,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1155,8 +1157,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>84</real>
-							<real>109</real>
+							<real>96</real>
+							<real>118</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1203,8 +1205,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.48614397644996643</real>
+							<real>0.56075131893157959</real>
 						</array>
 					</dict>
 					<dict>
@@ -1299,7 +1301,7 @@
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.10000000149011612</real>
+						<real>0.40000000596046448</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1308,8 +1310,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>560</real>
-							<real>312</real>
+							<real>56</real>
+							<real>32</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1335,7 +1337,7 @@
 							<real>1</real>
 							<real>0.0</real>
 							<real>0.0</real>
-							<real>0.10000000149011612</real>
+							<real>0.40000000596046448</real>
 						</array>
 					</dict>
 					<dict>
@@ -1352,11 +1354,9 @@
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.10000000149011612</real>
+						<real>0.40000000596046448</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

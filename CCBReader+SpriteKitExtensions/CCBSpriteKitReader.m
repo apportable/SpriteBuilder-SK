@@ -99,7 +99,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
 			 [nodeClassName isEqualToString:@"CCNodeGradient"])
 	{
-		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(128, 128)];
+		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(128, 128)];
 	}
 	else if ([nodeClassName isEqualToString:@"CCLabelTTF"] ||
 			 [nodeClassName isEqualToString:@"SKLabelNode"])

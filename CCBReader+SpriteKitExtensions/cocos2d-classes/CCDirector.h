@@ -17,6 +17,6 @@
 @property (nonatomic) CCActionManager* actionManager;
 @property (nonatomic, readonly) KKView* view;
 @property (nonatomic) CGSize designSize;
-@property (readonly) CGFloat UIScaleFactor;
+@property (nonatomic) CGFloat UIScaleFactor;
 
 @end

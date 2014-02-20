@@ -29,7 +29,7 @@ typedef enum
 
 /** KKScene is the scene class used in Kobold Kit projects. KKScene updates the controllers and behaviors, receives and
  dispatches events (input, physics). */
-@interface KKScene : SKScene <SKPhysicsContactDelegate>
+@interface KKScene : SKScene <KKNodeProtocol, SKPhysicsContactDelegate>
 {
 	@private
 	NSMutableArray* _inputObservers;

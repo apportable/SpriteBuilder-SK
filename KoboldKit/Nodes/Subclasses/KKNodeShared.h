@@ -32,6 +32,8 @@
 +(void) willMoveFromParentWithNode:(SKNode*)node;
 +(void) sendChildrenWillMoveFromParentWithNode:(SKNode*)node;
 
++(void) setSizeFromContentSizeForNode:(id<KKNodeProtocol>)node;
+
 +(void) addNodeFrameShapeToNode:(SKNode*)node;
 +(void) addNodeAnchorPointShapeToNode:(SKNode*)node;
 +(void) forgotToCallToSuperMethodWithName:(NSString*)methodName node:(SKNode*)node;
@@ -54,6 +56,7 @@
 #define KKNODE_SHARED_CODE \
 { \
 	__weak CCScheduler* _scheduler; \
+	CGSize _contentSize; \
 } \
 \
 -(CCScheduler*) scheduler \
@@ -100,7 +103,7 @@
 	[super removeChildrenInArray:array]; \
 } \
 \
--(void) setPaused:(BOOL)paused \
+-(void) setPaused:(BOOL)paused /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
 { \
 	if (self.paused != paused) \
 	{ \
@@ -109,11 +112,19 @@
 	} \
 } \
 \
--(void) didMoveToParent { [KKNodeShared scheduleNode:self]; } /* to be overridden by subclasses */ \
--(void) willMoveFromParent { [KKNodeShared pauseSchedulerForNode:self paused:YES]; } /* to be overridden by subclasses */ \
--(void) scene:(KKScene*)scene didChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize { } /* to be overridden by subclasses */ \
--(void) scene:(KKScene*)scene didMoveToView:(KKView *)view { } /* to be overridden by subclasses */ \
--(void) scene:(KKScene*)scene willMoveFromView:(KKView *)view { } /* to be overridden by subclasses */ \
+-(void) didMoveToParent /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
+{ \
+	[KKNodeShared setSizeFromContentSizeForNode:self]; \
+	[KKNodeShared scheduleNode:self]; \
+} \
+-(void) willMoveFromParent { [KKNodeShared pauseSchedulerForNode:self paused:YES]; } /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
+-(void) scene:(KKScene*)scene didChangeSize:(CGSize)newSize previousSize:(CGSize)previousSize { } /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
+-(void) scene:(KKScene*)scene didMoveToView:(KKView *)view /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
+{ \
+	[KKNodeShared setSizeFromContentSizeForNode:self]; \
+} \
+-(void) scene:(KKScene*)scene willMoveFromView:(KKView *)view { } /* IMPORTANT: subclasses must call the super method when overriding this method! */ \
+\
 \
 -(CCTimer*) schedule:(SEL)selector interval:(CCTime)seconds \
 { \
@@ -144,23 +155,24 @@
 	return 0; \
 } \
 \
-@dynamic contentSize; \
 -(void) setContentSize:(CGSize)size \
 { \
-	if ([self respondsToSelector:@selector(setSize:)]) \
-	{ \
-NSLog(@"setContentSize: %f, %f", size.width, size.height); \
-		[(SKSpriteNode*)self setSize:size]; \
-	} \
+	_contentSize = size; \
+	[KKNodeShared setSizeFromContentSizeForNode:self]; \
 } \
 -(CGSize) contentSize \
 { \
-	if ([self respondsToSelector:@selector(size)]) \
-	{ \
-		return [(SKSpriteNode*)self size]; \
-	} \
-	return self.frame.size; \
+	if (CGSizeEqualToSize(_contentSize, CGSizeZero)) \
+		return self.frame.size; \
+	return _contentSize; \
 } \
+\
+-(void) setContentSizeType:(CCSizeType)type \
+{ \
+	_contentSizeType = type; \
+	[KKNodeShared setSizeFromContentSizeForNode:self]; \
+} \
+\
 /*
 -(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \

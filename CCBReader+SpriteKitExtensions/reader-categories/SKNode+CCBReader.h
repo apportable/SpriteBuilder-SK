@@ -35,7 +35,6 @@
 @property CGFloat scaleY;
 @property BOOL visible;
 @property SKTexture* spriteFrame;
-//@property CGPoint anchorPoint;
 
 -(CGFloat) scale;
 

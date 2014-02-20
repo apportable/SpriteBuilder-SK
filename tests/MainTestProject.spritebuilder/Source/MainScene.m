@@ -33,6 +33,14 @@
 		NSLog(@"[%u] scheduledBlock: %@", (unsigned int)self.kkScene.frameCount, timer);
 	} delay:2.5];
 	NSLog(@"timer: %@", t);
+	
+	
+	KKSpriteNode* sprite = [KKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(32, 32)];
+	sprite.position = CGPointMake(400, 111);
+	[self addChild:sprite];
+	
+	sprite.color = [SKColor greenColor];
+	sprite.size = CGSizeMake(120, 2);
 }
 
 -(void) scheduledOnce:(CCTime)delta

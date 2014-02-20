@@ -123,13 +123,6 @@ const NSString* kNodeUserObjectKey = @"CCBReader:UserObject";
 	return self.xScale;
 }
 
-/*
--(void) setValue:(id)value forKey:(NSString *)key
-{
-	[super setValue:value forKey:key];
-}
-*/
-
 -(void) setValue:(id)value forUndefinedKey:(NSString *)key
 {
 	NSLog(@"IGNORED: %@ undefined key '%@' for value: %@", NSStringFromClass([self class]), key, value);

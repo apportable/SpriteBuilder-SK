@@ -40,8 +40,10 @@
 
 /** @name View Properties */
 
-/** The design size as set by Spritebuilder. */
+/** @returns The design size as set by Spritebuilder. */
 @property (nonatomic) CGSize designSize;
+/** @returns The UI scale factor as set by Spritebuilder. */
+@property (nonatomic) CGFloat uiScaleFactor;
 
 /** If YES, will render physics shape outlines. */
 @property (nonatomic) BOOL drawsPhysicsShapes;
