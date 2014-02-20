@@ -28,8 +28,6 @@
 @interface SKNode (CCBReader)
 
 @property id userObject;
-@property CGSize contentSize;
-@property CCSizeType contentSizeType;
 @property CGFloat rotation;
 @property CGFloat skewX;
 @property CGFloat skewY;

@@ -46,9 +46,10 @@
 #define KKNODE_SHARED_HEADER \
 @property (nonatomic, weak, readonly) CCScheduler* scheduler; \
 @property (nonatomic, readonly) NSInteger priority; \
+@property (nonatomic) CGSize contentSize; \
 @property (nonatomic) CCPositionType positionType; \
 @property (nonatomic) CCScaleType scaleType; \
-@property (nonatomic) CCSizeType sizeType; \
+@property (nonatomic) CCSizeType contentSizeType; \
 
 #define KKNODE_SHARED_CODE \
 { \
@@ -143,23 +144,23 @@
 	return 0; \
 } \
 \
-/*
--(void) runAction:(SKAction *)action \
+@dynamic contentSize; \
+-(void) setContentSize:(CGSize)size \
 { \
-	int actionTag = [action getAndClearTag]; \
-	if (actionTag == CCActionTagInvalid) \
-		[super runAction:action]; \
-	else \
+	if ([self respondsToSelector:@selector(setSize:)]) \
 	{ \
-		NSString* stringTag = action.tagAsUniqueString; \
-		action.tag = CCActionTagInvalid; \
-		NSLog(@"running action with tag: '%@'", stringTag); \
-		NSAssert1([self actionForKey:stringTag] == nil, @"an action with tag '%@' is already running!", stringTag); \
-		[super runAction:action withKey:stringTag]; \
+NSLog(@"setContentSize: %f, %f", size.width, size.height); \
+		[(SKSpriteNode*)self setSize:size]; \
 	} \
 } \
-\
-*/
+-(CGSize) contentSize \
+{ \
+	if ([self respondsToSelector:@selector(size)]) \
+	{ \
+		return [(SKSpriteNode*)self size]; \
+	} \
+	return self.frame.size; \
+} \
 /*
 -(void) frameUpdate:(CCTime)delta { NSLog(@"frameUpdate %@: %f", NSStringFromClass([self class]), delta); } \
 -(void) fixedUpdate:(CCTime)delta { NSLog(@"fixedUpdate %@: %f", NSStringFromClass([self class]), delta); } \

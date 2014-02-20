@@ -31,6 +31,7 @@
 @dynamic designSize;
 -(void) setDesignSize:(CGSize)designSize
 {
+	NSLog(@"CCBReader: design size is {%.1f, %.1f}", designSize.width, designSize.height);
 	[KKView defaultView].designSize = designSize;
 }
 -(CGSize) designSize

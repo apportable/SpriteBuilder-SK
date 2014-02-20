@@ -50,24 +50,6 @@ const NSString* kNodeUserObjectKey = @"CCBReader:UserObject";
 	return [self.userData objectForKey:kNodeUserObjectKey];
 }
 
--(void) setContentSize:(CGSize)contentSize
-{
-	// does nothing
-}
--(CGSize) contentSize
-{
-	return self.frame.size;
-}
-
--(void) setContentSizeType:(CCSizeType)contentSizeType
-{
-	// does nothing
-}
--(CCSizeType) contentSizeType
-{
-	return CCSizeTypeMake(CCSizeUnitPoints, CCSizeUnitPoints);
-}
-
 -(void) setRotation:(CGFloat)rotation
 {
 	self.zRotation = CC_DEGREES_TO_RADIANS(-rotation);
@@ -141,41 +123,12 @@ const NSString* kNodeUserObjectKey = @"CCBReader:UserObject";
 	return self.xScale;
 }
 
--(void) ccb_setAnchorPoint:(CGPoint)anchorPoint
-{
-	if ([self isKindOfClass:[SKSpriteNode class]] ||
-		[self isKindOfClass:[SKScene class]] ||
-		[self isKindOfClass:[SKVideoNode class]])
-	{
-		// FIXME: infinite recursion
-		//((SKScene*)self).anchorPoint = anchorPoint;
-	}
-}
 /*
--(CGPoint) ccb_anchorPoint
-{
-	if ([self isKindOfClass:[SKSpriteNode class]] ||
-		[self isKindOfClass:[SKScene class]] ||
-		[self isKindOfClass:[SKVideoNode class]])
-	{
-		return ((SKScene*)self).anchorPoint;
-	}
-	
-	return CGPointZero;
-}
- */
-
 -(void) setValue:(id)value forKey:(NSString *)key
 {
 	[super setValue:value forKey:key];
-	
-	/*
-	if ([key isEqualToString:@"color"])
-	{
-		NSLog(@"NODE COLOR: %@ - READER COLOR: %@", [self performSelector:NSSelectorFromString(@"color")], value);
-	}
-	 */
 }
+*/
 
 -(void) setValue:(id)value forUndefinedKey:(NSString *)key
 {

@@ -8,7 +8,12 @@
 #import "KKNodeShared.h"
 #import "CCBCocosTypes.h"
 
+@class CCColor;
+
 @interface KKSpriteNode : SKSpriteNode <KKNodeProtocol>
 KKNODE_SHARED_HEADER
+
+@property (nonatomic) CCColor* startColor;
+@property (nonatomic) CCColor* endColor;
 
 @end

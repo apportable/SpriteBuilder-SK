@@ -41,7 +41,7 @@
 /** @name View Properties */
 
 /** The design size as set by Spritebuilder. */
-@property CGSize designSize;
+@property (nonatomic) CGSize designSize;
 
 /** If YES, will render physics shape outlines. */
 @property (nonatomic) BOOL drawsPhysicsShapes;

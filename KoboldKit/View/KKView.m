@@ -190,6 +190,14 @@ static __weak KKView* _defaultView = nil;
 	}
 }
 
+#pragma mark Design size
+
+-(CGSize) designSize
+{
+	// Return the viewSize unless designSize has been set.
+	return (CGSizeEqualToSize(_designSize, CGSizeZero) ? self.frame.size : _designSize);
+}
+
 #pragma mark Debug
 
 @dynamic drawsPhysicsShapes;

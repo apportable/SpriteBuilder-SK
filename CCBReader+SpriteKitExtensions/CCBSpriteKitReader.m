@@ -52,11 +52,12 @@ static CGSize CCBSpriteKitReaderSceneSize;
 		// Setup resolution scale and default container size
 		animationManager.rootContainerSize = [KKView defaultView].designSize;
 
-		[self swizzleMethodNamed:@"setAnchorPoint:" classNames:@[@"SKScene", @"SKSpriteNode", @"SKVideoNode"]];
+		//[self swizzleMethodNamed:@"setAnchorPoint:" classNames:@[@"SKScene", @"SKSpriteNode", @"SKVideoNode"]];
 	}
 	return self;
 }
 
+/*
 -(void) swizzleMethodNamed:(NSString*)methodName classNames:(NSArray*)classNames
 {
 	for (NSString* className in classNames)
@@ -77,6 +78,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 					  error:&error];
 	NSAssert2(error == nil, @"CCBSpriteKitReader: method '%@' swizzle error: %@", methodName, error);
 }
+ */
 
 -(CCNode*) nodeFromClassName:(NSString *)nodeClassName
 {
@@ -89,15 +91,15 @@ static CGSize CCBSpriteKitReaderSceneSize;
 		node = [KKNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"CCSprite"] ||
-			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
-			 [nodeClassName isEqualToString:@"CCNodeGradient"] ||
 			 [nodeClassName isEqualToString:@"SKSpriteNode"])
 	{
 		node = (CCNode*)[KKSpriteNode node];
 	}
-	else if ([nodeClassName isEqualToString:@"SKColorSpriteNode"])
+	else if ([nodeClassName isEqualToString:@"SKColorSpriteNode"] ||
+			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
+			 [nodeClassName isEqualToString:@"CCNodeGradient"])
 	{
-		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(32, 32)];
+		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(128, 128)];
 	}
 	else if ([nodeClassName isEqualToString:@"CCLabelTTF"] ||
 			 [nodeClassName isEqualToString:@"SKLabelNode"])
@@ -142,7 +144,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 -(CCScene*) createScene
 {
-	NSAssert(CCBSpriteKitReaderSceneSize.width > 0.0 && CCBSpriteKitReaderSceneSize.height > 0.0,
+	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO,
 			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
 	
 	return [KKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
