@@ -63,27 +63,26 @@
     else if ([name isEqualToString:@"visible"])
     {
 		BOOL visible = [kf1.value boolValue];
-		id wait = [SKAction waitForDuration:duration];
 		id showHide = [SKAction runBlock:^{
 			node.hidden = !visible;
 		}];
-		action = [SKAction sequence:@[wait, showHide]];
+		action = [SKAction sequence:@[[SKAction waitForDuration:duration], showHide]];
     }
-	/*
     else if ([name isEqualToString:@"spriteFrame"])
     {
-        return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCBSetSpriteFrame actionWithSpriteFrame:kf1.value]];
+		SKTexture* spriteFrame = kf1.value;
+		SKSpriteNode* sprite = (SKSpriteNode*)node;
+		NSAssert1([sprite isKindOfClass:[SKSpriteNode class]], @"CCBReader: can't change texture (spriteFrame animation), node %@ is not a sprite!", node);
+
+		id changeTexture = [SKAction runBlock:^{
+			sprite.texture = spriteFrame;
+		}];
+		action = [SKAction sequence:@[[SKAction waitForDuration:duration], changeTexture]];
     }
     else if ([name isEqualToString:@"skew"])
     {
-        id value = kf1.value;
-        
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
-        
-        return [CCActionSkewTo actionWithDuration:duration skewX:x skewY:y];
+		[NSException raise:NSInvalidArgumentException format:@"CCBReader: Sprite Kit does not support 'skew' actions (used by node: %@)", node];
     }
-	*/
 	else
 	{
 		[NSException raise:NSInvalidArgumentException format:@"CCBReader: Failed to create action for property: %@ on node: %@", name, node];
