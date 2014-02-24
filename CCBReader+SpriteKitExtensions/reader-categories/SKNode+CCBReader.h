@@ -35,6 +35,8 @@
 @property CGFloat scaleY;
 @property BOOL visible;
 @property SKTexture* spriteFrame;
+@property CGSize contentSize;
+@property CCPositionType positionType;
 
 -(CGFloat) scale;
 

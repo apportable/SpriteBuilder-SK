@@ -8,7 +8,8 @@
 
 #import "CCDirector.h"
 #import "CCActionManager.h"
-#import "KKView.h"
+#import "CCBReader.h"
+#import "CCBSpriteKitReader.h"
 
 @implementation CCDirector
 
@@ -23,31 +24,31 @@
     return sharedInstance;
 }
 
-@dynamic UIScaleFactor;
--(CGFloat) UIScaleFactor
-{
-	return [KKView defaultView].uiScaleFactor;
-}
--(void) setUIScaleFactor:(CGFloat)uiScaleFactor
-{
-	[KKView defaultView].uiScaleFactor = uiScaleFactor;
-}
-
 @dynamic designSize;
 -(void) setDesignSize:(CGSize)designSize
 {
 	NSLog(@"CCBReader: design size is {%.1f, %.1f}", designSize.width, designSize.height);
-	[KKView defaultView].designSize = designSize;
+	_designSize = designSize;
 }
 -(CGSize) designSize
 {
-	return [KKView defaultView].designSize;
+	if (CGSizeEqualToSize(_designSize, CGSizeZero))
+	{
+		CGSize sceneSize = [CCBSpriteKitReader internal_getSceneSize];
+		return sceneSize;
+	}
+	
+	return _designSize;
 }
 
 @dynamic view;
--(KKView*) view
+-(SKView*) view
 {
-	return [KKView defaultView];
+	UIView* view = [UIApplication sharedApplication].keyWindow.rootViewController.view;
+	NSAssert2([view isKindOfClass:[SKView class]],
+			  @"The [UIApplication sharedApplication].keyWindow.rootViewController.view is not a SKView instance, its class is %@ (%@)",
+			  NSStringFromClass([view class]), view);
+	return (SKView*)view;
 }
 
 @end

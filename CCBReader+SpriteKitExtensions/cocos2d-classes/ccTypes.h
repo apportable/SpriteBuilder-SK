@@ -9,15 +9,13 @@
 #ifndef SB_KoboldKit_ccTypes_h
 #define SB_KoboldKit_ccTypes_h
 
+#import <SpriteKit/SpriteKit.h>
+
 typedef double CCTime;
 
-#import "KKNode.h"
-#import "KKScene.h"
-#import "KKSpriteNode.h"
-
-typedef KKNode CCNode;
-typedef KKScene CCScene;
-typedef KKSpriteNode CCSprite;
+typedef SKNode CCNode;
+typedef SKScene CCScene;
+typedef SKSpriteNode CCSprite;
 typedef SKTexture CCSpriteFrame;
 typedef SKTexture CCTexture;
 typedef SKPhysicsBody CCPhysicsBody;

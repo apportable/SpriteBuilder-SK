@@ -123,6 +123,31 @@ const NSString* kNodeUserObjectKey = @"CCBReader:UserObject";
 	return self.xScale;
 }
 
+-(void) setContentSize:(CGSize)contentSize
+{
+	if ([self respondsToSelector:@selector(setSize:)])
+	{
+		[(id)self setSize:contentSize];
+	}
+}
+-(CGSize) contentSize
+{
+	if ([self respondsToSelector:@selector(size)])
+	{
+		return [(id)self size];
+	}
+	return self.frame.size;
+}
+
+-(void) setPositionType:(CCPositionType)positionType
+{
+	// does nothing
+}
+-(CCPositionType) positionType
+{
+	return CCPositionTypeMake(CCPositionUnitPoints, CCPositionUnitPoints, CCPositionReferenceCornerBottomLeft);
+}
+
 -(void) setValue:(id)value forUndefinedKey:(NSString *)key
 {
 	NSLog(@"IGNORED: %@ undefined key '%@' for value: %@", NSStringFromClass([self class]), key, value);

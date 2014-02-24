@@ -27,6 +27,7 @@
 
 @interface CCBSpriteKitReader : CCBReader
 
++(CGSize) internal_getSceneSize;
 -(void) setSceneSize:(CGSize)sceneSize;
 
 @end

@@ -25,19 +25,16 @@
 
 #import "CCBSpriteKitReader.h"
 #import "NSValue+CCBReader.h"
-
-#import "KKScene.h"
-#import "KKNode.h"
-#import "KKSpriteNode.h"
-#import "KKLabelNode.h"
-#import "KKEmitterNode.h"
-#import "KKViewOriginNode.h"
-#import "KKNodeShared.h"
 #import "CCBSpriteKitAnimationManager.h"
 
 static CGSize CCBSpriteKitReaderSceneSize;
 
 @implementation CCBSpriteKitReader
+
++(CGSize) internal_getSceneSize
+{
+	return CCBSpriteKitReaderSceneSize;
+}
 
 -(id) init
 {
@@ -49,7 +46,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 		// replace action manager with sprite-kit animation manager instance
 		self.animationManager = [[CCBSpriteKitAnimationManager alloc] init];
 		// Setup resolution scale and default container size
-		animationManager.rootContainerSize = [KKView defaultView].designSize;
+		animationManager.rootContainerSize = [CCDirector sharedDirector].designSize;
 	}
 	return self;
 }
@@ -62,28 +59,28 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	if ([nodeClassName isEqualToString:@"CCNode"] ||
 		[nodeClassName isEqualToString:@"SKNode"])
 	{
-		node = [KKNode node];
+		node = [SKNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"CCSprite"] ||
 			 [nodeClassName isEqualToString:@"SKSpriteNode"])
 	{
-		node = (CCNode*)[KKSpriteNode node];
+		node = (CCNode*)[SKSpriteNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"SKColorSpriteNode"] ||
 			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
 			 [nodeClassName isEqualToString:@"CCNodeGradient"])
 	{
-		node = (CCNode*)[KKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(128, 128)];
+		node = (CCNode*)[SKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(128, 128)];
 	}
 	else if ([nodeClassName isEqualToString:@"CCLabelTTF"] ||
 			 [nodeClassName isEqualToString:@"SKLabelNode"])
 	{
-		node = (CCNode*)[KKLabelNode node];
+		node = (CCNode*)[SKLabelNode node];
 	}
 	else if ([nodeClassName isEqualToString:@"CCParticleSystem"] ||
 			 [nodeClassName isEqualToString:@"SKEmitterNode"])
 	{
-		node = (CCNode*)[KKEmitterNode node];
+		node = (CCNode*)[SKEmitterNode node];
 	}
 	else
 	{
@@ -106,14 +103,19 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	}
 #endif
 
-	NSAssert2([node respondsToSelector:@selector(isKoboldKitNode)], @"CCBSpriteKitReader: not a Kobold Kit node: %@ (%@)", node, NSStringFromClass([node class]));
-
 	return node;
 }
 
 -(void) setSceneSize:(CGSize)sceneSize
 {
 	CCBSpriteKitReaderSceneSize = sceneSize;
+	animationManager.rootContainerSize = [CCDirector sharedDirector].designSize;
+}
+
+-(CGSize) sceneSize
+{
+	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO, @"CCBSpriteKitReader: scene size must be assigned before loading a CCBi");
+	return CCBSpriteKitReaderSceneSize;
 }
 
 -(CCScene*) createScene
@@ -121,7 +123,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO,
 			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
 	
-	return [KKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
+	return [SKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
 }
 
 #pragma mark Property Overrides

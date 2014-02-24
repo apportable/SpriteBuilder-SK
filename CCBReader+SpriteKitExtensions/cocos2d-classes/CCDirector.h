@@ -12,6 +12,10 @@
 @class KKView;
 
 @interface CCDirector : NSObject
+{
+	@private
+	CGSize _designSize;
+}
 
 +(instancetype) sharedDirector;
 @property (nonatomic) CCActionManager* actionManager;
