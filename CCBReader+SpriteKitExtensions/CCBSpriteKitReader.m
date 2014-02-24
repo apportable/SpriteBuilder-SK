@@ -24,7 +24,6 @@
 
 
 #import "CCBSpriteKitReader.h"
-#import "JRSwizzle.h"
 #import "NSValue+CCBReader.h"
 
 #import "KKScene.h"
@@ -51,34 +50,9 @@ static CGSize CCBSpriteKitReaderSceneSize;
 		self.animationManager = [[CCBSpriteKitAnimationManager alloc] init];
 		// Setup resolution scale and default container size
 		animationManager.rootContainerSize = [KKView defaultView].designSize;
-
-		//[self swizzleMethodNamed:@"setAnchorPoint:" classNames:@[@"SKScene", @"SKSpriteNode", @"SKVideoNode"]];
 	}
 	return self;
 }
-
-/*
--(void) swizzleMethodNamed:(NSString*)methodName classNames:(NSArray*)classNames
-{
-	for (NSString* className in classNames)
-	{
-		[self swizzleMethodNamed:methodName className:className];
-	}
-}
-
--(void) swizzleMethodNamed:(NSString*)methodName className:(NSString*)className
-{
-	NSError* error = nil;
-	Class klass = NSClassFromString(className);
-	NSAssert2(klass, @"CCBSpriteKitReader: unknown class '%@' - can't swizzle method '%@'", className, methodName);
-	
-	NSString* newMethod = [NSString stringWithFormat:@"ccb_%@", methodName];
-	[klass jr_swizzleMethod:NSSelectorFromString(methodName)
-				 withMethod:NSSelectorFromString(newMethod)
-					  error:&error];
-	NSAssert2(error == nil, @"CCBSpriteKitReader: method '%@' swizzle error: %@", methodName, error);
-}
- */
 
 -(CCNode*) nodeFromClassName:(NSString *)nodeClassName
 {
