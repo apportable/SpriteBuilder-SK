@@ -78,6 +78,7 @@
 		DC8C7BA618A95F96000D29DC /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */; };
 		DC8C7BA718A95F96000D29DC /* CCBSequenceProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */; };
 		DC8C7BA818A95F96000D29DC /* CCBuilderReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC8C7B9418A95F96000D29DC /* CCBuilderReader.h */; };
+		DCB5328018BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = DCB5327E18BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch */; };
 		DCD9CF0418A148AA008B3444 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF0318A148AA008B3444 /* Cocoa.framework */; };
 		DCD9CF3018A14908008B3444 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD9CF2F18A14908008B3444 /* Foundation.framework */; };
 		DCD9CF8018A149D7008B3444 /* CCBSpriteKitCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */; };
@@ -155,6 +156,8 @@
 		DC8C7B9318A95F96000D29DC /* CCBSequenceProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSequenceProperty.m; sourceTree = "<group>"; };
 		DC8C7B9418A95F96000D29DC /* CCBuilderReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBuilderReader.h; sourceTree = "<group>"; };
 		DC8C7BCC18AA7375000D29DC /* ccTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ccTypes.h; sourceTree = "<group>"; };
+		DCB5327D18BBBA43006E5162 /* SB+SpriteKit-iOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SB+SpriteKit-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		DCB5327E18BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SB+SpriteKit-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		DCD08A4118B4C5CE00B211C8 /* CCBCocosTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBCocosTypes.h; sourceTree = "<group>"; };
 		DCD9CF0018A148AA008B3444 /* libSB+SpriteKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+SpriteKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF0318A148AA008B3444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -165,8 +168,6 @@
 		DCD9CF2E18A14908008B3444 /* libSB+SpriteKit-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+SpriteKit-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF2F18A14908008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCD9CF3F18A14908008B3444 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		DCD9CF5218A14989008B3444 /* SB+SpriteKit-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SB+SpriteKit-iOS-Prefix.pch"; path = "../SB+SpriteKit-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		DCD9CF5318A14989008B3444 /* SB+SpriteKit-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SB+SpriteKit-OSX-Prefix.pch"; path = "../SB+SpriteKit-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitCompatibility.h; sourceTree = "<group>"; };
 		DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitDummy.h; sourceTree = "<group>"; };
 		DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSpriteKitDummy.m; sourceTree = "<group>"; };
@@ -268,13 +269,22 @@
 			path = CCBReader;
 			sourceTree = "<group>";
 		};
+		DCB5328118BBBA4C006E5162 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DCB5327D18BBBA43006E5162 /* SB+SpriteKit-iOS-Prefix.pch */,
+				DCB5327E18BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		DCD9CEF718A148AA008B3444 = {
 			isa = PBXGroup;
 			children = (
 				DCE0831818A159C000A0C368 /* SB+SpriteKit.h */,
 				DC8C7B8618A95F96000D29DC /* CCBReader */,
 				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
-				DCD9CF0918A148AA008B3444 /* SB+KoboldKit */,
+				DCB5328118BBBA4C006E5162 /* Supporting Files */,
 				DCD9CF0218A148AA008B3444 /* Frameworks */,
 				DCD9CF0118A148AA008B3444 /* Products */,
 			);
@@ -313,16 +323,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		DCD9CF0918A148AA008B3444 /* SB+KoboldKit */ = {
-			isa = PBXGroup;
-			children = (
-				DCD9CF5218A14989008B3444 /* SB+SpriteKit-iOS-Prefix.pch */,
-				DCD9CF5318A14989008B3444 /* SB+SpriteKit-OSX-Prefix.pch */,
-			);
-			name = "SB+KoboldKit";
-			path = "SB+SpriteKit";
-			sourceTree = "<group>";
-		};
 		DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +353,7 @@
 				DCD9CF8418A149D7008B3444 /* CCBSpriteKitMacros.h in Headers */,
 				DC0F9B4A18A4EED4001749BB /* SKNode+CCBReader.h in Headers */,
 				DC0F9B4D18A4EED4001749BB /* SKPhysicsBody+CCBReader.h in Headers */,
+				DCB5328018BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch in Headers */,
 				DC0F9B5318A4EED4001749BB /* SKTexture+CCBReader.h in Headers */,
 				DC8C7B9518A95F96000D29DC /* CCBAnimationManager.h in Headers */,
 				DC5D501918B5158B007EF00C /* CCActions.h in Headers */,
