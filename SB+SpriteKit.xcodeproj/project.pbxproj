@@ -144,7 +144,7 @@
 		DCE0831518A1571B00A0C368 /* SKScene+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0830D18A1571B00A0C368 /* SKScene+KoboldKit.h */; };
 		DCE0831618A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */; };
 		DCE0831718A1571B00A0C368 /* SKScene+KoboldKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */; };
-		DCE0831918A159C000A0C368 /* SB+KoboldKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0831818A159C000A0C368 /* SB+KoboldKit.h */; };
+		DCE0831918A159C000A0C368 /* SB+SpriteKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DCE0831818A159C000A0C368 /* SB+SpriteKit.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -213,17 +213,17 @@
 		DC8C8B4118AA763B000D29DC /* CCScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScheduler.h; sourceTree = "<group>"; };
 		DC8C8B4218AA763B000D29DC /* CCScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCScheduler.m; sourceTree = "<group>"; };
 		DCD08A4118B4C5CE00B211C8 /* CCBCocosTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBCocosTypes.h; sourceTree = "<group>"; };
-		DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD9CF0018A148AA008B3444 /* libSB+SpriteKit-OSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+SpriteKit-OSX.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF0318A148AA008B3444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DCD9CF0618A148AA008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCD9CF0718A148AA008B3444 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DCD9CF0818A148AA008B3444 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DCD9CF1418A148AA008B3444 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+KoboldKit-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCD9CF2E18A14908008B3444 /* libSB+SpriteKit-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSB+SpriteKit-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD9CF2F18A14908008B3444 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCD9CF3F18A14908008B3444 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		DCD9CF5218A14989008B3444 /* SB+KoboldKit-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit-iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		DCD9CF5318A14989008B3444 /* SB+KoboldKit-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit-OSX-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DCD9CF5218A14989008B3444 /* SB+SpriteKit-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SB+SpriteKit-iOS-Prefix.pch"; path = "../SB+SpriteKit-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		DCD9CF5318A14989008B3444 /* SB+SpriteKit-OSX-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SB+SpriteKit-OSX-Prefix.pch"; path = "../SB+SpriteKit-OSX-Prefix.pch"; sourceTree = "<group>"; };
 		DCD9CF5C18A149D7008B3444 /* CCBSpriteKitCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitCompatibility.h; sourceTree = "<group>"; };
 		DCD9CF5D18A149D7008B3444 /* CCBSpriteKitDummy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitDummy.h; sourceTree = "<group>"; };
 		DCD9CF5E18A149D7008B3444 /* CCBSpriteKitDummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSpriteKitDummy.m; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 		DCE0830C18A1571B00A0C368 /* SKNode+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+KoboldKit.m"; sourceTree = "<group>"; };
 		DCE0830D18A1571B00A0C368 /* SKScene+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKScene+KoboldKit.h"; sourceTree = "<group>"; };
 		DCE0830E18A1571B00A0C368 /* SKScene+KoboldKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKScene+KoboldKit.m"; sourceTree = "<group>"; };
-		DCE0831818A159C000A0C368 /* SB+KoboldKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SB+KoboldKit.h"; sourceTree = "<group>"; };
+		DCE0831818A159C000A0C368 /* SB+SpriteKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SB+SpriteKit.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,21 +339,6 @@
 			path = "cocos2d-classes";
 			sourceTree = "<group>";
 		};
-		DC0F9B6518A4EFAC001749BB /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				DC0F9B6618A4EFAC001749BB /* JRSwizzle */,
-			);
-			path = libs;
-			sourceTree = "<group>";
-		};
-		DC0F9B6618A4EFAC001749BB /* JRSwizzle */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = JRSwizzle;
-			sourceTree = "<group>";
-		};
 		DC8C7B8618A95F96000D29DC /* CCBReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,12 +372,11 @@
 		DCD9CEF718A148AA008B3444 = {
 			isa = PBXGroup;
 			children = (
-				DCE0831818A159C000A0C368 /* SB+KoboldKit.h */,
+				DCE0831818A159C000A0C368 /* SB+SpriteKit.h */,
 				DCE082B818A154B900A0C368 /* KoboldKit */,
 				DC8C8B4018AA763B000D29DC /* cocos2d */,
 				DC8C7B8618A95F96000D29DC /* CCBReader */,
 				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
-				DC0F9B6518A4EFAC001749BB /* libs */,
 				DCD9CF0918A148AA008B3444 /* SB+KoboldKit */,
 				DCD9CF0218A148AA008B3444 /* Frameworks */,
 				DCD9CF0118A148AA008B3444 /* Products */,
@@ -402,8 +386,8 @@
 		DCD9CF0118A148AA008B3444 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */,
-				DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */,
+				DCD9CF0018A148AA008B3444 /* libSB+SpriteKit-OSX.a */,
+				DCD9CF2E18A14908008B3444 /* libSB+SpriteKit-iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,8 +419,8 @@
 		DCD9CF0918A148AA008B3444 /* SB+KoboldKit */ = {
 			isa = PBXGroup;
 			children = (
-				DCD9CF5218A14989008B3444 /* SB+KoboldKit-iOS-Prefix.pch */,
-				DCD9CF5318A14989008B3444 /* SB+KoboldKit-OSX-Prefix.pch */,
+				DCD9CF5218A14989008B3444 /* SB+SpriteKit-iOS-Prefix.pch */,
+				DCD9CF5318A14989008B3444 /* SB+SpriteKit-OSX-Prefix.pch */,
 			);
 			name = "SB+KoboldKit";
 			path = "SB+SpriteKit";
@@ -587,7 +571,7 @@
 				DCE082CF18A154B900A0C368 /* KKView.h in Headers */,
 				DC8C8B4318AA763B000D29DC /* CCScheduler.h in Headers */,
 				DC5D4FF918B4FE5F007EF00C /* CCDirector.h in Headers */,
-				DCE0831918A159C000A0C368 /* SB+KoboldKit.h in Headers */,
+				DCE0831918A159C000A0C368 /* SB+SpriteKit.h in Headers */,
 				DCE082D918A154F300A0C368 /* KKVersion.h in Headers */,
 				DCE082FE18A1563300A0C368 /* KKViewOriginNode.h in Headers */,
 				DC0F9B5618A4EED4001749BB /* CCColor.h in Headers */,
@@ -616,9 +600,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		DCD9CEFF18A148AA008B3444 /* SB+KoboldKit-OSX */ = {
+		DCD9CEFF18A148AA008B3444 /* SB+SpriteKit-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-OSX" */;
+			buildConfigurationList = DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+SpriteKit-OSX" */;
 			buildPhases = (
 				DCD9CEFC18A148AA008B3444 /* Sources */,
 				DCD9CEFD18A148AA008B3444 /* Frameworks */,
@@ -628,14 +612,14 @@
 			);
 			dependencies = (
 			);
-			name = "SB+KoboldKit-OSX";
+			name = "SB+SpriteKit-OSX";
 			productName = "SB+SpriteKit";
-			productReference = DCD9CF0018A148AA008B3444 /* libSB+KoboldKit-OSX.a */;
+			productReference = DCD9CF0018A148AA008B3444 /* libSB+SpriteKit-OSX.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		DCD9CF2D18A14908008B3444 /* SB+KoboldKit-iOS */ = {
+		DCD9CF2D18A14908008B3444 /* SB+SpriteKit-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-iOS" */;
+			buildConfigurationList = DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+SpriteKit-iOS" */;
 			buildPhases = (
 				DCD9CF2A18A14908008B3444 /* Sources */,
 				DCD9CF2B18A14908008B3444 /* Frameworks */,
@@ -645,9 +629,9 @@
 			);
 			dependencies = (
 			);
-			name = "SB+KoboldKit-iOS";
+			name = "SB+SpriteKit-iOS";
 			productName = "SB+SpriteKit-iOS";
-			productReference = DCD9CF2E18A14908008B3444 /* libSB+KoboldKit-iOS.a */;
+			productReference = DCD9CF2E18A14908008B3444 /* libSB+SpriteKit-iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -659,7 +643,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Apportable;
 			};
-			buildConfigurationList = DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+KoboldKit" */;
+			buildConfigurationList = DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+SpriteKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -672,8 +656,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DCD9CF2D18A14908008B3444 /* SB+KoboldKit-iOS */,
-				DCD9CEFF18A148AA008B3444 /* SB+KoboldKit-OSX */,
+				DCD9CF2D18A14908008B3444 /* SB+SpriteKit-iOS */,
+				DCD9CEFF18A148AA008B3444 /* SB+SpriteKit-OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -860,7 +844,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				GCC_PREFIX_HEADER = "SB+SpriteKit-OSX-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
@@ -869,7 +853,7 @@
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
 				);
-				PRODUCT_NAME = "SB+KoboldKit-OSX";
+				PRODUCT_NAME = "SB+SpriteKit-OSX";
 			};
 			name = Debug;
 		};
@@ -877,7 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SB+KoboldKit-OSX-Prefix.pch";
+				GCC_PREFIX_HEADER = "SB+SpriteKit-OSX-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/build/Release",
@@ -886,7 +870,7 @@
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
 				);
-				PRODUCT_NAME = "SB+KoboldKit-OSX";
+				PRODUCT_NAME = "SB+SpriteKit-OSX";
 			};
 			name = Release;
 		};
@@ -897,7 +881,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SB+KoboldKit-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "SB+SpriteKit-iOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -911,7 +895,7 @@
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
 				);
-				PRODUCT_NAME = "SB+KoboldKit-iOS";
+				PRODUCT_NAME = "SB+SpriteKit-iOS";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
@@ -924,7 +908,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SB+KoboldKit-iOS-Prefix.pch";
+				GCC_PREFIX_HEADER = "SB+SpriteKit-iOS-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -934,7 +918,7 @@
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libGLEW/lib",
 					"/depot-koboldkit/SpriteBuilder/SpriteBuilder/libs/cocos2d-iphone/external/Chipmunk/xcode/libglfw/lib",
 				);
-				PRODUCT_NAME = "SB+KoboldKit-iOS";
+				PRODUCT_NAME = "SB+SpriteKit-iOS";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
@@ -944,7 +928,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+KoboldKit" */ = {
+		DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+SpriteKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCD9CF2218A148AA008B3444 /* Debug */,
@@ -953,7 +937,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-OSX" */ = {
+		DCD9CF2418A148AA008B3444 /* Build configuration list for PBXNativeTarget "SB+SpriteKit-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCD9CF2518A148AA008B3444 /* Debug */,
@@ -962,7 +946,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+KoboldKit-iOS" */ = {
+		DCD9CF4C18A14908008B3444 /* Build configuration list for PBXNativeTarget "SB+SpriteKit-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCD9CF4D18A14908008B3444 /* Debug */,

@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SB+KoboldKit-OSX.xcscheme</key>
+		<key>SB+SpriteKit-OSX.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>SB+KoboldKit-iOS.xcscheme</key>
+		<key>SB+SpriteKit-iOS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
