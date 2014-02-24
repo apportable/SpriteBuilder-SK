@@ -4,8 +4,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SB+KoboldKit.h"
+#import "SB+SpriteKit.h"
 
-@interface ViewController : KKViewController
+@interface ViewController : UIViewController
 
 @end

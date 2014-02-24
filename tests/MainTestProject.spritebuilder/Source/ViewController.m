@@ -7,25 +7,24 @@
 
 #import "ViewController.h"
 #import "MainScene.h"
-#import "SB+KoboldKit.h"
 
 @implementation ViewController
 
--(void) presentFirstScene
+-(void) viewWillLayoutSubviews
 {
-	KKView* kkView = self.kkView;
-	kkView.showsFPS = YES;
-	kkView.showsNodeCount = YES;
-	kkView.showsDrawCount = YES;
-	kkView.showsCPUStats = YES;
-	kkView.showsGPUStats = YES;
-	
-	[CCBReader setSceneSize:kkView.bounds.size];
-	KKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
+	SKView* skView = (SKView*)self.view;
+	NSAssert1([skView isKindOfClass:[SKView class]], @"ViewController's view is not a SKView instance, its class is: %@", NSStringFromClass([skView class]));
 
-	[scene logSceneGraph:KKSceneGraphDumpAll];
-	
-	[kkView presentScene:scene];
+	if (skView.scene == nil)
+	{
+		skView.showsFPS = YES;
+		skView.showsNodeCount = YES;
+		skView.showsDrawCount = YES;
+		
+		[CCBReader setSceneSize:skView.bounds.size];
+		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
+		[skView presentScene:scene];
+	}
 }
 
 -(BOOL) shouldAutorotate
