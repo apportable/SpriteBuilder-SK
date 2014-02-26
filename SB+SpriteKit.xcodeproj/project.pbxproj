@@ -425,7 +425,7 @@
 		DCD9CEF818A148AA008B3444 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Apportable;
 			};
 			buildConfigurationList = DCD9CEFB18A148AA008B3444 /* Build configuration list for PBXProject "SB+SpriteKit" */;
@@ -630,7 +630,6 @@
 		DCD9CF4D18A14908008B3444 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -657,7 +656,6 @@
 		DCD9CF4E18A14908008B3444 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/SB_SpriteKit_iOS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
