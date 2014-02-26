@@ -23,6 +23,7 @@
 		
 		[CCBReader setSceneSize:skView.bounds.size];
 		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
+		//scene.scaleMode = SKSceneScaleModeAspectFit;
 		[skView presentScene:scene];
 	}
 }
