@@ -25,7 +25,21 @@
 		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
 		//scene.scaleMode = SKSceneScaleModeAspectFit;
 		[skView presentScene:scene];
+		
+		[self addTestNodesToScene:scene];
 	}
+}
+
+-(void) addTestNodesToScene:(SKScene*)scene
+{
+	/*
+	SKSpriteNode* color = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(200, 100)];
+	color.position = CGPointMake(105, 51);
+	[scene addChild:color];
+	
+	SKSpriteNode* sprite = [SKSpriteNode spriteNodeWithImageNamed:@"ccbParticleSmoke.png"];
+	[color addChild:sprite];
+	*/
 }
 
 -(BOOL) shouldAutorotate
