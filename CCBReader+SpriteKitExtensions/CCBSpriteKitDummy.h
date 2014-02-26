@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CCBSpriteKitCompatibility.h"
+#import "CCBCocosTypes.h"
 
 @class CCBSpriteKitDummyAction;
 @class CCColor;
@@ -65,4 +66,18 @@
 @property CGFloat rotationalSkewX;
 @property CGFloat rotationalSkewY;
 
+@end
+
+@interface CCPhysicsJoint : NSObject
++(instancetype) connectedPivotJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA;
+@end
+
+@interface CCPhysicsShape : NSObject
++(instancetype) polygonShapeWithPoints:(CGPoint*)polygons count:(NSUInteger)numPoints cornerRadius:(CGFloat)cornerRadius;
+@end
+
+@interface CCPhysicsBody : SKPhysicsBody
++(instancetype) bodyWithShapes:(NSArray*)shapes;
++(instancetype) bodyWithCircleOfRadius:(CGFloat)cornerRadius andCenter:(CGPoint)point;
+@property CCPhysicsBodyType type;
 @end

@@ -18,6 +18,5 @@ typedef SKScene CCScene;
 typedef SKSpriteNode CCSprite;
 typedef SKTexture CCSpriteFrame;
 typedef SKTexture CCTexture;
-typedef SKPhysicsBody CCPhysicsBody;
 
 #endif
