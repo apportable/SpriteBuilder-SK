@@ -129,3 +129,29 @@
 }
 
 @end
+
+
+@implementation CCPhysicsJoint
++(instancetype)	connectedPivotJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA
+{
+	return nil;
+}
+@end
+
+@implementation CCPhysicsShape
++(instancetype) polygonShapeWithPoints:(CGPoint*)polygons count:(NSUInteger)numPoints cornerRadius:(CGFloat)cornerRadius
+{
+	return nil;
+}
+@end
+
+@implementation CCPhysicsBody
++(instancetype) bodyWithShapes:(NSArray*)shapes
+{
+	return nil;
+}
++(instancetype) bodyWithCircleOfRadius:(CGFloat)cornerRadius andCenter:(CGPoint)point
+{
+	return nil;
+}
+@end

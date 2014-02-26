@@ -53,42 +53,42 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 -(CCNode*) nodeFromClassName:(NSString *)nodeClassName
 {
-	// map CC nodes to SK nodes
 	CCNode* node = nil;
+	Class nodeClass = NSClassFromString(nodeClassName);
+	NSAssert1([nodeClass isSubclassOfClass:[SKScene class]] == NO, @"class %@ is a subclass of SKScene, it should be a SKNode subclass", nodeClassName);
+	
+	if (nodeClass)
+	{
+		node = [nodeClass node];
+	}
 
-	if ([nodeClassName isEqualToString:@"CCNode"] ||
-		[nodeClassName isEqualToString:@"SKNode"])
+	if (node == nil)
 	{
-		node = [SKNode node];
-	}
-	else if ([nodeClassName isEqualToString:@"CCSprite"] ||
-			 [nodeClassName isEqualToString:@"SKSpriteNode"])
-	{
-		node = (CCNode*)[SKSpriteNode node];
-	}
-	else if ([nodeClassName isEqualToString:@"SKColorSpriteNode"] ||
-			 [nodeClassName isEqualToString:@"CCNodeColor"] ||
-			 [nodeClassName isEqualToString:@"CCNodeGradient"])
-	{
-		node = (CCNode*)[SKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(128, 128)];
-	}
-	else if ([nodeClassName isEqualToString:@"CCLabelTTF"] ||
-			 [nodeClassName isEqualToString:@"SKLabelNode"])
-	{
-		node = (CCNode*)[SKLabelNode node];
-	}
-	else if ([nodeClassName isEqualToString:@"CCParticleSystem"] ||
-			 [nodeClassName isEqualToString:@"SKEmitterNode"])
-	{
-		node = (CCNode*)[SKEmitterNode node];
-	}
-	else
-	{
-		Class nodeClass = NSClassFromString(nodeClassName);
-		NSAssert1(nodeClass, @"%@: reader could not find this class", nodeClassName);
-		NSAssert1([nodeClass isSubclassOfClass:[SKScene class]] == NO, @"class %@ is a subclass of SKScene, it should be a SKNode subclass", nodeClassName);
-		
-		node = [[nodeClass alloc] init];
+		// process fallbacks
+		if ([nodeClassName isEqualToString:@"SKColorSpriteNode"] ||
+			[nodeClassName isEqualToString:@"CCNodeColor"] ||
+			[nodeClassName isEqualToString:@"CCNodeGradient"])
+		{
+			node = (CCNode*)[SKSpriteNode spriteNodeWithColor:[SKColor magentaColor] size:CGSizeMake(128, 128)];
+		}
+		else if ([nodeClassName isEqualToString:@"CCNode"])
+		{
+			node = [SKNode node];
+		}
+		else if ([nodeClassName isEqualToString:@"CCSprite"])
+		{
+			node = (CCNode*)[SKSpriteNode node];
+		}
+		else if ([nodeClassName isEqualToString:@"CCLabelTTF"])
+		{
+			node = (CCNode*)[SKLabelNode node];
+		}
+		else if ([nodeClassName isEqualToString:@"CCParticleSystem"])
+		{
+			node = (CCNode*)[SKEmitterNode node];
+		}
+
+		NSAssert1(node, @"CCBReader: class named '%@' does not exist", nodeClassName);
 	}
 
 #if DEBUG
