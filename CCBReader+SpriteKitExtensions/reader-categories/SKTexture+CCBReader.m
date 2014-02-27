@@ -37,6 +37,7 @@
 {
 	file = [[CCFileUtils sharedFileUtils] fullPathForFilename:file];
 	SKTexture* texture = [SKTexture textureWithImageNamed:file];
+	//NSLog(@"%@ size: {%.0f, %.0f} rect: {%.2f, %.2f, %.2f, %.2f}", texture, texture.size.width, texture.size.height, texture.textureRect.origin.x, texture.textureRect.origin.y, texture.textureRect.size.width, texture.textureRect.size.height);
 	return texture;
 }
 

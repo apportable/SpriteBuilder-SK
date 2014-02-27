@@ -52,7 +52,13 @@ NSString *kCCFileUtilsDefaultSearchPath = @"";
 @implementation CCFilePath
 -(NSString*) description
 {
-	return [NSString stringWithFormat:@"%@ file: '%@' contentScale: %.1f path: %@", [super description], [_fullpath lastPathComponent], _contentScale, _fullpath];
+	const NSUInteger maxPathLength = 128;
+	NSString* shortenedPath = _fullpath;
+	if (shortenedPath.length > maxPathLength)
+	{
+		shortenedPath = [NSString stringWithFormat:@"[..] %@", [_fullpath substringFromIndex:_fullpath.length - (maxPathLength + 1)]];
+	}
+	return [NSString stringWithFormat:@"<%@:%p> file: '%@' contentScale: %.1f path: '%@'", NSStringFromClass([self class]), self, [_fullpath lastPathComponent], _contentScale, shortenedPath];
 }
 @end
 
@@ -311,7 +317,9 @@ static CCFileUtils *fileUtils = nil;
 		[_fullPathCache setObject:filePath forKey:filename];
 		//NSLog(@"CCFileUtils cached: %@", filePath);
 	}
-	
+
+	NSLog(@"%@", filePath);
+
 	return filePath;
 }
 
@@ -370,6 +378,35 @@ static CCFileUtils *fileUtils = nil;
 	return fullPath;
 }
 
+-(NSString*) pathWithCocoaImageResolutionSuffix:(NSString*)path resourceDirectory:(NSString*)resourceDirectory
+{
+	if ([resourceDirectory isEqualToString:@"resources-phone"])
+	{
+		return path;
+	}
+	
+	NSString* extension = [path pathExtension];
+	if ([extension isEqualToString:@"png"] || [extension isEqualToString:@"ccz"] || [extension isEqualToString:@"pvr"] || [extension isEqualToString:@"jpg"])
+	{
+		if ([resourceDirectory isEqualToString:@"resources-phonehd"])
+		{
+			path = [NSString stringWithFormat:@"%@@2x.%@", [path stringByDeletingPathExtension], extension];
+		}
+		else if ([resourceDirectory isEqualToString:@"resources-tablet"])
+		{
+			path = [NSString stringWithFormat:@"%@~ipad.%@", [path stringByDeletingPathExtension], extension];
+		}
+		else if ([resourceDirectory isEqualToString:@"resources-tablethd"])
+		{
+			path = [NSString stringWithFormat:@"%@@2x~ipad.%@", [path stringByDeletingPathExtension], extension];
+		}
+		
+		//NSLog(@"path with cocoa suffix: %@", path);
+	}
+	
+	return path;
+}
+
 -(NSString*) pathForFilename:(NSString*)filename withResourceDirectory:(NSString*)resourceDirectory withSearchPath:(NSString*)searchPath
 {
 	NSString *fullPath = nil;
@@ -379,6 +416,9 @@ static CCFileUtils *fileUtils = nil;
 	// searchPath + file_path + resourceDirectory
 	NSString * path = [searchPath stringByAppendingPathComponent:filePath];
 	path = [path stringByAppendingPathComponent:resourceDirectory];
+
+	// search for properly suffixed @2x, ~ipad, etc files since we're using Sprite Kit (Cocoa) here
+	file = [self pathWithCocoaImageResolutionSuffix:file resourceDirectory:resourceDirectory];
 	
 	// only if it is not an absolute path
 	if ([filename isAbsolutePath] == NO)
