@@ -32,6 +32,17 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+	label.text = @"_";
+	label.fontSize = 24.0;
+	label.fontColor = [SKColor magentaColor];
+	label.alpha = 0.16;
+	label.verticalAlignmentMode = SKLabelVerticalAlignmentModeBottom;
+	[scene addChild:label];
+	
+	UIFont* font = [UIFont fontWithName:label.fontName size:label.fontSize];
+	NSLog(@"FONT: %@ asc: %f desc: %f - heights: cap: %f x: %f", font, font.ascender, font.descender, font.capHeight, font.xHeight);
+	
 	/*
 	SKSpriteNode* color = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(200, 100)];
 	color.position = CGPointMake(105, 51);
