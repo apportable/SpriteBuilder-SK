@@ -32,6 +32,12 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+	label.text = @"XXXX";
+	label.position = CGPointMake(288.353668, 338.165710);
+	[scene addChild:label];
+	
+	/*
 	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
 	label.text = @"_";
 	label.fontSize = 24.0;
@@ -42,6 +48,7 @@
 	
 	UIFont* font = [UIFont fontWithName:label.fontName size:label.fontSize];
 	NSLog(@"FONT: %@ asc: %f desc: %f - heights: cap: %f x: %f", font, font.ascender, font.descender, font.capHeight, font.xHeight);
+	*/
 	
 	/*
 	SKSpriteNode* color = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(200, 100)];
