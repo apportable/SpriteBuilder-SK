@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>92</integer>
+	<integer>96</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -2722,7 +2722,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>88</integer>
+				<integer>92</integer>
 				<key>baseClass</key>
 				<string>SKSpriteNode</string>
 				<key>children</key>
@@ -2730,7 +2730,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>player-blue-jump_3</string>
+				<string>player-blue-jump_0</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -2752,8 +2752,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>194</real>
-							<real>223</real>
+							<real>73</real>
+							<real>147</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2779,8 +2779,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>75</real>
-							<real>75</real>
+							<real>150</real>
+							<real>150</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2804,7 +2804,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>sheetysheet/player-blue-jump_3.png</string>
+							<string>sheetysheet/player-blue-jump_0.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2832,117 +2832,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>89</integer>
-				<key>baseClass</key>
-				<string>SKSpriteNode</string>
-				<key>children</key>
-				<array/>
-				<key>customClass</key>
-				<string></string>
-				<key>displayName</key>
-				<string>player-blue-jump_2</string>
-				<key>memberVarAssignmentName</key>
-				<string></string>
-				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
-				<key>properties</key>
-				<array>
-					<dict>
-						<key>name</key>
-						<string>name</string>
-						<key>type</key>
-						<string>StringSimple</string>
-						<key>value</key>
-						<string></string>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>156</real>
-							<real>206</real>
-							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>scale</string>
-						<key>type</key>
-						<string>ScaleLock</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<false/>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>size</string>
-						<key>type</key>
-						<string>Size</string>
-						<key>value</key>
-						<array>
-							<real>37</real>
-							<real>37</real>
-							<integer>0</integer>
-							<integer>0</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>anchorPoint</string>
-						<key>type</key>
-						<string>Point</string>
-						<key>value</key>
-						<array>
-							<real>0.5</real>
-							<real>0.5</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>spriteFrame</string>
-						<key>type</key>
-						<string>SpriteFrame</string>
-						<key>value</key>
-						<array>
-							<string></string>
-							<string>sheetysheet/player-blue-jump_2.png</string>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>color</string>
-						<key>type</key>
-						<string>Color3</string>
-						<key>value</key>
-						<array>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-							<real>1</real>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>colorBlendFactor</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>1</real>
-					</dict>
-				</array>
-			</dict>
-			<dict>
-				<key>UUID</key>
-				<integer>90</integer>
+				<integer>93</integer>
 				<key>baseClass</key>
 				<string>SKSpriteNode</string>
 				<key>children</key>
@@ -2972,8 +2862,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>130</real>
-							<real>222</real>
+							<real>185</real>
+							<real>138</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3052,7 +2942,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>91</integer>
+				<integer>94</integer>
 				<key>baseClass</key>
 				<string>SKSpriteNode</string>
 				<key>children</key>
@@ -3060,7 +2950,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>player-blue-jump_0</string>
+				<string>player-blue-jump_2</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -3082,8 +2972,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>80</real>
-							<real>252</real>
+							<real>290</real>
+							<real>121</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3109,8 +2999,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>150</real>
-							<real>150</real>
+							<real>37</real>
+							<real>37</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3134,7 +3024,117 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>sheetysheet/player-blue-jump_0.png</string>
+							<string>sheetysheet/player-blue-jump_2.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>color</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>colorBlendFactor</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>1</real>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>UUID</key>
+				<integer>95</integer>
+				<key>baseClass</key>
+				<string>SKSpriteNode</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>player-blue-jump_3</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>name</string>
+						<key>type</key>
+						<string>StringSimple</string>
+						<key>value</key>
+						<string></string>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>372</real>
+							<real>122</real>
+							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>size</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>75</real>
+							<real>75</real>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.5</real>
+							<real>0.5</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>spriteFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>sheetysheet/player-blue-jump_3.png</string>
 						</array>
 					</dict>
 					<dict>
