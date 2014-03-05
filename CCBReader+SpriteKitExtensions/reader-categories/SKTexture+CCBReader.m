@@ -103,6 +103,7 @@ static NSMutableDictionary* notTextureAtlasNameCache;
 		{
 			NSString* relativePathToAtlas = [directory stringByAppendingPathComponent:textureAtlasName];
 			[textureAtlasNameCache setObject:relativePathToAtlas forKey:textureAtlasName];
+			NSLog(@"Creating SKTextureAtlas named: %@", relativePathToAtlas);
 			atlas = [SKTextureAtlas atlasNamed:relativePathToAtlas];
 			break;
 		}
