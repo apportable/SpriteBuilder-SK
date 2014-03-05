@@ -69,15 +69,11 @@
 		NSArray *spriteFrameFiles = [dict objectForKey:@"spriteFrameFiles"];
 		for (NSString* spriteFrameFile in spriteFrameFiles)
         {
-            [self registerSpriteFramesFile:spriteFrameFile];
-
-			/*
-			NSString* atlasFile = [NSString stringWithFormat:@"Published-iOS/resources-phone/%@", spriteFrameFile];
-			
-			SKTextureAtlas* atlas = [SKTextureAtlas atlasNamed:atlasFile];
+			SKTextureAtlas* atlas = [SKTextureAtlas atlasNamed:spriteFrameFile];
 			NSLog(@"%@: %@", spriteFrameFile, atlas);
 			[_atlases setObject:atlas forKey:spriteFrameFile];
-			 */
+
+            [self registerSpriteFramesFile:spriteFrameFile];
         }
 	}
 }

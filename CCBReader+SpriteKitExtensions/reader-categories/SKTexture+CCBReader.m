@@ -35,11 +35,65 @@
 
 +(instancetype) textureWithFile:(NSString*)file
 {
-	file = [[CCFileUtils sharedFileUtils] fullPathForFilename:file];
-	SKTexture* texture = [SKTexture textureWithImageNamed:file];
-	//NSLog(@"%@ size: {%.0f, %.0f} rect: {%.2f, %.2f, %.2f, %.2f}", texture, texture.size.width, texture.size.height, texture.textureRect.origin.x, texture.textureRect.origin.y, texture.textureRect.size.width, texture.textureRect.size.height);
+	SKTexture* texture = nil;
+	SKTextureAtlas* atlas = [SKTexture atlasFromPath:[file stringByDeletingLastPathComponent]];
+	if (atlas)
+	{
+		NSString* textureName = file.lastPathComponent;
+		texture = [atlas textureNamed:textureName];
+	}
+	else
+	{
+		file = [[CCFileUtils sharedFileUtils] fullPathForFilename:file];
+		texture = [SKTexture textureWithImageNamed:file];
+	}
+	
+	NSLog(@"%@ size: {%.0f, %.0f} rect: {%.2f, %.2f, %.2f, %.2f}", texture, texture.size.width, texture.size.height, texture.textureRect.origin.x, texture.textureRect.origin.y, texture.textureRect.size.width, texture.textureRect.size.height);
 	return texture;
 }
 
++(SKTextureAtlas*) atlasFromPath:(NSString*)path
+{
+	SKTextureAtlas* atlas = nil;
+	if (path.length)
+	{
+		static NSMutableDictionary* textureAtlasNameCache;
+		static NSMutableDictionary* notTextureAtlasNameCache;
+		if (textureAtlasNameCache == nil && notTextureAtlasNameCache == nil)
+		{
+			textureAtlasNameCache = [NSMutableDictionary dictionary];
+			notTextureAtlasNameCache = [NSMutableDictionary dictionary];
+		}
+		
+		if ([notTextureAtlasNameCache objectForKey:path] == nil)
+		{
+			NSString* textureAtlasName = [textureAtlasNameCache objectForKey:path];
+			if (textureAtlasName)
+			{
+				atlas = [SKTextureAtlas atlasNamed:textureAtlasName];
+			}
+			else
+			{
+				// check if file is actually inside a texture atlas
+				BOOL isDirectory = NO;
+				NSString* atlasPath = [[NSBundle mainBundle] pathForResource:path ofType:@"atlasc" inDirectory:@"Published-iOS"];
+				
+				if (atlasPath && [[NSFileManager defaultManager] fileExistsAtPath:atlasPath isDirectory:&isDirectory] && isDirectory)
+				{
+					textureAtlasName = [@"Published-iOS/" stringByAppendingString:path];
+					[textureAtlasNameCache setObject:textureAtlasName forKey:path];
+					atlas = [SKTextureAtlas atlasNamed:textureAtlasName];
+				}
+				else
+				{
+					// remember this path as not being an atlas folder (typically "ccbResources") for quick dismissal
+					[notTextureAtlasNameCache setObject:path forKey:path];
+				}
+			}
+		}
+	}
+	
+	return atlas;
+}
 
 @end
