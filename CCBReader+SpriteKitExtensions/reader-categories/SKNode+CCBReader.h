@@ -36,8 +36,11 @@
 @property BOOL visible;
 @property SKTexture* spriteFrame;
 @property CGSize contentSize;
+@property CCSizeType contentSizeType;
+@property CCScaleType scaleType;
 @property CCPositionType positionType;
 
 -(CGFloat) scale;
+-(void) postProcessAfterLoadFromCCB;
 
 @end

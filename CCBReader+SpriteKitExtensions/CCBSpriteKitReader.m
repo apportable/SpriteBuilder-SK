@@ -26,8 +26,13 @@
 #import "CCBSpriteKitReader.h"
 #import "NSValue+CCBReader.h"
 #import "CCBSpriteKitAnimationManager.h"
+#import "SKNode+CCBReader.h"
 
 static CGSize CCBSpriteKitReaderSceneSize;
+
+@interface CCBReader (PrivateMethods)
+-(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize;
+@end
 
 @implementation CCBSpriteKitReader
 
@@ -124,6 +129,25 @@ static CGSize CCBSpriteKitReaderSceneSize;
 			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
 	
 	return [SKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
+}
+
+#pragma mark CCReader Load overrides
+
+-(void) readerDidLoadNode:(CCNode*)node
+{
+	[node postProcessAfterLoadFromCCB];
+	
+	for (CCNode* childNode in node.children)
+	{
+		[self readerDidLoadNode:childNode];
+	}
+}
+
+-(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize
+{
+	CCNode* node = [super nodeGraphFromFile:file owner:o parentSize:parentSize];
+	[self readerDidLoadNode:node];
+	return node;
 }
 
 #pragma mark Property Overrides

@@ -20,6 +20,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[CCDirector alloc] init];
 		sharedInstance.actionManager = [[CCActionManager alloc] init];
+		sharedInstance.UIScaleFactor = 1.0;
     });
     return sharedInstance;
 }

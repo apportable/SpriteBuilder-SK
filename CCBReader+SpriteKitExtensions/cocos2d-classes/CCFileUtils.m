@@ -318,7 +318,7 @@ static CCFileUtils *fileUtils = nil;
 		//NSLog(@"CCFileUtils cached: %@", filePath);
 	}
 
-	NSLog(@"%@", filePath);
+	//NSLog(@"%@", filePath);
 
 	return filePath;
 }
