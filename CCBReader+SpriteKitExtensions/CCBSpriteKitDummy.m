@@ -136,6 +136,18 @@
 {
 	return nil;
 }
++(instancetype) connectedSpringJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB restLength:(CGFloat)restLength stiffness:(CGFloat)stiffness damping:(CGFloat)damping
+{
+	return nil;
+}
++(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB
+{
+	return nil;
+}
++(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB minDistance:(CGFloat)minDistance maxDistance:(CGFloat)maxDistance
+{
+	return nil;
+}
 @end
 
 @implementation CCPhysicsShape

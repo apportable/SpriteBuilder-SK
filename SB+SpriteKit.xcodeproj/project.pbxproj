@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC05E74E18D0611B00592A1E /* SBControl.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E74C18D0611B00592A1E /* SBControl.h */; };
+		DC05E74F18D0611B00592A1E /* SBControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControl.m */; };
+		DC05E75018D0611B00592A1E /* SBControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControl.m */; };
+		DC05E75318D0612A00592A1E /* SBButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E75118D0612A00592A1E /* SBButton.h */; };
+		DC05E75418D0612A00592A1E /* SBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButton.m */; };
+		DC05E75518D0612A00592A1E /* SBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButton.m */; };
 		DC0F9B4118A4EED4001749BB /* NSValue+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */; };
 		DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
 		DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
@@ -107,6 +113,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC05E74B18D060DA00592A1E /* SpriteKit-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-UI.h"; sourceTree = "<group>"; };
+		DC05E74C18D0611B00592A1E /* SBControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBControl.h; sourceTree = "<group>"; };
+		DC05E74D18D0611B00592A1E /* SBControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControl.m; sourceTree = "<group>"; };
+		DC05E75118D0612A00592A1E /* SBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBButton.h; sourceTree = "<group>"; };
+		DC05E75218D0612A00592A1E /* SBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBButton.m; sourceTree = "<group>"; };
+		DC05E75618D0617700592A1E /* SBControl_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBControl_Private.h; sourceTree = "<group>"; };
 		DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CCBReader.h"; sourceTree = "<group>"; };
 		DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CCBReader.m"; sourceTree = "<group>"; };
 		DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+CCBReader.h"; sourceTree = "<group>"; };
@@ -201,11 +213,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC05E74A18D060AE00592A1E /* SpriteKit-UI */ = {
+			isa = PBXGroup;
+			children = (
+				DC05E74B18D060DA00592A1E /* SpriteKit-UI.h */,
+				DC05E75618D0617700592A1E /* SBControl_Private.h */,
+				DC05E74C18D0611B00592A1E /* SBControl.h */,
+				DC05E74D18D0611B00592A1E /* SBControl.m */,
+				DC05E75118D0612A00592A1E /* SBButton.h */,
+				DC05E75218D0612A00592A1E /* SBButton.m */,
+			);
+			path = "SpriteKit-UI";
+			sourceTree = "<group>";
+		};
 		DC0F9B2718A4EED4001749BB /* reader-categories */ = {
 			isa = PBXGroup;
 			children = (
 				DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */,
 				DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */,
+				DC5D500718B504A6007EF00C /* SKAction+CCBReader.h */,
+				DC5D500818B504A6007EF00C /* SKAction+CCBReader.m */,
 				DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */,
 				DC0F9B2B18A4EED4001749BB /* SKEmitterNode+CCBReader.m */,
 				DC0F9B2C18A4EED4001749BB /* SKLabelNode+CCBReader.h */,
@@ -218,8 +245,6 @@
 				DC0F9B3318A4EED4001749BB /* SKSpriteNode+CCBReader.m */,
 				DC0F9B3418A4EED4001749BB /* SKTexture+CCBReader.h */,
 				DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */,
-				DC5D500718B504A6007EF00C /* SKAction+CCBReader.h */,
-				DC5D500818B504A6007EF00C /* SKAction+CCBReader.m */,
 			);
 			path = "reader-categories";
 			sourceTree = "<group>";
@@ -284,6 +309,7 @@
 				DCE0831818A159C000A0C368 /* SB+SpriteKit.h */,
 				DC8C7B8618A95F96000D29DC /* CCBReader */,
 				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
+				DC05E74A18D060AE00592A1E /* SpriteKit-UI */,
 				DCB5328118BBBA4C006E5162 /* Supporting Files */,
 				DCD9CF0218A148AA008B3444 /* Frameworks */,
 				DCD9CF0118A148AA008B3444 /* Products */,
@@ -370,7 +396,9 @@
 				DC8C7B9E18A95F96000D29DC /* CCBReader.h in Headers */,
 				DC5D4FF418B4F768007EF00C /* CCBSpriteKitAnimationManager.h in Headers */,
 				DC8C7B9B18A95F96000D29DC /* CCBLocalizationManager.h in Headers */,
+				DC05E75318D0612A00592A1E /* SBButton.h in Headers */,
 				DC0F9B5018A4EED4001749BB /* SKSpriteNode+CCBReader.h in Headers */,
+				DC05E74E18D0611B00592A1E /* SBControl.h in Headers */,
 				DC0F9B4418A4EED4001749BB /* SKEmitterNode+CCBReader.h in Headers */,
 				DC8C7B9818A95F96000D29DC /* CCBKeyframe.h in Headers */,
 				DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */,
@@ -460,6 +488,7 @@
 				DC5D4FF618B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */,
 				DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
 				DC8C7BA018A95F96000D29DC /* CCBReader.m in Sources */,
+				DC05E75518D0612A00592A1E /* SBButton.m in Sources */,
 				DC0F9B5818A4EED4001749BB /* CCColor.m in Sources */,
 				DC5D500B18B504A6007EF00C /* SKAction+CCBReader.m in Sources */,
 				DC0F9B4F18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
@@ -470,6 +499,7 @@
 				DC8C7B9D18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
+				DC05E75018D0611B00592A1E /* SBControl.m in Sources */,
 				DC0F9B5B18A4EED4001749BB /* CCConfiguration.m in Sources */,
 				DC5D500018B4FF19007EF00C /* CCActionManager.m in Sources */,
 				DC0F9B5E18A4EED4001749BB /* CCFileUtils.m in Sources */,
@@ -492,6 +522,7 @@
 				DC5D4FF518B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */,
 				DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
 				DC8C7B9F18A95F96000D29DC /* CCBReader.m in Sources */,
+				DC05E75418D0612A00592A1E /* SBButton.m in Sources */,
 				DC0F9B5718A4EED4001749BB /* CCColor.m in Sources */,
 				DC5D500A18B504A6007EF00C /* SKAction+CCBReader.m in Sources */,
 				DC0F9B4E18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
@@ -502,6 +533,7 @@
 				DC8C7B9C18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
+				DC05E74F18D0611B00592A1E /* SBControl.m in Sources */,
 				DC0F9B5A18A4EED4001749BB /* CCConfiguration.m in Sources */,
 				DC5D4FFF18B4FF19007EF00C /* CCActionManager.m in Sources */,
 				DC0F9B5D18A4EED4001749BB /* CCFileUtils.m in Sources */,
@@ -524,6 +556,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -541,10 +574,20 @@
 					"CCB_SPRITEKIT_READER=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -566,6 +609,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -578,10 +622,20 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "CCB_SPRITEKIT_READER=1";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

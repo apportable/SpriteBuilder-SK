@@ -70,6 +70,9 @@
 
 @interface CCPhysicsJoint : NSObject
 +(instancetype) connectedPivotJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA;
++(instancetype) connectedSpringJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB restLength:(CGFloat)restLength stiffness:(CGFloat)stiffness damping:(CGFloat)damping;
++(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB;
++(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB minDistance:(CGFloat)minDistance maxDistance:(CGFloat)maxDistance;
 @end
 
 @interface CCPhysicsShape : NSObject

@@ -23,11 +23,11 @@
 {
 	if (duration <= 0.0)
 	{
-		self.numParticlesToEmit = 0.0;
+		self.numParticlesToEmit = 0;
 	}
 	else
 	{
-		self.numParticlesToEmit = duration * self.particleBirthRate;
+		self.numParticlesToEmit = (NSUInteger)(duration * self.particleBirthRate + 1.0);
 	}
 }
 -(CGFloat) duration

@@ -43,10 +43,13 @@
 
 #import "CCBCocosTypes.h"
 
+#import "SKAction+CCBReader.h"
+#import "SKEmitterNode+CCBReader.h"
+#import "SKLabelNode+CCBReader.h"
 #import "SKNode+CCBReader.h"
 #import "SKPhysicsBody+CCBReader.h"
+#import "SKSpriteNode+CCBReader.h"
 #import "SKTexture+CCBReader.h"
-#import "SKAction+CCBReader.h"
 
 #import "CCDirector.h"
 #import "CCActionManager.h"

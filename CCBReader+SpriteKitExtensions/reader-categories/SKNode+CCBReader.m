@@ -411,4 +411,9 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return newPosition;
 }
 
+-(CGPoint) convertToWorldSpace:(CGPoint)position
+{
+	return [self.parent convertPoint:position toNode:self.scene];
+}
+
 @end

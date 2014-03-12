@@ -43,4 +43,6 @@
 -(CGFloat) scale;
 -(void) postProcessAfterLoadFromCCB;
 
+-(CGPoint) convertToWorldSpace:(CGPoint)position;
+
 @end
