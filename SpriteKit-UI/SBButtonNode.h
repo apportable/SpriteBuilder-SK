@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "SBControl.h"
+#import "SBControlNode.h"
 #import "ccTypes.h"
 
 /**
@@ -14,7 +14,7 @@
  
  Methods for setting callbacks for the button is inherited from SBControl through the setTarget:selector: method or the block property.
  */
-@interface SBButton : SBControl
+@interface SBButtonNode : SBControlNode
 {
     NSMutableDictionary* _backgroundSpriteFrames;
     NSMutableDictionary* _backgroundColors;

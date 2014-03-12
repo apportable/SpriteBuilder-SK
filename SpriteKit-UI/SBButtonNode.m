@@ -6,33 +6,33 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "SBButton.h"
-#import "SBControl_Private.h"
+#import "SBButtonNode.h"
+#import "SBControlNode_Private.h"
 #import "CGPointExtension.h"
 #import <objc/runtime.h>
 
 #define SBFatFingerExpansion 70
 
-@implementation SBButton
+@implementation SBButtonNode
 
 + (id) buttonWithTitle:(NSString*) title
 {
-    return [[SBButton alloc] initWithTitle:title];
+    return [[SBButtonNode alloc] initWithTitle:title];
 }
 
 + (id) buttonWithTitle:(NSString*) title fontName:(NSString*)fontName fontSize:(CGFloat)size
 {
-    return [[SBButton alloc] initWithTitle:title fontName:fontName fontSize:size];
+    return [[SBButtonNode alloc] initWithTitle:title fontName:fontName fontSize:size];
 }
 
 + (id) buttonWithTitle:(NSString*) title spriteFrame:(CCSpriteFrame*) spriteFrame
 {
-    return [[SBButton alloc] initWithTitle:title spriteFrame:spriteFrame];
+    return [[SBButtonNode alloc] initWithTitle:title spriteFrame:spriteFrame];
 }
 
 + (id) buttonWithTitle:(NSString*) title spriteFrame:(CCSpriteFrame*) spriteFrame highlightedSpriteFrame:(CCSpriteFrame*) highlighted disabledSpriteFrame:(CCSpriteFrame*) disabled
 {
-    return [[SBButton alloc] initWithTitle:title spriteFrame:spriteFrame highlightedSpriteFrame: highlighted disabledSpriteFrame:disabled];
+    return [[SBButtonNode alloc] initWithTitle:title spriteFrame:spriteFrame highlightedSpriteFrame: highlighted disabledSpriteFrame:disabled];
 }
 
 - (id) init

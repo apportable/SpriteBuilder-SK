@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "SBControl.h"
+#import "SBControlNode.h"
 
 /// -----------------------------------------------------------------------
 /// @name Methods Used by Sub-Classes
 /// -----------------------------------------------------------------------
 
-@interface SBControl (Private)
+@interface SBControlNode (Private)
 
 /**
  *  Used by sub-classes. This method is called to trigger an action callback. E.g. CCButton calls this method when the button is tapped.

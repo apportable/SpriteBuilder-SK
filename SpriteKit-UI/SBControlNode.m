@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "SBControl.h"
-#import "SBControl_Private.h"
+#import "SBControlNode.h"
+#import "SBControlNode_Private.h"
 #import "SKNode+CCBReader.h"
 
 #import <objc/objc-runtime.h>
 
-@implementation SBControl
+@implementation SBControlNode
 
 
 #pragma mark Initializers

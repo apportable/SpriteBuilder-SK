@@ -6,4 +6,4 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "SBButton.h"
+#import "SBButtonNode.h"

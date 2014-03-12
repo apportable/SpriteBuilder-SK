@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, SBControlState)
  
  *Important:* If you are sub-classing SBControl you will need to include the SBControl_Private.h file as it includes methods that are otherwise not exposed.
  */
-@interface SBControl : SKNode
+@interface SBControlNode : SKNode
 {
     /** Needs layout is set to true if the control has changed and needs to re-layout itself. */
     BOOL _needsLayout;

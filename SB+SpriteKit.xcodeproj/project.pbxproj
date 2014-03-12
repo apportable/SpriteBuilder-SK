@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC05E74E18D0611B00592A1E /* SBControl.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E74C18D0611B00592A1E /* SBControl.h */; };
-		DC05E74F18D0611B00592A1E /* SBControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControl.m */; };
-		DC05E75018D0611B00592A1E /* SBControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControl.m */; };
-		DC05E75318D0612A00592A1E /* SBButton.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E75118D0612A00592A1E /* SBButton.h */; };
-		DC05E75418D0612A00592A1E /* SBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButton.m */; };
-		DC05E75518D0612A00592A1E /* SBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButton.m */; };
+		DC05E74E18D0611B00592A1E /* SBControlNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E74C18D0611B00592A1E /* SBControlNode.h */; };
+		DC05E74F18D0611B00592A1E /* SBControlNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControlNode.m */; };
+		DC05E75018D0611B00592A1E /* SBControlNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E74D18D0611B00592A1E /* SBControlNode.m */; };
+		DC05E75318D0612A00592A1E /* SBButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E75118D0612A00592A1E /* SBButtonNode.h */; };
+		DC05E75418D0612A00592A1E /* SBButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButtonNode.m */; };
+		DC05E75518D0612A00592A1E /* SBButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButtonNode.m */; };
 		DC0F9B4118A4EED4001749BB /* NSValue+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */; };
 		DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
 		DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
@@ -114,11 +114,11 @@
 
 /* Begin PBXFileReference section */
 		DC05E74B18D060DA00592A1E /* SpriteKit-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-UI.h"; sourceTree = "<group>"; };
-		DC05E74C18D0611B00592A1E /* SBControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBControl.h; sourceTree = "<group>"; };
-		DC05E74D18D0611B00592A1E /* SBControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBControl.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DC05E75118D0612A00592A1E /* SBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		DC05E75218D0612A00592A1E /* SBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		DC05E75618D0617700592A1E /* SBControl_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBControl_Private.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DC05E74C18D0611B00592A1E /* SBControlNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBControlNode.h; sourceTree = "<group>"; };
+		DC05E74D18D0611B00592A1E /* SBControlNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBControlNode.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DC05E75118D0612A00592A1E /* SBButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBButtonNode.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DC05E75218D0612A00592A1E /* SBButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBButtonNode.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DC05E75618D0617700592A1E /* SBControlNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBControlNode_Private.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CCBReader.h"; sourceTree = "<group>"; };
 		DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CCBReader.m"; sourceTree = "<group>"; };
 		DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+CCBReader.h"; sourceTree = "<group>"; };
@@ -217,11 +217,11 @@
 			isa = PBXGroup;
 			children = (
 				DC05E74B18D060DA00592A1E /* SpriteKit-UI.h */,
-				DC05E75618D0617700592A1E /* SBControl_Private.h */,
-				DC05E74C18D0611B00592A1E /* SBControl.h */,
-				DC05E74D18D0611B00592A1E /* SBControl.m */,
-				DC05E75118D0612A00592A1E /* SBButton.h */,
-				DC05E75218D0612A00592A1E /* SBButton.m */,
+				DC05E75618D0617700592A1E /* SBControlNode_Private.h */,
+				DC05E74C18D0611B00592A1E /* SBControlNode.h */,
+				DC05E74D18D0611B00592A1E /* SBControlNode.m */,
+				DC05E75118D0612A00592A1E /* SBButtonNode.h */,
+				DC05E75218D0612A00592A1E /* SBButtonNode.m */,
 			);
 			path = "SpriteKit-UI";
 			sourceTree = "<group>";
@@ -396,9 +396,9 @@
 				DC8C7B9E18A95F96000D29DC /* CCBReader.h in Headers */,
 				DC5D4FF418B4F768007EF00C /* CCBSpriteKitAnimationManager.h in Headers */,
 				DC8C7B9B18A95F96000D29DC /* CCBLocalizationManager.h in Headers */,
-				DC05E75318D0612A00592A1E /* SBButton.h in Headers */,
+				DC05E75318D0612A00592A1E /* SBButtonNode.h in Headers */,
 				DC0F9B5018A4EED4001749BB /* SKSpriteNode+CCBReader.h in Headers */,
-				DC05E74E18D0611B00592A1E /* SBControl.h in Headers */,
+				DC05E74E18D0611B00592A1E /* SBControlNode.h in Headers */,
 				DC0F9B4418A4EED4001749BB /* SKEmitterNode+CCBReader.h in Headers */,
 				DC8C7B9818A95F96000D29DC /* CCBKeyframe.h in Headers */,
 				DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */,
@@ -488,7 +488,7 @@
 				DC5D4FF618B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */,
 				DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
 				DC8C7BA018A95F96000D29DC /* CCBReader.m in Sources */,
-				DC05E75518D0612A00592A1E /* SBButton.m in Sources */,
+				DC05E75518D0612A00592A1E /* SBButtonNode.m in Sources */,
 				DC0F9B5818A4EED4001749BB /* CCColor.m in Sources */,
 				DC5D500B18B504A6007EF00C /* SKAction+CCBReader.m in Sources */,
 				DC0F9B4F18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
@@ -499,7 +499,7 @@
 				DC8C7B9D18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
-				DC05E75018D0611B00592A1E /* SBControl.m in Sources */,
+				DC05E75018D0611B00592A1E /* SBControlNode.m in Sources */,
 				DC0F9B5B18A4EED4001749BB /* CCConfiguration.m in Sources */,
 				DC5D500018B4FF19007EF00C /* CCActionManager.m in Sources */,
 				DC0F9B5E18A4EED4001749BB /* CCFileUtils.m in Sources */,
@@ -522,7 +522,7 @@
 				DC5D4FF518B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */,
 				DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */,
 				DC8C7B9F18A95F96000D29DC /* CCBReader.m in Sources */,
-				DC05E75418D0612A00592A1E /* SBButton.m in Sources */,
+				DC05E75418D0612A00592A1E /* SBButtonNode.m in Sources */,
 				DC0F9B5718A4EED4001749BB /* CCColor.m in Sources */,
 				DC5D500A18B504A6007EF00C /* SKAction+CCBReader.m in Sources */,
 				DC0F9B4E18A4EED4001749BB /* SKPhysicsBody+CCBReader.m in Sources */,
@@ -533,7 +533,7 @@
 				DC8C7B9C18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
-				DC05E74F18D0611B00592A1E /* SBControl.m in Sources */,
+				DC05E74F18D0611B00592A1E /* SBControlNode.m in Sources */,
 				DC0F9B5A18A4EED4001749BB /* CCConfiguration.m in Sources */,
 				DC5D4FFF18B4FF19007EF00C /* CCActionManager.m in Sources */,
 				DC0F9B5D18A4EED4001749BB /* CCFileUtils.m in Sources */,

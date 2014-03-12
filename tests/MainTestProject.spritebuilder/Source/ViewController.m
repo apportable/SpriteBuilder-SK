@@ -32,7 +32,7 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
-	SBButton* button = [SBButton buttonWithTitle:@"Hello SpriteBuilder Button!"];
+	SBButtonNode* button = [SBButtonNode buttonWithTitle:@"Hello SpriteBuilder Button!"];
 	button.position = CGPointMake(100, 85);
 	button.label.fontColor = [SKColor purpleColor];
 	button.runBlock = ^(id sender){
