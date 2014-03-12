@@ -34,6 +34,7 @@
 {
 	SBButton* button = [SBButton buttonWithTitle:@"Hello SpriteBuilder Button!"];
 	button.position = CGPointMake(100, 85);
+	button.label.fontColor = [SKColor purpleColor];
 	button.runBlock = ^(id sender){
 		NSLog(@"button block ran ... with sender: %@", sender);
 	};

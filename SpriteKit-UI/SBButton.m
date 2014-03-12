@@ -37,12 +37,12 @@
 
 - (id) init
 {
-    return [self initWithTitle:@"" spriteFrame:NULL];
+    return [self initWithTitle:@"" spriteFrame:nil];
 }
 
 - (id) initWithTitle:(NSString *)title
 {
-    self = [self initWithTitle:title spriteFrame:NULL highlightedSpriteFrame:NULL disabledSpriteFrame:NULL];
+    self = [self initWithTitle:title spriteFrame:nil highlightedSpriteFrame:nil disabledSpriteFrame:nil];
     
     // Default properties for labels with only a title
     self.zoomWhenHighlighted = YES;
@@ -61,7 +61,7 @@
 
 - (id) initWithTitle:(NSString*) title spriteFrame:(CCSpriteFrame*) spriteFrame
 {
-    self = [self initWithTitle:title spriteFrame:spriteFrame highlightedSpriteFrame:NULL disabledSpriteFrame:NULL];
+    self = [self initWithTitle:title spriteFrame:spriteFrame highlightedSpriteFrame:nil disabledSpriteFrame:nil];
     
     // Setup default colors for when only one frame is used
     [self setBackgroundColor:[CCColor colorWithWhite:0.7 alpha:1] forState:SBControlStateHighlighted];
@@ -90,6 +90,14 @@
     
     _labelColors = [NSMutableDictionary dictionary];
     _labelOpacities = [NSMutableDictionary dictionary];
+
+	// Setup label
+    _label = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+	_label.text = title;
+	_label.fontSize = 14;
+	_label.fontColor = [SKColor blackColor];
+	_label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
+	_label.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
     
     // Setup background image
     if (spriteFrame)
@@ -100,7 +108,7 @@
     }
     else
     {
-        _background = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(57, 32)];
+        _background = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:_label.frame.size];
     }
     
     if (highlighted)
@@ -115,14 +123,6 @@
     }
     
     [self addChild:_background];
-    
-    // Setup label
-    _label = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
-	_label.text = title;
-	_label.fontSize = 14;
-	_label.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
-	_label.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
-    
     [self addChild:_label];
     
     // Setup original scale
@@ -292,6 +292,14 @@
     [self needsLayout];
 }
 
+-(void) applyOriginalScale
+{
+	_label.scaleX = _originalScaleX;
+	_label.scaleY = _originalScaleY;
+	_background.scaleX = _originalScaleX;
+	_background.scaleY = _originalScaleY;
+}
+
 - (void) stateChanged
 {
     if (self.enabled)
@@ -303,8 +311,9 @@
             
             if (_zoomWhenHighlighted)
             {
-                [_label runAction:[CCActionScaleTo actionWithDuration:0.1 scaleX:_originalScaleX*1.2 scaleY:_originalScaleY*1.2]];
-                [_background runAction:[CCActionScaleTo actionWithDuration:0.1 scaleX:_originalScaleX*1.2 scaleY:_originalScaleY*1.2]];
+				[self applyOriginalScale];
+				[_label runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
+				[_background runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
             }
         }
         else
@@ -319,13 +328,10 @@
             }
             
             [_label removeAllActions];
+			[_background removeAllActions];
             if (_zoomWhenHighlighted)
             {
-                _label.scaleX = _originalScaleX;
-                _label.scaleY = _originalScaleY;
-                
-                _background.scaleX = _originalScaleX;
-                _background.scaleY = _originalScaleY;
+				[self applyOriginalScale];
             }
         }
     }
@@ -531,7 +537,7 @@
         return [self backgroundSpriteFrameForState:state];
     }
     
-    return NULL;
+    return nil;
 }
 
 @end

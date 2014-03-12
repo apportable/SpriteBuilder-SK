@@ -46,7 +46,7 @@
 - (CCColor*) initWithWhite:(float)white alpha:(float)alpha
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     _r = white;
     _g = white;
@@ -63,7 +63,7 @@
 - (CCColor*) initWithHue:(float)hue saturation:(float)saturation brightness:(float)brightness alpha:(float)alpha
 {
 	self = [super init];
-	if (!self) return NULL;
+	if (!self) return nil;
 	
 	float chroma = saturation * brightness;
 	float hueSection = hue / 60.0f;
@@ -104,7 +104,7 @@
 - (CCColor*) initWithRed:(float)red green:(float)green blue:(float)blue alpha:(float)alpha
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     _r = red;
     _g = green;
@@ -117,7 +117,7 @@
 - (CCColor*) initWithRed:(float)red green:(float)green blue:(float)blue
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     _r = red;
     _g = green;
@@ -130,7 +130,7 @@
 - (CCColor*) initWithCGColor:(CGColorRef)cgColor
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     const CGFloat *components = CGColorGetComponents(cgColor);
     
@@ -146,7 +146,7 @@
 - (CCColor*) initWithUIColor:(UIColor *)color
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     CGColorSpaceModel csModel = CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor));
     if (csModel == kCGColorSpaceModelRGB)

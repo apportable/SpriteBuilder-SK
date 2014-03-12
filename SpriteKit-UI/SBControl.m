@@ -20,7 +20,7 @@
 - (id) init
 {
     self = [super init];
-    if (!self) return NULL;
+    if (!self) return nil;
     
     self.userInteractionEnabled = YES;
 	
@@ -28,6 +28,11 @@
 	//self.exclusiveTouch = YES;
     
     return self;
+}
+
+-(NSString*) description
+{
+	return [NSString stringWithFormat:@"<%@, %p> %@", NSStringFromClass([self class]), self, [super description]];
 }
 
 #pragma mark Action handling
@@ -52,6 +57,23 @@
 #pragma mark Touch handling
 
 #if TARGET_OS_IPHONE
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self touchBegan:touches.anyObject withEvent:event];
+}
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self touchMoved:touches.anyObject withEvent:event];
+}
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self touchEnded:touches.anyObject withEvent:event];
+}
+-(void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[self touchCancelled:touches.anyObject withEvent:event];
+}
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -349,7 +371,7 @@
 
 - (id) valueForKey:(NSString *)key state:(SBControlState)state
 {
-    return NULL;
+    return nil;
 }
 
 - (void) setValue:(id)value forKey:(NSString *)key

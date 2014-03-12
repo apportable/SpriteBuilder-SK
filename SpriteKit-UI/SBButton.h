@@ -157,7 +157,7 @@
 - (CGFloat) labelOpacityForState:(SBControlState) state;
 
 /**
- *  Sets the background's sprite frame for the specified state. The sprite frame will be stretched to the preferred size of the label. If set to `NULL` no background will be drawn.
+ *  Sets the background's sprite frame for the specified state. The sprite frame will be stretched to the preferred size of the label. If set to `nil` no background will be drawn.
  *
  *  @param spriteFrame Sprite frame to use for drawing the background.
  *  @param state       State to set the background for.

@@ -50,7 +50,7 @@
  *  @param key   The key to retrieve the value for.
  *  @param state The state to retrieve the value for.
  *
- *  @return The value for the specified key and value or `NULL` if no such value exist.
+ *  @return The value for the specified key and value or `nil` if no such value exist.
  */
 - (id) valueForKey:(NSString *)key state:(SBControlState)state;
 

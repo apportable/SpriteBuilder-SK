@@ -115,10 +115,10 @@
 /* Begin PBXFileReference section */
 		DC05E74B18D060DA00592A1E /* SpriteKit-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpriteKit-UI.h"; sourceTree = "<group>"; };
 		DC05E74C18D0611B00592A1E /* SBControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBControl.h; sourceTree = "<group>"; };
-		DC05E74D18D0611B00592A1E /* SBControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBControl.m; sourceTree = "<group>"; };
-		DC05E75118D0612A00592A1E /* SBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBButton.h; sourceTree = "<group>"; };
-		DC05E75218D0612A00592A1E /* SBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBButton.m; sourceTree = "<group>"; };
-		DC05E75618D0617700592A1E /* SBControl_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBControl_Private.h; sourceTree = "<group>"; };
+		DC05E74D18D0611B00592A1E /* SBControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBControl.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DC05E75118D0612A00592A1E /* SBButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBButton.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DC05E75218D0612A00592A1E /* SBButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBButton.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		DC05E75618D0617700592A1E /* SBControl_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBControl_Private.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CCBReader.h"; sourceTree = "<group>"; };
 		DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CCBReader.m"; sourceTree = "<group>"; };
 		DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+CCBReader.h"; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		DC0F9B3418A4EED4001749BB /* SKTexture+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKTexture+CCBReader.h"; sourceTree = "<group>"; };
 		DC0F9B3518A4EED4001749BB /* SKTexture+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKTexture+CCBReader.m"; sourceTree = "<group>"; };
 		DC0F9B3718A4EED4001749BB /* CCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCColor.h; sourceTree = "<group>"; };
-		DC0F9B3818A4EED4001749BB /* CCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCColor.m; sourceTree = "<group>"; };
+		DC0F9B3818A4EED4001749BB /* CCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CCColor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DC0F9B3918A4EED4001749BB /* CCConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCConfiguration.h; sourceTree = "<group>"; };
 		DC0F9B3A18A4EED4001749BB /* CCConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCConfiguration.m; sourceTree = "<group>"; };
 		DC0F9B3B18A4EED4001749BB /* CCFileUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCFileUtils.h; sourceTree = "<group>"; };
