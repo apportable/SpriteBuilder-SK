@@ -28,9 +28,13 @@
 #include "math.h"
 
 #import "CCBSpriteKitMacros.h"
-
-//#import "../ccMacros.h"		// CC_SWAP
 #include "CGPointExtension.h"
+
+/** simple macro that swaps 2 variables */
+#define CC_SWAP( x, y )			\
+({ __typeof__(x) temp  = (x);		\
+x = y; y = temp;		\
+})
 
 #define kCGPointEpsilon FLT_EPSILON
 
@@ -69,15 +73,13 @@ CGPoint ccpLerp(CGPoint a, CGPoint b, float alpha)
 	return ccpAdd(ccpMult(a, 1.f - alpha), ccpMult(b, alpha));
 }
 
-/*
-float clampf(float value, float min_inclusive, float max_inclusive)
+CGFloat clampf(CGFloat value, CGFloat min_inclusive, CGFloat max_inclusive)
 {
 	if (min_inclusive > max_inclusive) {
 		CC_SWAP(min_inclusive,max_inclusive);
 	}
 	return value < min_inclusive ? min_inclusive : value < max_inclusive? value : max_inclusive;
 }
-*/
 
 CGPoint ccpClamp(CGPoint p, CGPoint min_inclusive, CGPoint max_inclusive)
 {

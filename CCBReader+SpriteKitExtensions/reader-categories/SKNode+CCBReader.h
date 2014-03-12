@@ -44,5 +44,10 @@
 -(void) postProcessAfterLoadFromCCB;
 
 -(CGPoint) convertToWorldSpace:(CGPoint)position;
+-(CGPoint) convertToNodeSpace:(CGPoint)position;
+
+/** Returns YES, if touch is inside sprite
+ Added hit area expansion / contraction */
+-(BOOL) hitTestWithWorldPosition:(CGPoint)pos;
 
 @end

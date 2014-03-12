@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, SBControlState)
 /// -----------------------------------------------------------------------
 
 /** A block that handles action callbacks sent by the control. Use either the block property or the setTarget:selector: method to receive actions from controls. */
-@property (nonatomic,copy) void(^block)(id sender);
+@property (nonatomic,copy) void(^runBlock)(id sender);
 
 /**
  *  Sets a target and selector that should be called when an action is triggered by the control. Actions are generated when buttons are clicked, sliders are dragged etc. You can also set the action callback using the block property.

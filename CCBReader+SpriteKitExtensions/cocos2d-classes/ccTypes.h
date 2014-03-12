@@ -10,12 +10,14 @@
 #define SB_KoboldKit_ccTypes_h
 
 #import <SpriteKit/SpriteKit.h>
+#import "CCColor.h"
 
 typedef double CCTime;
 
 typedef SKNode CCNode;
 typedef SKScene CCScene;
 typedef SKSpriteNode CCSprite;
+typedef SKLabelNode CCLabelTTF;
 typedef SKTexture CCSpriteFrame;
 typedef SKTexture CCTexture;
 

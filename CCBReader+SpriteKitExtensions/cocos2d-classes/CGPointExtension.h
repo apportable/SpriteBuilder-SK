@@ -221,7 +221,7 @@ CGFloat ccpToAngle(const CGPoint v);
 
 /** Clamp a value between from and to.
  */
-//float clampf(float value, float min_inclusive, float max_inclusive);
+CGFloat clampf(CGFloat value, CGFloat min_inclusive, CGFloat max_inclusive);
 
 /** Clamp a point between from and to.
  */

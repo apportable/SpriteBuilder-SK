@@ -411,9 +411,23 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return newPosition;
 }
 
+#pragma mark Cocos2D additions
+
 -(CGPoint) convertToWorldSpace:(CGPoint)position
 {
 	return [self.parent convertPoint:position toNode:self.scene];
 }
 
+-(CGPoint) convertToNodeSpace:(CGPoint)position
+{
+	return [self.parent convertPoint:position fromNode:self.scene];
+}
+
+-(BOOL) hitTestWithWorldPosition:(CGPoint)worldPosition
+{
+	CGPoint localPosition = [self convertToNodeSpace:worldPosition];
+	CGSize size = self.contentSize;
+	BOOL inside = (localPosition.x > size.width) || (localPosition.y > size.height);
+	return inside;
+}
 @end

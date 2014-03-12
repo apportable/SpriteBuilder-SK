@@ -7,6 +7,9 @@
 //
 
 #import "SBControl.h"
+#import "SBControl_Private.h"
+#import "SKNode+CCBReader.h"
+
 #import <objc/objc-runtime.h>
 
 @implementation SBControl
@@ -20,6 +23,8 @@
     if (!self) return NULL;
     
     self.userInteractionEnabled = YES;
+	
+	// FIXME: how is this implemented in CC and how can it be emulated in SK?
 	//self.exclusiveTouch = YES;
     
     return self;
@@ -30,24 +35,23 @@
 - (void) setTarget:(id)target selector:(SEL)selector
 {
     __weak id weakTarget = target; // avoid retain cycle
-    [self setBlock:^(id sender) {
+    [self setRunBlock:^(id sender) {
         typedef void (*Func)(id, SEL, id);
         ((Func)objc_msgSend)(weakTarget, selector, sender);
 	}];
 }
 
-/*
 - (void) triggerAction
 {
-    if (self.enabled && _block)
+    if (self.enabled && _runBlock)
     {
-        _block(self);
+        _runBlock(self);
     }
 }
 
 #pragma mark Touch handling
 
-#ifdef __CC_PLATFORM_IOS
+#if TARGET_OS_IPHONE
 
 - (void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -59,7 +63,7 @@
 
 - (void) touchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if ([self hitTestWithWorldPos:[touch locationInWorld]])
+    if ([self hitTestWithWorldPosition:[touch locationInNode:self.scene]])
     {
         if (!_touchInside)
         {
@@ -116,7 +120,7 @@
 - (void) touchUpOutside:(UITouch*) touch withEvent:(UIEvent*) event
 {}
 
-#elif defined (__CC_PLATFORM_MAC)
+#elif TARGET_OS_MAC
 
 - (void) mouseDown:(NSEvent *)event
 {
@@ -180,7 +184,7 @@
 
 - (BOOL) enabled
 {
-    if (!(_state & CCControlStateDisabled)) return YES;
+    if (!(_state & SBControlStateDisabled)) return YES;
     else return NO;
 }
 
@@ -192,11 +196,11 @@
     
     if (disabled)
     {
-        _state |= CCControlStateDisabled;
+        _state |= SBControlStateDisabled;
     }
     else
     {
-        _state &= ~CCControlStateDisabled;
+        _state &= ~SBControlStateDisabled;
     }
     
     [self stateChanged];
@@ -204,7 +208,7 @@
 
 - (BOOL) selected
 {
-    if (_state & CCControlStateSelected) return YES;
+    if (_state & SBControlStateSelected) return YES;
     else return NO;
 }
 
@@ -214,11 +218,11 @@
     
     if (selected)
     {
-        _state |= CCControlStateSelected;
+        _state |= SBControlStateSelected;
     }
     else
     {
-        _state &= ~CCControlStateSelected;
+        _state &= ~SBControlStateSelected;
     }
     
     [self stateChanged];
@@ -226,7 +230,7 @@
 
 - (BOOL) highlighted
 {
-    if (_state & CCControlStateHighlighted) return YES;
+    if (_state & SBControlStateHighlighted) return YES;
     else return NO;
 }
 
@@ -236,11 +240,11 @@
     
     if (highlighted)
     {
-        _state |= CCControlStateHighlighted;
+        _state |= SBControlStateHighlighted;
     }
     else
     {
-        _state &= ~CCControlStateHighlighted;
+        _state &= ~SBControlStateHighlighted;
     }
     
     [self stateChanged];
@@ -263,11 +267,14 @@
     _needsLayout = NO;
 }
 
+// FIXME: visit (update?)
+/*
 - (void) visit
 {
     if (_needsLayout) [self layout];
     [super visit];
 }
+ */
 
 - (CGSize) contentSize
 {
@@ -275,11 +282,14 @@
     return [super contentSize];
 }
 
+// FIXME: onEnter
+/*
 - (void) onEnter
 {
     [self needsLayout];
     [super onEnter];
 }
+*/
 
 - (void) setContentSizeType:(CCSizeType)contentSizeType
 {
@@ -322,22 +332,22 @@
 
 #pragma mark Setting properties for control states by name
 
-- (CCControlState) controlStateFromString:(NSString*)stateName
+- (SBControlState) controlStateFromString:(NSString*)stateName
 {
-    CCControlState state = 0;
-    if ([stateName isEqualToString:@"Normal"]) state = CCControlStateNormal;
-    else if ([stateName isEqualToString:@"Highlighted"]) state = CCControlStateHighlighted;
-    else if ([stateName isEqualToString:@"Disabled"]) state = CCControlStateDisabled;
-    else if ([stateName isEqualToString:@"Selected"]) state = CCControlStateSelected;
+    SBControlState state = 0;
+    if ([stateName isEqualToString:@"Normal"]) state = SBControlStateNormal;
+    else if ([stateName isEqualToString:@"Highlighted"]) state = SBControlStateHighlighted;
+    else if ([stateName isEqualToString:@"Disabled"]) state = SBControlStateDisabled;
+    else if ([stateName isEqualToString:@"Selected"]) state = SBControlStateSelected;
     
     return state;
 }
 
-- (void) setValue:(id)value forKey:(NSString *)key state:(CCControlState) state
+- (void) setValue:(id)value forKey:(NSString *)key state:(SBControlState) state
 {
 }
 
-- (id) valueForKey:(NSString *)key state:(CCControlState)state
+- (id) valueForKey:(NSString *)key state:(SBControlState)state
 {
     return NULL;
 }
@@ -356,7 +366,7 @@
     NSString* propName = [key substringToIndex:separatorLoc];
     NSString* stateName = [key substringFromIndex:separatorLoc+1];
     
-    CCControlState state = [self controlStateFromString:stateName];
+    SBControlState state = [self controlStateFromString:stateName];
     
     [self setValue:value forKey:propName state:state];
 }
@@ -374,9 +384,9 @@
     NSString* propName = [key substringToIndex:separatorLoc];
     NSString* stateName = [key substringFromIndex:separatorLoc+1];
     
-    CCControlState state = [self controlStateFromString:stateName];
+    SBControlState state = [self controlStateFromString:stateName];
     
     return [self valueForKey:propName state:state];
 }
-*/
+
 @end

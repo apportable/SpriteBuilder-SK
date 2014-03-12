@@ -32,10 +32,19 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	SBButton* button = [SBButton buttonWithTitle:@"Hello SpriteBuilder Button!"];
+	button.position = CGPointMake(100, 85);
+	button.runBlock = ^(id sender){
+		NSLog(@"button block ran ... with sender: %@", sender);
+	};
+	[scene addChild:button];
+	
+	/*
 	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
 	label.text = @"XXXX";
 	label.position = CGPointMake(288.353668, 338.165710);
 	[scene addChild:label];
+	*/
 	
 	/*
 	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
