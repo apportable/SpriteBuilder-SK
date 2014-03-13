@@ -13,6 +13,9 @@
 		DC05E75318D0612A00592A1E /* SBButtonNode.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E75118D0612A00592A1E /* SBButtonNode.h */; };
 		DC05E75418D0612A00592A1E /* SBButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButtonNode.m */; };
 		DC05E75518D0612A00592A1E /* SBButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E75218D0612A00592A1E /* SBButtonNode.m */; };
+		DC05E7A818D1D46300592A1E /* SpriteKit+QuickLook.h in Headers */ = {isa = PBXBuildFile; fileRef = DC05E7A618D1D46300592A1E /* SpriteKit+QuickLook.h */; };
+		DC05E7A918D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E7A718D1D46300592A1E /* SpriteKit+QuickLook.m */; };
+		DC05E7AA18D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */ = {isa = PBXBuildFile; fileRef = DC05E7A718D1D46300592A1E /* SpriteKit+QuickLook.m */; };
 		DC0F9B4118A4EED4001749BB /* NSValue+CCBReader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */; };
 		DC0F9B4218A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
 		DC0F9B4318A4EED4001749BB /* NSValue+CCBReader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */; };
@@ -119,6 +122,8 @@
 		DC05E75118D0612A00592A1E /* SBButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBButtonNode.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		DC05E75218D0612A00592A1E /* SBButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SBButtonNode.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DC05E75618D0617700592A1E /* SBControlNode_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SBControlNode_Private.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		DC05E7A618D1D46300592A1E /* SpriteKit+QuickLook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpriteKit+QuickLook.h"; sourceTree = "<group>"; };
+		DC05E7A718D1D46300592A1E /* SpriteKit+QuickLook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SpriteKit+QuickLook.m"; sourceTree = "<group>"; };
 		DC0F9B2818A4EED4001749BB /* NSValue+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+CCBReader.h"; sourceTree = "<group>"; };
 		DC0F9B2918A4EED4001749BB /* NSValue+CCBReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+CCBReader.m"; sourceTree = "<group>"; };
 		DC0F9B2A18A4EED4001749BB /* SKEmitterNode+CCBReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+CCBReader.h"; sourceTree = "<group>"; };
@@ -226,6 +231,15 @@
 			path = "SpriteKit-UI";
 			sourceTree = "<group>";
 		};
+		DC05E7A218D1D46300592A1E /* SpriteKit-QuickLook */ = {
+			isa = PBXGroup;
+			children = (
+				DC05E7A618D1D46300592A1E /* SpriteKit+QuickLook.h */,
+				DC05E7A718D1D46300592A1E /* SpriteKit+QuickLook.m */,
+			);
+			path = "SpriteKit-QuickLook";
+			sourceTree = "<group>";
+		};
 		DC0F9B2718A4EED4001749BB /* reader-categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +324,7 @@
 				DC8C7B8618A95F96000D29DC /* CCBReader */,
 				DCD9CF5B18A149D7008B3444 /* CCBReader+SpriteKitExtensions */,
 				DC05E74A18D060AE00592A1E /* SpriteKit-UI */,
+				DC05E7A218D1D46300592A1E /* SpriteKit-QuickLook */,
 				DCB5328118BBBA4C006E5162 /* Supporting Files */,
 				DCD9CF0218A148AA008B3444 /* Frameworks */,
 				DCD9CF0118A148AA008B3444 /* Products */,
@@ -377,6 +392,7 @@
 				DCD9CF8518A149D7008B3444 /* CCBSpriteKitReader.h in Headers */,
 				DCD9CF8118A149D7008B3444 /* CCBSpriteKitDummy.h in Headers */,
 				DCD9CF8418A149D7008B3444 /* CCBSpriteKitMacros.h in Headers */,
+				DC05E7A818D1D46300592A1E /* SpriteKit+QuickLook.h in Headers */,
 				DC0F9B4A18A4EED4001749BB /* SKNode+CCBReader.h in Headers */,
 				DC0F9B4D18A4EED4001749BB /* SKPhysicsBody+CCBReader.h in Headers */,
 				DCB5328018BBBA43006E5162 /* SB+SpriteKit-OSX-Prefix.pch in Headers */,
@@ -496,6 +512,7 @@
 				DC0F9B6418A4EED4001749BB /* CGPointExtension.m in Sources */,
 				DC5D4FFB18B4FE5F007EF00C /* CCDirector.m in Sources */,
 				DC8C7B9718A95F96000D29DC /* CCBAnimationManager.m in Sources */,
+				DC05E7AA18D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */,
 				DC8C7B9D18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
@@ -530,6 +547,7 @@
 				DC0F9B6318A4EED4001749BB /* CGPointExtension.m in Sources */,
 				DC5D4FFA18B4FE5F007EF00C /* CCDirector.m in Sources */,
 				DC8C7B9618A95F96000D29DC /* CCBAnimationManager.m in Sources */,
+				DC05E7A918D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */,
 				DC8C7B9C18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
 				DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,

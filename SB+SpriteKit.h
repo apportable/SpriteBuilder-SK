@@ -26,3 +26,4 @@
 #import "CCBSpriteKitCompatibility.h"
 #import "CCBReader.h"
 #import "SpriteKit-UI.h"
+#import "SpriteKit+QuickLook.h"
