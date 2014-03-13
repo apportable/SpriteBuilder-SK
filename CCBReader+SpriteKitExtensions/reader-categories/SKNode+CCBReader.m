@@ -69,6 +69,12 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @end
 
 
+// just to get the compiler to quit nagging about undeclared selector
+@interface SKNode (CCBReader_didLoad)
+-(void) didLoadFromCCB;
+@end
+
+
 @implementation SKNode (CCBReader)
 
 #pragma mark Manage User Data/Objects
@@ -271,6 +277,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
+	
+	if ([self respondsToSelector:@selector(didLoadFromCCB)])
+	{
+		[self performSelector:@selector(didLoadFromCCB)];
+	}
 }
 
 #pragma mark Adjust Size based on sizeType
@@ -430,4 +441,5 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	BOOL inside = (localPosition.x > size.width) || (localPosition.y > size.height);
 	return inside;
 }
+
 @end
