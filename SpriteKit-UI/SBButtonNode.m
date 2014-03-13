@@ -136,7 +136,7 @@
 
 - (void) layout
 {
-    CGSize originalLabelSize = _label.contentSize;
+    CGSize originalLabelSize = _label.frame.size;
     CGSize paddedLabelSize = originalLabelSize;
     paddedLabelSize.width += _horizontalPadding * 2;
     paddedLabelSize.height += _verticalPadding * 2;
@@ -174,7 +174,6 @@
 		 */
     }
     
-	//_background.contentSize = size;
     _background.anchorPoint = ccp(0.5f,0.5f);
     _background.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
     _background.position = ccp(0.5f,0.5f);
@@ -322,6 +321,8 @@
 	_label.scaleY = _originalScaleY;
 	//_background.scaleX = _originalScaleX;
 	//_background.scaleY = _originalScaleY;
+	
+	[self updateBackgroundSlice];
 }
 
 - (void) stateChanged
@@ -337,7 +338,7 @@
             {
 				[self applyOriginalScale];
 				[_label runAction:[SKAction scaleXTo:_originalScaleX * 1.1 y:_originalScaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
-				//[_background runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
+				[_background runAction:[SKAction scaleXTo:_background.scaleX * 1.1 y:_background.scaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
             }
         }
         else
@@ -352,7 +353,7 @@
             }
             
             [_label removeAllActions];
-			//[_background removeAllActions];
+			[_background removeAllActions];
             if (_zoomWhenHighlighted)
             {
 				[self applyOriginalScale];
