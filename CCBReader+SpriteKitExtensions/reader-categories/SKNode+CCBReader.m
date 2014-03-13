@@ -278,9 +278,13 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
 	
-	if ([self respondsToSelector:@selector(didLoadFromCCB)])
+	SEL didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
+	if ([self respondsToSelector:didLoadFromCCB])
 	{
-		[self performSelector:@selector(didLoadFromCCB)];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+		[self performSelector:didLoadFromCCB];
+#pragma clang diagnostic pop
 	}
 }
 
