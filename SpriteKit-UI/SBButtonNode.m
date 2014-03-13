@@ -209,9 +209,6 @@
 	_background.xScale = labelSize.width / _background.texture.size.width;
 	_background.yScale = labelSize.height / _background.texture.size.height;
 	_background.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
-	NSLog(@"\n");
-	NSLog(@"_label: %@", _label.debugDescription);
-	NSLog(@"_background: %@", _background.debugDescription);
 }
 
 #ifdef __CC_PLATFORM_IOS
