@@ -32,6 +32,8 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	[[QuickLookHelper alloc] init];
+	
 	/*
 	SKSpriteNode* s = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithFile:@"ccbResources/ccbButtonNormal.png"]];
 	s.position = CGPointMake(320, 60);
