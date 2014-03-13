@@ -1,0 +1,3 @@
+[submodule "SpriteKit-QuickLook"]
+	path = SpriteKit-QuickLook
+	url = git@github.com:KoboldKit/SpriteKit-QuickLook.git
