@@ -164,30 +164,47 @@
         shrunkSize = YES;
     }
     
-	// FIXME: shrunkSize / label.dimension
-	/**
     if (shrunkSize)
     {
+		// FIXME: shrunkSize / label.dimension
+		/**
         CGSize labelSize = CGSizeMake(clampf(size.width - _horizontalPadding * 2, 0, originalLabelSize.width),
                                       clampf(size.height - _verticalPadding * 2, 0, originalLabelSize.height));
         _label.dimensions = labelSize;
+		 */
     }
-	 */
     
-    _background.contentSize = size;
+	//_background.contentSize = size;
     _background.anchorPoint = ccp(0.5f,0.5f);
     _background.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
     _background.position = ccp(0.5f,0.5f);
-    
+
+	[self updateBackgroundSlice];
+	
     _label.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
     _label.position = ccp(0.5f, 0.5f);
     
 	// FIXME: contentSize with type
 	//self.contentSize = [self convertContentSizeFromPoints: size type:self.contentSizeType];
-	self.contentSize = size;
     
     [super layout];
 }
+
+-(void) updateBackgroundSlice
+{
+	// set bg scale based on label size because Sprite Kit's "9 slice" works in conjunction with scale, not size
+	CGSize labelSize = _label.frame.size;
+	labelSize.width += _horizontalPadding * 2.0;
+	labelSize.height += _verticalPadding * 2.0;
+	_background.size = labelSize;
+	_background.xScale = labelSize.width / _background.texture.size.width;
+	_background.yScale = labelSize.height / _background.texture.size.height;
+	_background.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
+	NSLog(@"\n");
+	NSLog(@"_label: %@", _label.debugDescription);
+	NSLog(@"_background: %@", _background.debugDescription);
+}
+
 #ifdef __CC_PLATFORM_IOS
 
 - (void) touchEntered:(UITouch *)touch withEvent:(UIEvent *)event
@@ -282,13 +299,20 @@
     _background.alpha = [self backgroundOpacityForState:state];
     
     CCSpriteFrame* spriteFrame = [self backgroundSpriteFrameForState:state];
-    if (!spriteFrame) spriteFrame = [self backgroundSpriteFrameForState:SBControlStateNormal];
+	if (spriteFrame == nil)
+	{
+		spriteFrame = [self backgroundSpriteFrameForState:SBControlStateNormal];
+	}
+	//NSLog(@"button sprite frame: %@ for state %d", [spriteFrame debugDescription], (int)state);
+	
     _background.spriteFrame = spriteFrame;
-    
+	
     // Update label
-    _label.color = [self labelColorForState:state].skColor;
+    _label.fontColor = [self labelColorForState:state].skColor;
     _label.alpha = [self labelOpacityForState:state];
-    
+
+	[self updateBackgroundSlice];
+
     [self needsLayout];
 }
 
@@ -296,8 +320,8 @@
 {
 	_label.scaleX = _originalScaleX;
 	_label.scaleY = _originalScaleY;
-	_background.scaleX = _originalScaleX;
-	_background.scaleY = _originalScaleY;
+	//_background.scaleX = _originalScaleX;
+	//_background.scaleY = _originalScaleY;
 }
 
 - (void) stateChanged
@@ -312,8 +336,8 @@
             if (_zoomWhenHighlighted)
             {
 				[self applyOriginalScale];
-				[_label runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
-				[_background runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
+				[_label runAction:[SKAction scaleXTo:_originalScaleX * 1.1 y:_originalScaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
+				//[_background runAction:[SKAction scaleXTo:_originalScaleX * 1.2 y:_originalScaleY * 1.2 duration:0.1] withKey:@"zoomWhenHighlighted"];
             }
         }
         else
@@ -328,7 +352,7 @@
             }
             
             [_label removeAllActions];
-			[_background removeAllActions];
+			//[_background removeAllActions];
             if (_zoomWhenHighlighted)
             {
 				[self applyOriginalScale];
@@ -408,7 +432,7 @@
 - (CGFloat) backgroundOpacityForState:(SBControlState)state
 {
     NSNumber* val = [_backgroundOpacities objectForKey:[NSNumber numberWithInt:state]];
-    if (!val) return 1;
+    if (!val) return 1.0;
     return [val doubleValue];
 }
 
@@ -458,15 +482,11 @@
     return [NSArray arrayWithObjects:
             @"fontName",
             @"fontSize",
-            @"opacity",
-            @"color",
             @"fontColor",
-            @"outlineColor",
-            @"outlineWidth",
-            @"shadowColor",
-            @"shadowBlurRadius",
-            @"shadowOffset",
-            @"shadowOffsetType",
+            @"alpha",
+            @"color",
+            @"colorBlendFactor",
+            @"text",
             nil];
 }
 

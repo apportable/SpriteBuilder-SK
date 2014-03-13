@@ -274,6 +274,11 @@
 
 #pragma mark Layout and state changes
 
+-(void) didLoadFromCCB
+{
+	[self layout];
+}
+
 - (void) stateChanged
 {
     [self needsLayout];
