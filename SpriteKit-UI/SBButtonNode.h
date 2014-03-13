@@ -21,8 +21,8 @@
     NSMutableDictionary* _backgroundOpacities;
     NSMutableDictionary* _labelColors;
     NSMutableDictionary* _labelOpacities;
-	CGFloat _originalScaleX;
-	CGFloat _originalScaleY;
+	CGFloat _originalLabelScaleX;
+	CGFloat _originalLabelScaleY;
     
 	CGFloat _originalHitAreaExpansion;
 }

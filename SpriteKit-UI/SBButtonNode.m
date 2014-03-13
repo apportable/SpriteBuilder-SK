@@ -126,7 +126,7 @@
     [self addChild:_label];
     
     // Setup original scale
-    _originalScaleX = _originalScaleY = 1;
+    _originalLabelScaleX = _originalLabelScaleY = 1;
     
     [self needsLayout];
     [self stateChanged];
@@ -136,6 +136,10 @@
 
 - (void) layout
 {
+	// must start with scaling at 1x1 so that size is correct
+	_label.xScale = 1.0;
+	_label.yScale = 1.0;
+	
     CGSize originalLabelSize = _label.frame.size;
     CGSize paddedLabelSize = originalLabelSize;
     paddedLabelSize.width += _horizontalPadding * 2;
@@ -172,6 +176,12 @@
                                       clampf(size.height - _verticalPadding * 2, 0, originalLabelSize.height));
         _label.dimensions = labelSize;
 		 */
+		
+		// must change the label's scale
+		_label.xScale = self.maxSize.width / paddedLabelSize.width;
+		//_label.yScale = self.maxSize.height / paddedLabelSize.height;
+		_originalLabelScaleX = _label.xScale;
+		//_originalLabelScaleY = _label.yScale;
     }
     
     _background.anchorPoint = ccp(0.5f,0.5f);
@@ -317,8 +327,8 @@
 
 -(void) applyOriginalScale
 {
-	_label.scaleX = _originalScaleX;
-	_label.scaleY = _originalScaleY;
+	_label.scaleX = _originalLabelScaleX;
+	_label.scaleY = _originalLabelScaleY;
 	//_background.scaleX = _originalScaleX;
 	//_background.scaleY = _originalScaleY;
 	
@@ -337,7 +347,7 @@
             if (_zoomWhenHighlighted)
             {
 				[self applyOriginalScale];
-				[_label runAction:[SKAction scaleXTo:_originalScaleX * 1.1 y:_originalScaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
+				[_label runAction:[SKAction scaleXTo:_originalLabelScaleX * 1.1 y:_originalLabelScaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
 				[_background runAction:[SKAction scaleXTo:_background.scaleX * 1.1 y:_background.scaleY * 1.1 duration:0.1] withKey:@"zoomWhenHighlighted"];
             }
         }
