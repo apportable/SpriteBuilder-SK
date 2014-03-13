@@ -32,6 +32,18 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	SKSpriteNode* s = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithFile:@"ccbResources/ccbButtonNormal.png"]];
+	s.position = CGPointMake(320, 60);
+	s.color = [SKColor greenColor];
+	s.colorBlendFactor = 1.0;
+	//s.size = CGSizeMake(200, 80);
+	s.xScale = 251.0 / s.texture.size.width;
+	s.yScale = 24.0 / s.texture.size.height;
+	s.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
+	[scene addChild:s];
+	NSLog(@"test: %@", s.debugDescription);
+	
+	/*
 	SBButtonNode* button = [SBButtonNode buttonWithTitle:@"Hello SpriteBuilder Button!"];
 	button.position = CGPointMake(100, 85);
 	button.label.fontColor = [SKColor purpleColor];
@@ -39,6 +51,7 @@
 		NSLog(@"button block ran ... with sender: %@", sender);
 	};
 	[scene addChild:button];
+	*/
 	
 	/*
 	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
