@@ -32,6 +32,7 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	/*
 	SKSpriteNode* s = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithFile:@"ccbResources/ccbButtonNormal.png"]];
 	s.position = CGPointMake(320, 60);
 	s.color = [SKColor greenColor];
@@ -42,6 +43,7 @@
 	s.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
 	[scene addChild:s];
 	NSLog(@"test: %@", s.debugDescription);
+	*/
 	
 	/*
 	SBButtonNode* button = [SBButtonNode buttonWithTitle:@"Hello SpriteBuilder Button!"];
