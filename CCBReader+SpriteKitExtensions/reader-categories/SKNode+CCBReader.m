@@ -278,7 +278,12 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
 	
-	SEL didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
+	static SEL didLoadFromCCB = nil;
+	if (didLoadFromCCB == nil)
+	{
+		didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
+	}
+	
 	if ([self respondsToSelector:didLoadFromCCB])
 	{
 #pragma clang diagnostic push
