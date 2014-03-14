@@ -32,6 +32,7 @@
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	// just dumps the SK private ivars nothing else
 	[[QuickLookHelper alloc] init];
 	
 	/*

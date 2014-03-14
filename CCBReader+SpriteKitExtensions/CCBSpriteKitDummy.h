@@ -73,6 +73,8 @@
 +(instancetype) connectedSpringJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB restLength:(CGFloat)restLength stiffness:(CGFloat)stiffness damping:(CGFloat)damping;
 +(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB;
 +(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB minDistance:(CGFloat)minDistance maxDistance:(CGFloat)maxDistance;
+@property (nonatomic) CGFloat maxForce;
+@property (nonatomic) CGFloat breakingForce;
 @end
 
 @interface CCPhysicsShape : NSObject
@@ -82,5 +84,8 @@
 @interface CCPhysicsBody : SKPhysicsBody
 +(instancetype) bodyWithShapes:(NSArray*)shapes;
 +(instancetype) bodyWithCircleOfRadius:(CGFloat)cornerRadius andCenter:(CGPoint)point;
-@property CCPhysicsBodyType type;
+@property (nonatomic) CCPhysicsBodyType type;
+@property (nonatomic, copy) NSString* collisionType;
+@property (nonatomic, copy) NSArray* collisionMask;
+@property (nonatomic, copy) NSArray* collisionCategories;
 @end
