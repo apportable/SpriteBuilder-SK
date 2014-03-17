@@ -390,6 +390,12 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	CGPoint newPosition = self.position;
 	CCBReaderPositionType* positionTypeObject = [self getAndRemoveUserDataObjectForKey:CCBReaderUserDataKeyForPositionType];
 
+	CGPoint anchorPoint = CGPointZero;
+	if ([self.parent respondsToSelector:@selector(anchorPoint)])
+	{
+		anchorPoint = [(SKSpriteNode*)self.parent anchorPoint];
+	}
+
 	if (positionTypeObject)
 	{
 		CCPositionType positionType = positionTypeObject.positionType;
@@ -402,8 +408,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 				newPosition.x *= [CCDirector sharedDirector].UIScaleFactor;
 				break;
 			case CCPositionUnitNormalized:
-				newPosition.x *= [self contentSizeFromParent].width;
+			{
+				CGFloat parentWidth = [self contentSizeFromParent].width;
+				newPosition.x = newPosition.x * parentWidth - (parentWidth * anchorPoint.x);
 				break;
+			}
 				
 			default:
 				[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for x: %d", positionType.xUnit];
@@ -419,8 +428,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 				newPosition.y *= [CCDirector sharedDirector].UIScaleFactor;
 				break;
 			case CCPositionUnitNormalized:
-				newPosition.y *= [self contentSizeFromParent].height;
+			{
+				CGFloat parentHeight = [self contentSizeFromParent].height;
+				newPosition.y = newPosition.y * parentHeight - (parentHeight * anchorPoint.y);
 				break;
+			}
 				
 			default:
 				[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for y: %d", positionType.yUnit];
