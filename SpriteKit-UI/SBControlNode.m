@@ -10,7 +10,7 @@
 #import "SBControlNode_Private.h"
 #import "SKNode+CCBReader.h"
 
-#import <objc/objc-runtime.h>
+#import <objc/message.h>
 
 @implementation SBControlNode
 
