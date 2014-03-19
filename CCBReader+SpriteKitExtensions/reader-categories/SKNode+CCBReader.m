@@ -257,6 +257,20 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 -(void) postProcessAfterLoadFromCCB
 {
+	static SEL didLoadFromCCB = nil;
+	if (didLoadFromCCB == nil)
+	{
+		didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
+	}
+	
+	if ([self respondsToSelector:didLoadFromCCB])
+	{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+		[self performSelector:didLoadFromCCB];
+#pragma clang diagnostic pop
+	}
+
 	// apply the positionType, sizeType, scaleType properties here and only once
 	if ([self respondsToSelector:@selector(setSize:)])
 	{
@@ -277,20 +291,6 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
-	
-	static SEL didLoadFromCCB = nil;
-	if (didLoadFromCCB == nil)
-	{
-		didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
-	}
-	
-	if ([self respondsToSelector:didLoadFromCCB])
-	{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-		[self performSelector:didLoadFromCCB];
-#pragma clang diagnostic pop
-	}
 }
 
 #pragma mark Adjust Size based on sizeType
