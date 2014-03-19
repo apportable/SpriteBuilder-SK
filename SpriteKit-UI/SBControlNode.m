@@ -40,7 +40,7 @@
 - (void) setTarget:(id)target selector:(SEL)selector
 {
     __weak id weakTarget = target; // avoid retain cycle
-    [self setRunBlock:^(id sender) {
+    [self setBlock:^(id sender) {
         typedef void (*Func)(id, SEL, id);
         ((Func)objc_msgSend)(weakTarget, selector, sender);
 	}];
@@ -48,9 +48,9 @@
 
 - (void) triggerAction
 {
-    if (self.enabled && _runBlock)
+    if (self.enabled && _block)
     {
-        _runBlock(self);
+        _block(self);
     }
 }
 
