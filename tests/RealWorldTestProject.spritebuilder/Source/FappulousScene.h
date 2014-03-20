@@ -9,5 +9,13 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FappulousScene : SKNode
+{
+	@private
+	NSArray* _badWords;
+	NSArray* _goodWords;
+	NSString* _currentWord;
+	NSInteger _score;
+	NSTimeInterval _lastWordUpdate;
+}
 
 @end

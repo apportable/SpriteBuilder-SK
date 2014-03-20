@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>21</integer>
+	<integer>23</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -97,14 +97,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>-10</real>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>anchorPoint</string>
 						<key>type</key>
 						<string>Point</string>
@@ -121,8 +113,8 @@
 						<string>Color4</string>
 						<key>value</key>
 						<array>
-							<real>0.16121599078178406</real>
-							<real>0.27801302075386047</real>
+							<real>0.43780109286308289</real>
+							<real>0.50704938173294067</real>
 							<real>1</real>
 							<real>1</real>
 						</array>
@@ -137,7 +129,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>opacity</string>
+						<string>alpha</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -148,6 +140,76 @@
 			<dict>
 				<key>UUID</key>
 				<integer>5</integer>
+				<key>animatedProperties</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>scale</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>1</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>0.99000000953674316</real>
+										<real>0.99000000953674316</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>3</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>scale</string>
+							<key>type</key>
+							<integer>4</integer>
+						</dict>
+					</dict>
+				</dict>
 				<key>baseClass</key>
 				<string>SKLabelNode</string>
 				<key>children</key>
@@ -185,33 +247,30 @@
 						</array>
 					</dict>
 					<dict>
+						<key>baseValue</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+						</array>
 						<key>name</key>
 						<string>scale</string>
 						<key>type</key>
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.99000000953674316</real>
+							<real>0.99000000953674316</real>
 							<false/>
 							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>opacity</string>
+						<string>alpha</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
 						<real>0.85000002384185791</real>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -270,6 +329,8 @@
 						<integer>0</integer>
 					</dict>
 				</array>
+				<key>seqExpanded</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -312,7 +373,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.59687501192092896</real>
+							<real>0.5</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -333,14 +394,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>block</string>
 						<key>type</key>
 						<string>Block</string>
@@ -357,8 +410,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>200</real>
-							<real>80</real>
+							<real>300</real>
+							<real>160</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -370,8 +423,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>300</real>
-							<real>100</real>
+							<real>460</real>
+							<real>200</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -391,7 +444,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>PLAY !!!</string>
+							<string>Play With Words</string>
 							<false/>
 						</array>
 					</dict>
@@ -412,6 +465,40 @@
 						<array>
 							<string></string>
 							<string>ccbResources/ccbButtonNormal.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundOpacity|Normal</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.69999998807907104</real>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.37852632999420166</real>
+							<real>1</real>
+							<real>0.34163829684257507</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>labelColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.17213886976242065</real>
+							<real>1</real>
+							<real>0.050219163298606873</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -591,14 +678,6 @@
 							<false/>
 							<integer>0</integer>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -800,8 +879,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -861,14 +938,6 @@
 					<false/>
 					<integer>0</integer>
 				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>zPosition</string>
-				<key>type</key>
-				<string>Float</string>
-				<key>value</key>
-				<real>0.0</real>
 			</dict>
 		</array>
 	</dict>
@@ -932,15 +1001,15 @@
 				<integer>11</integer>
 			</dict>
 			<key>chainedSequenceId</key>
-			<integer>-1</integer>
+			<integer>0</integer>
 			<key>length</key>
-			<real>10</real>
+			<real>5</real>
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

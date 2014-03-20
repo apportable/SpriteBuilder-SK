@@ -25,7 +25,7 @@
 		// Before loading a CCBi file you must tell CCBReader the desired scene size
 		[CCBReader setSceneSize:skView.bounds.size];
 		
-		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
+		SKScene* scene = [CCBReader loadAsScene:@"MainScene"];
 		//scene.anchorPoint = CGPointMake(0.5, 0.5);
 		[skView presentScene:scene];
 	}
