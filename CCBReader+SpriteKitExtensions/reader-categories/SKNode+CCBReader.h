@@ -33,15 +33,16 @@
 @property CGFloat skewY;
 @property CGFloat scaleX;
 @property CGFloat scaleY;
-@property BOOL visible;
+@property CGFloat opacity;
 @property SKTexture* spriteFrame;
 @property CGSize contentSize;
 @property CCSizeType contentSizeType;
 @property CCScaleType scaleType;
 @property CCPositionType positionType;
+@property BOOL visible;
 
 -(CGFloat) scale;
--(void) postProcessAfterLoadFromCCB;
+-(void) postProcessAfterLoadFromCCBWithRootNode:(SKNode*)rootNode;
 
 -(CGPoint) convertToWorldSpace:(CGPoint)position;
 -(CGPoint) convertToNodeSpace:(CGPoint)position;

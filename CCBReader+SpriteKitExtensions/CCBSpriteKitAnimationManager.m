@@ -50,7 +50,7 @@
         
         action = [SKAction scaleXTo:x y:y duration:duration];
     }
-    else if ([name isEqualToString:@"opacity"])
+    else if ([name isEqualToString:@"alpha"] || [name isEqualToString:@"opacity"])
     {
 		CGFloat alpha = [kf1.value doubleValue];
 		action = [SKAction fadeAlphaTo:alpha duration:duration];

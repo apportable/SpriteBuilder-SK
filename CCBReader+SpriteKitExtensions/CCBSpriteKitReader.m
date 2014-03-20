@@ -27,6 +27,7 @@
 #import "NSValue+CCBReader.h"
 #import "CCBSpriteKitAnimationManager.h"
 #import "SKNode+CCBReader.h"
+#import "CCBReaderScene.h"
 
 static CGSize CCBSpriteKitReaderSceneSize;
 
@@ -128,25 +129,25 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO,
 			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
 	
-	return [SKScene sceneWithSize:CCBSpriteKitReaderSceneSize];
+	return [CCBReaderScene sceneWithSize:CCBSpriteKitReaderSceneSize];
 }
 
 #pragma mark CCReader Load overrides
 
--(void) readerDidLoadNode:(CCNode*)node
+-(void) readerDidLoadNode:(CCNode*)node rootNode:(CCNode*)rootNode
 {
-	[node postProcessAfterLoadFromCCB];
+	[node postProcessAfterLoadFromCCBWithRootNode:rootNode];
 	
 	for (CCNode* childNode in node.children)
 	{
-		[self readerDidLoadNode:childNode];
+		[self readerDidLoadNode:childNode rootNode:rootNode];
 	}
 }
 
 -(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize
 {
 	CCNode* node = [super nodeGraphFromFile:file owner:o parentSize:parentSize];
-	[self readerDidLoadNode:node];
+	[self readerDidLoadNode:node rootNode:node];
 	return node;
 }
 

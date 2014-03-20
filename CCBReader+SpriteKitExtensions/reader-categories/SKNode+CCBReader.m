@@ -25,7 +25,7 @@
 #import "SKNode+CCBReader.h"
 #import "CCBSpriteKitMacros.h"
 #import "CCBSpriteKitReader.h"
-
+#import "CCBReaderDelegate.h"
 
 static NSString* CCBReaderNodeUserObjectKey = @"CCBReader:UserObject";
 static NSString* CCBReaderUserDataKeyForContentSizeType = @"CCBReader:contentSizeType";
@@ -69,16 +69,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @end
 
 
-// just to get the compiler to quit nagging about undeclared selector
-@interface SKNode (CCBReader_didLoad)
--(void) didLoadFromCCB;
-@end
-
-
 @implementation SKNode (CCBReader)
 
 #pragma mark Manage User Data/Objects
 
+@dynamic userObject;
 -(void) setUserObject:(id)userObject
 {
 	if (self.userData == nil)
@@ -129,6 +124,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 #pragma mark Properties
 
+@dynamic rotation;
 -(void) setRotation:(CGFloat)rotation
 {
 	self.zRotation = CC_DEGREES_TO_RADIANS(-rotation);
@@ -138,6 +134,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return self.zRotation;
 }
 
+@dynamic skewX, skewY;
 -(void) setSkewX:(CGFloat)skewX
 {
 }
@@ -145,7 +142,6 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 {
 	return 0.0;
 }
-
 -(void) setSkewY:(CGFloat)skewY
 {
 }
@@ -154,6 +150,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return 0.0;
 }
 
+@dynamic visible;
 -(void) setVisible:(BOOL)visible
 {
 	self.hidden = !visible;
@@ -163,6 +160,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return !self.hidden;
 }
 
+@dynamic spriteFrame;
 -(void) setSpriteFrame:(SKTexture *)spriteFrame
 {
 	if ([self isKindOfClass:[SKSpriteNode class]])
@@ -181,6 +179,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return nil;
 }
 
+@dynamic scaleX, scaleY;
 -(void) setScaleX:(CGFloat)scaleX
 {
 	self.xScale = scaleX;
@@ -202,6 +201,17 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return self.xScale;
 }
 
+@dynamic opacity;
+-(void) setOpacity:(CGFloat)opacity
+{
+	self.alpha = opacity;
+}
+-(CGFloat) opacity
+{
+	return self.alpha;
+}
+
+@dynamic scaleType;
 -(void) setScaleType:(CCScaleType)scaleType
 {
 	[[self getOrCreateUserData] setObject:[[CCBReaderScaleType alloc] initWithScaleType:scaleType] forKey:CCBReaderUserDataKeyForScaleType];
@@ -212,6 +222,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return CCScaleTypePoints;
 }
 
+@dynamic contentSize;
 -(void) setContentSize:(CGSize)contentSize
 {
 	if ([self respondsToSelector:@selector(setSize:)])
@@ -229,6 +240,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return self.frame.size;
 }
 
+@dynamic contentSizeType;
 -(void) setContentSizeType:(CCSizeType)contentSizeType
 {
 	[[self getOrCreateUserData] setObject:[[CCBReaderSizeType alloc] initWithSizeType:contentSizeType] forKey:CCBReaderUserDataKeyForContentSizeType];
@@ -239,6 +251,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return CCSizeTypeMake(0, 0);
 }
 
+@dynamic positionType;
 -(void) setPositionType:(CCPositionType)positionType
 {
 	[[self getOrCreateUserData] setObject:[[CCBReaderPositionType alloc] initWithPositionType:positionType] forKey:CCBReaderUserDataKeyForPositionType];
@@ -255,21 +268,33 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 #pragma mark Post Load Processing
 
--(void) postProcessAfterLoadFromCCB
+-(void) sendDidLoadFromCCBWithRootNode:(SKNode*)rootNode
 {
-	static SEL didLoadFromCCB = nil;
-	if (didLoadFromCCB == nil)
-	{
-		didLoadFromCCB = NSSelectorFromString(@"didLoadFromCCB");
-	}
-	
-	if ([self respondsToSelector:didLoadFromCCB])
+	// send readerDidLoadSelf to every node
+	if ([self respondsToSelector:@selector(readerDidLoadSelf)])
 	{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-		[self performSelector:didLoadFromCCB];
+		[self performSelector:@selector(readerDidLoadSelf)];
 #pragma clang diagnostic pop
 	}
+	
+	// also send readerDidLoadChildNode: to the CCB's main node (the 'scene' node)
+	if (self != rootNode)
+	{
+		if ([rootNode respondsToSelector:@selector(readerDidLoadChildNode:)])
+		{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+			[rootNode performSelector:@selector(readerDidLoadChildNode:) withObject:self];
+#pragma clang diagnostic pop
+		}
+	}
+}
+
+-(void) postProcessAfterLoadFromCCBWithRootNode:(SKNode*)rootNode
+{
+	[self sendDidLoadFromCCBWithRootNode:rootNode];
 
 	// apply the positionType, sizeType, scaleType properties here and only once
 	if ([self respondsToSelector:@selector(setSize:)])
@@ -288,9 +313,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 	self.position = [self positionFromPositionType];
 	
+	/*
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
+	 */
 }
 
 #pragma mark Adjust Size based on sizeType
@@ -436,6 +463,28 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 				
 			default:
 				[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for y: %d", positionType.yUnit];
+				break;
+		}
+
+		// Account for reference corner
+		switch (positionType.corner)
+		{
+			default:
+			case CCPositionReferenceCornerBottomLeft:
+				// do nothing
+				break;
+			case CCPositionReferenceCornerTopLeft:
+				// Reverse y-axis
+				newPosition.y = [self contentSizeFromParent].height - newPosition.y;
+				break;
+			case CCPositionReferenceCornerTopRight:
+				// Reverse x-axis and y-axis
+				newPosition.x = [self contentSizeFromParent].width - newPosition.x;
+				newPosition.y = [self contentSizeFromParent].height - newPosition.y;
+				break;
+			case CCPositionReferenceCornerBottomRight:
+				// Reverse x-axis
+				newPosition.x = [self contentSizeFromParent].width - newPosition.x;
 				break;
 		}
 	}
