@@ -108,7 +108,7 @@
     }
     else
     {
-        _background = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:_label.frame.size];
+        _background = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:self.preferredSize];
     }
     
     if (highlighted)
@@ -170,13 +170,6 @@
     
     if (shrunkSize)
     {
-		// FIXME: shrunkSize / label.dimension
-		/**
-        CGSize labelSize = CGSizeMake(clampf(size.width - _horizontalPadding * 2, 0, originalLabelSize.width),
-                                      clampf(size.height - _verticalPadding * 2, 0, originalLabelSize.height));
-        _label.dimensions = labelSize;
-		 */
-		
 		// must change the label's scale
 		_label.xScale = self.maxSize.width / paddedLabelSize.width;
 		//_label.yScale = self.maxSize.height / paddedLabelSize.height;
@@ -205,6 +198,17 @@
 	CGSize labelSize = _label.frame.size;
 	labelSize.width += _horizontalPadding * 2.0;
 	labelSize.height += _verticalPadding * 2.0;
+	
+	// blow up to preferred size if label is too small
+	if (labelSize.width < self.preferredSize.width)
+	{
+		labelSize.width = self.preferredSize.width;
+	}
+	if (labelSize.height < self.preferredSize.height)
+	{
+		labelSize.height = self.preferredSize.height;
+	}
+	
 	_background.size = labelSize;
 	_background.xScale = labelSize.width / _background.texture.size.width;
 	_background.yScale = labelSize.height / _background.texture.size.height;
@@ -504,9 +508,15 @@
     {
         [_label setValue:value forKey:key];
         [self needsLayout];
-        return;
     }
-    [super setValue:value forKey:key];
+	else if ([key isEqualToString:@"size"])
+	{
+		[_background setValue:value forKey:key];
+	}
+	else
+	{
+		[super setValue:value forKey:key];
+	}
 }
 
 - (id) valueForKey:(NSString *)key

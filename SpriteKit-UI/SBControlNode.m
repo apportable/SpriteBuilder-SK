@@ -416,4 +416,8 @@
     return [self valueForKey:propName state:state];
 }
 
+-(CGSize) size
+{
+	return _preferredSize;
+}
 @end
