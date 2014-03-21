@@ -8,6 +8,10 @@
 
 #import "CCBSpriteKitCompatibility.h"
 
+@class CCColor;
+
+CGColorRef CGColorCreateFromCCColor(CCColor* ccColor);
+
 /**
  *  Defines a color to use with cocos2d.
  */
@@ -54,7 +58,7 @@
 + (CCColor *)brownColor;
 + (CCColor *)clearColor;
 
-@property(nonatomic, readonly) CGColorRef CGColor;
+//@property(nonatomic, readonly) CGColorRef CGColor;
 
 #ifdef __CC_PLATFORM_IOS
 @property (nonatomic, readonly) UIColor* UIColor;

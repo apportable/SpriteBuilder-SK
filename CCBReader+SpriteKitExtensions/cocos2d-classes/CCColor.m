@@ -148,7 +148,11 @@
     self = [super init];
     if (!self) return nil;
     
-    CGColorSpaceModel csModel = CGColorSpaceGetModel(CGColorGetColorSpace(self.CGColor));
+	CGColorRef cgColor = CGColorCreateFromCCColor(self);
+	CGColorSpaceRef colorSpace = CGColorGetColorSpace(cgColor);
+    CGColorSpaceModel csModel = CGColorSpaceGetModel(colorSpace);
+	CGColorRelease(cgColor);
+	
     if (csModel == kCGColorSpaceModelRGB)
     {
         [color getRed:&_r green:&_g blue:&_b alpha:&_a];
@@ -171,10 +175,14 @@
 }
 #endif
 
-- (CGColorRef) CGColor
+// C function to please analyzer
+CGColorRef CGColorCreateFromCCColor(CCColor* ccColor)
 {
-    CGFloat components[4] = {(CGFloat)_r, (CGFloat)_g, (CGFloat)_b, (CGFloat)_a};
-    return CGColorCreate(CGColorSpaceCreateDeviceRGB(), components);
+    CGFloat components[4] = {(CGFloat)ccColor->_r, (CGFloat)ccColor->_g, (CGFloat)ccColor->_b, (CGFloat)ccColor->_a};
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGColorRef cgColor = CGColorCreate(colorSpace, components);
+	CGColorSpaceRelease(colorSpace);
+	return cgColor;
 }
 
 #ifdef __CC_PLATFORM_IOS
