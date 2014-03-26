@@ -31,6 +31,12 @@
 
 static CGSize CCBSpriteKitReaderSceneSize;
 
+@interface CCBSKFile : SKNode
+@property (nonatomic) SKNode* ccbFile;
+@end
+@implementation CCBSKFile
+@end
+
 @interface CCBReader (PrivateMethods)
 -(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize;
 @end

@@ -16,14 +16,14 @@
 -(SKAction*) getActionByTag:(int)tag target:(id)target
 {
 	// does nothing
-	[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
+	//[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
 	return nil;
 }
 
 -(void) removeActionByTag:(int)tag target:(id)target
 {
 	// does nothing
-	[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
+	//[NSException raise:NSInternalInconsistencyException format:@"this method should never be called, it only exists to avoid CCBReader compile errors"];
 }
 
 @end
