@@ -27,6 +27,17 @@
 		[skView presentScene:scene];
 		
 		[self addTestNodesToScene:scene];
+		
+		[self dumpNodeGraph:scene];
+	}
+}
+
+-(void) dumpNodeGraph:(SKNode*)node
+{
+	NSLog(@"%@", [node debugQuickLookObject]);
+	for (SKNode* child in node.children)
+	{
+		[self dumpNodeGraph:child];
 	}
 }
 
