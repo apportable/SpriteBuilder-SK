@@ -14,28 +14,23 @@
 
 -(CCActionInterval*) actionFromKeyframe0:(CCBKeyframe*)kf0 andKeyframe1:(CCBKeyframe*)kf1 propertyName:(NSString*)name node:(CCNode*)node
 {
-    float duration = kf1.time - kf0.time;
+    CGFloat duration = kf1.time - kf0.time;
 	SKAction* action = nil;
     
     if ([name isEqualToString:@"rotation"] || [name isEqualToString:@"rotationX"] || [name isEqualToString:@"rotationY"])
     {
-		action = [SKAction rotateToAngle:CC_DEGREES_TO_RADIANS([kf1.value floatValue] * -1.0) duration:duration];
+		action = [SKAction rotateToAngle:CC_DEGREES_TO_RADIANS([kf1.value doubleValue] * -1.0) duration:duration];
     }
 	else if ([name isEqualToString:@"position"])
     {
-        // Get position type
-		//int type = [[[self baseValueForNode:node propertyName:name] objectAtIndex:2] intValue];
-        
         id value = kf1.value;
         
         // Get relative position
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
+        CGFloat x = [[value objectAtIndex:0] doubleValue];
+        CGFloat y = [[value objectAtIndex:1] doubleValue];
         
-        //CGSize containerSize = [self containerSize:node.parent];
-        //CGPoint absPos = [node absolutePositionFromRelative:ccp(x,y) type:type parentSize:containerSize propertyName:name];
-
-        action = [SKAction moveTo:CGPointMake(x, y) duration:duration];
+		CGPoint absolutePosition = [node convertPosition:CGPointMake(x, y) withPositionType:node.positionType];
+        action = [SKAction moveTo:absolutePosition duration:duration];
     }
     else if ([name isEqualToString:@"scale"])
     {
@@ -45,8 +40,8 @@
         id value = kf1.value;
         
         // Get relative scale
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
+        CGFloat x = [[value objectAtIndex:0] doubleValue];
+        CGFloat y = [[value objectAtIndex:1] doubleValue];
         
         action = [SKAction scaleXTo:x y:y duration:duration];
     }
@@ -91,7 +86,7 @@
     return (CCActionInterval*)action;
 }
 
--(CCActionInterval*) easeAction:(CCActionInterval*)action easingType:(int)easingType easingOpt:(float)easingOpt
+-(CCActionInterval*) easeAction:(CCActionInterval*)action easingType:(int)easingType easingOpt:(CGFloat)easingOpt
 {
 	SKAction* skAction = (SKAction*)action;
 	NSAssert2([skAction isKindOfClass:[SKAction class]], @"object %@ (%@) is not a SKAction", action, NSStringFromClass([action class]));

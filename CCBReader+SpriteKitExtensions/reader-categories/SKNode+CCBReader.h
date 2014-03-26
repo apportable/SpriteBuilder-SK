@@ -51,4 +51,7 @@
  Added hit area expansion / contraction */
 -(BOOL) hitTestWithWorldPosition:(CGPoint)pos;
 
+-(CGPoint) convertPosition:(CGPoint)originalPosition withPositionType:(CCPositionType)positionType;
+-(CGSize) absoluteSizeFromSizeType;
+
 @end

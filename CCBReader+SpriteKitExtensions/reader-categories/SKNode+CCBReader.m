@@ -33,7 +33,7 @@ static NSString* CCBReaderUserDataKeyForScaleType = @"CCBReader:scaleType";
 static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType";
 
 @interface CCBReaderSizeType : NSObject
-@property (readonly) CCSizeType sizeType;
+@property (nonatomic) CCSizeType sizeType;
 @end
 @implementation CCBReaderSizeType
 -(id) initWithSizeType:(CCSizeType)sizeType
@@ -45,7 +45,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @end
 
 @interface CCBReaderScaleType : NSObject
-@property CCScaleType scaleType;
+@property (nonatomic) CCScaleType scaleType;
 @end
 @implementation CCBReaderScaleType
 -(id) initWithScaleType:(CCScaleType)scaleType
@@ -57,7 +57,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @end
 
 @interface CCBReaderPositionType : NSObject
-@property CCPositionType positionType;
+@property (nonatomic) CCPositionType positionType;
 @end
 @implementation CCBReaderPositionType
 -(id) initWithPositionType:(CCPositionType)positionType
@@ -104,22 +104,6 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		self.userData = userData;
 	}
 	return userData;
-}
-
--(id) getAndRemoveUserDataObjectForKey:(NSString*)key
-{
-	id object = [self.userData objectForKey:key];
-	
-	if (self.userData.count > 1)
-	{
-		[self.userData removeObjectForKey:key];
-	}
-	else
-	{
-		self.userData = nil;
-	}
-	
-	return object;
 }
 
 #pragma mark Properties
@@ -214,12 +198,21 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @dynamic scaleType;
 -(void) setScaleType:(CCScaleType)scaleType
 {
-	[[self getOrCreateUserData] setObject:[[CCBReaderScaleType alloc] initWithScaleType:scaleType] forKey:CCBReaderUserDataKeyForScaleType];
+	CCBReaderScaleType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForScaleType];
+	if (proxy)
+	{
+		proxy.scaleType = scaleType;
+	}
+	else
+	{
+		proxy = [[CCBReaderScaleType alloc] initWithScaleType:scaleType];
+		[[self getOrCreateUserData] setObject:proxy forKey:CCBReaderUserDataKeyForScaleType];
+	}
 }
 -(CCScaleType) scaleType
 {
-	[NSException raise:NSInternalInconsistencyException format:@"scaleType not available at runtime"];
-	return CCScaleTypePoints;
+	CCBReaderScaleType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForScaleType];
+	return proxy.scaleType;
 }
 
 @dynamic contentSize;
@@ -243,22 +236,41 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 @dynamic contentSizeType;
 -(void) setContentSizeType:(CCSizeType)contentSizeType
 {
-	[[self getOrCreateUserData] setObject:[[CCBReaderSizeType alloc] initWithSizeType:contentSizeType] forKey:CCBReaderUserDataKeyForContentSizeType];
+	CCBReaderSizeType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForContentSizeType];
+	if (proxy)
+	{
+		proxy.sizeType = contentSizeType;
+	}
+	else
+	{
+		proxy = [[CCBReaderSizeType alloc] initWithSizeType:contentSizeType];
+		[[self getOrCreateUserData] setObject:proxy forKey:CCBReaderUserDataKeyForContentSizeType];
+	}
 }
 -(CCSizeType) contentSizeType
 {
-	[NSException raise:NSInternalInconsistencyException format:@"contentSizeType not available at runtime"];
-	return CCSizeTypeMake(0, 0);
+	CCBReaderSizeType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForContentSizeType];
+	return proxy.sizeType;
 }
 
 @dynamic positionType;
 -(void) setPositionType:(CCPositionType)positionType
 {
-	[[self getOrCreateUserData] setObject:[[CCBReaderPositionType alloc] initWithPositionType:positionType] forKey:CCBReaderUserDataKeyForPositionType];
+	CCBReaderPositionType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForPositionType];
+	if (proxy)
+	{
+		proxy.positionType = positionType;
+	}
+	else
+	{
+		proxy = [[CCBReaderPositionType alloc] initWithPositionType:positionType];
+		[[self getOrCreateUserData] setObject:proxy forKey:CCBReaderUserDataKeyForPositionType];
+	}
 }
 -(CCPositionType) positionType
 {
-	return CCPositionTypeMake(CCPositionUnitPoints, CCPositionUnitPoints, CCPositionReferenceCornerBottomLeft);
+	CCBReaderPositionType* proxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForPositionType];
+	return proxy.positionType;
 }
 
 -(void) setValue:(id)value forUndefinedKey:(NSString *)key
@@ -299,11 +311,11 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	// apply the positionType, sizeType, scaleType properties here and only once
 	if ([self respondsToSelector:@selector(setSize:)])
 	{
-		CGSize size = [self sizeFromSizeType];
+		CGSize size = [self absoluteSizeFromSizeType];
 		[(id)self setSize:size];
 	}
 	
-	CCBReaderScaleType* scaleTypeObject = [self getAndRemoveUserDataObjectForKey:CCBReaderUserDataKeyForScaleType];
+	CCBReaderScaleType* scaleTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForScaleType];
 	if (scaleTypeObject.scaleType == CCScaleTypeScaled)
 	{
 		CGFloat scaleFactor = [CCDirector sharedDirector].UIScaleFactor;
@@ -311,7 +323,8 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		self.yScale *= scaleFactor;
 	}
 
-	self.position = [self positionFromPositionType];
+	CCBReaderPositionType* positionTypeProxy = [self.userData objectForKey:CCBReaderUserDataKeyForPositionType];
+	self.position = [self convertPosition:self.position withPositionType:positionTypeProxy.positionType];
 	
 	/*
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
@@ -347,9 +360,9 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return parentSize;
 }
 
--(CGSize) sizeFromSizeType
+-(CGSize) absoluteSizeFromSizeType
 {
-	CCBReaderSizeType* sizeTypeObject = [self getAndRemoveUserDataObjectForKey:CCBReaderUserDataKeyForContentSizeType];
+	CCBReaderSizeType* sizeTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForContentSizeType];
 	if (sizeTypeObject)
 	{
 		CCSizeType sizeType = sizeTypeObject.sizeType;
@@ -412,10 +425,9 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 #pragma mark Adjust Position with positionType
 
--(CGPoint) positionFromPositionType
+-(CGPoint) convertPosition:(CGPoint)originalPosition withPositionType:(CCPositionType)positionType
 {
-	CGPoint newPosition = self.position;
-	CCBReaderPositionType* positionTypeObject = [self getAndRemoveUserDataObjectForKey:CCBReaderUserDataKeyForPositionType];
+	CGPoint newPosition = originalPosition;
 
 	CGPoint anchorPoint = CGPointZero;
 	if ([self.parent respondsToSelector:@selector(anchorPoint)])
@@ -423,70 +435,66 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		anchorPoint = [(SKSpriteNode*)self.parent anchorPoint];
 	}
 
-	if (positionTypeObject)
+	switch (positionType.xUnit)
 	{
-		CCPositionType positionType = positionTypeObject.positionType;
-		switch (positionType.xUnit)
+		case CCPositionUnitPoints:
+			// no adjustment
+			break;
+		case CCPositionUnitUIPoints:
+			newPosition.x *= [CCDirector sharedDirector].UIScaleFactor;
+			break;
+		case CCPositionUnitNormalized:
 		{
-			case CCPositionUnitPoints:
-				// no adjustment
-				break;
-			case CCPositionUnitUIPoints:
-				newPosition.x *= [CCDirector sharedDirector].UIScaleFactor;
-				break;
-			case CCPositionUnitNormalized:
-			{
-				CGFloat parentWidth = [self contentSizeFromParent].width;
-				newPosition.x = newPosition.x * parentWidth - (parentWidth * anchorPoint.x);
-				break;
-			}
-				
-			default:
-				[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for x: %d", positionType.xUnit];
-				break;
+			CGFloat parentWidth = [self contentSizeFromParent].width;
+			newPosition.x = newPosition.x * parentWidth - (parentWidth * anchorPoint.x);
+			break;
 		}
-
-		switch (positionType.yUnit)
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for x: %d", positionType.xUnit];
+			break;
+	}
+	
+	switch (positionType.yUnit)
+	{
+		case CCPositionUnitPoints:
+			// no adjustment
+			break;
+		case CCPositionUnitUIPoints:
+			newPosition.y *= [CCDirector sharedDirector].UIScaleFactor;
+			break;
+		case CCPositionUnitNormalized:
 		{
-			case CCPositionUnitPoints:
-				// no adjustment
-				break;
-			case CCPositionUnitUIPoints:
-				newPosition.y *= [CCDirector sharedDirector].UIScaleFactor;
-				break;
-			case CCPositionUnitNormalized:
-			{
-				CGFloat parentHeight = [self contentSizeFromParent].height;
-				newPosition.y = newPosition.y * parentHeight - (parentHeight * anchorPoint.y);
-				break;
-			}
-				
-			default:
-				[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for y: %d", positionType.yUnit];
-				break;
+			CGFloat parentHeight = [self contentSizeFromParent].height;
+			newPosition.y = newPosition.y * parentHeight - (parentHeight * anchorPoint.y);
+			break;
 		}
-
-		// Account for reference corner
-		switch (positionType.corner)
-		{
-			default:
-			case CCPositionReferenceCornerBottomLeft:
-				// do nothing
-				break;
-			case CCPositionReferenceCornerTopLeft:
-				// Reverse y-axis
-				newPosition.y = [self contentSizeFromParent].height - newPosition.y;
-				break;
-			case CCPositionReferenceCornerTopRight:
-				// Reverse x-axis and y-axis
-				newPosition.x = [self contentSizeFromParent].width - newPosition.x;
-				newPosition.y = [self contentSizeFromParent].height - newPosition.y;
-				break;
-			case CCPositionReferenceCornerBottomRight:
-				// Reverse x-axis
-				newPosition.x = [self contentSizeFromParent].width - newPosition.x;
-				break;
-		}
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for y: %d", positionType.yUnit];
+			break;
+	}
+	
+	// Account for reference corner
+	switch (positionType.corner)
+	{
+		default:
+		case CCPositionReferenceCornerBottomLeft:
+			// do nothing
+			break;
+		case CCPositionReferenceCornerTopLeft:
+			// Reverse y-axis
+			newPosition.y = [self contentSizeFromParent].height - newPosition.y;
+			break;
+		case CCPositionReferenceCornerTopRight:
+			// Reverse x-axis and y-axis
+			newPosition.x = [self contentSizeFromParent].width - newPosition.x;
+			newPosition.y = [self contentSizeFromParent].height - newPosition.y;
+			break;
+		case CCPositionReferenceCornerBottomRight:
+			// Reverse x-axis
+			newPosition.x = [self contentSizeFromParent].width - newPosition.x;
+			break;
 	}
 	
 	return newPosition;
