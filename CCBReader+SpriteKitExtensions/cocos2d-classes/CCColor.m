@@ -413,10 +413,7 @@ CGColorRef CGColorCreateFromCCColor(CCColor* ccColor)
 
 -(SKColor*) skColor
 {
-	return [SKColor colorWithRed:self.red
-						   green:self.green
-							blue:self.blue
-						   alpha:self.alpha];
+	return [SKColor colorWithRed:_r green:_g blue:_b alpha:_a];
 }
 
 -(CCColorComponentRGBA) componentRGBA
