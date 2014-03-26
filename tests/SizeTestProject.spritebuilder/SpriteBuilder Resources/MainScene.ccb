@@ -149,8 +149,10 @@
 								<dict>
 									<key>easing</key>
 									<dict>
+										<key>opt</key>
+										<real>2</real>
 										<key>type</key>
-										<integer>1</integer>
+										<integer>4</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -178,8 +180,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>526</real>
-										<real>288</real>
+										<real>534</real>
+										<real>255</real>
 									</array>
 								</dict>
 							</array>
@@ -288,6 +290,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -305,8 +309,10 @@
 								<dict>
 									<key>easing</key>
 									<dict>
+										<key>opt</key>
+										<real>2</real>
 										<key>type</key>
-										<integer>1</integer>
+										<integer>3</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -317,7 +323,7 @@
 									<key>value</key>
 									<array>
 										<real>0.85739433765411377</real>
-										<real>0.9375</real>
+										<real>0.0625</real>
 									</array>
 								</dict>
 								<dict>
@@ -335,7 +341,7 @@
 									<key>value</key>
 									<array>
 										<real>0.1232394352555275</real>
-										<real>0.056249998509883881</real>
+										<real>0.94375002384185791</real>
 									</array>
 								</dict>
 							</array>
@@ -343,6 +349,54 @@
 							<string>position</string>
 							<key>type</key>
 							<integer>3</integer>
+						</dict>
+						<key>scale</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>opt</key>
+										<real>2</real>
+										<key>type</key>
+										<integer>2</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>0.15346358716487885</real>
+										<real>0.60248297452926636</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>2</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>1</real>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>scale</string>
+							<key>type</key>
+							<integer>4</integer>
 						</dict>
 					</dict>
 				</dict>
@@ -372,7 +426,7 @@
 						<key>baseValue</key>
 						<array>
 							<real>0.85739433765411377</real>
-							<real>0.9375</real>
+							<real>0.0625</real>
 						</array>
 						<key>name</key>
 						<string>position</string>
@@ -381,8 +435,8 @@
 						<key>value</key>
 						<array>
 							<real>0.85739433765411377</real>
-							<real>0.9375</real>
-							<integer>2</integer>
+							<real>0.0625</real>
+							<integer>3</integer>
 							<integer>2</integer>
 							<integer>2</integer>
 						</array>
@@ -396,11 +450,16 @@
 						<array>
 							<real>114</real>
 							<real>64</real>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
+						<key>baseValue</key>
+						<array>
+							<real>0.15346358716487885</real>
+							<real>0.60248297452926636</real>
+						</array>
 						<key>name</key>
 						<string>scale</string>
 						<key>type</key>
@@ -410,7 +469,7 @@
 							<real>0.15346358716487885</real>
 							<real>0.60248297452926636</real>
 							<false/>
-							<integer>0</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -454,8 +513,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
