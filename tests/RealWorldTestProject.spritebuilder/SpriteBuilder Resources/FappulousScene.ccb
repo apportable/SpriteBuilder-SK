@@ -127,7 +127,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>alpha</string>
+						<string>opacity</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -200,7 +200,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>Defeat the evil words!</string>
+								<string>Defeat the bad words!</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -442,11 +442,19 @@
 							</dict>
 							<dict>
 								<key>name</key>
+								<string>alpha</string>
+								<key>type</key>
+								<string>Float</string>
+								<key>value</key>
+								<real>1</real>
+							</dict>
+							<dict>
+								<key>name</key>
 								<string>text</string>
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string>Don't pay the Patent Troll !!</string>
+								<string>Pay Attention !!</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -671,7 +679,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>I've had enough of this crap!</string>
+							<string>I've had enough of this!</string>
 							<false/>
 						</array>
 					</dict>
@@ -723,7 +731,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Disabled</string>
+						<string>labelOpacity|Disabled</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -742,7 +750,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Selected</string>
+						<string>labelOpacity|Selected</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -803,6 +811,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -989,7 +999,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Disabled</string>
+						<string>labelOpacity|Disabled</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -1008,7 +1018,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Selected</string>
+						<string>labelOpacity|Selected</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -1255,7 +1265,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Disabled</string>
+						<string>labelOpacity|Disabled</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
@@ -1274,7 +1284,7 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>labelalpha|Selected</string>
+						<string>labelOpacity|Selected</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>

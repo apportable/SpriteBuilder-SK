@@ -95,14 +95,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>anchorPoint</string>
 						<key>type</key>
 						<string>Point</string>
@@ -135,15 +127,13 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>alpha</string>
+						<string>opacity</string>
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -171,7 +161,25 @@
 									<key>value</key>
 									<array>
 										<real>1</real>
-										<real>80</real>
+										<real>75</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>0.93333333730697632</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>7</real>
+										<real>76</real>
 									</array>
 								</dict>
 								<dict>
@@ -188,8 +196,26 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>-2</real>
-										<real>84</real>
+										<real>-14</real>
+										<real>74</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>1.9666666984558105</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>5.5333337783813477</real>
+										<real>70.466667175292969</real>
 									</array>
 								</dict>
 								<dict>
@@ -206,8 +232,26 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
+										<real>7</real>
+										<real>76</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>3</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
 										<real>0.0</real>
-										<real>88</real>
+										<real>85</real>
 									</array>
 								</dict>
 								<dict>
@@ -224,8 +268,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>1</real>
-										<real>82</real>
+										<real>7</real>
+										<real>68</real>
 									</array>
 								</dict>
 							</array>
@@ -362,7 +406,7 @@
 						<key>baseValue</key>
 						<array>
 							<real>0.0</real>
-							<real>88</real>
+							<real>0.0</real>
 						</array>
 						<key>name</key>
 						<string>position</string>
@@ -370,8 +414,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-1.7999999523162842</real>
-							<real>83.733329772949219</real>
+							<real>7</real>
+							<real>76</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -389,19 +433,11 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.95333331823348999</real>
-							<real>1</real>
+							<real>0.97000002861022949</real>
+							<real>1.0700000524520874</real>
 							<false/>
 							<integer>0</integer>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -460,6 +496,8 @@
 						<integer>0</integer>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -604,11 +642,11 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>119</real>
-													<real>-35</real>
+													<real>0.60000002384185791</real>
+													<real>-1</real>
 													<integer>0</integer>
-													<integer>0</integer>
-													<integer>0</integer>
+													<integer>2</integer>
+													<integer>2</integer>
 												</array>
 											</dict>
 											<dict>
@@ -628,14 +666,6 @@
 													<false/>
 													<integer>0</integer>
 												</array>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>zPosition</string>
-												<key>type</key>
-												<string>Float</string>
-												<key>value</key>
-												<real>0.0</real>
 											</dict>
 											<dict>
 												<key>name</key>
@@ -742,14 +772,6 @@
 											<false/>
 											<integer>0</integer>
 										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>zPosition</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.0</real>
 									</dict>
 									<dict>
 										<key>name</key>
@@ -867,14 +889,6 @@
 									<false/>
 									<integer>0</integer>
 								</array>
-							</dict>
-							<dict>
-								<key>name</key>
-								<string>zPosition</string>
-								<key>type</key>
-								<string>Float</string>
-								<key>value</key>
-								<real>0.0</real>
 							</dict>
 						</array>
 					</dict>
@@ -1015,11 +1029,11 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>120</real>
-													<real>-35</real>
-													<integer>0</integer>
-													<integer>0</integer>
-													<integer>0</integer>
+													<real>0.43999999761581421</real>
+													<real>2.2000000476837158</real>
+													<integer>2</integer>
+													<integer>2</integer>
+													<integer>2</integer>
 												</array>
 											</dict>
 											<dict>
@@ -1042,14 +1056,6 @@
 												<string>rotation</string>
 												<key>type</key>
 												<string>Degrees</string>
-												<key>value</key>
-												<real>0.0</real>
-											</dict>
-											<dict>
-												<key>name</key>
-												<string>zPosition</string>
-												<key>type</key>
-												<string>Float</string>
 												<key>value</key>
 												<real>0.0</real>
 											</dict>
@@ -1158,14 +1164,6 @@
 											<false/>
 											<integer>0</integer>
 										</array>
-									</dict>
-									<dict>
-										<key>name</key>
-										<string>zPosition</string>
-										<key>type</key>
-										<string>Float</string>
-										<key>value</key>
-										<real>0.0</real>
 									</dict>
 									<dict>
 										<key>name</key>
@@ -1284,14 +1282,6 @@
 									<integer>0</integer>
 								</array>
 							</dict>
-							<dict>
-								<key>name</key>
-								<string>zPosition</string>
-								<key>type</key>
-								<string>Float</string>
-								<key>value</key>
-								<real>0.0</real>
-							</dict>
 						</array>
 					</dict>
 				</array>
@@ -1353,19 +1343,11 @@
 							<integer>0</integer>
 						</array>
 					</dict>
-					<dict>
-						<key>name</key>
-						<string>zPosition</string>
-						<key>type</key>
-						<string>Float</string>
-						<key>value</key>
-						<real>0.0</real>
-					</dict>
 				</array>
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>CreditsNode</string>
 		<key>displayName</key>
 		<string>SKNode</string>
 		<key>memberVarAssignmentName</key>
@@ -1407,17 +1389,6 @@
 					<real>0.0</real>
 					<integer>2</integer>
 					<integer>2</integer>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>anchorPoint</string>
-				<key>type</key>
-				<string>Point</string>
-				<key>value</key>
-				<array>
-					<real>0.0</real>
-					<real>0.0</real>
 				</array>
 			</dict>
 			<dict>
@@ -1525,7 +1496,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.93333333730697632</real>
+			<real>2</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

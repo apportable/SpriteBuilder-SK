@@ -38,6 +38,7 @@
 		DCD391FE18C4D02B0091240C /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD391EF18C4D02B0091240C /* Settings@2x.png */; };
 		DCF0C20818D9FFCC007736B4 /* libSB+SpriteKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF0C20018D9FFB1007736B4 /* libSB+SpriteKit-iOS.a */; };
 		DCF0C20E18DA0985007736B4 /* FappulousScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF0C20D18DA0985007736B4 /* FappulousScene.m */; };
+		DCFB062F18E2DF5600DF02A0 /* CreditsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		DCF0C1FA18D9FFB1007736B4 /* SB+SpriteKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SB+SpriteKit.xcodeproj"; path = "../../../../../SB+SpriteKit.xcodeproj"; sourceTree = "<group>"; };
 		DCF0C20C18DA0985007736B4 /* FappulousScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FappulousScene.h; sourceTree = "<group>"; };
 		DCF0C20D18DA0985007736B4 /* FappulousScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FappulousScene.m; sourceTree = "<group>"; };
+		DCFB062D18E2DF5500DF02A0 /* CreditsNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsNode.h; sourceTree = "<group>"; };
+		DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				DCCA2BBC18931163001C0732 /* ViewController.m */,
 				DCCA2B3C18931163001C0732 /* MainScene.h */,
 				DCCA2B3D18931163001C0732 /* MainScene.m */,
+				DCFB062D18E2DF5500DF02A0 /* CreditsNode.h */,
+				DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */,
 				DCF0C20C18DA0985007736B4 /* FappulousScene.h */,
 				DCF0C20D18DA0985007736B4 /* FappulousScene.m */,
 				DCCA2B3E18931163001C0732 /* Resources */,
@@ -268,7 +273,7 @@
 		DC6CA13D1892D44B0082202B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Apportable;
 			};
 			buildConfigurationList = DC6CA1401892D44B0082202B /* Build configuration list for PBXProject "RealWorldTestProject" */;
@@ -351,6 +356,7 @@
 				DCCA2BC218931163001C0732 /* main.m in Sources */,
 				DCCA2BC318931163001C0732 /* MainScene.m in Sources */,
 				DCCA2BBD18931163001C0732 /* AppDelegate.m in Sources */,
+				DCFB062F18E2DF5600DF02A0 /* CreditsNode.m in Sources */,
 				DCF0C20E18DA0985007736B4 /* FappulousScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

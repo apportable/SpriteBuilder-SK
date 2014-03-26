@@ -27,35 +27,27 @@
 		[skView presentScene:scene];
 		
 		[self addTestNodesToScene:scene];
-
-		/*
-		[scene enumerateChildNodesWithName:@"//*" usingBlock:^(SKNode *node, BOOL *stop) {
-			NSLog(@"%@ (%p)  tsize: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([node class]), node,
-				  [node respondsToSelector:@selector(setSize:)] ? [(id)node size].width : node.frame.size.width,
-				  [node respondsToSelector:@selector(setSize:)] ? [(id)node size].height : node.frame.size.height, node.xScale, node.yScale);
-		}];
-		*/
 	}
 }
 
 -(void) addTestNodesToScene:(SKScene*)scene
 {
+	/*
 	SKSpriteNode* s = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(100, 100)];
 	s.position = CGPointMake(50, 0);
 	s.contentSize = CGSizeMake(64, 64);
 	s.scaleX = 8;
 	s.scaleY = 5;
-	/*
 	s.size = CGSizeMake(64, 64);
 	s.xScale = 8;
 	s.yScale = 5;
-	 */
 	s.anchorPoint = CGPointZero;
 	s.colorBlendFactor = 1;
 	s.color = [SKColor redColor];
 	s.alpha = 0.75;
 	s.spriteFrame = [CCSpriteFrame frameWithImageNamed:@"ccbResources/ccbParticleSmoke.png"];
 	[scene addChild:s];
+	 */
 	
 	/*
 	SKLabelNode* label = [SKLabelNode labelNodeWithFontNamed:@"Courier"];

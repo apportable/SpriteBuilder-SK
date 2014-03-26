@@ -9,38 +9,33 @@
 
 @implementation MainScene
 
--(void) didLoadFromCCB
-{
-	NSLog(@"didLoadFromCCB: %p - %@", self, self);
-}
-
 -(void) readerDidLoadSelf
 {
-	NSLog(@"readerDidLoadSelf: %p - %@", self, self);
+	NSLog(@"readerDidLoadSelf: %p - %@ (%@)", self, self.name, NSStringFromClass([self class]));
 }
 
 -(void) readerDidLoadChildNode:(SKNode*)node
 {
-	NSLog(@"readerDidLoadChildNode: %p - %@", node, node);
+	NSLog(@"readerDidLoadChildNode: %p - %@ (%@)", node, node.name, NSStringFromClass([node class]));
+}
 
-	if ([node.name isEqualToString:@"creditsNode"])
-	{
-		// center the node, this has to be done in readerDidLoadNode (or in the subclass' didLoadFromCCB) because
-		// currently there's no runtime support for positionType and other "types"
-		node.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
-		node.position = CGPointMake(0.5, 0.5);
-	}
+-(void) changeLabelText:(id)sender
+{
+	NSLog(@"sender: %@", sender);
+	SBButtonNode* buttonNode = (SBButtonNode*)sender;
+	buttonNode.label.text = [NSString stringWithFormat:@"%d", arc4random_uniform(INT_MAX)];
 }
 
 -(void) playGameButton:(id)sender
 {
+	NSLog(@"sender: %@", sender);
 	SKScene* scene = [CCBReader loadAsScene:@"FappulousScene"];
 	[self.scene.view presentScene:scene transition:[SKTransition doorsOpenHorizontalWithDuration:1.0]];
 }
 
 -(void) showCreditsButton:(id)sender
 {
-	NSLog(@"sneder: %@", sender);
+	NSLog(@"sender: %@", sender);
 	
 	SBButtonNode* buttonNode = (SBButtonNode*)sender;
 	if (buttonNode.state & SBControlStateSelected)
@@ -57,7 +52,7 @@
 
 -(void) update:(NSTimeInterval)currentTime
 {
-	NSLog(@"update: %f", currentTime);
+	//NSLog(@"update: %f", currentTime);
 }
 
 @end
