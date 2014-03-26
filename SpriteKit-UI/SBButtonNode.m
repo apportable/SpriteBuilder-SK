@@ -110,7 +110,9 @@
     {
         _background = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:self.preferredSize];
     }
-    
+
+	_background.colorBlendFactor = 1.0;
+
     if (highlighted)
     {
         [self setBackgroundSpriteFrame:highlighted forState:SBControlStateHighlighted];
@@ -128,20 +130,22 @@
     // Setup original scale
     _originalLabelScaleX = _originalLabelScaleY = 1;
     
-    [self needsLayout];
-    [self stateChanged];
-    
     return self;
+}
+
+-(void) readerDidLoadSelf
+{
+    [self stateChanged];
+	[self layout];
 }
 
 - (void) layout
 {
 	// must start with scaling at 1x1 so that size is correct
-	_label.xScale = 1.0;
-	_label.yScale = 1.0;
+	//_label.xScale = _originalLabelScaleX;
+	//_label.yScale = _originalLabelScaleY;
 	
-    CGSize originalLabelSize = _label.frame.size;
-    CGSize paddedLabelSize = originalLabelSize;
+    CGSize paddedLabelSize = self.preferredSize;
     paddedLabelSize.width += _horizontalPadding * 2;
     paddedLabelSize.height += _verticalPadding * 2;
     
@@ -167,13 +171,13 @@
         size.height = maxSize.height;
         shrunkSize = YES;
     }
-    
+	
     if (shrunkSize)
     {
 		// must change the label's scale
-		_label.xScale = self.maxSize.width / paddedLabelSize.width;
+		//_label.xScale = self.maxSize.width / paddedLabelSize.width;
 		//_label.yScale = self.maxSize.height / paddedLabelSize.height;
-		_originalLabelScaleX = _label.xScale;
+		//_originalLabelScaleX = _label.xScale;
 		//_originalLabelScaleY = _label.yScale;
     }
     
@@ -190,6 +194,8 @@
 	//self.contentSize = [self convertContentSizeFromPoints: size type:self.contentSizeType];
     
     [super layout];
+	
+	//NSLog(@"Button: %@ - label size:{%.0f, %.0f} adjusted:{%.0f, %.0f}", self.name, _label.frame.size.width, _label.frame.size.height, size.width, size.height);
 }
 
 -(void) updateBackgroundSlice
@@ -213,6 +219,8 @@
 	_background.xScale = labelSize.width / _background.texture.size.width;
 	_background.yScale = labelSize.height / _background.texture.size.height;
 	_background.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
+	
+	//NSLog(@"bg scale: %.2f / %.2f", _background.xScale, _background.yScale);
 }
 
 #ifdef __CC_PLATFORM_IOS
@@ -333,7 +341,7 @@
 	//_background.scaleX = _originalScaleX;
 	//_background.scaleY = _originalScaleY;
 	
-	[self updateBackgroundSlice];
+	[self layout];
 }
 
 - (void) stateChanged
