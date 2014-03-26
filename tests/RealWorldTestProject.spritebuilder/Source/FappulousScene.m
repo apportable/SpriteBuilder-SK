@@ -19,12 +19,12 @@
 {
 	NSLog(@"readerDidLoadSelf: %p - %@", self, self);
 	
-	// some of these terms were derives from wildly publicized trademark conflicts, others were taken from Apple's trademark list:
+	// some of these terms were derives from wildly publicized trademark conflicts, others were simply taken from Apple's trademark list:
 	// https://www.apple.com/legal/intellectual-property/trademark/appletmlist.html
-	_badWords = @[@"Candy", @"Saga", @"Edge", @"Paper", @"Flappy", @"Doodle", @"Aperture", @"iCal", @"Keynote", @"Logic", @"Numbers", @"Pages", @"Sherlock", @"Fifa"];
+	_badWords = @[@"Candy", @"Saga", @"Edge", @"Paper", @"Flappy", @"Doodle", @"Memory", @"Scroll", @"Aperture", @"iCal", @"Keynote", @"Logic", @"Numbers", @"Pages", @"Sherlock"];
 	
 	// the good words list is only needed to display some other words to the user
-	_goodWords = @[@"pea", @"penguin", @"brave", @"duck", @"carrot", @"corner", @"sage", @"sawtooth", @"cuboid", @"octopus", @"boring", @"clash", @"illogical", @"ball"];
+	_goodWords = @[@"pea", @"penguin", @"brave", @"duck", @"carrot", @"corner", @"sage", @"sawtooth", @"cuboid", @"octopus", @"boring", @"clash", @"illogical", @"ball", @"mind"];
 	
 	// verify both arrays contain the same number of items
 	NSAssert2(_badWords.count == _goodWords.count,
