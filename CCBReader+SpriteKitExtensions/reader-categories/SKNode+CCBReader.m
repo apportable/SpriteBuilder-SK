@@ -362,19 +362,18 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 -(CGSize) absoluteSizeFromSizeType
 {
+	CGSize size = [(id)self size];
+	CGSize newSize = size;
+
 	CCBReaderSizeType* sizeTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForContentSizeType];
 	if (sizeTypeObject)
 	{
 		CCSizeType sizeType = sizeTypeObject.sizeType;
 		
-		// change size once at load-time based on size type
-		CGSize size = [(id)self size];
-		CGSize newSize = CGSizeZero;
-		
 		switch (sizeType.widthUnit)
 		{
 			case CCSizeUnitPoints:
-				newSize.width = size.width;
+				// nothing to do
 				break;
 			case CCSizeUnitUIPoints:
 				newSize.width = [CCDirector sharedDirector].UIScaleFactor * size.width;
@@ -397,7 +396,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		switch (sizeType.heightUnit)
 		{
 			case CCSizeUnitPoints:
-				newSize.height = size.height;
+				// nothing to do
 				break;
 			case CCSizeUnitUIPoints:
 				newSize.height = [CCDirector sharedDirector].UIScaleFactor * size.height;
@@ -416,11 +415,9 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 				[NSException raise:NSInternalInconsistencyException format:@"unsupported contentSize unit type for height: %d", sizeType.heightUnit];
 				break;
 		}
-		
-		return newSize;
 	}
 	
-	return self.frame.size;
+	return newSize;
 }
 
 #pragma mark Adjust Position with positionType
