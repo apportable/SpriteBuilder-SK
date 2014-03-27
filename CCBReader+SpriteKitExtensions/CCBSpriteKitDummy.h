@@ -67,26 +67,3 @@
 @property CGFloat rotationalSkewY;
 
 @end
-
-@interface CCPhysicsJoint : NSObject
-+(instancetype) connectedPivotJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA;
-+(instancetype) connectedSpringJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB restLength:(CGFloat)restLength stiffness:(CGFloat)stiffness damping:(CGFloat)damping;
-+(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB;
-+(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB minDistance:(CGFloat)minDistance maxDistance:(CGFloat)maxDistance;
-@property (nonatomic) CGFloat maxForce;
-@property (nonatomic) CGFloat breakingForce;
-@property (nonatomic) BOOL collideBodies;
-@end
-
-@interface CCPhysicsShape : NSObject
-+(instancetype) polygonShapeWithPoints:(CGPoint*)polygons count:(NSUInteger)numPoints cornerRadius:(CGFloat)cornerRadius;
-@end
-
-@interface CCPhysicsBody : SKPhysicsBody
-+(instancetype) bodyWithShapes:(NSArray*)shapes;
-+(instancetype) bodyWithCircleOfRadius:(CGFloat)cornerRadius andCenter:(CGPoint)point;
-@property (nonatomic) CCPhysicsBodyType type;
-@property (nonatomic, copy) NSString* collisionType;
-@property (nonatomic, copy) NSArray* collisionMask;
-@property (nonatomic, copy) NSArray* collisionCategories;
-@end

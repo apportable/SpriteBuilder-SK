@@ -24,6 +24,7 @@
  */
 
 #import "CCBReader.h"
+#import "CCBSpriteKitReader.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "CCBAnimationManager.h"
@@ -136,25 +137,6 @@ static inline NSString *readUTF8(CCBReader *self)
     
     return str;
 }
-
-/* commented because of warning: unused function
-static inline BOOL getBit(CCBReader *self)
-{
-    BOOL bit;
-    unsigned char byte = *(self->bytes+self->currentByte);
-    if (byte & (1 << self->currentBit)) bit = YES;
-    else bit = NO;
-    
-    self->currentBit++;
-    if (self->currentBit >= 8)
-    {
-        self->currentBit = 0;
-        self->currentByte++;
-    }
-    
-    return bit;
-}
-*/
 
 static inline void alignBits(CCBReader *self)
 {
@@ -717,10 +699,10 @@ static inline float readFloat(CCBReader *self)
 
         if (localized)
         {
-            txt = CCBLocalize(txt);
 #if DEBUG_READER_PROPERTIES
-			valueString = [NSString stringWithFormat:@"%@ localized: \"%@\"", txt];
+			valueString = [NSString stringWithFormat:@"'%@' -> localized: '%@'", txt, CCBLocalize(txt)];
 #endif
+            txt = CCBLocalize(txt);
         }
         
         if (setProp)
@@ -945,96 +927,6 @@ static inline float readFloat(CCBReader *self)
 {
 }
 
--(void)readJoints
-{
-    int numJoints = readIntWithSign(self, NO);
-    
-    NSMutableArray * joints = [NSMutableArray array];
-    
-    for (int i =0; i < numJoints; i++)
-    {
-        id joint = [self readJoint];
-        [joints addObject:joint];
-    }
-}
-
-
--(CCPhysicsJoint*)readJoint
-{
-    
-    CCPhysicsJoint * joint = nil;
-    NSString* className = [self readCachedString];
-
-    int propertyCount = readIntWithSign(self,NO);
-    
-    NSMutableDictionary * properties = [NSMutableDictionary dictionary];
-    for (int i =0; i < propertyCount; i++)
-    {
-        //Hack to extract the properties serialized. the dictionary is Not a node.
-        [self readPropertyForNode:(CCNode*)properties parent:nil isExtraProp:NO];
-    }
-    
-    CCNode * nodeBodyA = properties[@"bodyA"];
-    CCNode * nodeBodyB = properties[@"bodyB"];
-    
-    float breakingForce = [properties[@"breakingForceEnabled"] boolValue] ? [properties[@"breakingForce"] floatValue] : INFINITY;
-    float maxForce = [properties[@"maxForceEnabled"] boolValue] ? [properties[@"maxForce"] floatValue] : INFINITY;
-    bool  collideBodies = [properties[@"collideBodies"] boolValue];
-    
-    if([className isEqualToString:@"CCPhysicsPivotJoint"])
-    {
-        CGPoint anchorA = [properties[@"anchorA"] CGPointValue];
-        
-        joint = [CCPhysicsJoint connectedPivotJointWithBodyA:nodeBodyA.physicsBody bodyB:nodeBodyB.physicsBody anchorA:anchorA];
-    }
-    else if([className isEqualToString:@"CCPhysicsSpringJoint"])
-    {
-        CGPoint anchorA = [properties[@"anchorA"] CGPointValue];
-        CGPoint anchorB = [properties[@"anchorB"] CGPointValue];
-        
-        float   restLength = [properties[@"restLength"] floatValue];
-        float   stiffness = [properties[@"stiffness"] floatValue];
-        float   damping = [properties[@"damping"] floatValue];
-        
-        return [CCPhysicsJoint connectedSpringJointWithBodyA:nodeBodyA.physicsBody bodyB:nodeBodyB.physicsBody anchorA:anchorA anchorB:anchorB restLength:restLength stiffness:stiffness damping:damping];
-        
-    }
-    else if([className isEqualToString:@"CCPhysicsPinJoint"])
-    {
-        CGPoint anchorA = [properties[@"anchorA"] CGPointValue];
-        CGPoint anchorB = [properties[@"anchorB"] CGPointValue];
-        
-        BOOL minEnabled = [properties[@"minDistanceEnabled"] boolValue];
-        BOOL maxEnabled = [properties[@"maxDistanceEnabled"] boolValue];
-        
-        CGPoint anchoAWorldPos = [nodeBodyA convertToWorldSpace:anchorA];
-        CGPoint anchoBWorldPos = [nodeBodyB convertToWorldSpace:anchorB];
-        
-        float distance =  ccpDistance(anchoAWorldPos, anchoBWorldPos);
-        
-        float minDistance = minEnabled ? [properties[@"minDistance"] floatValue] : distance;
-        float maxDistance = maxEnabled ? [properties[@"maxDistance"] floatValue] : distance;
-        
-        if(maxEnabled || minEnabled)
-        {
-            joint =  [CCPhysicsJoint connectedDistanceJointWithBodyA:nodeBodyA.physicsBody bodyB:nodeBodyB.physicsBody anchorA:anchorA anchorB:anchorB minDistance:minDistance maxDistance:maxDistance];
-        }
-        else
-        {
-            joint =  [CCPhysicsJoint connectedDistanceJointWithBodyA:nodeBodyA.physicsBody bodyB:nodeBodyB.physicsBody anchorA:anchorA anchorB:anchorB];
-        }
-    }
-    else
-    {
-        return nil;
-    }
-    joint.maxForce = maxForce;
-    joint.breakingForce = breakingForce;
-    joint.collideBodies = collideBodies;
-    return joint;
-
-}
-
 -(CCNode*) nodeFromClassName:(NSString*)nodeClassName
 {
     Class nodeClass = NSClassFromString(nodeClassName);
@@ -1171,130 +1063,9 @@ static inline float readFloat(CCBReader *self)
     
     animatedProps = NULL;
     
-    // Read physics
+    // CC body: must read bool to remain in sync with cocos CCB format
     BOOL hasPhysicsBody = readBool(self);
-    if (hasPhysicsBody)
-    {
-//#ifdef __CC_PLATFORM_IOS
-			// Read body shape
-        int bodyShape = readIntWithSign(self, NO);
-        float cornerRadius = readFloat(self);
-
-        // Create body
-        CCPhysicsBody* body = NULL;
-        
-        if (bodyShape == 0)
-        {
-            
-            
-            int numPolygons = readIntWithSign(self, NO);
-            
-            
-            //Read Shapes from binary
-            typedef struct
-            {
-                CGPoint * polygon;
-                int numPoints;
-            } PolygonPtr;
-            
-            PolygonPtr * polygons =malloc(sizeof(PolygonPtr)*numPolygons);
-            
-            for(int j = 0; j < numPolygons; j++)
-            {
-                // Read points
-                int numPoints = readIntWithSign(self, NO);
-                CGPoint* points = malloc(sizeof(CGPoint)*numPoints);
-                for (int i = 0; i < numPoints; i++)
-                {
-                    float x = readFloat(self);
-                    float y = readFloat(self);
-                    
-                    points[i] = ccp(x, y);
-                }
-                
-                polygons[j].polygon = points;
-                polygons[j].numPoints = numPoints;
-                
-            }
-            
-            // INit CCPhysicsShape.
-            NSMutableArray * shapes = [NSMutableArray array];
-            for (int i=0; i < numPolygons; i++)
-            {
-                CCPhysicsShape * shape = [CCPhysicsShape polygonShapeWithPoints:polygons[i].polygon count:polygons[i].numPoints cornerRadius:cornerRadius];
-                [shapes addObject:shape];
-            }
-            //Construct body.
-            body = [CCPhysicsBody bodyWithShapes:shapes];
-           
-            
-            //Cleanup.
-            for (int i=0; i < numPolygons; i++)
-            {
-                free(polygons[i].polygon);
-            }
-            
-            free(polygons);
-
-        
-        }
-        else if (bodyShape == 1)
-        {
-            float x = readFloat(self);
-            float y = readFloat(self);
-            
-            CGPoint point = ccp(x, y);
-
-            body = [CCPhysicsBody bodyWithCircleOfRadius:cornerRadius andCenter:point];
-        }
-        NSAssert(body, @"Unknown body shape");
-        
-        BOOL dynamic = readBool(self);
-        BOOL affectedByGravity = readBool(self);
-        BOOL allowsRotation = readBool(self);
-        
-        if (dynamic) body.type = CCPhysicsBodyTypeDynamic;
-        else body.type = CCPhysicsBodyTypeStatic;
-        
-        float density = readFloat(self);
-        float friction = readFloat(self);
-        float elasticity = readFloat(self);
-        
-        NSString * collisionType = [self readCachedString];
-        NSString * collisionCategories = [self readCachedString];
-        NSString * collisionMask = [self readCachedString];
-        
-        if (dynamic)
-        {
-            body.affectedByGravity = affectedByGravity;
-            body.allowsRotation = allowsRotation;
-        }
-        
-        body.density = density;
-        body.friction = friction;
-        body.elasticity = elasticity;
-        
-        body.collisionType = collisionType;
-        
-        NSArray * masks = nil;
-        if(![collisionMask isEqualToString:@""])
-        {
-            masks = [collisionMask componentsSeparatedByString:@";"];
-        }
-        
-        NSArray * categories= nil;
-        if(![collisionCategories isEqualToString:@""])
-        {
-            categories = [collisionCategories componentsSeparatedByString:@";"];
-        }
-
-        body.collisionMask = masks;
-        body.collisionCategories = categories;
-        
-        node.physicsBody = body;
-//#endif
-
-    }
+    if (hasPhysicsBody) {}
     
     // Read and add children
     int numChildren = readIntWithSign(self, NO);
@@ -1305,7 +1076,6 @@ static inline float readFloat(CCBReader *self)
 			[node addChild:child];
 		}
     }
-    
     
     return node;
 }
@@ -1456,8 +1226,10 @@ static inline float readFloat(CCBReader *self)
     actionManagers = am;
     
     CCNode* node = [self readNodeGraphParent:NULL];
-    [self readJoints];
-    
+
+	// CC read joints fix: must read int to ensure ccb stream remains in sync with cocos2d
+	readIntWithSign(self, NO);
+
     [actionManagers setObject:self.animationManager forKey:[NSValue valueWithPointer:(__bridge const void *)(node)]];
     
     if (cleanUp)
@@ -1547,19 +1319,7 @@ static inline float readFloat(CCBReader *self)
 
 + (CCBReader*) reader
 {
-	// if available, create an instance of Sprite Kit Reader class instead
-	Class spriteKitReaderClass = NSClassFromString(@"CCBSpriteKitReader");
-	if (spriteKitReaderClass)
-	{
-		return [[spriteKitReaderClass alloc] init];
-	}
-	
-    return [[CCBReader alloc] init];
-}
-
-+ (CCNode*) load:(NSString*) file owner:(id)owner
-{
-    return [CCBReader load:file owner:owner parentSize:[CCDirector sharedDirector].designSize];
+    return [[CCBSpriteKitReader alloc] init];
 }
 
 + (CCNode*) nodeGraphFromData:(NSData*) data owner:(id)owner parentSize:(CGSize)parentSize
@@ -1567,19 +1327,19 @@ static inline float readFloat(CCBReader *self)
     return [[CCBReader reader] loadWithData:data owner:owner];
 }
 
-+ (CCNode*) load:(NSString*) file owner:(id)owner parentSize:(CGSize)parentSize
-{
-    return [[CCBReader reader] nodeGraphFromFile:file owner:owner parentSize:parentSize];
-}
-
 + (CCNode*) load:(NSString*) file
 {
     return [CCBReader load:file owner:NULL];
 }
 
-+ (CCScene*) loadAsScene:(NSString *)file owner:(id)owner
++ (CCNode*) load:(NSString*) file owner:(id)owner
 {
-    return [CCBReader sceneWithNodeGraphFromFile:file owner:owner parentSize:[CCDirector sharedDirector].designSize];
+    return [CCBReader load:file owner:owner parentSize:[CCDirector sharedDirector].designSize];
+}
+
++ (CCNode*) load:(NSString*) file owner:(id)owner parentSize:(CGSize)parentSize
+{
+    return [[CCBReader reader] nodeGraphFromFile:file owner:owner parentSize:parentSize];
 }
 
 -(CCScene*) createScene
@@ -1597,7 +1357,12 @@ static inline float readFloat(CCBReader *self)
 
 + (CCScene*) loadAsScene:(NSString*) file
 {
-    return [CCBReader loadAsScene:file owner:NULL]; 
+    return [CCBReader loadAsScene:file owner:NULL];
+}
+
++ (CCScene*) loadAsScene:(NSString *)file owner:(id)owner
+{
+    return [CCBReader sceneWithNodeGraphFromFile:file owner:owner parentSize:[CCDirector sharedDirector].designSize];
 }
 
 + (NSString*) ccbDirectoryPath
