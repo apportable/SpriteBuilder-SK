@@ -139,95 +139,7 @@ static NSInteger ccbAnimationManagerID = 0;
 
 - (CCActionInterval*) actionFromKeyframe0:(CCBKeyframe*)kf0 andKeyframe1:(CCBKeyframe*)kf1 propertyName:(NSString*)name node:(CCNode*)node
 {
-    float duration = kf1.time - kf0.time;
-    
-    if ([name isEqualToString:@"rotation"])
-    {
-        return [CCBRotateTo actionWithDuration:duration angle:[kf1.value floatValue]];
-    }
-    else if ([name isEqualToString:@"rotationalSkewX"])
-    {
-        return [CCBRotateXTo actionWithDuration:duration angle:[kf1.value floatValue]];
-    }
-    else if ([name isEqualToString:@"rotationalSkewY"])
-    {
-        return [CCBRotateYTo actionWithDuration:duration angle:[kf1.value floatValue]];
-    }
-    else if ([name isEqualToString:@"opacity"])
-    {
-        return [CCActionFadeTo actionWithDuration:duration opacity:[kf1.value intValue]];
-    }
-    else if ([name isEqualToString:@"color"])
-    {
-        CCColor* color = kf1.value;
-        return [CCActionTintTo actionWithDuration:duration color:color];
-    }
-    else if ([name isEqualToString:@"visible"])
-    {
-        if ([kf1.value boolValue])
-        {
-            return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCActionShow action]];
-        }
-        else
-        {
-            return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCActionHide action]];
-        }
-    }
-    else if ([name isEqualToString:@"spriteFrame"])
-    {
-        return [CCActionSequence actionOne:[CCActionDelay actionWithDuration:duration] two:[CCBSetSpriteFrame actionWithSpriteFrame:kf1.value]];
-    }
-    else if ([name isEqualToString:@"position"])
-    {
-        // Get position type
-        //int type = [[[self baseValueForNode:node propertyName:name] objectAtIndex:2] intValue];
-        
-        id value = kf1.value;
-        
-        // Get relative position
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
-        
-        //CGSize containerSize = [self containerSize:node.parent];
-        
-        //CGPoint absPos = [node absolutePositionFromRelative:ccp(x,y) type:type parentSize:containerSize propertyName:name];
-        
-        return [CCActionMoveTo actionWithDuration:duration position:ccp(x,y)];
-    }
-    else if ([name isEqualToString:@"scale"])
-    {
-        // Get position type
-        //int type = [[[self baseValueForNode:node propertyName:name] objectAtIndex:2] intValue];
-        
-        id value = kf1.value;
-        
-        // Get relative scale
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
-        
-        /*
-        if (type == kCCBScaleTypeMultiplyResolution)
-        {
-            float resolutionScale = [node resolutionScale];
-            x *= resolutionScale;
-            y *= resolutionScale;
-        }*/
-        
-        return [CCActionScaleTo actionWithDuration:duration scaleX:x scaleY:y];
-    }
-    else if ([name isEqualToString:@"skew"])
-    {
-        id value = kf1.value;
-        
-        float x = [[value objectAtIndex:0] floatValue];
-        float y = [[value objectAtIndex:1] floatValue];
-        
-        return [CCActionSkewTo actionWithDuration:duration skewX:x skewY:y];
-    }
-    else
-    {
-        NSLog(@"CCBReader: Failed to create animation for property: %@", name);
-    }
+	[NSException raise:NSInternalInconsistencyException format:@"CCBAnimationManager: use corresponding method in CCBSpriteKitAnimationManager instead"];
     return NULL;
 }
 
@@ -312,69 +224,8 @@ static NSInteger ccbAnimationManagerID = 0;
 
 - (CCActionInterval*) easeAction:(CCActionInterval*) action easingType:(int)easingType easingOpt:(float) easingOpt
 {
-    if ([action isKindOfClass:[CCActionSequence class]]) return action;
-    
-    if (easingType == kCCBKeyframeEasingLinear)
-    {
-        return action;
-    }
-    else if (easingType == kCCBKeyframeEasingInstant)
-    {
-        return [CCActionEaseInstant actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingCubicIn)
-    {
-        return [CCActionEaseIn actionWithAction:action rate:easingOpt];
-    }
-    else if (easingType == kCCBKeyframeEasingCubicOut)
-    {
-        return [CCActionEaseOut actionWithAction:action rate:easingOpt];
-    }
-    else if (easingType == kCCBKeyframeEasingCubicInOut)
-    {
-        return [CCActionEaseInOut actionWithAction:action rate:easingOpt];
-    }
-    else if (easingType == kCCBKeyframeEasingBackIn)
-    {
-        return [CCActionEaseBackIn actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingBackOut)
-    {
-        return [CCActionEaseBackOut actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingBackInOut)
-    {
-        return [CCActionEaseBackInOut actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingBounceIn)
-    {
-        return [CCActionEaseBounceIn actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingBounceOut)
-    {
-        return [CCActionEaseBounceOut actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingBounceInOut)
-    {
-        return [CCActionEaseBounceInOut actionWithAction:action];
-    }
-    else if (easingType == kCCBKeyframeEasingElasticIn)
-    {
-        return [CCActionEaseElasticIn actionWithAction:action period:easingOpt];
-    }
-    else if (easingType == kCCBKeyframeEasingElasticOut)
-    {
-        return [CCActionEaseElasticOut actionWithAction:action period:easingOpt];
-    }
-    else if (easingType == kCCBKeyframeEasingElasticInOut)
-    {
-        return [CCActionEaseElasticInOut actionWithAction:action period:easingOpt];
-    }
-    else
-    {
-        NSLog(@"CCBReader: Unkown easing type %d", easingType);
-        return action;
-    }
+	[NSException raise:NSInternalInconsistencyException format:@"CCBAnimationManager: use corresponding method in CCBSpriteKitAnimationManager instead"];
+	return nil;
 }
 
 - (void) removeActionsByTag:(NSInteger)tag fromNode:(CCNode*)node
@@ -464,6 +315,9 @@ static NSInteger ccbAnimationManagerID = 0;
 
 - (id) actionForSoundChannel:(CCBSequenceProperty*) channel
 {
+	[NSException raise:NSInternalInconsistencyException format:@"Sprite Kit reader does not support sound channel actions yet"];
+	return nil;
+	/*
     float lastKeyframeTime = 0;
     
     NSMutableArray* actions = [NSMutableArray array];
@@ -488,6 +342,7 @@ static NSInteger ccbAnimationManagerID = 0;
     if (!actions.count) return NULL;
     
     return [CCActionSequence actionWithArray:actions];
+	*/
 }
 
 - (void) runAnimationsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration
@@ -555,6 +410,9 @@ static NSInteger ccbAnimationManagerID = 0;
     
     if (seq.soundChannel)
     {
+		[NSException raise:NSInternalInconsistencyException format:@"Sprite Kit reader does not support sound channels yet"];
+		
+		/*
         // Build sound actions for channel
         CCAction* action = [self actionForSoundChannel:seq.soundChannel];
         if (action)
@@ -562,6 +420,7 @@ static NSInteger ccbAnimationManagerID = 0;
             action.tag = (int)animationManagerId;
             [self.rootNode runAction:action];
         }
+		 */
     }
     
     // Set the running scene
@@ -622,11 +481,6 @@ static NSInteger ccbAnimationManagerID = 0;
 - (void) dealloc
 {
     self.rootNode = NULL;
-    
-    
-    
-    
-    
 }
 
 - (void) debug
@@ -636,157 +490,3 @@ static NSInteger ccbAnimationManagerID = 0;
 }
 
 @end
-
-#pragma mark Custom Actions
-
-@implementation CCBSetSpriteFrame
-+(id) actionWithSpriteFrame: (CCSpriteFrame*) sf;
-{
-	return [[self alloc]initWithSpriteFrame:sf];
-}
-
--(id) initWithSpriteFrame: (CCSpriteFrame*) sf;
-{
-	if( (self=[super init]) )
-		spriteFrame = sf;
-    
-	return self;
-}
-
-
--(id) copyWithZone: (NSZone*) zone
-{
-	CCSpriteFrame *copy = [[[self class] allocWithZone: zone] initWithSpriteFrame:spriteFrame];
-	return copy;
-}
-
--(void) update:(CCTime)time
-{
-	((CCSprite *)self.target).spriteFrame = spriteFrame;
-}
-
-@end
-
-
-@implementation CCBRotateTo
-
-+(id) actionWithDuration:(CCTime)duration angle:(float)angle
-{
-    return [[self alloc] initWithDuration:duration angle:angle];
-}
-
--(id) initWithDuration:(CCTime)duration angle:(float)angle
-{
-    self = [super initWithDuration:duration];
-    if (!self) return NULL;
-    
-    dstAngle_ = angle;
-    
-    return self;
-}
-
-- (id) copyWithZone:(NSZone *)zone
-{
-    CCAction *copy = [[[self class] allocWithZone: zone] initWithDuration:[self duration] angle:dstAngle_];
-	return copy;
-}
-
--(void) startWithTarget:(CCNode *)aTarget
-{
-	[super startWithTarget:aTarget];
-    startAngle_ = [(CCNode *)self.target rotation];
-    diffAngle_ = dstAngle_ - startAngle_;
-}
-
--(void) update: (CCTime) t
-{
-	[(CCNode *)self.target setRotation: startAngle_ + diffAngle_ * t];
-}
-
-@end
-
-
-@implementation CCBRotateXTo
-
--(void) startWithTarget:(CCNode *)aTarget
-{
-    _originalTarget = _target = aTarget;
-    
-    _elapsed = 0.0f;
-	_firstTick = YES;
-    
-    startAngle_ = [self.target rotationalSkewX];
-    diffAngle_ = dstAngle_ - startAngle_;
-}
-
--(void) update: (CCTime) t
-{
-	[self.target setRotationalSkewX: startAngle_ + diffAngle_ * t];
-}
-
-@end
-
-
-@implementation CCBRotateYTo
-
--(void) startWithTarget:(CCNode *)aTarget
-{
-	_originalTarget = _target = aTarget;
-    
-    _elapsed = 0.0f;
-	_firstTick = YES;
-    
-    startAngle_ = [self.target rotationalSkewY];
-    diffAngle_ = dstAngle_ - startAngle_;
-}
-
--(void) update: (CCTime) t
-{
-	[self.target setRotationalSkewY: startAngle_ + diffAngle_ * t];
-}
-
-@end
-
-
-@implementation CCBSoundEffect
-
-+(id) actionWithSoundFile:(NSString*)f pitch:(float)pi pan:(float) pa gain:(float)ga
-{
-    return [[CCBSoundEffect alloc] initWithSoundFile:f pitch:pi pan:pa gain:ga];
-}
-
--(id) initWithSoundFile:(NSString*)file pitch:(float)pi pan:(float) pa gain:(float)ga
-{
-    self = [super init];
-    if (!self) return NULL;
-    
-    soundFile = [file copy];
-    pitch = pi;
-    pan = pa;
-    gain = ga;
-    
-    return self;
-}
-
-
-- (void) update:(CCTime)time
-{
-    [[OALSimpleAudio sharedInstance] playEffect:soundFile volume:gain pitch:pitch pan:pan loop:NO];
-}
-
-@end
-
-@implementation CCActionEaseInstant
--(void) update: (CCTime) t
-{
-    if (t < 0)
-    {
-        [self.inner update:0];
-    }
-    else
-    {
-        [self.inner update:1];
-    }
-}
-@end
-

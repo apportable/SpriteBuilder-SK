@@ -45,6 +45,7 @@
 	double _firstTick;
 }
 
+/*
 +(instancetype) action;
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action;
 +(instancetype) actionWithAction:(CCBSpriteKitDummyAction*)action rate:(CGFloat)rate;
@@ -58,7 +59,7 @@
 +(instancetype) actionWithTarget:(id)target selector:(SEL)selector;
 -(instancetype) initWithDuration:(double)duration;
 -(void) startWithTarget:(id)target;
-
+*/
 @property int tag;
 @property id target;
 @property id originalTarget;
