@@ -41,6 +41,10 @@
  */
 @interface CCBReader : NSObject
 {
+	@protected
+    CCBAnimationManager* animationManager;
+	
+	@private
     NSData* data;
     unsigned char* bytes;
     int currentByte;
@@ -51,11 +55,12 @@
     
     id owner;
     
-    CCBAnimationManager* animationManager;
     NSMutableDictionary* actionManagers;
     NSMutableSet* animatedProps;
     NSMutableDictionary* nodeMapping;//Maps UUID -> Node
 }
+
+@property (nonatomic) BOOL rootNodeIsScene;
 
 /// -----------------------------------------------------------------------
 /// @name Setup
@@ -117,7 +122,7 @@
  *
  *  @return The loaded node graph.
  */
-+ (CCNode*) load:(NSString*) file;
++ (CCNode*) load:(NSString*)file;
 
 /**
  *  Loads a ccbi-file with the specified name and owner. Using the extension is optional, e.g. both MyNodeGraph and MyNodeGraph.ccbi will work.
@@ -127,16 +132,17 @@
  *
  *  @return The loaded node graph.
  */
-+ (CCNode*) load:(NSString*) file owner:(id)owner;
++ (CCNode*) load:(NSString*)file owner:(id)owner;
 
 /**
  *  Loads a ccbi-file with the specified name and wraps it in a CCScene node. Using the extension is optional, e.g. both MyNodeGraph and MyNodeGraph.ccbi will work.
  *
  *  @param file Name of the file to load.
+ *  @param size The size of the scene.
  *
  *  @return The loaded node graph.
  */
-+ (CCScene*) loadAsScene:(NSString*) file;
++ (CCScene*) loadAsScene:(NSString*)file size:(CGSize)size;
 
 /**
  *  Loads a ccbi-file with the specified name and owner and wraps it in a CCScene node. Using the extension is optional, e.g. both MyNodeGraph and MyNodeGraph.ccbi will work.
@@ -146,7 +152,7 @@
  *
  *  @return The loaded node graph.
  */
-+ (CCScene*) loadAsScene:(NSString *)file owner:(id)owner;
++ (CCScene*) loadAsScene:(NSString *)file size:(CGSize)size owner:(id)owner;
 
 /// -----------------------------------------------------------------------
 /// @name Animations
@@ -161,7 +167,6 @@
 // Internal use: override methods for Sprite Kit Reader subclass
 +(void) setSceneSize:(CGSize)sceneSize;
 -(CCNode*) nodeFromClassName:(NSString*)nodeClassName;
--(CCScene*) createScene;
 -(void) readerDidSetSpriteFrame:(CCSpriteFrame*)spriteFrame node:(CCNode*)node;
 
 @end

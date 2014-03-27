@@ -26,6 +26,10 @@
 #import "CCBReader.h"
 
 @interface CCBSpriteKitReader : CCBReader
+{
+	@private
+	NSUInteger _nodeCount;
+}
 
 +(CGSize) internal_getSceneSize;
 -(void) setSceneSize:(CGSize)sceneSize;

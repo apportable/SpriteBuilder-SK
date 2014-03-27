@@ -40,7 +40,7 @@
 
 // Set to 1 to log assignment of properties in the form: "propertyname = value"
 #ifndef DEBUG_READER_PROPERTIES
-#define DEBUG_READER_PROPERTIES 1
+#define DEBUG_READER_PROPERTIES 0
 #endif
 
 
@@ -1342,27 +1342,24 @@ static inline float readFloat(CCBReader *self)
     return [[CCBReader reader] nodeGraphFromFile:file owner:owner parentSize:parentSize];
 }
 
--(CCScene*) createScene
++ (CCScene*) loadAsScene:(NSString*)file size:(CGSize)size
 {
-	return [CCScene node];
+    return [CCBReader loadAsScene:file size:size owner:NULL];
 }
 
-+ (CCScene*) sceneWithNodeGraphFromFile:(NSString *)file owner:(id)owner parentSize:(CGSize)parentSize
++ (CCScene*) loadAsScene:(NSString *)file size:(CGSize)size owner:(id)owner
 {
-    CCNode* node = [CCBReader load:file owner:owner parentSize:parentSize];
-    CCScene* scene = [[CCBReader reader] createScene];
-    [scene addChild:node];
-    return scene;
+    return [CCBReader sceneWithNodeGraphFromFile:file sceneSize:size owner:owner];
 }
 
-+ (CCScene*) loadAsScene:(NSString*) file
++ (CCScene*) sceneWithNodeGraphFromFile:(NSString *)file sceneSize:(CGSize)sceneSize owner:(id)owner
 {
-    return [CCBReader loadAsScene:file owner:NULL];
-}
-
-+ (CCScene*) loadAsScene:(NSString *)file owner:(id)owner
-{
-    return [CCBReader sceneWithNodeGraphFromFile:file owner:owner parentSize:[CCDirector sharedDirector].designSize];
+	CCBReader* reader = [CCBReader reader];
+	reader.rootNodeIsScene = YES;
+	reader.sceneSize = sceneSize;
+	
+    CCNode* node = [reader nodeGraphFromFile:file owner:owner parentSize:sceneSize];
+    return (CCScene*)node;
 }
 
 + (NSString*) ccbDirectoryPath
@@ -1379,6 +1376,7 @@ static inline float readFloat(CCBReader *self)
 -(void) setSceneSize:(CGSize)sceneSize
 {
 	// does nothing, only needed for CCBSpriteKitReader
+	[NSException raise:NSInternalInconsistencyException format:@"should never get here"];
 }
 
 @end

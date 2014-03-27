@@ -27,7 +27,6 @@
 #import "NSValue+CCBReader.h"
 #import "CCBSpriteKitAnimationManager.h"
 #import "SKNode+CCBReader.h"
-#import "CCBReaderScene.h"
 
 static CGSize CCBSpriteKitReaderSceneSize;
 
@@ -67,11 +66,21 @@ static CGSize CCBSpriteKitReaderSceneSize;
 {
 	CCNode* node = nil;
 	Class nodeClass = NSClassFromString(nodeClassName);
-	NSAssert1([nodeClass isSubclassOfClass:[SKScene class]] == NO, @"class %@ is a subclass of SKScene, it should be a SKNode subclass", nodeClassName);
 	
 	if (nodeClass)
 	{
-		node = [nodeClass node];
+		if (_nodeCount == 0 && self.rootNodeIsScene)
+		{
+			NSAssert2([nodeClass isSubclassOfClass:[CCScene class]],
+					  @"Class named '%@' must inherit from SKScene if it should be loaded as Scene. Currently it's a subclass of '%@'.",
+					  nodeClassName, NSStringFromClass([nodeClass superclass]));
+			
+			node = [[nodeClass alloc] initWithSize:self.sceneSize];
+		}
+		else
+		{
+			node = [nodeClass node];
+		}
 	}
 
 	if (node == nil)
@@ -100,7 +109,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 			node = (CCNode*)[SKEmitterNode node];
 		}
 
-		NSAssert1(node, @"CCBReader: class named '%@' does not exist", nodeClassName);
+		NSAssert1(node, @"CCBReader: class named '%@' not supported / does not exist", nodeClassName);
 	}
 
 #if DEBUG
@@ -117,6 +126,7 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 	// mark the node as being created by CCBReader
 	node.loadedFromCCB = YES;
+	_nodeCount++;
 	
 	return node;
 }
@@ -131,14 +141,6 @@ static CGSize CCBSpriteKitReaderSceneSize;
 {
 	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO, @"CCBSpriteKitReader: scene size must be assigned before loading a CCBi");
 	return CCBSpriteKitReaderSceneSize;
-}
-
--(CCScene*) createScene
-{
-	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO,
-			 @"CCBReader scene size not set! Use: [CCBReader setSceneSize:kkView.bounds.size]; to set scene size before loading the first scene.");
-	
-	return [CCBReaderScene sceneWithSize:CCBSpriteKitReaderSceneSize];
 }
 
 #pragma mark CCReader Load overrides

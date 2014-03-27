@@ -52,9 +52,6 @@
 		DC0F9B6218A4EED4001749BB /* CGPointExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0F9B3F18A4EED4001749BB /* CGPointExtension.h */; };
 		DC0F9B6318A4EED4001749BB /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B4018A4EED4001749BB /* CGPointExtension.m */; };
 		DC0F9B6418A4EED4001749BB /* CGPointExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F9B4018A4EED4001749BB /* CGPointExtension.m */; };
-		DC37BF4118DB5203003BD75E /* CCBReaderScene.h in Headers */ = {isa = PBXBuildFile; fileRef = DC37BF3F18DB5203003BD75E /* CCBReaderScene.h */; };
-		DC37BF4218DB5203003BD75E /* CCBReaderScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37BF4018DB5203003BD75E /* CCBReaderScene.m */; };
-		DC37BF4318DB5203003BD75E /* CCBReaderScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37BF4018DB5203003BD75E /* CCBReaderScene.m */; };
 		DC5D4FF418B4F768007EF00C /* CCBSpriteKitAnimationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = DC5D4FF218B4F768007EF00C /* CCBSpriteKitAnimationManager.h */; };
 		DC5D4FF518B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5D4FF318B4F768007EF00C /* CCBSpriteKitAnimationManager.m */; };
 		DC5D4FF618B4F768007EF00C /* CCBSpriteKitAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5D4FF318B4F768007EF00C /* CCBSpriteKitAnimationManager.m */; };
@@ -151,8 +148,6 @@
 		DC0F9B3E18A4EED4001749BB /* CCSpriteFrameCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteFrameCache.m; sourceTree = "<group>"; };
 		DC0F9B3F18A4EED4001749BB /* CGPointExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPointExtension.h; sourceTree = "<group>"; };
 		DC0F9B4018A4EED4001749BB /* CGPointExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPointExtension.m; sourceTree = "<group>"; };
-		DC37BF3F18DB5203003BD75E /* CCBReaderScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBReaderScene.h; sourceTree = "<group>"; };
-		DC37BF4018DB5203003BD75E /* CCBReaderScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBReaderScene.m; sourceTree = "<group>"; };
 		DC37BF4418DB64BE003BD75E /* CCBReaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCBReaderDelegate.h; sourceTree = "<group>"; };
 		DC5D4FF218B4F768007EF00C /* CCBSpriteKitAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBSpriteKitAnimationManager.h; sourceTree = "<group>"; };
 		DC5D4FF318B4F768007EF00C /* CCBSpriteKitAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBSpriteKitAnimationManager.m; sourceTree = "<group>"; };
@@ -384,8 +379,6 @@
 				DCD9CF6118A149D7008B3444 /* CCBSpriteKitReader.m */,
 				DC5D4FF218B4F768007EF00C /* CCBSpriteKitAnimationManager.h */,
 				DC5D4FF318B4F768007EF00C /* CCBSpriteKitAnimationManager.m */,
-				DC37BF3F18DB5203003BD75E /* CCBReaderScene.h */,
-				DC37BF4018DB5203003BD75E /* CCBReaderScene.m */,
 				DC37BF4418DB64BE003BD75E /* CCBReaderDelegate.h */,
 			);
 			path = "CCBReader+SpriteKitExtensions";
@@ -422,7 +415,6 @@
 				DC5D4FF418B4F768007EF00C /* CCBSpriteKitAnimationManager.h in Headers */,
 				DC8C7B9B18A95F96000D29DC /* CCBLocalizationManager.h in Headers */,
 				DC05E75318D0612A00592A1E /* SBButtonNode.h in Headers */,
-				DC37BF4118DB5203003BD75E /* CCBReaderScene.h in Headers */,
 				DC0F9B5018A4EED4001749BB /* SKSpriteNode+CCBReader.h in Headers */,
 				DC05E74E18D0611B00592A1E /* SBControlNode.h in Headers */,
 				DC0F9B4418A4EED4001749BB /* SKEmitterNode+CCBReader.h in Headers */,
@@ -524,7 +516,6 @@
 				DC8C7B9718A95F96000D29DC /* CCBAnimationManager.m in Sources */,
 				DC05E7AA18D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */,
 				DC8C7B9D18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
-				DC37BF4318DB5203003BD75E /* CCBReaderScene.m in Sources */,
 				DC0F9B5218A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4C18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
 				DC05E75018D0611B00592A1E /* SBControlNode.m in Sources */,
@@ -560,7 +551,6 @@
 				DC8C7B9618A95F96000D29DC /* CCBAnimationManager.m in Sources */,
 				DC05E7A918D1D46300592A1E /* SpriteKit+QuickLook.m in Sources */,
 				DC8C7B9C18A95F96000D29DC /* CCBLocalizationManager.m in Sources */,
-				DC37BF4218DB5203003BD75E /* CCBReaderScene.m in Sources */,
 				DC0F9B5118A4EED4001749BB /* SKSpriteNode+CCBReader.m in Sources */,
 				DC0F9B4B18A4EED4001749BB /* SKNode+CCBReader.m in Sources */,
 				DC05E74F18D0611B00592A1E /* SBControlNode.m in Sources */,
