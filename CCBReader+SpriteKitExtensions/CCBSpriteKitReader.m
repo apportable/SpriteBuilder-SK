@@ -115,6 +115,9 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	}
 #endif
 
+	// mark the node as being created by CCBReader
+	node.loadedFromCCB = YES;
+	
 	return node;
 }
 
@@ -142,7 +145,10 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 -(void) readerDidLoadNode:(CCNode*)node rootNode:(CCNode*)rootNode
 {
-	[node postProcessAfterLoadFromCCBWithRootNode:rootNode];
+	if (node.loadedFromCCB)
+	{
+		[node postProcessAfterLoadFromCCBWithRootNode:rootNode];
+	}
 	
 	for (CCNode* childNode in node.children)
 	{

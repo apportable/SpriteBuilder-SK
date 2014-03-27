@@ -27,19 +27,20 @@
 
 @interface SKNode (CCBReader)
 
-@property id userObject;
-@property CGFloat rotation;
-@property CGFloat skewX;
-@property CGFloat skewY;
-@property CGFloat scaleX;
-@property CGFloat scaleY;
-@property CGFloat opacity;
-@property SKTexture* spriteFrame;
-@property CGSize contentSize;
-@property CCSizeType contentSizeType;
-@property CCScaleType scaleType;
-@property CCPositionType positionType;
-@property BOOL visible;
+@property (nonatomic) id userObject;
+@property (nonatomic) CGFloat rotation;
+@property (nonatomic) CGFloat skewX;
+@property (nonatomic) CGFloat skewY;
+@property (nonatomic) CGFloat scaleX;
+@property (nonatomic) CGFloat scaleY;
+@property (nonatomic) CGFloat opacity;
+@property (nonatomic) SKTexture* spriteFrame;
+@property (nonatomic) CGSize contentSize;
+@property (nonatomic) CCSizeType contentSizeType;
+@property (nonatomic) CCScaleType scaleType;
+@property (nonatomic) CCPositionType positionType;
+@property (nonatomic) BOOL visible;
+@property (nonatomic) BOOL loadedFromCCB;
 
 -(CGFloat) scale;
 -(void) postProcessAfterLoadFromCCBWithRootNode:(SKNode*)rootNode;

@@ -517,4 +517,24 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	return inside;
 }
 
+#pragma mark Loaded from CCB
+
+static NSString* CCBUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loadedFromCCB";
+@dynamic loadedFromCCB;
+-(void) setLoadedFromCCB:(BOOL)loadedFromCCB
+{
+	if (loadedFromCCB)
+	{
+		[[self getOrCreateUserData] setObject:@"YES" forKey:CCBUserDataKeyForLoadedFromCCB];
+	}
+	else
+	{
+		[[self getOrCreateUserData] removeObjectForKey:CCBUserDataKeyForLoadedFromCCB];
+	}
+}
+-(BOOL) loadedFromCCB
+{
+	return ([[self getOrCreateUserData] objectForKey:CCBUserDataKeyForLoadedFromCCB] != nil);
+}
+
 @end
