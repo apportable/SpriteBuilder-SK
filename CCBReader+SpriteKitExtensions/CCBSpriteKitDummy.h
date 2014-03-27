@@ -75,6 +75,7 @@
 +(instancetype) connectedDistanceJointWithBodyA:(id)bodyA bodyB:(id)bodyB anchorA:(CGPoint)anchorA anchorB:(CGPoint)anchorB minDistance:(CGFloat)minDistance maxDistance:(CGFloat)maxDistance;
 @property (nonatomic) CGFloat maxForce;
 @property (nonatomic) CGFloat breakingForce;
+@property (nonatomic) BOOL collideBodies;
 @end
 
 @interface CCPhysicsShape : NSObject
