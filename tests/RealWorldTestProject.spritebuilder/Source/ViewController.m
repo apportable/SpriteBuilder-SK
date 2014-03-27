@@ -22,10 +22,7 @@
 		skView.showsNodeCount = YES;
 		skView.showsDrawCount = YES;
 		
-		// Before loading a CCBi file you must tell CCBReader the desired scene size
-		[CCBReader setSceneSize:skView.bounds.size];
-		
-		SKScene* scene = [CCBReader loadAsScene:@"MainScene"];
+		SKScene* scene = [CCBReader loadAsScene:@"MainScene" size:skView.bounds.size];
 		//scene.anchorPoint = CGPointMake(0.5, 0.5);
 		[skView presentScene:scene];
 	}

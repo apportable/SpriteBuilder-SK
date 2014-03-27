@@ -37,7 +37,7 @@
 
 -(void) endGameButton:(id)sender
 {
-	SKScene* scene = [CCBReader loadAsScene:@"MainScene"];
+	SKScene* scene = [CCBReader loadAsScene:@"MainScene" size:self.scene.size];
 	[self.scene.view presentScene:scene];
 }
 

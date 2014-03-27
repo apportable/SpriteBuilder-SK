@@ -29,7 +29,7 @@
 -(void) playGameButton:(id)sender
 {
 	NSLog(@"sender: %@", sender);
-	SKScene* scene = [CCBReader loadAsScene:@"FappulousScene"];
+	SKScene* scene = [CCBReader loadAsScene:@"FappulousScene" size:self.scene.size];
 	[self.scene.view presentScene:scene transition:[SKTransition doorsOpenHorizontalWithDuration:1.0]];
 }
 
@@ -52,7 +52,7 @@
 
 -(void) update:(NSTimeInterval)currentTime
 {
-	//NSLog(@"update: %f", currentTime);
+	NSLog(@"update: %f", currentTime);
 }
 
 @end
