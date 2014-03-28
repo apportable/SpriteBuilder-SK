@@ -92,7 +92,7 @@
 		}
 		
 		// select a random word
-		uint32_t randomWordIndex = arc4random_uniform(_badWords.count);
+		uint32_t randomWordIndex = arc4random_uniform((uint32_t)_badWords.count);
 		_currentWord = wordList[randomWordIndex];
 		
 		SKNode* wordNode = [CCBReader load:@"word"];
