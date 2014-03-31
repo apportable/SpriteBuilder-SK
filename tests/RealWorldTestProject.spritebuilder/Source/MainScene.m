@@ -52,7 +52,7 @@
 
 -(void) update:(NSTimeInterval)currentTime
 {
-	NSLog(@"update: %f", currentTime);
+	//NSLog(@"update: %f", currentTime);
 }
 
 @end
