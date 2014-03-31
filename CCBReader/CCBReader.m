@@ -327,32 +327,34 @@ static inline float readFloat(CCBReader *self)
 	
     if (type == kCCBPropTypePosition)
     {
-        float x = readFloat(self);
-        float y = readFloat(self);
+		CGPoint pos;
+		pos.x = readFloat(self);
+		pos.y = readFloat(self);
         int corner = readByte(self);
         int xUnit = readByte(self);
         int yUnit = readByte(self);
 
 #if DEBUG_READER_PROPERTIES
-		valueString = [NSString stringWithFormat:@"{%f, %f}", x, y];
+		valueString = [NSString stringWithFormat:@"{%f, %f} (corner: %i unit: %i,%i)", pos.x, pos.y, corner, xUnit, yUnit];
 #endif
 
         if (setProp)
         {
-#ifdef __CC_PLATFORM_IOS
-            [node setValue:[NSValue valueWithCGPoint:ccp(x,y)] forKey:name];
-#elif defined (__CC_PLATFORM_MAC)
-            [node setValue:[NSValue valueWithPoint:ccp(x,y)] forKey:name];
-#endif
             CCPositionType pType = CCPositionTypeMake(xUnit, yUnit, corner);
             [node setValue:[NSValue valueWithBytes:&pType objCType:@encode(CCPositionType)] forKey:[name stringByAppendingString:@"Type"]];
-            
+			pos = [node convertPosition:pos withPositionType:pType];
+
+#ifdef __CC_PLATFORM_IOS
+            [node setValue:[NSValue valueWithCGPoint:pos] forKey:name];
+#elif defined (__CC_PLATFORM_MAC)
+            [node setValue:[NSValue valueWithPoint:pos] forKey:name];
+#endif
             
             if ([animatedProps containsObject:name])
             {
-                id baseValue = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:x],
-                                [NSNumber numberWithFloat:y],
+                id baseValue = [NSMutableArray arrayWithObjects:
+                                [NSNumber numberWithFloat:pos.x],
+                                [NSNumber numberWithFloat:pos.y],
                                 [NSNumber numberWithInt:corner],
                                 [NSNumber numberWithInt:xUnit],
                                 [NSNumber numberWithInt:yUnit],
@@ -423,7 +425,7 @@ static inline float readFloat(CCBReader *self)
             
             if ([animatedProps containsObject:name])
             {
-                id baseValue = [NSArray arrayWithObjects:
+                id baseValue = [NSMutableArray arrayWithObjects:
                                 [NSNumber numberWithFloat:x],
                                 [NSNumber numberWithFloat:y],
                                 [NSNumber numberWithInt:sType],
@@ -904,7 +906,7 @@ static inline float readFloat(CCBReader *self)
         float a = readFloat(self);
         float b = readFloat(self);
         
-        value = [NSArray arrayWithObjects:
+        value = [NSMutableArray arrayWithObjects:
                  [NSNumber numberWithFloat:a],
                  [NSNumber numberWithFloat:b],
                  nil];
@@ -985,7 +987,6 @@ static inline float readFloat(CCBReader *self)
             for (int k = 0; k < numKeyframes; k++)
             {
                 CCBKeyframe* keyframe = [self readKeyframeOfType:seqProp.type];
-                
                 [seqProp.keyframes addObject:keyframe];
             }
             
@@ -1016,6 +1017,11 @@ static inline float readFloat(CCBReader *self)
         
         [self readPropertyForNode:node parent:parent isExtraProp:isExtraProp];
     }
+	
+	if (seqs.count > 0)
+	{
+		[animationManager makeSequenceKeyframesAbsoluteForNode:node];
+	}
     
     // Handle sub ccb files (remove middle node)
     if ([node respondsToSelector:@selector(setCcbFile:)])

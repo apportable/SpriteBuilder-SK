@@ -26,11 +26,11 @@
         id value = kf1.value;
         
         // Get relative position
-        CGFloat x = [[value objectAtIndex:0] doubleValue];
-        CGFloat y = [[value objectAtIndex:1] doubleValue];
+		CGPoint pos = CGPointZero;
+		pos.x = [[value objectAtIndex:0] doubleValue];
+		pos.y = [[value objectAtIndex:1] doubleValue];
         
-		CGPoint absolutePosition = [node convertPosition:CGPointMake(x, y) withPositionType:node.positionType];
-        action = [SKAction moveTo:absolutePosition duration:duration];
+        action = [SKAction moveTo:pos duration:duration];
     }
     else if ([name isEqualToString:@"scale"])
     {

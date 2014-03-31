@@ -80,4 +80,6 @@
 
 - (void) debug;
 
+-(void) makeSequenceKeyframesAbsoluteForNode:(CCNode*)node;
+
 @end

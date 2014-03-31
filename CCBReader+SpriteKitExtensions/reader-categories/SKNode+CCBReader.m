@@ -323,8 +323,10 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		self.yScale *= scaleFactor;
 	}
 
+	/*
 	CCBReaderPositionType* positionTypeProxy = [self.userData objectForKey:CCBReaderUserDataKeyForPositionType];
 	self.position = [self convertPosition:self.position withPositionType:positionTypeProxy.positionType];
+	 */
 	
 	/*
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,

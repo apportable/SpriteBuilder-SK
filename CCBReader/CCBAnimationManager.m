@@ -60,6 +60,38 @@ static NSInteger ccbAnimationManagerID = 0;
     return self;
 }
 
+-(void) makeSequenceKeyframesAbsoluteForNode:(CCNode*)node
+{
+	// loop through all sequences and update position etc based on relative types
+	NSValue* nodePtr = [NSValue valueWithPointer:(__bridge const void *)(node)];
+    
+    NSMutableDictionary* seq = [nodeSequences objectForKey:nodePtr];
+	for (NSDictionary* sequenceKey in seq)
+	{
+		NSDictionary* sequence = [seq objectForKey:sequenceKey];
+		
+		for (NSString* seqPropKey in sequence)
+		{
+			CCBSequenceProperty* seqProp = [sequence objectForKey:seqPropKey];
+			//NSLog(@"prop: %@ (%@) %@", seqProp, NSStringFromClass([seqProp class]), seqProp.name);
+			
+			for (CCBKeyframe* keyFrame in seqProp.keyframes)
+			{
+				//NSLog(@"keyframe: %@ (%@) %@", keyFrame, NSStringFromClass([keyFrame class]), keyFrame.value);
+				
+				if (seqProp.type == kCCBPropTypePosition)
+				{
+					CGFloat x = [[keyFrame.value objectAtIndex:0] doubleValue];
+					CGFloat y = [[keyFrame.value objectAtIndex:1] doubleValue];
+					CGPoint pos = [node convertPosition:CGPointMake(x, y) withPositionType:node.positionType];
+					[keyFrame.value replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:pos.x]];
+					[keyFrame.value replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:pos.y]];
+				}
+			}
+		}
+	}
+}
+
 - (CGSize) containerSize:(CCNode*)node
 {
     if (node) return node.contentSize;
@@ -167,12 +199,14 @@ static NSInteger ccbAnimationManagerID = 0;
             //int type = [[[self baseValueForNode:node propertyName:name] objectAtIndex:2] intValue];
             
             // Get relative position
-            float x = [[value objectAtIndex:0] floatValue];
-            float y = [[value objectAtIndex:1] floatValue];
+			CGFloat x = [[value objectAtIndex:0] doubleValue];
+			CGFloat y = [[value objectAtIndex:1] doubleValue];
+			CGPoint pos = CGPointMake(x, y);
+		
 #ifdef __CC_PLATFORM_IOS
-            [node setValue:[NSValue valueWithCGPoint:ccp(x,y)] forKey:name];
+            [node setValue:[NSValue valueWithCGPoint:pos] forKey:name];
 #elif defined (__CC_PLATFORM_MAC)
-            [node setValue:[NSValue valueWithPoint:ccp(x,y)] forKey:name];
+            [node setValue:[NSValue valueWithPoint:pos] forKey:name];
 #endif
             
             //[node setRelativePosition:ccp(x,y) type:type parentSize:[self containerSize:node.parent] propertyName:name];
@@ -183,8 +217,8 @@ static NSInteger ccbAnimationManagerID = 0;
             //int type = [[[self baseValueForNode:node propertyName:name] objectAtIndex:2] intValue];
             
             // Get relative scale
-            float x = [[value objectAtIndex:0] floatValue];
-            float y = [[value objectAtIndex:1] floatValue];
+            float x = [[value objectAtIndex:0] doubleValue];
+            float y = [[value objectAtIndex:1] doubleValue];
             
             [node setValue:[NSNumber numberWithFloat:x] forKey:[name stringByAppendingString:@"X"]];
             [node setValue:[NSNumber numberWithFloat:y] forKey:[name stringByAppendingString:@"Y"]];
@@ -193,8 +227,8 @@ static NSInteger ccbAnimationManagerID = 0;
         }
         else if ([name isEqualToString:@"skew"])
         {
-            node.skewX = [[value objectAtIndex:0] floatValue];
-            node.skewY = [[value objectAtIndex:1] floatValue];
+            node.skewX = [[value objectAtIndex:0] doubleValue];
+            node.skewY = [[value objectAtIndex:1] doubleValue];
         }
         else
         {
