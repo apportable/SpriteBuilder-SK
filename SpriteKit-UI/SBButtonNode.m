@@ -313,7 +313,8 @@
 - (void) updatePropertiesForState:(SBControlState)state
 {
     // Update background
-    _background.color = [self backgroundColorForState:state].skColor;
+	CCColor* bgColor = [self backgroundColorForState:state];
+    _background.color = bgColor.skColor;
     _background.alpha = [self backgroundOpacityForState:state];
     
     CCSpriteFrame* spriteFrame = [self backgroundSpriteFrameForState:state];
@@ -326,7 +327,8 @@
     _background.spriteFrame = spriteFrame;
 	
     // Update label
-    _label.fontColor = [self labelColorForState:state].skColor;
+	CCColor* labelColor = [self labelColorForState:state];
+    _label.fontColor = labelColor.skColor;
     _label.alpha = [self labelOpacityForState:state];
 
 	[self updateBackgroundSlice];
