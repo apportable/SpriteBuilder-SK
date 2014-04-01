@@ -80,6 +80,6 @@
 
 - (void) debug;
 
--(void) makeSequenceKeyframesAbsoluteForNode:(CCNode*)node;
+-(void) normalizeValuesForRootNode:(CCNode*)node;
 
 @end

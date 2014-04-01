@@ -60,11 +60,36 @@ static NSInteger ccbAnimationManagerID = 0;
     return self;
 }
 
--(void) makeSequenceKeyframesAbsoluteForNode:(CCNode*)node
+-(void) normalizeValuesForRootNode:(CCNode*)node
 {
-	// loop through all sequences and update position etc based on relative types
 	NSValue* nodePtr = [NSValue valueWithPointer:(__bridge const void *)(node)];
     
+	// loop through all base values and normalize position etc
+    NSMutableDictionary* baseValue = [baseValues objectForKey:nodePtr];
+	for (id key in baseValue)
+	{
+		//NSLog(@"base: %@ = %@", key, [baseValue objectForKey:key]);
+		
+		if ([key isEqualToString:@"position"])
+		{
+			NSMutableArray* values = [baseValue objectForKey:key];
+			NSAssert1(values.count == 5, @"position array is supposed to have 5 items: %@", values);
+			
+			CGFloat x = [[values objectAtIndex:0] doubleValue];
+			CGFloat y = [[values objectAtIndex:1] doubleValue];
+			CCPositionType type;
+			type.corner = [[values objectAtIndex:2] intValue];
+			type.xUnit = [[values objectAtIndex:3] intValue];
+			type.yUnit = [[values objectAtIndex:4] intValue];
+			
+			CGPoint pos = [node convertPosition:CGPointMake(x, y) positionType:type];
+			
+			[values replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:pos.x]];
+			[values replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:pos.y]];
+		}
+	}
+
+	// loop through all sequences and update position etc based on relative types
     NSMutableDictionary* seq = [nodeSequences objectForKey:nodePtr];
 	for (NSDictionary* sequenceKey in seq)
 	{
@@ -83,12 +108,18 @@ static NSInteger ccbAnimationManagerID = 0;
 				{
 					CGFloat x = [[keyFrame.value objectAtIndex:0] doubleValue];
 					CGFloat y = [[keyFrame.value objectAtIndex:1] doubleValue];
-					CGPoint pos = [node convertPosition:CGPointMake(x, y) withPositionType:node.positionType];
+					CGPoint pos = [node convertPosition:CGPointMake(x, y) positionType:node.positionType];
 					[keyFrame.value replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:pos.x]];
 					[keyFrame.value replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:pos.y]];
 				}
 			}
 		}
+	}
+
+	// recursive
+	for (CCNode* childNode in node.children)
+	{
+		[self normalizeValuesForRootNode:childNode];
 	}
 }
 

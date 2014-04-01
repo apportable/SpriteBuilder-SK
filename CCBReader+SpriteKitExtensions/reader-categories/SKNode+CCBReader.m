@@ -315,18 +315,14 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 		[(id)self setSize:size];
 	}
 	
-	CCBReaderScaleType* scaleTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForScaleType];
-	if (scaleTypeObject.scaleType == CCScaleTypeScaled)
+	if (self.scaleType == CCScaleTypeScaled)
 	{
 		CGFloat scaleFactor = [CCDirector sharedDirector].UIScaleFactor;
 		self.xScale *= scaleFactor;
 		self.yScale *= scaleFactor;
 	}
 
-	/*
-	CCBReaderPositionType* positionTypeProxy = [self.userData objectForKey:CCBReaderUserDataKeyForPositionType];
-	self.position = [self convertPosition:self.position withPositionType:positionTypeProxy.positionType];
-	 */
+	self.position = [self convertPosition:self.position positionType:self.positionType];
 	
 	/*
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
@@ -424,7 +420,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 #pragma mark Adjust Position with positionType
 
--(CGPoint) convertPosition:(CGPoint)originalPosition withPositionType:(CCPositionType)positionType
+-(CGPoint) convertPosition:(CGPoint)originalPosition positionType:(CCPositionType)positionType
 {
 	CGPoint newPosition = originalPosition;
 
@@ -432,6 +428,10 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	if ([self.parent respondsToSelector:@selector(anchorPoint)])
 	{
 		anchorPoint = [(SKSpriteNode*)self.parent anchorPoint];
+	}
+	else if ([self.parent isKindOfClass:[SKLabelNode class]])
+	{
+		anchorPoint = CGPointMake(0.5, 0.5);
 	}
 
 	switch (positionType.xUnit)

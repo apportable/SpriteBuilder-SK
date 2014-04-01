@@ -40,7 +40,7 @@
 
 // Set to 1 to log assignment of properties in the form: "propertyname = value"
 #ifndef DEBUG_READER_PROPERTIES
-#define DEBUG_READER_PROPERTIES 0
+#define DEBUG_READER_PROPERTIES 1
 #endif
 
 
@@ -342,7 +342,7 @@ static inline float readFloat(CCBReader *self)
         {
             CCPositionType pType = CCPositionTypeMake(xUnit, yUnit, corner);
             [node setValue:[NSValue valueWithBytes:&pType objCType:@encode(CCPositionType)] forKey:[name stringByAppendingString:@"Type"]];
-			pos = [node convertPosition:pos withPositionType:pType];
+			//pos = [node convertPosition:pos positionType:pType];
 
 #ifdef __CC_PLATFORM_IOS
             [node setValue:[NSValue valueWithCGPoint:pos] forKey:name];
@@ -1017,11 +1017,6 @@ static inline float readFloat(CCBReader *self)
         
         [self readPropertyForNode:node parent:parent isExtraProp:isExtraProp];
     }
-	
-	if (seqs.count > 0)
-	{
-		[animationManager makeSequenceKeyframesAbsoluteForNode:node];
-	}
     
     // Handle sub ccb files (remove middle node)
     if ([node respondsToSelector:@selector(setCcbFile:)])
@@ -1345,7 +1340,10 @@ static inline float readFloat(CCBReader *self)
 
 + (CCNode*) load:(NSString*) file owner:(id)owner parentSize:(CGSize)parentSize
 {
-    return [[CCBReader reader] nodeGraphFromFile:file owner:owner parentSize:parentSize];
+	CCBReader* reader = [CCBReader reader];
+	CCNode* node = [reader nodeGraphFromFile:file owner:owner parentSize:parentSize];
+	
+	return node;
 }
 
 + (CCScene*) loadAsScene:(NSString*)file size:(CGSize)size
