@@ -37,7 +37,7 @@
 		DCD391FD18C4D02B0091240C /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD391EE18C4D02B0091240C /* Settings.png */; };
 		DCD391FE18C4D02B0091240C /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCD391EF18C4D02B0091240C /* Settings@2x.png */; };
 		DCF0C20818D9FFCC007736B4 /* libSB+SpriteKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF0C20018D9FFB1007736B4 /* libSB+SpriteKit-iOS.a */; };
-		DCF0C20E18DA0985007736B4 /* FappulousScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF0C20D18DA0985007736B4 /* FappulousScene.m */; };
+		DCF0C20E18DA0985007736B4 /* FlappulousScene.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF0C20D18DA0985007736B4 /* FlappulousScene.m */; };
 		DCFB062F18E2DF5600DF02A0 /* CreditsNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */; };
 /* End PBXBuildFile section */
 
@@ -103,8 +103,8 @@
 		DCD391EE18C4D02B0091240C /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		DCD391EF18C4D02B0091240C /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		DCF0C1FA18D9FFB1007736B4 /* SB+SpriteKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "SB+SpriteKit.xcodeproj"; path = "../../../../../SB+SpriteKit.xcodeproj"; sourceTree = "<group>"; };
-		DCF0C20C18DA0985007736B4 /* FappulousScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FappulousScene.h; sourceTree = "<group>"; };
-		DCF0C20D18DA0985007736B4 /* FappulousScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FappulousScene.m; sourceTree = "<group>"; };
+		DCF0C20C18DA0985007736B4 /* FlappulousScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlappulousScene.h; sourceTree = "<group>"; };
+		DCF0C20D18DA0985007736B4 /* FlappulousScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlappulousScene.m; sourceTree = "<group>"; };
 		DCFB062D18E2DF5500DF02A0 /* CreditsNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsNode.h; sourceTree = "<group>"; };
 		DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,8 +180,8 @@
 				DCCA2B3D18931163001C0732 /* MainScene.m */,
 				DCFB062D18E2DF5500DF02A0 /* CreditsNode.h */,
 				DCFB062E18E2DF5600DF02A0 /* CreditsNode.m */,
-				DCF0C20C18DA0985007736B4 /* FappulousScene.h */,
-				DCF0C20D18DA0985007736B4 /* FappulousScene.m */,
+				DCF0C20C18DA0985007736B4 /* FlappulousScene.h */,
+				DCF0C20D18DA0985007736B4 /* FlappulousScene.m */,
 				DCCA2B3E18931163001C0732 /* Resources */,
 			);
 			path = Source;
@@ -362,7 +362,7 @@
 				DCCA2BC318931163001C0732 /* MainScene.m in Sources */,
 				DCCA2BBD18931163001C0732 /* AppDelegate.m in Sources */,
 				DCFB062F18E2DF5600DF02A0 /* CreditsNode.m in Sources */,
-				DCF0C20E18DA0985007736B4 /* FappulousScene.m in Sources */,
+				DCF0C20E18DA0985007736B4 /* FlappulousScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

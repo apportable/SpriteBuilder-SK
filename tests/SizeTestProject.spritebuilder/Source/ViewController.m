@@ -21,8 +21,7 @@
 		skView.showsNodeCount = YES;
 		skView.showsDrawCount = YES;
 		
-		[CCBReader setSceneSize:skView.bounds.size];
-		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
+		SKScene* scene = [CCBReader loadAsScene:@"MainScene.ccbi" size:skView.bounds.size];
 		//scene.scaleMode = SKSceneScaleModeAspectFit;
 		[skView presentScene:scene];
 		

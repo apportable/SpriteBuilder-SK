@@ -811,8 +811,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1348,7 +1346,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string>FappulousScene</string>
+		<string>FlappulousScene</string>
 		<key>displayName</key>
 		<string>SKNode</string>
 		<key>memberVarAssignmentName</key>
@@ -1406,6 +1404,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>

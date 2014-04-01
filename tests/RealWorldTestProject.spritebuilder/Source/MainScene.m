@@ -40,7 +40,8 @@
 	SBButtonNode* buttonNode = (SBButtonNode*)sender;
 	if (buttonNode.state & SBControlStateSelected)
 	{
-		[self addChild:[CCBReader load:@"Credits"]];
+		SKNode* creditsNode = [CCBReader load:@"Credits"];
+		[self addChild:creditsNode];
 		buttonNode.label.text = @"Hide Amazing Credits :(";
 	}
 	else

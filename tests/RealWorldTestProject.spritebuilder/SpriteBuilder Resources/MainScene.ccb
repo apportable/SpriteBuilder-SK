@@ -228,7 +228,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SKSpriteNode</string>
+				<string>highlight</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -327,10 +327,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -614,7 +610,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SpriteBuilder label</string>
+				<string>Title</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -637,7 +633,7 @@
 						<key>value</key>
 						<array>
 							<real>0.5</real>
-							<real>0.86000001430511475</real>
+							<real>0.87999999523162842</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -675,7 +671,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string>Fappy Words Saga XXL</string>
+						<string>Flappy Words Saga XXL</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -692,7 +688,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>44</real>
+							<real>43</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -726,7 +722,7 @@
 						<integer>0</integer>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
+				<key>selected</key>
 				<true/>
 			</dict>
 			<dict>
@@ -739,7 +735,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SBButtonNode</string>
+				<string>play button</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1026,7 +1022,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SBButtonNode</string>
+				<string>credits button</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>

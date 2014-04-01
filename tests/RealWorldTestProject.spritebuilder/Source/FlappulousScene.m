@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Apportable. All rights reserved.
 //
 
-#import "FappulousScene.h"
+#import "FlappulousScene.h"
 
-@implementation FappulousScene
+@implementation FlappulousScene
 
 -(void) didLoadFromCCB
 {

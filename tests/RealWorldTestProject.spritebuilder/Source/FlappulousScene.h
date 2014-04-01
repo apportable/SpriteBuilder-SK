@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface FappulousScene : SKScene
+@interface FlappulousScene : SKScene
 {
 	@private
 	NSArray* _badWords;
