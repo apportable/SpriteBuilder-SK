@@ -385,27 +385,37 @@ static inline float readFloat(CCBReader *self)
     }
     else if (type == kCCBPropTypeSize)
     {
-        float w = readFloat(self);
-        float h = readFloat(self);
-        int xUnit = readByte(self);
-        int yUnit = readByte(self);
-        
-#if DEBUG_READER_PROPERTIES
-		valueString = [NSString stringWithFormat:@"{%f, %f}", w, h];
-#endif
+		float w = readFloat(self);
+		float h = readFloat(self);
+		int xUnit = readByte(self);
+		int yUnit = readByte(self);
 
-        if (setProp)
-        {
-            CGSize size = CGSizeMake(w, h);
-#ifdef __CC_PLATFORM_IOS
-            [node setValue:[NSValue valueWithCGSize:size] forKey:name];
-#elif defined (__CC_PLATFORM_MAC)
-            [node setValue:[NSValue valueWithSize:size] forKey:name];
+		if (parent == nil && [node isKindOfClass:[CCScene class]])
+		{
+			// don't change size of the scene
+#if DEBUG_READER_PROPERTIES
+			valueString = [NSString stringWithFormat:@"Not changing size {%f, %f} of the scene.", [(id)node size].width, [(id)node size].height];
 #endif
-            
-            CCSizeType sizeType = CCSizeTypeMake(xUnit, yUnit);
-            [node setValue:[NSValue valueWithBytes:&sizeType objCType:@encode(CCSizeType)] forKey:[name stringByAppendingString:@"Type"]];
-        }
+		}
+		else
+		{
+#if DEBUG_READER_PROPERTIES
+			valueString = [NSString stringWithFormat:@"{%f, %f}", w, h];
+#endif
+			
+			if (setProp)
+			{
+				CGSize size = CGSizeMake(w, h);
+#ifdef __CC_PLATFORM_IOS
+				[node setValue:[NSValue valueWithCGSize:size] forKey:name];
+#elif defined (__CC_PLATFORM_MAC)
+				[node setValue:[NSValue valueWithSize:size] forKey:name];
+#endif
+				
+				CCSizeType sizeType = CCSizeTypeMake(xUnit, yUnit);
+				[node setValue:[NSValue valueWithBytes:&sizeType objCType:@encode(CCSizeType)] forKey:[name stringByAppendingString:@"Type"]];
+			}
+		}
     }
     else if (type == kCCBPropTypeScaleLock)
     {
@@ -1250,11 +1260,11 @@ static inline float readFloat(CCBReader *self)
     
     if ([nodeGraph respondsToSelector:@selector(didLoadFromCCB)])
     {
-        [nodeGraph performSelector:@selector(didLoadFromCCB)];
+        [(id)nodeGraph didLoadFromCCB];
     }
 }
 
-- (CCNode*) loadWithData:(NSData*)d owner:(id)o
+- (CCNode*) loadWithData:(NSData*)d owner:(id)o parentSize:(CGSize)parentSize
 {
     // Setup byte array
     data = d;
@@ -1264,11 +1274,17 @@ static inline float readFloat(CCBReader *self)
     
     owner = o;
     
-    self.animationManager.rootContainerSize = [CCDirector sharedDirector].designSize;
+    self.animationManager.rootContainerSize = parentSize;
     self.animationManager.owner = owner;
     
     NSMutableDictionary* animationManagers = [NSMutableDictionary dictionary];
     CCNode* nodeGraph = [self readFileWithCleanUp:YES actionManagers:animationManagers];
+
+	[self.animationManager normalizeValuesForRootNode:nodeGraph];
+	[self readerDidLoadNode:nodeGraph rootNode:nodeGraph];
+
+	// Call didLoadFromCCB
+    [CCBReader callDidLoadFromCCBForNodeGraph:nodeGraph];
 
     if (nodeGraph && self.animationManager.autoPlaySequenceId != -1)
     {
@@ -1279,15 +1295,17 @@ static inline float readFloat(CCBReader *self)
     for (NSValue* pointerValue in animationManagers)
     {
         CCNode* node = [pointerValue pointerValue];
-        
+
         CCBAnimationManager* manager = [animationManagers objectForKey:pointerValue];
         node.userObject = manager;
     }
-    
-    // Call didLoadFromCCB
-    [CCBReader callDidLoadFromCCBForNodeGraph:nodeGraph];
 
     return nodeGraph;
+}
+
+-(void) readerDidLoadNode:(CCNode*)node rootNode:(CCNode*)rootNode
+{
+	[NSException raise:NSInternalInconsistencyException format:@"this method must be overridden"];
 }
 
 - (CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize
@@ -1298,7 +1316,7 @@ static inline float readFloat(CCBReader *self)
     NSString* path = [[CCFileUtils sharedFileUtils] fullPathForFilename:file];
     NSData* d = [NSData dataWithContentsOfFile:path];
     
-    return [self loadWithData:d owner:(id)o];
+    return [self loadWithData:d owner:(id)o parentSize:parentSize];
 }
 
 - (CCNode*) load:(NSString*) file owner:(id)o
