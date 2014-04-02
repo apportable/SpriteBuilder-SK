@@ -29,6 +29,7 @@
 {
 	@private
 	NSUInteger _nodeCount;
+	CGSize _sceneSize;
 }
 
 +(CGSize) internal_getSceneSize;

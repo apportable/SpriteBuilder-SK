@@ -80,7 +80,7 @@
  *
  *  @return A new CCBReader.
  */
-+ (CCBReader*) reader;
++ (CCBReader*) readerWithSize:(CGSize)contentSize;
 
 /// -----------------------------------------------------------------------
 /// @name Loading Files

@@ -28,13 +28,45 @@
 #import "CCBSpriteKitAnimationManager.h"
 #import "SKNode+CCBReader.h"
 
-static CGSize CCBSpriteKitReaderSceneSize;
+NSString* const CCSetupScreenMode = @"CCSetupScreenMode";
+NSString* const CCSetupScreenOrientation = @"CCSetupScreenOrientation";
+//NSString* const CCSetupAnimationInterval = @"CCSetupAnimationInterval";
+//NSString* const CCSetupFixedUpdateInterval = @"CCSetupFixedUpdateInterval";
+//NSString* const CCSetupShowDebugStats = @"CCSetupShowDebugStats";
+NSString* const CCSetupTabletScale2X = @"CCSetupTabletScale2X";
 
-@interface CCBSKFile : SKNode
-@property (nonatomic) SKNode* ccbFile;
-@end
-@implementation CCBSKFile
-@end
+//NSString* const CCSetupPixelFormat = @"CCSetupPixelFormat";
+//NSString* const CCSetupDepthFormat = @"CCSetupDepthFormat";
+//NSString* const CCSetupPreserveBackbuffer = @"CCSetupPreserveBackbuffer";
+//NSString* const CCSetupMultiSampling = @"CCSetupMultiSampling";
+//NSString* const CCSetupNumberOfSamples = @"CCSetupNumberOfSamples";
+
+NSString* const CCScreenOrientationLandscape = @"CCScreenOrientationLandscape";
+NSString* const CCScreenOrientationPortrait = @"CCScreenOrientationPortrait";
+NSString* const CCScreenModeFlexible = @"CCScreenModeFlexible";
+NSString* const CCScreenModeFixed = @"CCScreenModeFixed";
+
+// Fixed size. As wide as iPhone 5 and as high as the iPad.
+const CGSize FIXED_SIZE = {568, 384};
+
+/** @def CC_SWAP simple macro that swaps 2 variables */
+#define CC_SWAP( x, y )			\
+({ __typeof__(x) temp  = (x);		\
+x = y; y = temp;		\
+})
+
+/*
+static CGFloat FindPOTScale(CGFloat size, CGFloat fixedSize)
+{
+	int scale = 1;
+	while (fixedSize * scale < size)
+	{
+		scale *= 2;
+	}
+	return (CGFloat)scale;
+}
+ */
+
 
 @interface CCBReader (PrivateMethods)
 -(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize;
@@ -42,9 +74,10 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 @implementation CCBSpriteKitReader
 
+static CGSize currentSceneSize;
 +(CGSize) internal_getSceneSize
 {
-	return CCBSpriteKitReaderSceneSize;
+	return currentSceneSize;
 }
 
 -(id) init
@@ -52,14 +85,57 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	self = [super init];
 	if (self)
 	{
-		[CCBReader configureCCFileUtils];
-		
 		// replace action manager with sprite-kit animation manager instance
 		self.animationManager = [[CCBSpriteKitAnimationManager alloc] init];
 		// Setup resolution scale and default container size
 		animationManager.rootContainerSize = [CCDirector sharedDirector].designSize;
 	}
 	return self;
+}
+
+-(void) setupSpriteKitWithOptions:(NSDictionary*)options
+{
+	CCDirector* director = [CCDirector sharedDirector];
+	
+	if ([options[CCSetupScreenMode] isEqual:CCScreenModeFixed])
+	{
+		CGSize fixed = FIXED_SIZE;
+		CGSize size = director.designSize; // equals scene size at this point
+		NSAssert(CGSizeEqualToSize(size, CGSizeZero) == NO, @"director design size (scene size) should not be 0,0 at this point");
+		
+		if ([options[CCSetupScreenOrientation] isEqualToString:CCScreenOrientationPortrait])
+		{
+			CC_SWAP(fixed.width, fixed.height);
+		}
+		
+		// Find the minimal power-of-two scale that covers both the width and height.
+		//director.contentScaleFactor = MIN(FindPOTScale(size.width, fixed.width), FindPOTScale(size.height, fixed.height));
+		
+		director.UIScaleFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 1.0 : 0.5);
+		
+		// Let CCFileUtils know that "-ipad" textures should be treated as having a contentScale of 2.0.
+		[[CCFileUtils sharedFileUtils] setiPadContentScaleFactor:2.0];
+		
+		director.designSize = fixed;
+		//[director setProjection:CCDirectorProjectionCustom];
+	}
+	else
+	{
+		// Setup tablet scaling if it was requested.
+		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [options[CCSetupTabletScale2X] boolValue])
+		{
+			// Set the director to use 2 points per pixel.
+			//director.contentScaleFactor *= 2.0;
+			
+			// Set the UI scale factor to show things at "native" size.
+			//director.UIScaleFactor = 0.5;
+			
+			// Let CCFileUtils know that "-ipad" textures should be treated as having a contentScale of 2.0.
+			[[CCFileUtils sharedFileUtils] setiPadContentScaleFactor:2.0];
+		}
+		
+		//[director setProjection:CCDirectorProjection2D];
+	}
 }
 
 -(CCNode*) nodeFromClassName:(NSString *)nodeClassName
@@ -133,14 +209,15 @@ static CGSize CCBSpriteKitReaderSceneSize;
 
 -(void) setSceneSize:(CGSize)sceneSize
 {
-	CCBSpriteKitReaderSceneSize = sceneSize;
-	animationManager.rootContainerSize = [CCDirector sharedDirector].designSize;
+	_sceneSize = sceneSize;
+	currentSceneSize = sceneSize;
+	animationManager.rootContainerSize = [CCDirector sharedDirector].designSize; // either fixed size or the new scene size
 }
 
 -(CGSize) sceneSize
 {
-	NSAssert(CGSizeEqualToSize(CCBSpriteKitReaderSceneSize, CGSizeZero) == NO, @"CCBSpriteKitReader: scene size must be assigned before loading a CCBi");
-	return CCBSpriteKitReaderSceneSize;
+	NSAssert(CGSizeEqualToSize(_sceneSize, CGSizeZero) == NO, @"CCBSpriteKitReader: scene size is 0,0");
+	return _sceneSize;
 }
 
 #pragma mark CCReader Load overrides

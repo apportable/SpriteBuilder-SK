@@ -33,6 +33,7 @@
 }
 -(CGSize) designSize
 {
+	// as long as design size isn't set, assume design size equals scene size
 	if (CGSizeEqualToSize(_designSize, CGSizeZero))
 	{
 		CGSize sceneSize = [CCBSpriteKitReader internal_getSceneSize];

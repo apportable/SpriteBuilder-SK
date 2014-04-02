@@ -43,6 +43,7 @@
 #define DEBUG_READER_PROPERTIES 1
 #endif
 
+static BOOL didRunFirstTimeSetup = NO;
 
 @interface CCBFile : CCNode
 @property (nonatomic) CCNode* ccbFile;
@@ -811,7 +812,7 @@ static inline float readFloat(CCBReader *self)
 
         NSAssert(d,@"Failed to find ccb file: %@",ccbFileName);
 
-        CCBReader* reader = [CCBReader reader];
+        CCBReader* reader = [CCBReader readerWithSize:parent.contentSize];
         reader.animationManager.rootContainerSize = parent.contentSize;
         
         // Setup byte array & owner
@@ -1336,14 +1337,17 @@ static inline float readFloat(CCBReader *self)
 	[[CCFileUtils sharedFileUtils] setSearchPath:array];
 }
 
-+ (CCBReader*) reader
++ (CCBReader*) readerWithSize:(CGSize)contentSize
 {
-    return [[CCBSpriteKitReader alloc] init];
+	CCBReader* reader = [[CCBSpriteKitReader alloc] init];
+	reader.sceneSize = contentSize;
+	[reader firstUseSetup];
+	return reader;
 }
 
 + (CCNode*) nodeGraphFromData:(NSData*) data owner:(id)owner parentSize:(CGSize)parentSize
 {
-    return [[CCBReader reader] loadWithData:data owner:owner parentSize:parentSize];
+    return [[CCBReader readerWithSize:parentSize] loadWithData:data owner:owner parentSize:parentSize];
 }
 
 + (CCNode*) load:(NSString*) file
@@ -1358,7 +1362,7 @@ static inline float readFloat(CCBReader *self)
 
 + (CCNode*) load:(NSString*) file owner:(id)owner parentSize:(CGSize)parentSize
 {
-	CCBReader* reader = [CCBReader reader];
+	CCBReader* reader = [CCBReader readerWithSize:parentSize];
 	CCNode* node = [reader nodeGraphFromFile:file owner:owner parentSize:parentSize];
 	return node;
 }
@@ -1375,9 +1379,8 @@ static inline float readFloat(CCBReader *self)
 
 + (CCScene*) sceneWithNodeGraphFromFile:(NSString *)file sceneSize:(CGSize)sceneSize owner:(id)owner
 {
-	CCBReader* reader = [CCBReader reader];
+	CCBReader* reader = [CCBReader readerWithSize:sceneSize];
 	reader.rootNodeIsScene = YES;
-	reader.sceneSize = sceneSize;
 	
     CCNode* node = [reader nodeGraphFromFile:file owner:owner parentSize:sceneSize];
     return (CCScene*)node;
@@ -1389,15 +1392,43 @@ static inline float readFloat(CCBReader *self)
     return [[searchPaths objectAtIndex:0] stringByAppendingPathComponent:@"ccb"];
 }
 
-+(void) setSceneSize:(CGSize)sceneSize
-{
-	[[CCBReader reader] setSceneSize:sceneSize];
-}
-
 -(void) setSceneSize:(CGSize)sceneSize
 {
 	// does nothing, only needed for CCBSpriteKitReader
 	[NSException raise:NSInternalInconsistencyException format:@"should never get here"];
+}
+
+-(void) firstUseSetup
+{
+	if (didRunFirstTimeSetup == NO)
+	{
+		didRunFirstTimeSetup = YES;
+
+		// Configure Cocos2d with the options set in SpriteBuilder
+		// TODO: add support for Published-Android support
+		NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"];
+		configPath = [configPath stringByAppendingPathComponent:@"configCocos2d.plist"];
+		NSMutableDictionary* options = [NSMutableDictionary dictionaryWithContentsOfFile:configPath];
+		NSAssert1(options, @"could not load config file: %@", configPath);
+
+		// Note: this needs to happen before configureCCFileUtils is called, because we need apportable to correctly setup the screen scale factor.
+#ifdef APPORTABLE
+		if ([options[CCSetupScreenMode] isEqual:CCScreenModeFixed])
+			[UIScreen mainScreen].currentMode = [UIScreenMode emulatedMode:UIScreenAspectFitEmulationMode];
+		else
+			[UIScreen mainScreen].currentMode = [UIScreenMode emulatedMode:UIScreenScaledAspectFitEmulationMode];
+#endif
+		
+		// Configure CCFileUtils to work with SpriteBuilder
+		[CCBReader configureCCFileUtils];
+		
+		[self setupSpriteKitWithOptions:options];
+	}
+}
+
+-(void) setupSpriteKitWithOptions:(NSDictionary*)options
+{
+	[NSException raise:NSInternalInconsistencyException format:@"this method must be overridden"];
 }
 
 @end
