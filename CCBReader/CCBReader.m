@@ -1360,7 +1360,6 @@ static inline float readFloat(CCBReader *self)
 {
 	CCBReader* reader = [CCBReader reader];
 	CCNode* node = [reader nodeGraphFromFile:file owner:owner parentSize:parentSize];
-	
 	return node;
 }
 

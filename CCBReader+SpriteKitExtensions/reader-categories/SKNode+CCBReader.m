@@ -31,6 +31,7 @@ static NSString* CCBReaderNodeUserObjectKey = @"CCBReader:UserObject";
 static NSString* CCBReaderUserDataKeyForContentSizeType = @"CCBReader:contentSizeType";
 static NSString* CCBReaderUserDataKeyForScaleType = @"CCBReader:scaleType";
 static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType";
+static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loadedFromCCB";
 
 @interface CCBReaderSizeType : NSObject
 @property (nonatomic) CCSizeType sizeType;
@@ -323,6 +324,18 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	}
 
 	self.position = [self convertPosition:self.position positionType:self.positionType];
+
+	// convert only once
+	[self.userData removeObjectForKey:CCBReaderUserDataKeyForContentSizeType];
+	[self.userData removeObjectForKey:CCBReaderUserDataKeyForScaleType];
+	[self.userData removeObjectForKey:CCBReaderUserDataKeyForPositionType];
+	[self.userData removeObjectForKey:CCBReaderUserDataKeyForLoadedFromCCB];
+
+	// remove if empty (user may have already added custom userData items)
+	if (self.userData.count == 0)
+	{
+		self.userData = nil;
+	}
 	
 	/*
 	NSLog(@"%@ (%p)  size: {%.1f, %.1f} scale: {%.2f, %.2f}", NSStringFromClass([self class]), self,
@@ -365,6 +378,7 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 	CGSize newSize = size;
 
 	CCBReaderSizeType* sizeTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForContentSizeType];
+	
 	if (sizeTypeObject)
 	{
 		CCSizeType sizeType = sizeTypeObject.sizeType;
@@ -522,22 +536,21 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 
 #pragma mark Loaded from CCB
 
-static NSString* CCBUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loadedFromCCB";
 @dynamic loadedFromCCB;
 -(void) setLoadedFromCCB:(BOOL)loadedFromCCB
 {
 	if (loadedFromCCB)
 	{
-		[[self getOrCreateUserData] setObject:@"YES" forKey:CCBUserDataKeyForLoadedFromCCB];
+		[[self getOrCreateUserData] setObject:@"YES" forKey:CCBReaderUserDataKeyForLoadedFromCCB];
 	}
 	else
 	{
-		[[self getOrCreateUserData] removeObjectForKey:CCBUserDataKeyForLoadedFromCCB];
+		[[self getOrCreateUserData] removeObjectForKey:CCBReaderUserDataKeyForLoadedFromCCB];
 	}
 }
 -(BOOL) loadedFromCCB
 {
-	return ([[self getOrCreateUserData] objectForKey:CCBUserDataKeyForLoadedFromCCB] != nil);
+	return ([[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForLoadedFromCCB] != nil);
 }
 
 @end

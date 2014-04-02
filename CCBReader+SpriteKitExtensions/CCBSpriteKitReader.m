@@ -158,12 +158,6 @@ static CGSize CCBSpriteKitReaderSceneSize;
 	}
 }
 
--(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize
-{
-	CCNode* node = [super nodeGraphFromFile:file owner:o parentSize:parentSize];
-	return node;
-}
-
 #pragma mark Property Overrides
 
 -(void) readerDidSetSpriteFrame:(CCSpriteFrame*)spriteFrame node:(CCNode*)node
