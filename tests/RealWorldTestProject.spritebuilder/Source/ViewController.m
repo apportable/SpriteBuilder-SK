@@ -16,17 +16,21 @@
 	SKView* skView = (SKView*)self.view;
 	NSAssert1([skView isKindOfClass:[SKView class]], @"ViewController's view is not a SKView instance, its class is: %@", NSStringFromClass([skView class]));
 	
+	// only present the scene if there's no scene currently presented
+	// Note: viewWillLayoutSubviews will run every time the device is rotated or the view resizes, therefore this check is essential
 	if (skView.scene == nil)
 	{
 		skView.showsFPS = YES;
 		skView.showsNodeCount = YES;
 		skView.showsDrawCount = YES;
-		[skView setValue:@(YES) forKey:@"_showsCulledNodesInNodeCount"];
+		
+		// additional undocumented debug flags
+		[skView setValue:@(YES) forKey:@"_showsCulledNodesInNodeCount"]; // shows total node count next to visible node count
 		//[skView setValue:@(YES) forKey:@"_showsGPUStats"];
 		//[skView setValue:@(YES) forKey:@"_showsCPUStats"];
-		
+
+		// load the 'MainScene' from CCB
 		SKScene* scene = [CCBReader loadAsScene:@"MainScene" size:skView.bounds.size];
-		//scene.anchorPoint = CGPointMake(0.5, 0.5);
 		[skView presentScene:scene];
 	}
 }
