@@ -144,7 +144,7 @@
 	// must start with scaling at 1x1 so that size is correct
 	//_label.xScale = _originalLabelScaleX;
 	//_label.yScale = _originalLabelScaleY;
-	
+
     CGSize paddedLabelSize = self.preferredSize;
     paddedLabelSize.width += _horizontalPadding * 2;
     paddedLabelSize.height += _verticalPadding * 2;
@@ -158,8 +158,10 @@
     CGSize size = self.preferredSize;
     CGSize maxSize = self.maxSize;
     
-    if (size.width < paddedLabelSize.width) size.width = paddedLabelSize.width;
-    if (size.height < paddedLabelSize.height) size.height = paddedLabelSize.height;
+    if (size.width < paddedLabelSize.width)
+		size.width = paddedLabelSize.width;
+    if (size.height < paddedLabelSize.height)
+		size.height = paddedLabelSize.height;
     
     if (maxSize.width > 0 && maxSize.width < size.width)
     {
@@ -180,15 +182,8 @@
 		//_originalLabelScaleX = _label.xScale;
 		//_originalLabelScaleY = _label.yScale;
     }
-    
-    _background.anchorPoint = ccp(0.5f,0.5f);
-    _background.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
-    _background.position = ccp(0.5f,0.5f);
 
 	[self updateBackgroundSlice];
-	
-    _label.positionType = CCPositionTypeMake(CCPositionUnitNormalized, CCPositionUnitNormalized, CCPositionReferenceCornerBottomLeft);
-    _label.position = ccp(0.5f, 0.5f);
     
 	// FIXME: contentSize with type
 	//self.contentSize = [self convertContentSizeFromPoints: size type:self.contentSizeType];
