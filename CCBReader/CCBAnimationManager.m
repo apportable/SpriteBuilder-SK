@@ -84,8 +84,29 @@ static NSInteger ccbAnimationManagerID = 0;
 			
 			CGPoint pos = [node convertPosition:CGPointMake(x, y) positionType:type];
 			
-			[values replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:pos.x]];
-			[values replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:pos.y]];
+			[values replaceObjectAtIndex:0 withObject:@(pos.x)];
+			[values replaceObjectAtIndex:1 withObject:@(pos.y)];
+			[values replaceObjectAtIndex:2 withObject:@(CCPositionReferenceCornerBottomLeft)];
+			[values replaceObjectAtIndex:3 withObject:@(CCPositionUnitPoints)];
+			[values replaceObjectAtIndex:4 withObject:@(CCPositionUnitPoints)];
+		}
+		else if ([key isEqualToString:@"scale"])
+		{
+			NSMutableArray* values = [baseValue objectForKey:key];
+			CCScaleType type = (CCScaleType)[[values objectAtIndex:1] integerValue];
+			if (type != CCScaleTypePoints)
+			{
+				CGFloat scaleX = [[values objectAtIndex:0] doubleValue];
+				CGFloat scaleY = [[values objectAtIndex:1] doubleValue];
+				CGPoint scale = [node convertScaleX:scaleX scaleY:scaleY scaleType:type];
+				[values replaceObjectAtIndex:0 withObject:@(scale.x)];
+				[values replaceObjectAtIndex:1 withObject:@(scale.y)];
+				[values replaceObjectAtIndex:2 withObject:@(CCScaleTypePoints)];
+			}
+		}
+		else if ([key isEqualToString:@"size"] || [key isEqualToString:@"contentSize"])
+		{
+			[NSException raise:NSInternalInconsistencyException format:@"size conversion not supported as size/contentSize is not an animatable property (yet)"];
 		}
 	}
 
@@ -106,11 +127,32 @@ static NSInteger ccbAnimationManagerID = 0;
 				
 				if (seqProp.type == kCCBPropTypePosition)
 				{
-					CGFloat x = [[keyFrame.value objectAtIndex:0] doubleValue];
-					CGFloat y = [[keyFrame.value objectAtIndex:1] doubleValue];
+					NSMutableArray* values = keyFrame.value;
+					CGFloat x = [[values objectAtIndex:0] doubleValue];
+					CGFloat y = [[values objectAtIndex:1] doubleValue];
 					CGPoint pos = [node convertPosition:CGPointMake(x, y) positionType:node.positionType];
-					[keyFrame.value replaceObjectAtIndex:0 withObject:[NSNumber numberWithDouble:pos.x]];
-					[keyFrame.value replaceObjectAtIndex:1 withObject:[NSNumber numberWithDouble:pos.y]];
+					[values replaceObjectAtIndex:0 withObject:@(pos.x)];
+					[values replaceObjectAtIndex:1 withObject:@(pos.y)];
+				}
+				else if (seqProp.type == kCCBPropTypeScaleLock)
+				{
+					if (node.scaleType != CCScaleTypePoints)
+					{
+						NSMutableArray* values = keyFrame.value;
+						CGFloat scaleX = [[values objectAtIndex:0] doubleValue];
+						CGFloat scaleY = [[values objectAtIndex:1] doubleValue];
+						CGPoint scale = [node convertScaleX:scaleX scaleY:scaleY scaleType:node.scaleType];
+						[values replaceObjectAtIndex:0 withObject:@(scale.x)];
+						[values replaceObjectAtIndex:1 withObject:@(scale.y)];
+					}
+				}
+				else if (seqProp.type == kCCBPropTypeFloatScale)
+				{
+					NSLog(@"float scale?");
+				}
+				else if (seqProp.type == kCCBPropTypeSize)
+				{
+					[NSException raise:NSInternalInconsistencyException format:@"size conversion not supported as size/contentSize is not an animatable property (yet)"];
 				}
 			}
 		}
