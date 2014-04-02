@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>11</integer>
+	<integer>12</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -38,7 +38,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SKColorSpriteNode</string>
+				<string>bg</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -137,7 +137,7 @@
 			</dict>
 			<dict>
 				<key>UUID</key>
-				<integer>1</integer>
+				<integer>11</integer>
 				<key>animatedProperties</key>
 				<dict>
 					<key>1</key>
@@ -149,10 +149,8 @@
 								<dict>
 									<key>easing</key>
 									<dict>
-										<key>opt</key>
-										<real>2</real>
 										<key>type</key>
-										<integer>4</integer>
+										<integer>1</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -169,10 +167,8 @@
 								<dict>
 									<key>easing</key>
 									<dict>
-										<key>opt</key>
-										<real>2</real>
 										<key>type</key>
-										<integer>2</integer>
+										<integer>1</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -189,10 +185,8 @@
 								<dict>
 									<key>easing</key>
 									<dict>
-										<key>opt</key>
-										<real>2</real>
 										<key>type</key>
-										<integer>4</integer>
+										<integer>1</integer>
 									</dict>
 									<key>name</key>
 									<string>position</string>
@@ -202,68 +196,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>-14</real>
-										<real>74</real>
-									</array>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>opt</key>
-										<real>2</real>
-										<key>type</key>
-										<integer>3</integer>
-									</dict>
-									<key>name</key>
-									<string>position</string>
-									<key>time</key>
-									<real>1.7666666507720947</real>
-									<key>type</key>
-									<integer>3</integer>
-									<key>value</key>
-									<array>
-										<real>5.5333337783813477</real>
-										<real>70.466667175292969</real>
-									</array>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>opt</key>
-										<real>2</real>
-										<key>type</key>
-										<integer>4</integer>
-									</dict>
-									<key>name</key>
-									<string>position</string>
-									<key>time</key>
-									<real>2</real>
-									<key>type</key>
-									<integer>3</integer>
-									<key>value</key>
-									<array>
-										<real>7</real>
+										<real>-4</real>
 										<real>76</real>
-									</array>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>opt</key>
-										<real>2</real>
-										<key>type</key>
-										<integer>4</integer>
-									</dict>
-									<key>name</key>
-									<string>position</string>
-									<key>time</key>
-									<real>3</real>
-									<key>type</key>
-									<integer>3</integer>
-									<key>value</key>
-									<array>
-										<real>0.0</real>
-										<real>85</real>
 									</array>
 								</dict>
 								<dict>
@@ -275,7 +209,61 @@
 									<key>name</key>
 									<string>position</string>
 									<key>time</key>
-									<real>3.9666666984558105</real>
+									<real>1.7666666507720947</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>1</real>
+										<real>75</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>2</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>0.0</real>
+										<real>72</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>3</real>
+									<key>type</key>
+									<integer>3</integer>
+									<key>value</key>
+									<array>
+										<real>-3</real>
+										<real>81</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>position</string>
+									<key>time</key>
+									<real>4</real>
 									<key>type</key>
 									<integer>3</integer>
 									<key>value</key>
@@ -297,10 +285,8 @@
 								<dict>
 									<key>easing</key>
 									<dict>
-										<key>opt</key>
-										<real>2</real>
 										<key>type</key>
-										<integer>4</integer>
+										<integer>1</integer>
 									</dict>
 									<key>name</key>
 									<string>scale</string>
@@ -317,61 +303,19 @@
 								<dict>
 									<key>easing</key>
 									<dict>
-										<key>opt</key>
-										<real>2</real>
 										<key>type</key>
-										<integer>4</integer>
+										<integer>1</integer>
 									</dict>
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>1</real>
+									<real>0.66666668653488159</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
 									<array>
-										<real>0.89999997615814209</real>
-										<real>1</real>
-									</array>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>opt</key>
-										<real>2</real>
-										<key>type</key>
-										<integer>4</integer>
-									</dict>
-									<key>name</key>
-									<string>scale</string>
-									<key>time</key>
-									<real>2</real>
-									<key>type</key>
-									<integer>4</integer>
-									<key>value</key>
-									<array>
+										<real>1.0199999809265137</real>
 										<real>0.97000002861022949</real>
-										<real>1.0900000333786011</real>
-									</array>
-								</dict>
-								<dict>
-									<key>easing</key>
-									<dict>
-										<key>opt</key>
-										<real>2</real>
-										<key>type</key>
-										<integer>4</integer>
-									</dict>
-									<key>name</key>
-									<string>scale</string>
-									<key>time</key>
-									<real>3</real>
-									<key>type</key>
-									<integer>4</integer>
-									<key>value</key>
-									<array>
-										<real>1.0499999523162842</real>
-										<real>0.92000001668930054</real>
 									</array>
 								</dict>
 								<dict>
@@ -383,7 +327,61 @@
 									<key>name</key>
 									<string>scale</string>
 									<key>time</key>
-									<real>3.9666666984558105</real>
+									<real>1.5666667222976685</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>0.98000001907348633</real>
+										<real>1.0399999618530273</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>2.3333332538604736</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>1.0099999904632568</real>
+										<real>0.99000000953674316</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>3.0999999046325684</real>
+									<key>type</key>
+									<integer>4</integer>
+									<key>value</key>
+									<array>
+										<real>0.95999997854232788</real>
+										<real>0.98000001907348633</real>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>1</integer>
+									</dict>
+									<key>name</key>
+									<string>scale</string>
+									<key>time</key>
+									<real>4</real>
 									<key>type</key>
 									<integer>4</integer>
 									<key>value</key>
@@ -403,11 +401,129 @@
 				<key>baseClass</key>
 				<string>SKLabelNode</string>
 				<key>children</key>
-				<array/>
+				<array>
+					<dict>
+						<key>UUID</key>
+						<integer>1</integer>
+						<key>animatedProperties</key>
+						<dict>
+							<key>1</key>
+							<dict/>
+						</dict>
+						<key>baseClass</key>
+						<string>SKLabelNode</string>
+						<key>children</key>
+						<array/>
+						<key>customClass</key>
+						<string></string>
+						<key>displayName</key>
+						<string>title</string>
+						<key>memberVarAssignmentName</key>
+						<string></string>
+						<key>memberVarAssignmentType</key>
+						<integer>0</integer>
+						<key>properties</key>
+						<array>
+							<dict>
+								<key>name</key>
+								<string>name</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string>titre</string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>position</string>
+								<key>type</key>
+								<string>Position</string>
+								<key>value</key>
+								<array>
+									<real>-196</real>
+									<real>1</real>
+									<integer>0</integer>
+									<integer>0</integer>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>scale</string>
+								<key>type</key>
+								<string>ScaleLock</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<false/>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>text</string>
+								<key>type</key>
+								<string>StringSimple</string>
+								<key>value</key>
+								<string>-- Les Crédits Prográmmätîque --</string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>fontName</string>
+								<key>type</key>
+								<string>FontTTF</string>
+								<key>value</key>
+								<string>Chalkduster</string>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>fontSize</string>
+								<key>type</key>
+								<string>FloatScale</string>
+								<key>value</key>
+								<array>
+									<real>20</real>
+									<integer>0</integer>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>fontColor</string>
+								<key>type</key>
+								<string>Color4</string>
+								<key>value</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+									<real>1</real>
+								</array>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>horizontalAlignmentMode</string>
+								<key>type</key>
+								<string>IntegerLabeled</string>
+								<key>value</key>
+								<integer>1</integer>
+							</dict>
+							<dict>
+								<key>name</key>
+								<string>verticalAlignmentMode</string>
+								<key>type</key>
+								<string>IntegerLabeled</string>
+								<key>value</key>
+								<integer>0</integer>
+							</dict>
+						</array>
+						<key>seqExpanded</key>
+						<true/>
+					</dict>
+				</array>
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SKLabelNode</string>
+				<string>title bg</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -420,13 +536,13 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string>titre</string>
+						<string></string>
 					</dict>
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>1</real>
+							<real>75</real>
 						</array>
 						<key>name</key>
 						<string>position</string>
@@ -434,8 +550,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>1.7500030994415283</real>
-							<real>75.5</real>
+							<real>-0.52173936367034912</real>
+							<real>75.304344177246094</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -453,11 +569,19 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.90199995040893555</real>
-							<real>1</real>
+							<real>0.98148149251937866</real>
+							<real>1.037407398223877</real>
 							<false/>
 							<integer>0</integer>
 						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>alpha</string>
+						<key>type</key>
+						<string>Float</string>
+						<key>value</key>
+						<real>0.80000001192092896</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -494,8 +618,8 @@
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>1</real>
-							<real>1</real>
+							<real>0.35673442482948303</real>
+							<real>0.83833754062652588</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -554,8 +678,10 @@
 														<dict>
 															<key>easing</key>
 															<dict>
+																<key>opt</key>
+																<real>2</real>
 																<key>type</key>
-																<integer>1</integer>
+																<integer>3</integer>
 															</dict>
 															<key>name</key>
 															<string>position</string>
@@ -572,8 +698,30 @@
 														<dict>
 															<key>easing</key>
 															<dict>
+																<key>opt</key>
+																<real>2</real>
 																<key>type</key>
-																<integer>1</integer>
+																<integer>2</integer>
+															</dict>
+															<key>name</key>
+															<string>position</string>
+															<key>time</key>
+															<real>0.89999997615814209</real>
+															<key>type</key>
+															<integer>3</integer>
+															<key>value</key>
+															<array>
+																<real>279</real>
+																<real>-9.2711830139160156</real>
+															</array>
+														</dict>
+														<dict>
+															<key>easing</key>
+															<dict>
+																<key>opt</key>
+																<real>2</real>
+																<key>type</key>
+																<integer>4</integer>
 															</dict>
 															<key>name</key>
 															<string>position</string>
@@ -702,8 +850,8 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>215</real>
-													<real>7.728816032409668</real>
+													<real>256.4375</real>
+													<real>-20.104290008544922</real>
 													<integer>1</integer>
 													<integer>0</integer>
 													<integer>0</integer>
@@ -730,7 +878,7 @@
 												<key>type</key>
 												<string>Degrees</string>
 												<key>value</key>
-												<real>166</real>
+												<real>254.66665649414062</real>
 											</dict>
 											<dict>
 												<key>name</key>
@@ -776,6 +924,8 @@
 												<real>1</real>
 											</dict>
 										</array>
+										<key>selected</key>
+										<true/>
 										<key>seqExpanded</key>
 										<true/>
 									</dict>
@@ -990,7 +1140,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>SKLabelNode</string>
+								<string>programming label</string>
 								<key>memberVarAssignmentName</key>
 								<string></string>
 								<key>memberVarAssignmentType</key>
@@ -1384,7 +1534,7 @@
 								<key>customClass</key>
 								<string></string>
 								<key>displayName</key>
-								<string>SKLabelNode</string>
+								<string>game design label</string>
 								<key>memberVarAssignmentName</key>
 								<string></string>
 								<key>memberVarAssignmentType</key>
@@ -1549,7 +1699,7 @@
 				<key>customClass</key>
 				<string></string>
 				<key>displayName</key>
-				<string>SKNode</string>
+				<string>textContainer</string>
 				<key>memberVarAssignmentName</key>
 				<string></string>
 				<key>memberVarAssignmentType</key>
@@ -1757,7 +1907,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.89999997615814209</real>
+			<real>1.5333333015441895</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
