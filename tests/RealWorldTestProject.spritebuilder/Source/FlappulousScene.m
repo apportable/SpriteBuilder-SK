@@ -38,7 +38,7 @@
 -(void) endGameButton:(id)sender
 {
 	SKScene* scene = [CCBReader loadAsScene:@"MainScene" size:self.scene.size];
-	[self.scene.view presentScene:scene];
+	[self.scene.view presentScene:scene transition:[SKTransition fadeWithColor:[SKColor purpleColor] duration:2.0]];
 }
 
 -(void) goodWordButton:(id)sender

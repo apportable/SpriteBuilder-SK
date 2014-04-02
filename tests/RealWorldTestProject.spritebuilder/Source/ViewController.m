@@ -21,6 +21,9 @@
 		skView.showsFPS = YES;
 		skView.showsNodeCount = YES;
 		skView.showsDrawCount = YES;
+		[skView setValue:@(YES) forKey:@"_showsCulledNodesInNodeCount"];
+		//[skView setValue:@(YES) forKey:@"_showsGPUStats"];
+		//[skView setValue:@(YES) forKey:@"_showsCPUStats"];
 		
 		SKScene* scene = [CCBReader loadAsScene:@"MainScene" size:skView.bounds.size];
 		//scene.anchorPoint = CGPointMake(0.5, 0.5);

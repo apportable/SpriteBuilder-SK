@@ -145,6 +145,78 @@
 					<dict>
 						<key>UUID</key>
 						<integer>3</integer>
+						<key>animatedProperties</key>
+						<dict>
+							<key>0</key>
+							<dict>
+								<key>scale</key>
+								<dict>
+									<key>keyframes</key>
+									<array>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>scale</string>
+											<key>time</key>
+											<real>0.0</real>
+											<key>type</key>
+											<integer>4</integer>
+											<key>value</key>
+											<array>
+												<real>1</real>
+												<real>1</real>
+											</array>
+										</dict>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>opt</key>
+												<real>2</real>
+												<key>type</key>
+												<integer>2</integer>
+											</dict>
+											<key>name</key>
+											<string>scale</string>
+											<key>time</key>
+											<real>1.8999999761581421</real>
+											<key>type</key>
+											<integer>4</integer>
+											<key>value</key>
+											<array>
+												<real>1</real>
+												<real>1</real>
+											</array>
+										</dict>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>scale</string>
+											<key>time</key>
+											<real>2.3666665554046631</real>
+											<key>type</key>
+											<integer>4</integer>
+											<key>value</key>
+											<array>
+												<real>0.0</real>
+												<real>0.0</real>
+											</array>
+										</dict>
+									</array>
+									<key>name</key>
+									<string>scale</string>
+									<key>type</key>
+									<integer>4</integer>
+								</dict>
+							</dict>
+						</dict>
 						<key>baseClass</key>
 						<string>SKLabelNode</string>
 						<key>children</key>
@@ -182,14 +254,19 @@
 								</array>
 							</dict>
 							<dict>
+								<key>baseValue</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+								</array>
 								<key>name</key>
 								<string>scale</string>
 								<key>type</key>
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.0</real>
+									<real>0.0</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -251,6 +328,8 @@
 								<integer>0</integer>
 							</dict>
 						</array>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -389,6 +468,52 @@
 									<key>type</key>
 									<integer>10</integer>
 								</dict>
+								<key>scale</key>
+								<dict>
+									<key>keyframes</key>
+									<array>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>scale</string>
+											<key>time</key>
+											<real>1.7666666507720947</real>
+											<key>type</key>
+											<integer>4</integer>
+											<key>value</key>
+											<array>
+												<real>1</real>
+												<real>1</real>
+											</array>
+										</dict>
+										<dict>
+											<key>easing</key>
+											<dict>
+												<key>type</key>
+												<integer>1</integer>
+											</dict>
+											<key>name</key>
+											<string>scale</string>
+											<key>time</key>
+											<real>2.4333333969116211</real>
+											<key>type</key>
+											<integer>4</integer>
+											<key>value</key>
+											<array>
+												<real>0.0</real>
+												<real>0.0</real>
+											</array>
+										</dict>
+									</array>
+									<key>name</key>
+									<string>scale</string>
+									<key>type</key>
+									<integer>4</integer>
+								</dict>
 							</dict>
 						</dict>
 						<key>baseClass</key>
@@ -428,14 +553,19 @@
 								</array>
 							</dict>
 							<dict>
+								<key>baseValue</key>
+								<array>
+									<real>1</real>
+									<real>1</real>
+								</array>
 								<key>name</key>
 								<string>scale</string>
 								<key>type</key>
 								<string>ScaleLock</string>
 								<key>value</key>
 								<array>
-									<real>1</real>
-									<real>1</real>
+									<real>0.0</real>
+									<real>0.0</real>
 									<false/>
 									<integer>0</integer>
 								</array>
@@ -505,6 +635,8 @@
 								<integer>0</integer>
 							</dict>
 						</array>
+						<key>seqExpanded</key>
+						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -1404,8 +1536,6 @@
 				</array>
 			</dict>
 		</array>
-		<key>selected</key>
-		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -1469,13 +1599,13 @@
 			<key>chainedSequenceId</key>
 			<integer>0</integer>
 			<key>length</key>
-			<real>1.5</real>
+			<real>3</real>
 			<key>name</key>
 			<string>Default Timeline</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.066666670143604279</real>
+			<real>2.7000000476837158</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
