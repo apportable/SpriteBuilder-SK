@@ -50,6 +50,8 @@
 	<false/>
 	<key>publishEnablediPhone</key>
 	<true/>
+	<key>publishEnvironment</key>
+	<integer>0</integer>
 	<key>publishResolutionHTML5_height</key>
 	<integer>320</integer>
 	<key>publishResolutionHTML5_scale</key>
