@@ -33,6 +33,7 @@
 @property (nonatomic) CGFloat skewY;
 @property (nonatomic) CGFloat scaleX;
 @property (nonatomic) CGFloat scaleY;
+@property (nonatomic) CGPoint scaleAsPoint;
 @property (nonatomic) CGFloat opacity;
 @property (nonatomic) SKTexture* spriteFrame;
 @property (nonatomic) CGSize contentSize;
@@ -53,6 +54,7 @@
 -(BOOL) hitTestWithWorldPosition:(CGPoint)pos;
 
 -(CGPoint) convertPosition:(CGPoint)originalPosition positionType:(CCPositionType)positionType;
--(CGSize) absoluteSizeFromSizeType;
+-(CGSize) convertSize:(CGSize)size sizeType:(CCSizeType)sizeType;
+-(CGPoint) convertScaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY scaleType:(CCScaleType)scaleType;
 
 @end

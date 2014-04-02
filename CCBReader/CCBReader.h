@@ -110,10 +110,11 @@
  *
  *  @param data       Data object to load the ccbi-file from.
  *  @param owner      The owner object used to load the file, or NULL if not used.
+ *  @param parentSize      The size of the container the node will be added to. If in doubt use scene size.
  *
  *  @return The loaded node graph.
  */
-- (CCNode*) loadWithData:(NSData*) data owner:(id)owner;
+- (CCNode*) loadWithData:(NSData*) data owner:(id)owner parentSize:(CGSize)parentSize;
 
 /**
  *  Loads a ccbi-file with the specified name. Using the extension is optional, e.g. both MyNodeGraph and MyNodeGraph.ccbi will work.

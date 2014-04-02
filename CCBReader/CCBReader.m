@@ -1343,7 +1343,7 @@ static inline float readFloat(CCBReader *self)
 
 + (CCNode*) nodeGraphFromData:(NSData*) data owner:(id)owner parentSize:(CGSize)parentSize
 {
-    return [[CCBReader reader] loadWithData:data owner:owner];
+    return [[CCBReader reader] loadWithData:data owner:owner parentSize:parentSize];
 }
 
 + (CCNode*) load:(NSString*) file

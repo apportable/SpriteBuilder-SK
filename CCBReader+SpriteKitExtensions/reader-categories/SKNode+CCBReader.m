@@ -312,17 +312,11 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	// apply the positionType, sizeType, scaleType properties here and only once
 	if ([self respondsToSelector:@selector(setSize:)])
 	{
-		CGSize size = [self absoluteSizeFromSizeType];
+		CGSize size = [self convertSize:[(id)self contentSize] sizeType:self.contentSizeType];
 		[(id)self setSize:size];
 	}
 	
-	if (self.scaleType == CCScaleTypeScaled)
-	{
-		CGFloat scaleFactor = [CCDirector sharedDirector].UIScaleFactor;
-		self.xScale *= scaleFactor;
-		self.yScale *= scaleFactor;
-	}
-
+	self.scaleAsPoint = [self convertScaleX:self.xScale scaleY:self.yScale scaleType:self.scaleType];
 	self.position = [self convertPosition:self.position positionType:self.positionType];
 
 	// convert only once
@@ -331,7 +325,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	[self.userData removeObjectForKey:CCBReaderUserDataKeyForPositionType];
 	[self.userData removeObjectForKey:CCBReaderUserDataKeyForLoadedFromCCB];
 
-	// remove if empty (user may have already added custom userData items)
+	// remove dictionary if empty (user may have already added custom userData items, hence the check)
 	if (self.userData.count == 0)
 	{
 		self.userData = nil;
@@ -342,6 +336,33 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].width : self.frame.size.width,
 		  [self respondsToSelector:@selector(setSize:)] ? [(id)self size].height : self.frame.size.height, self.xScale, self.yScale);
 	 */
+}
+
+#pragma mark Adjust scale based on scaleType
+
+@dynamic scaleAsPoint;
+-(CGPoint) scaleAsPoint
+{
+	return CGPointMake(self.xScale, self.yScale);
+}
+-(void) setScaleAsPoint:(CGPoint)scaleAsPoint
+{
+	self.xScale = scaleAsPoint.x;
+	self.yScale = scaleAsPoint.y;
+}
+
+-(CGPoint) convertScaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY scaleType:(CCScaleType)scaleType
+{
+	CGPoint newScale = CGPointMake(scaleX, scaleY);
+	
+	if (scaleType == CCScaleTypeScaled)
+	{
+		CGFloat scaleFactor = [CCDirector sharedDirector].UIScaleFactor;
+		newScale.x *= scaleFactor;
+		newScale.y *= scaleFactor;
+	}
+	
+	return newScale;
 }
 
 #pragma mark Adjust Size based on sizeType
@@ -372,62 +393,54 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	return parentSize;
 }
 
--(CGSize) absoluteSizeFromSizeType
+-(CGSize) convertSize:(CGSize)size sizeType:(CCSizeType)sizeType
 {
-	CGSize size = [(id)self size];
 	CGSize newSize = size;
 
-	CCBReaderSizeType* sizeTypeObject = [self.userData objectForKey:CCBReaderUserDataKeyForContentSizeType];
-	
-	if (sizeTypeObject)
+	switch (sizeType.widthUnit)
 	{
-		CCSizeType sizeType = sizeTypeObject.sizeType;
-		
-		switch (sizeType.widthUnit)
-		{
-			case CCSizeUnitPoints:
-				// nothing to do
-				break;
-			case CCSizeUnitUIPoints:
-				newSize.width = [CCDirector sharedDirector].UIScaleFactor * size.width;
-				break;
-			case CCSizeUnitNormalized:
-				newSize.width = size.width * [self contentSizeFromParent].width;
-				break;
-			case CCSizeUnitInsetPoints:
-				newSize.width = [self contentSizeFromParent].width - size.width;
-				break;
-			case CCSizeUnitInsetUIPoints:
-				newSize.width = [self contentSizeFromParent].width - size.width * [CCDirector sharedDirector].UIScaleFactor;
-				break;
-				
-			default:
-				[NSException raise:NSInternalInconsistencyException format:@"unsupported contentSize unit type for width: %d", sizeType.widthUnit];
-				break;
-		}
-		
-		switch (sizeType.heightUnit)
-		{
-			case CCSizeUnitPoints:
-				// nothing to do
-				break;
-			case CCSizeUnitUIPoints:
-				newSize.height = [CCDirector sharedDirector].UIScaleFactor * size.height;
-				break;
-			case CCSizeUnitNormalized:
-				newSize.height = size.height * [self contentSizeFromParent].height;
-				break;
-			case CCSizeUnitInsetPoints:
-				newSize.height = [self contentSizeFromParent].height - size.height;
-				break;
-			case CCSizeUnitInsetUIPoints:
-				newSize.height = [self contentSizeFromParent].height - size.height * [CCDirector sharedDirector].UIScaleFactor;
-				break;
-				
-			default:
-				[NSException raise:NSInternalInconsistencyException format:@"unsupported contentSize unit type for height: %d", sizeType.heightUnit];
-				break;
-		}
+		case CCSizeUnitPoints:
+			// nothing to do
+			break;
+		case CCSizeUnitUIPoints:
+			newSize.width = [CCDirector sharedDirector].UIScaleFactor * size.width;
+			break;
+		case CCSizeUnitNormalized:
+			newSize.width = size.width * [self contentSizeFromParent].width;
+			break;
+		case CCSizeUnitInsetPoints:
+			newSize.width = [self contentSizeFromParent].width - size.width;
+			break;
+		case CCSizeUnitInsetUIPoints:
+			newSize.width = [self contentSizeFromParent].width - size.width * [CCDirector sharedDirector].UIScaleFactor;
+			break;
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unsupported contentSize unit type for width: %d", sizeType.widthUnit];
+			break;
+	}
+	
+	switch (sizeType.heightUnit)
+	{
+		case CCSizeUnitPoints:
+			// nothing to do
+			break;
+		case CCSizeUnitUIPoints:
+			newSize.height = [CCDirector sharedDirector].UIScaleFactor * size.height;
+			break;
+		case CCSizeUnitNormalized:
+			newSize.height = size.height * [self contentSizeFromParent].height;
+			break;
+		case CCSizeUnitInsetPoints:
+			newSize.height = [self contentSizeFromParent].height - size.height;
+			break;
+		case CCSizeUnitInsetUIPoints:
+			newSize.height = [self contentSizeFromParent].height - size.height * [CCDirector sharedDirector].UIScaleFactor;
+			break;
+			
+		default:
+			[NSException raise:NSInternalInconsistencyException format:@"unsupported contentSize unit type for height: %d", sizeType.heightUnit];
+			break;
 	}
 	
 	return newSize;
