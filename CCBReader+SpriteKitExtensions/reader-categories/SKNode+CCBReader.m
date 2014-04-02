@@ -336,16 +336,17 @@ static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType"
 -(CGSize) contentSizeFromParent
 {
 	CGSize parentSize = CGSizeZero;
+	SKNode* parent = self.parent;
 	
-	if (self.parent)
+	if (parent)
 	{
-		if ([self.parent respondsToSelector:@selector(setSize:)])
+		if ([parent respondsToSelector:@selector(setSize:)])
 		{
-			parentSize = [(id)self.parent size];
+			parentSize = [(id)parent size];
 		}
 		else
 		{
-			parentSize = self.parent.frame.size;
+			parentSize = parent.frame.size;
 		}
 	}
 	

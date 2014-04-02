@@ -161,8 +161,6 @@ static CGSize CCBSpriteKitReaderSceneSize;
 -(CCNode*) nodeGraphFromFile:(NSString*) file owner:(id)o parentSize:(CGSize)parentSize
 {
 	CCNode* node = [super nodeGraphFromFile:file owner:o parentSize:parentSize];
-	[self readerDidLoadNode:node rootNode:node];
-	[self.animationManager normalizeValuesForRootNode:node];
 	return node;
 }
 
