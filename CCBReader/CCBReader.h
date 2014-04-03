@@ -166,7 +166,6 @@
 
 
 // Internal use: override methods for Sprite Kit Reader subclass
-+(void) setSceneSize:(CGSize)sceneSize;
 -(CCNode*) nodeFromClassName:(NSString*)nodeClassName;
 -(void) readerDidSetSpriteFrame:(CCSpriteFrame*)spriteFrame node:(CCNode*)node;
 
