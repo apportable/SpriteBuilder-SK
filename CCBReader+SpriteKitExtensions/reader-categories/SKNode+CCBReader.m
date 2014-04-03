@@ -396,6 +396,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 -(CGSize) convertSize:(CGSize)size sizeType:(CCSizeType)sizeType
 {
 	CGSize newSize = size;
+    CCDirector* director = [CCDirector sharedDirector];
 
 	switch (sizeType.widthUnit)
 	{
@@ -403,7 +404,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			// nothing to do
 			break;
 		case CCSizeUnitUIPoints:
-			newSize.width = [CCDirector sharedDirector].UIScaleFactor * size.width;
+			newSize.width = director.UIScaleFactor * size.width;
 			break;
 		case CCSizeUnitNormalized:
 			newSize.width = size.width * [self contentSizeFromParent].width;
@@ -412,7 +413,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			newSize.width = [self contentSizeFromParent].width - size.width;
 			break;
 		case CCSizeUnitInsetUIPoints:
-			newSize.width = [self contentSizeFromParent].width - size.width * [CCDirector sharedDirector].UIScaleFactor;
+			newSize.width = [self contentSizeFromParent].width - size.width * director.UIScaleFactor;
 			break;
 			
 		default:
@@ -426,7 +427,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			// nothing to do
 			break;
 		case CCSizeUnitUIPoints:
-			newSize.height = [CCDirector sharedDirector].UIScaleFactor * size.height;
+			newSize.height = director.UIScaleFactor * size.height;
 			break;
 		case CCSizeUnitNormalized:
 			newSize.height = size.height * [self contentSizeFromParent].height;
@@ -435,7 +436,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			newSize.height = [self contentSizeFromParent].height - size.height;
 			break;
 		case CCSizeUnitInsetUIPoints:
-			newSize.height = [self contentSizeFromParent].height - size.height * [CCDirector sharedDirector].UIScaleFactor;
+			newSize.height = [self contentSizeFromParent].height - size.height * director.UIScaleFactor;
 			break;
 			
 		default:

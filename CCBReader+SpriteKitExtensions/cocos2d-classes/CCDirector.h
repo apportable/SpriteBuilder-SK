@@ -22,5 +22,6 @@
 @property (nonatomic, readonly) KKView* view;
 @property (nonatomic) CGSize designSize;
 @property (nonatomic) CGFloat UIScaleFactor;
+@property (nonatomic) CGFloat contentScaleFactor;
 
 @end

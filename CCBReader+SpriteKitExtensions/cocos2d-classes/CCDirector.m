@@ -21,6 +21,7 @@
         sharedInstance = [[CCDirector alloc] init];
 		sharedInstance.actionManager = [[CCActionManager alloc] init];
 		sharedInstance.UIScaleFactor = 1.0;
+		sharedInstance.contentScaleFactor = [UIScreen mainScreen].scale;
     });
     return sharedInstance;
 }
