@@ -27,7 +27,7 @@
 		
 		[self addTestNodesToScene:scene];
 		
-		[self dumpNodeGraph:scene];
+		//[self dumpNodeGraph:scene];
 	}
 }
 
