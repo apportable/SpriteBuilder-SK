@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>cocos2dUpdateIgnoredVersions</key>
+	<array/>
 	<key>defaultOrientation</key>
 	<integer>0</integer>
 	<key>designTarget</key>
@@ -185,6 +187,11 @@
 		<dict>
 			<key>scaleFrom</key>
 			<integer>2</integer>
+		</dict>
+		<key>crabby_paddy.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
 		</dict>
 		<key>sheetysheet</key>
 		<dict>
