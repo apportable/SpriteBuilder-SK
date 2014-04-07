@@ -5,12 +5,41 @@
 	<key>activeLanguages</key>
 	<array>
 		<string>en</string>
+		<string>de</string>
 	</array>
 	<key>fileType</key>
 	<string>SpriteBuilderTranslations</string>
 	<key>fileVersion</key>
 	<integer>1</integer>
 	<key>translations</key>
-	<array/>
+	<array>
+		<dict>
+			<key>key</key>
+			<string>The Great Creditsscreen</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>Der große Abspann</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>Visionary Enlightements</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>Visionäre Erleuchtungen</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>Sourcecodewriting</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>Quelltexteingebung</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

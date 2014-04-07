@@ -5,12 +5,51 @@
 	<key>activeLanguages</key>
 	<array>
 		<string>en</string>
+		<string>de</string>
 	</array>
 	<key>fileType</key>
 	<string>SpriteBuilderTranslations</string>
 	<key>fileVersion</key>
 	<integer>1</integer>
 	<key>translations</key>
-	<array/>
+	<array>
+		<dict>
+			<key>comment</key>
+			<string></string>
+			<key>key</key>
+			<string>BUTTONTEXT</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>KNOPF</string>
+				<key>en</key>
+				<string>BUTTON</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string></string>
+			<key>key</key>
+			<string>Label</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>BESCHRIFTUNG</string>
+				<key>en</key>
+				<string>LABEL</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>key</key>
+			<string>THIS IS A BUTTON STUFF TEXT HERE BLA</string>
+			<key>translations</key>
+			<dict>
+				<key>de</key>
+				<string>KNOPF</string>
+				<key>en</key>
+				<string>BUTTON</string>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

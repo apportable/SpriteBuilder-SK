@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>8</integer>
+	<integer>9</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -61,7 +61,7 @@
 						<key>value</key>
 						<array>
 							<real>0.0</real>
-							<real>0.0</real>
+							<real>1</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -275,9 +275,12 @@
 								<key>name</key>
 								<string>text</string>
 								<key>type</key>
-								<string>StringSimple</string>
+								<string>Text</string>
 								<key>value</key>
-								<string>Defeat the bad words!</string>
+								<array>
+									<string>Label</string>
+									<false/>
+								</array>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -582,9 +585,12 @@
 								<key>name</key>
 								<string>text</string>
 								<key>type</key>
-								<string>StringSimple</string>
+								<string>Text</string>
 								<key>value</key>
-								<string>Pay Attention !!</string>
+								<array>
+									<string>Label</string>
+									<false/>
+								</array>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -744,6 +750,19 @@
 							<integer>2</integer>
 							<integer>2</integer>
 							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>182</real>
+							<real>25</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -985,8 +1004,21 @@
 						<key>value</key>
 						<array>
 							<real>62</real>
-							<real>40</real>
+							<real>41</real>
 							<integer>3</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>120</real>
+							<real>80</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1253,6 +1285,19 @@
 							<real>60</real>
 							<real>40</real>
 							<integer>0</integer>
+							<integer>0</integer>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>120</real>
+							<real>80</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>

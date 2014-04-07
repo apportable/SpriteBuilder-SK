@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>34</integer>
+	<integer>36</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -171,8 +171,8 @@
 									<integer>3</integer>
 									<key>value</key>
 									<array>
-										<real>0.20000000298023224</real>
-										<real>0.80000001192092896</real>
+										<real>0.19823943078517914</real>
+										<real>0.796875</real>
 									</array>
 								</dict>
 								<dict>
@@ -363,8 +363,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.20000000298023224</real>
-							<real>0.80000001192092896</real>
+							<real>0.19823943078517914</real>
+							<real>0.796875</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -440,6 +440,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -475,11 +477,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.49647888541221619</real>
+							<real>0.55416667461395264</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -489,10 +491,10 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>9</real>
-							<real>5</real>
+							<real>1.4432297945022583</real>
+							<real>1.3980251550674438</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -501,7 +503,7 @@
 						<key>type</key>
 						<string>Float</string>
 						<key>value</key>
-						<real>0.5</real>
+						<real>0.33000001311302185</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -510,8 +512,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>0.5</real>
+							<real>0.5</real>
 						</array>
 					</dict>
 					<dict>
@@ -522,7 +524,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbParticleSmoke.png</string>
+							<string>atlas/IMG_3188_small.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -535,7 +537,7 @@
 							<real>0.0</real>
 							<real>1</real>
 							<real>0.98198461532592773</real>
-							<real>0.5</real>
+							<real>0.33000001311302185</real>
 						</array>
 					</dict>
 					<dict>
@@ -687,9 +689,12 @@
 						<key>name</key>
 						<string>text</string>
 						<key>type</key>
-						<string>StringSimple</string>
+						<string>Text</string>
 						<key>value</key>
-						<string>Flappy Words Saga XXL</string>
+						<array>
+							<string>Flappy Words Saga XXL</string>
+							<false/>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -706,7 +711,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>43</real>
+							<real>39</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -786,6 +791,19 @@
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>220</real>
+							<real>80</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1073,6 +1091,19 @@
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>contentSize</string>
+						<key>type</key>
+						<string>Size</string>
+						<key>value</key>
+						<array>
+							<real>166</real>
+							<real>40</real>
+							<integer>0</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>

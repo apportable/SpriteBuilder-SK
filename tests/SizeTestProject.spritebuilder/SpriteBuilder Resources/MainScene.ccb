@@ -7,7 +7,7 @@
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>currentSequenceId</key>
 	<integer>0</integer>
 	<key>docDimensionsType</key>
@@ -157,8 +157,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.49647888541221619</real>
-							<real>-1</real>
+							<real>0.4982394278049469</real>
+							<real>0.0</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>0</integer>
@@ -181,9 +181,12 @@
 						<key>name</key>
 						<string>text</string>
 						<key>type</key>
-						<string>StringSimple</string>
+						<string>Text</string>
 						<key>value</key>
-						<string>BUTTON</string>
+						<array>
+							<string>Label</string>
+							<true/>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -200,7 +203,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>135</real>
+							<real>64</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -289,7 +292,7 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>429</real>
+							<real>98</real>
 							<real>48</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -361,7 +364,7 @@
 						<key>value</key>
 						<array>
 							<string>THIS IS A BUTTON STUFF TEXT HERE BLA</string>
-							<false/>
+							<true/>
 						</array>
 					</dict>
 					<dict>

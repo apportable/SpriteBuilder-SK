@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UUID</key>
-	<integer>12</integer>
+	<integer>13</integer>
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
@@ -439,8 +439,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>-196</real>
-									<real>1</real>
+									<real>-109.5660400390625</real>
+									<real>1.9639414548873901</real>
 									<integer>0</integer>
 									<integer>0</integer>
 									<integer>0</integer>
@@ -463,9 +463,12 @@
 								<key>name</key>
 								<string>text</string>
 								<key>type</key>
-								<string>StringSimple</string>
+								<string>Text</string>
 								<key>value</key>
-								<string>-- Les Crédits Prográmmätîque --</string>
+								<array>
+									<string>The Great Creditsscreen</string>
+									<true/>
+								</array>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -550,8 +553,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-0.52173936367034912</real>
-							<real>75.304344177246094</real>
+							<real>1</real>
+							<real>75</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -569,8 +572,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.98148149251937866</real>
-							<real>1.037407398223877</real>
+							<real>1</real>
+							<real>1</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -587,9 +590,12 @@
 						<key>name</key>
 						<string>text</string>
 						<key>type</key>
-						<string>StringSimple</string>
+						<string>Text</string>
 						<key>value</key>
-						<string>-- Les Crédits Prográmmätîque --</string>
+						<array>
+							<string>The Great Creditsscreen</string>
+							<true/>
+						</array>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -640,6 +646,8 @@
 						<integer>0</integer>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 				<key>seqExpanded</key>
 				<true/>
 			</dict>
@@ -850,8 +858,8 @@
 												<string>Position</string>
 												<key>value</key>
 												<array>
-													<real>256.4375</real>
-													<real>-20.104290008544922</real>
+													<real>215</real>
+													<real>48</real>
 													<integer>1</integer>
 													<integer>0</integer>
 													<integer>0</integer>
@@ -878,7 +886,7 @@
 												<key>type</key>
 												<string>Degrees</string>
 												<key>value</key>
-												<real>254.66665649414062</real>
+												<real>40</real>
 											</dict>
 											<dict>
 												<key>name</key>
@@ -924,8 +932,6 @@
 												<real>1</real>
 											</dict>
 										</array>
-										<key>selected</key>
-										<true/>
 										<key>seqExpanded</key>
 										<true/>
 									</dict>
@@ -1080,9 +1086,12 @@
 												<key>name</key>
 												<string>text</string>
 												<key>type</key>
-												<string>StringSimple</string>
+												<string>Text</string>
 												<key>value</key>
-												<string>Noah Nerd</string>
+												<array>
+													<string>Herma Nerd</string>
+													<false/>
+												</array>
 											</dict>
 											<dict>
 												<key>name</key>
@@ -1162,7 +1171,7 @@
 										<string>Position</string>
 										<key>value</key>
 										<array>
-											<real>0.0</real>
+											<real>1</real>
 											<real>0.0</real>
 											<integer>0</integer>
 											<integer>0</integer>
@@ -1186,9 +1195,12 @@
 										<key>name</key>
 										<string>text</string>
 										<key>type</key>
-										<string>StringSimple</string>
+										<string>Text</string>
 										<key>value</key>
-										<string>Quelltexteingebung:</string>
+										<array>
+											<string>Sourcecodewriting</string>
+											<true/>
+										</array>
 									</dict>
 									<dict>
 										<key>name</key>
@@ -1474,9 +1486,12 @@
 												<key>name</key>
 												<string>text</string>
 												<key>type</key>
-												<string>StringSimple</string>
+												<string>Text</string>
 												<key>value</key>
-												<string>Herma Derp</string>
+												<array>
+													<string>Ormu Derp</string>
+													<false/>
+												</array>
 											</dict>
 											<dict>
 												<key>name</key>
@@ -1580,9 +1595,12 @@
 										<key>name</key>
 										<string>text</string>
 										<key>type</key>
-										<string>StringSimple</string>
+										<string>Text</string>
 										<key>value</key>
-										<string>Visionäre Eingebung:</string>
+										<array>
+											<string>Visionary Enlightements</string>
+											<true/>
+										</array>
 									</dict>
 									<dict>
 										<key>name</key>
@@ -1907,7 +1925,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.5333333015441895</real>
+			<real>4</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
