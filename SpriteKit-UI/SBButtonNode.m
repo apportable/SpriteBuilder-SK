@@ -9,6 +9,7 @@
 #import "SBButtonNode.h"
 #import "SBControlNode_Private.h"
 #import "CGPointExtension.h"
+#import "CCDirector.h"
 #import <objc/runtime.h>
 
 #define SBFatFingerExpansion 70
@@ -142,12 +143,19 @@
 - (void) layout
 {
 	// must start with scaling at 1x1 so that size is correct
-	//_label.xScale = _originalLabelScaleX;
-	//_label.yScale = _originalLabelScaleY;
+	_label.scale = 1.0;
 
-    CGSize paddedLabelSize = self.preferredSize;
-    paddedLabelSize.width += _horizontalPadding * 2;
-    paddedLabelSize.height += _verticalPadding * 2;
+    CGSize paddedLabelSize = _label.frame.size;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+	{
+		paddedLabelSize.width += _horizontalPadding * 2.0 + 17.0;	// FIXME: WTF? Why +17/+58 to make it same size as CCButton?
+		paddedLabelSize.height += _verticalPadding * 2.0 + 58.0;
+	}
+	else
+	{
+		paddedLabelSize.width += _horizontalPadding * 2.0 + 17.0;	// FIXME: WTF? Why +17/+58 to make it same size as CCButton?
+		paddedLabelSize.height += _verticalPadding * 2.0 + 58.0;
+	}
     
     BOOL shrunkSize = NO;
 	// FIXME: size with type
@@ -155,7 +163,7 @@
     CGSize size = [self convertContentSizeToPoints: self.preferredSize type:self.contentSizeType];
     CGSize maxSize = [self convertContentSizeToPoints:self.maxSize type:self.contentSizeType];
 	 */
-    CGSize size = self.preferredSize;
+    CGSize size = paddedLabelSize;
     CGSize maxSize = self.maxSize;
     
     if (size.width < paddedLabelSize.width)
@@ -183,39 +191,22 @@
 		//_originalLabelScaleY = _label.yScale;
     }
 
-	[self updateBackgroundSlice];
-    
+	_background.size = size;
+	//_background.xScale = (size.width + _horizontalPadding * 200.0) / _background.texture.size.width;
+	//_background.yScale = (size.height + _verticalPadding * 2.0) / _background.texture.size.height;
+	_background.scale = 16.0;
+	_background.centerRect = CGRectMake(0.44, 0.44, 0.44, 0.44);
+	
+	NSLog(@"BUTTON: size {%.1f, %.1f}, pad size {%.1f, %.1f}, bg scale: {%.2f, %.2f}",
+		  [self calculateAccumulatedFrame].size.width, [self calculateAccumulatedFrame].size.height, paddedLabelSize.width, paddedLabelSize.height,
+		  _background.xScale, _background.yScale);
+
 	// FIXME: contentSize with type
 	//self.contentSize = [self convertContentSizeFromPoints: size type:self.contentSizeType];
     
     [super layout];
 	
 	//NSLog(@"Button: %@ - label size:{%.0f, %.0f} adjusted:{%.0f, %.0f}", self.name, _label.frame.size.width, _label.frame.size.height, size.width, size.height);
-}
-
--(void) updateBackgroundSlice
-{
-	// set bg scale based on label size because Sprite Kit's "9 slice" works in conjunction with scale, not size
-	CGSize labelSize = _label.frame.size;
-	labelSize.width += _horizontalPadding * 2.0;
-	labelSize.height += _verticalPadding * 2.0;
-	
-	// blow up to preferred size if label is too small
-	if (labelSize.width < self.preferredSize.width)
-	{
-		labelSize.width = self.preferredSize.width;
-	}
-	if (labelSize.height < self.preferredSize.height)
-	{
-		labelSize.height = self.preferredSize.height;
-	}
-	
-	_background.size = labelSize;
-	_background.xScale = labelSize.width / _background.texture.size.width;
-	_background.yScale = labelSize.height / _background.texture.size.height;
-	_background.centerRect = CGRectMake(0.33, 0.33, 0.33, 0.33);
-	
-	//NSLog(@"bg scale: %.2f / %.2f", _background.xScale, _background.yScale);
 }
 
 #ifdef __CC_PLATFORM_IOS
@@ -326,8 +317,7 @@
     _label.fontColor = labelColor.skColor;
     _label.alpha = [self labelOpacityForState:state];
 
-	[self updateBackgroundSlice];
-
+	[self layout];
     [self needsLayout];
 }
 

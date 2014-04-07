@@ -315,6 +315,12 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 		CGSize size = [self convertSize:[(id)self contentSize] sizeType:self.contentSizeType];
 		[(id)self setSize:size];
 	}
+	else if ([self isKindOfClass:[SKLabelNode class]])
+	{
+		// upscale labels
+		SKLabelNode* label = (SKLabelNode*)self;
+		label.fontSize *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+	}
 	
 	self.scaleAsPoint = [self convertScaleX:self.xScale scaleY:self.yScale scaleType:self.scaleType];
 	self.position = [self convertPosition:self.position positionType:self.positionType];

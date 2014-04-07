@@ -55,7 +55,6 @@ const CGSize FIXED_SIZE = {568, 384};
 x = y; y = temp;		\
 })
 
-/*
 static CGFloat FindPOTScale(CGFloat size, CGFloat fixedSize)
 {
 	int scale = 1;
@@ -65,7 +64,6 @@ static CGFloat FindPOTScale(CGFloat size, CGFloat fixedSize)
 	}
 	return (CGFloat)scale;
 }
- */
 
 
 @interface CCBReader (PrivateMethods)
@@ -109,7 +107,7 @@ static CGSize currentSceneSize;
 		}
 		
 		// Find the minimal power-of-two scale that covers both the width and height.
-		//director.contentScaleFactor = MIN(FindPOTScale(size.width, fixed.width), FindPOTScale(size.height, fixed.height));
+		director.contentScaleFactor = MIN(FindPOTScale(size.width, fixed.width), FindPOTScale(size.height, fixed.height));
 		
 		director.UIScaleFactor = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 1.0 : 0.5);
 		
@@ -125,9 +123,10 @@ static CGSize currentSceneSize;
 		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && [options[CCSetupTabletScale2X] boolValue])
 		{
 			// Set the director to use 2 points per pixel.
-			//director.contentScaleFactor *= 2.0;
+			director.contentScaleFactor *= 2.0;
+			director.iPadLabelScaleFactor = 2.0;
 			
-			// Set the UI scale factor to show things at "native" size.
+			// FIXME: Set the UI scale factor to show things at "native" size.
 			//director.UIScaleFactor = 0.5;
 			
 			// Let CCFileUtils know that "-ipad" textures should be treated as having a contentScale of 2.0.
