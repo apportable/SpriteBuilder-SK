@@ -1075,6 +1075,24 @@ static inline float readFloat(CCBReader *self)
     
     animatedProps = NULL;
     
+	if ([node isKindOfClass:[SKLabelNode class]])
+	{
+		// upscale labels
+		SKLabelNode* label = (SKLabelNode*)node;
+		label.fontSize *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+	}
+	else if ([node isKindOfClass:[SKSpriteNode class]])
+	{
+		SKSpriteNode* sprite = (SKSpriteNode*)node;
+		if (sprite.texture == nil)
+		{
+			CGSize size = sprite.size;
+			size.width *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+			size.height *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+			sprite.size = size;
+		}
+	}
+	
     // CC body: must read bool to remain in sync with cocos CCB format
     BOOL hasPhysicsBody = readBool(self);
     if (hasPhysicsBody) {}
