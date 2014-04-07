@@ -94,6 +94,7 @@ static CGSize currentSceneSize;
 -(void) setupSpriteKitWithOptions:(NSDictionary*)options
 {
 	CCDirector* director = [CCDirector sharedDirector];
+	director.allowedOrientations = [options[CCSetupScreenOrientation] isEqualToString:CCScreenOrientationPortrait] ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskLandscape;
 	
 	if ([options[CCSetupScreenMode] isEqual:CCScreenModeFixed])
 	{

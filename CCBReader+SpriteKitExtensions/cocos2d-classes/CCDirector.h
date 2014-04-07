@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class CCActionManager;
 @class KKView;
@@ -24,5 +25,6 @@
 @property (nonatomic) CGFloat UIScaleFactor;
 @property (nonatomic) CGFloat contentScaleFactor;
 @property (nonatomic) CGFloat iPadLabelScaleFactor;
+@property (nonatomic) UIInterfaceOrientationMask allowedOrientations;
 
 @end

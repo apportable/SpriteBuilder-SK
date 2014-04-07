@@ -23,6 +23,7 @@
 		sharedInstance.UIScaleFactor = 1.0;
 		sharedInstance.contentScaleFactor = [UIScreen mainScreen].scale;
 		sharedInstance.iPadLabelScaleFactor = 1.0;
+		sharedInstance.allowedOrientations = UIInterfaceOrientationMaskAllButUpsideDown;
     });
     return sharedInstance;
 }

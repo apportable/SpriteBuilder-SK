@@ -176,7 +176,7 @@
 	
     if (shrunkSize)
     {
-		// must change the label's scale
+		// FIXME: need to change the label's scale?
 		//_label.xScale = self.maxSize.width / paddedLabelSize.width;
 		//_label.yScale = self.maxSize.height / paddedLabelSize.height;
 		//_originalLabelScaleX = _label.xScale;
@@ -193,9 +193,6 @@
 		  [self calculateAccumulatedFrame].size.width, [self calculateAccumulatedFrame].size.height, paddedLabelSize.width, paddedLabelSize.height,
 		  _background.xScale, _background.yScale);
 
-	// FIXME: contentSize with type
-	//self.contentSize = [self convertContentSizeFromPoints: size type:self.contentSizeType];
-    
     [super layout];
 	
 	//NSLog(@"Button: %@ - label size:{%.0f, %.0f} adjusted:{%.0f, %.0f}", self.name, _label.frame.size.width, _label.frame.size.height, size.width, size.height);
