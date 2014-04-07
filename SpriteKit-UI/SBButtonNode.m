@@ -145,17 +145,9 @@
 	// must start with scaling at 1x1 so that size is correct
 	_label.scale = 1.0;
 
-    CGSize paddedLabelSize = _label.frame.size;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		paddedLabelSize.width += _horizontalPadding * 2.0 + 17.0;	// FIXME: WTF? Why +17/+58 to make it same size as CCButton?
-		paddedLabelSize.height += _verticalPadding * 2.0 + 58.0;
-	}
-	else
-	{
-		paddedLabelSize.width += _horizontalPadding * 2.0 + 17.0;	// FIXME: WTF? Why +17/+58 to make it same size as CCButton?
-		paddedLabelSize.height += _verticalPadding * 2.0 + 58.0;
-	}
+    CGSize paddedLabelSize = _originalButtonSize;
+	paddedLabelSize.width *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+	paddedLabelSize.height *= [CCDirector sharedDirector].iPadLabelScaleFactor;
     
     BOOL shrunkSize = NO;
 	// FIXME: size with type
@@ -192,10 +184,10 @@
     }
 
 	_background.size = size;
-	//_background.xScale = (size.width + _horizontalPadding * 200.0) / _background.texture.size.width;
+	//_background.xScale = (size.width + _horizontalPadding * 2.0) / _background.texture.size.width;
 	//_background.yScale = (size.height + _verticalPadding * 2.0) / _background.texture.size.height;
-	_background.scale = 16.0;
-	_background.centerRect = CGRectMake(0.44, 0.44, 0.44, 0.44);
+	_background.scale = 4;
+	_background.centerRect = CGRectMake(0.25, 0.25, 0.5, 0.5);
 	
 	NSLog(@"BUTTON: size {%.1f, %.1f}, pad size {%.1f, %.1f}, bg scale: {%.2f, %.2f}",
 		  [self calculateAccumulatedFrame].size.width, [self calculateAccumulatedFrame].size.height, paddedLabelSize.width, paddedLabelSize.height,
@@ -499,8 +491,14 @@
 
 - (void) setValue:(id)value forKey:(NSString *)key
 {
+	//NSLog(@"value: %@", value);
     if ([[self keysForwardedToLabel] containsObject:key])
     {
+		if ([key isEqualToString:@"fontSize"])
+		{
+			value = [NSNumber numberWithDouble:[value doubleValue] * [CCDirector sharedDirector].iPadLabelScaleFactor];
+		}
+		
         [_label setValue:value forKey:key];
         [self needsLayout];
     }
@@ -571,6 +569,11 @@
     }
     
     return nil;
+}
+
+-(void) setContentSize:(CGSize)contentSize
+{
+	_originalButtonSize = contentSize;
 }
 
 @end

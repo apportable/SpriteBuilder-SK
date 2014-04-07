@@ -23,8 +23,8 @@
     NSMutableDictionary* _labelOpacities;
 	CGFloat _originalLabelScaleX;
 	CGFloat _originalLabelScaleY;
-    
 	CGFloat _originalHitAreaExpansion;
+	CGSize _originalButtonSize;
 }
 
 @property (nonatomic, copy) NSString* title;
