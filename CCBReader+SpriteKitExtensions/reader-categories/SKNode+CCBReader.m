@@ -31,6 +31,7 @@ static NSString* CCBReaderNodeUserObjectKey = @"CCBReader:UserObject";
 static NSString* CCBReaderUserDataKeyForContentSizeType = @"CCBReader:contentSizeType";
 static NSString* CCBReaderUserDataKeyForScaleType = @"CCBReader:scaleType";
 static NSString* CCBReaderUserDataKeyForPositionType = @"CCBReader:positionType";
+static NSString* CCBReaderUserDataKeyForContentSize = @"CCBReader:contentSize";
 static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loadedFromCCB";
 
 @interface CCBReaderSizeType : NSObject
@@ -65,6 +66,18 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 {
 	self = [super init];
 	_positionType = positionType;
+	return self;
+}
+@end
+
+@interface CCBReaderContentSize : NSObject
+@property (nonatomic) CGSize contentSize;
+@end
+@implementation CCBReaderContentSize
+-(id) initWithContentSize:(CGSize)contentSize
+{
+	self = [super init];
+	_contentSize = contentSize;
 	return self;
 }
 @end
@@ -223,12 +236,34 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	{
 		[(id)self setSize:contentSize];
 	}
+	else
+	{
+		NSMutableDictionary* userData = [self getOrCreateUserData];
+		CCBReaderContentSize* contentSizeProxy = [userData objectForKey:CCBReaderUserDataKeyForContentSize];
+		if (contentSizeProxy == nil)
+		{
+			contentSizeProxy = [[CCBReaderContentSize alloc] initWithContentSize:contentSize];
+			[userData setObject:contentSizeProxy forKey:CCBReaderUserDataKeyForContentSize];
+		}
+		else
+		{
+			contentSizeProxy.contentSize = contentSize;
+		}
+	}
 }
 -(CGSize) contentSize
 {
 	if ([self respondsToSelector:@selector(setSize:)])
 	{
 		return [(id)self size];
+	}
+	else
+	{
+		CCBReaderContentSize* contentSizeProxy = [[self getOrCreateUserData] objectForKey:CCBReaderUserDataKeyForContentSize];
+		if (contentSizeProxy)
+		{
+			return contentSizeProxy.contentSize;
+		}
 	}
 	
 	return self.frame.size;
@@ -380,7 +415,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 		}
 		else
 		{
-			parentSize = parent.frame.size;
+			parentSize = parent.contentSize;
 		}
 	}
 	
