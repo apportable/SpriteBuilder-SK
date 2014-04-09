@@ -167,11 +167,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>2.3148062229156494</real>
-							<real>83.912033081054688</real>
+							<real>0.008802817203104496</real>
+							<real>0.1822916716337204</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -288,11 +288,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>-4.6801233111182228e-08</real>
-							<real>82.175926208496094</real>
+							<real>0.0052816900424659252</real>
+							<real>0.1796875</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>2</integer>
+							<integer>2</integer>
 						</array>
 					</dict>
 					<dict>
@@ -399,7 +399,7 @@
 								<key>type</key>
 								<string>StringSimple</string>
 								<key>value</key>
-								<string></string>
+								<string>ONE OF THE CONTAINED LABELS</string>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -408,11 +408,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>175.92591857910156</real>
-									<real>9.2592582702636719</real>
+									<real>1.7795138359069824</real>
+									<real>0.028935184702277184</real>
 									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
+									<integer>2</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -521,11 +521,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>174.18980407714844</real>
-									<real>-19.097223281860352</real>
+									<real>1.7418980598449707</real>
+									<real>-0.19097223877906799</real>
 									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
+									<integer>2</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -634,11 +634,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>168.98147583007812</real>
-									<real>-71.759262084960938</real>
+									<real>1.6898148059844971</real>
+									<real>-0.71759259700775146</real>
 									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
+									<integer>2</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -714,8 +714,6 @@
 								<integer>0</integer>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -749,11 +747,11 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>175.92591857910156</real>
-									<real>-98.958328247070312</real>
+									<real>1.7592592239379883</real>
+									<real>-0.98958325386047363</real>
 									<integer>0</integer>
-									<integer>0</integer>
-									<integer>0</integer>
+									<integer>2</integer>
+									<integer>2</integer>
 								</array>
 							</dict>
 							<dict>
@@ -847,7 +845,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>LABEL CONTAINER NODE</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -870,8 +868,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -889,7 +887,17 @@
 							<integer>0</integer>
 						</array>
 					</dict>
+					<dict>
+						<key>name</key>
+						<string>rotation</string>
+						<key>type</key>
+						<string>Degrees</string>
+						<key>value</key>
+						<real>-0.40000000596046448</real>
+					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>
@@ -931,10 +939,10 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>0.0</real>
-					<real>0.0</real>
-					<integer>2</integer>
-					<integer>2</integer>
+					<real>568</real>
+					<real>384</real>
+					<integer>0</integer>
+					<integer>0</integer>
 				</array>
 			</dict>
 			<dict>
