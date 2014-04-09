@@ -145,10 +145,19 @@
 	// must start with scaling at 1x1 so that size is correct
 	_label.scale = 1.0;
 
+	CGFloat iPadLabelScaleFactor = [CCDirector sharedDirector].iPadLabelScaleFactor;
     CGSize paddedLabelSize = _originalButtonSize;
-	paddedLabelSize.width *= [CCDirector sharedDirector].iPadLabelScaleFactor;
-	paddedLabelSize.height *= [CCDirector sharedDirector].iPadLabelScaleFactor;
-    
+	//paddedLabelSize.width += _horizontalPadding;
+	//paddedLabelSize.height += _verticalPadding;
+	paddedLabelSize.width *= iPadLabelScaleFactor;
+	paddedLabelSize.height *= iPadLabelScaleFactor;
+	
+	CGSize actualLabelSize = _label.frame.size;
+	if (actualLabelSize.width > paddedLabelSize.width)
+		paddedLabelSize.width = actualLabelSize.width + (_horizontalPadding * iPadLabelScaleFactor * 2.0 * iPadLabelScaleFactor);
+	if (actualLabelSize.height > paddedLabelSize.height)
+		paddedLabelSize.height = actualLabelSize.height + (_verticalPadding * iPadLabelScaleFactor * 2.0 * iPadLabelScaleFactor);
+	
     BOOL shrunkSize = NO;
 	// FIXME: size with type
 	/*
@@ -157,6 +166,8 @@
 	 */
     CGSize size = paddedLabelSize;
     CGSize maxSize = self.maxSize;
+	maxSize.width *= iPadLabelScaleFactor;
+	maxSize.height *= iPadLabelScaleFactor;
     
     if (size.width < paddedLabelSize.width)
 		size.width = paddedLabelSize.width;
