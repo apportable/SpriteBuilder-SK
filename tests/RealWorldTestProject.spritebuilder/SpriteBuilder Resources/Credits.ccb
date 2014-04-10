@@ -184,7 +184,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -218,12 +218,9 @@
 						<key>name</key>
 						<string>fontSize</string>
 						<key>type</key>
-						<string>FloatScale</string>
+						<string>Float</string>
 						<key>value</key>
-						<array>
-							<real>20</real>
-							<integer>0</integer>
-						</array>
+						<real>20</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -305,7 +302,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -331,12 +328,9 @@
 						<key>name</key>
 						<string>fontSize</string>
 						<key>type</key>
-						<string>FloatScale</string>
+						<string>Float</string>
 						<key>value</key>
-						<array>
-							<real>20</real>
-							<integer>0</integer>
-						</array>
+						<real>20</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -425,7 +419,7 @@
 									<real>1</real>
 									<real>1</real>
 									<false/>
-									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</dict>
 							<dict>
@@ -436,7 +430,7 @@
 								<key>value</key>
 								<array>
 									<string>Visionary Enlightements</string>
-									<false/>
+									<true/>
 								</array>
 							</dict>
 							<dict>
@@ -451,12 +445,9 @@
 								<key>name</key>
 								<string>fontSize</string>
 								<key>type</key>
-								<string>FloatScale</string>
+								<string>Float</string>
 								<key>value</key>
-								<array>
-									<real>20</real>
-									<integer>0</integer>
-								</array>
+								<real>20</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -488,6 +479,8 @@
 								<integer>0</integer>
 							</dict>
 						</array>
+						<key>selected</key>
+						<true/>
 					</dict>
 					<dict>
 						<key>UUID</key>
@@ -521,8 +514,8 @@
 								<string>Position</string>
 								<key>value</key>
 								<array>
-									<real>1.7418980598449707</real>
-									<real>-0.19097223877906799</real>
+									<real>1.7214796543121338</real>
+									<real>-0.25083115696907043</real>
 									<integer>0</integer>
 									<integer>2</integer>
 									<integer>2</integer>
@@ -538,7 +531,7 @@
 									<real>1</real>
 									<real>1</real>
 									<false/>
-									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</dict>
 							<dict>
@@ -564,12 +557,9 @@
 								<key>name</key>
 								<string>fontSize</string>
 								<key>type</key>
-								<string>FloatScale</string>
+								<string>Float</string>
 								<key>value</key>
-								<array>
-									<real>24</real>
-									<integer>0</integer>
-								</array>
+								<real>24</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -651,7 +641,7 @@
 									<real>1</real>
 									<real>1</real>
 									<false/>
-									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</dict>
 							<dict>
@@ -677,12 +667,9 @@
 								<key>name</key>
 								<string>fontSize</string>
 								<key>type</key>
-								<string>FloatScale</string>
+								<string>Float</string>
 								<key>value</key>
-								<array>
-									<real>20</real>
-									<integer>0</integer>
-								</array>
+								<real>20</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -764,7 +751,7 @@
 									<real>1</real>
 									<real>1</real>
 									<false/>
-									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</dict>
 							<dict>
@@ -790,12 +777,9 @@
 								<key>name</key>
 								<string>fontSize</string>
 								<key>type</key>
-								<string>FloatScale</string>
+								<string>Float</string>
 								<key>value</key>
-								<array>
-									<real>24</real>
-									<integer>0</integer>
-								</array>
+								<real>24</real>
 							</dict>
 							<dict>
 								<key>name</key>
@@ -868,8 +852,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>50</real>
-							<real>50</real>
+							<real>100</real>
+							<real>100</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -896,8 +880,6 @@
 						<real>-0.40000000596046448</real>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

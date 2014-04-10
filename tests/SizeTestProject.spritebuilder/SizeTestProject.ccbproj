@@ -79,7 +79,7 @@
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
-	<integer>2</integer>
+	<integer>1</integer>
 	<key>resourcePaths</key>
 	<array>
 		<dict>
@@ -93,6 +93,11 @@
 		<dict>
 			<key>previewFolderHidden</key>
 			<true/>
+		</dict>
+		<key>5_head.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
 		</dict>
 		<key>Sprites</key>
 		<dict/>
