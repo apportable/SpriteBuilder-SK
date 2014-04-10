@@ -24,7 +24,6 @@
 @property (nonatomic) CGSize designSize;
 @property (nonatomic) CGFloat UIScaleFactor;
 @property (nonatomic) CGFloat contentScaleFactor;
-@property (nonatomic) CGFloat iPadLabelScaleFactor;
 @property (nonatomic) UIInterfaceOrientationMask allowedOrientations;
 
 @end

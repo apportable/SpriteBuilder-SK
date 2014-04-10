@@ -125,10 +125,9 @@ static CGSize currentSceneSize;
 		{
 			// Set the director to use 2 points per pixel.
 			director.contentScaleFactor *= 2.0;
-			director.iPadLabelScaleFactor = 2.0;
 			
 			// FIXME: Set the UI scale factor to show things at "native" size.
-			//director.UIScaleFactor = 0.5;
+			director.UIScaleFactor = 0.5;
 			
 			// Let CCFileUtils know that "-ipad" textures should be treated as having a contentScale of 2.0.
 			[[CCFileUtils sharedFileUtils] setiPadContentScaleFactor:2.0];

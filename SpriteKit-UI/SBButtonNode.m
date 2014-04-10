@@ -145,7 +145,7 @@
 	// must start with scaling at 1x1 so that size is correct
 	_label.scale = 1.0;
 
-	CGFloat iPadLabelScaleFactor = [CCDirector sharedDirector].iPadLabelScaleFactor;
+	CGFloat iPadLabelScaleFactor = [CCDirector sharedDirector].contentScaleFactor;
     CGSize paddedLabelSize = _originalButtonSize;
 	//paddedLabelSize.width += _horizontalPadding;
 	//paddedLabelSize.height += _verticalPadding;
@@ -504,7 +504,7 @@
     {
 		if ([key isEqualToString:@"fontSize"])
 		{
-			value = [NSNumber numberWithDouble:[value doubleValue] * [CCDirector sharedDirector].iPadLabelScaleFactor];
+			value = [NSNumber numberWithDouble:[value doubleValue] * [CCDirector sharedDirector].contentScaleFactor];
 		}
 		
         [_label setValue:value forKey:key];

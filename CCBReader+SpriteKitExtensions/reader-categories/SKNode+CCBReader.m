@@ -242,6 +242,8 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 		CCBReaderContentSize* contentSizeProxy = [userData objectForKey:CCBReaderUserDataKeyForContentSize];
 		if (contentSizeProxy == nil)
 		{
+			contentSize.width *= [CCDirector sharedDirector].contentScaleFactor;
+			contentSize.height *= [CCDirector sharedDirector].contentScaleFactor;
 			contentSizeProxy = [[CCBReaderContentSize alloc] initWithContentSize:contentSize];
 			[userData setObject:contentSizeProxy forKey:CCBReaderUserDataKeyForContentSize];
 		}
@@ -352,8 +354,26 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	}
 	
 	self.scaleAsPoint = [self convertScaleX:self.xScale scaleY:self.yScale scaleType:self.scaleType];
-	self.position = [self convertPosition:self.position positionType:self.positionType];
+	
+	CGPoint newPosition = [self convertPosition:self.position positionType:self.positionType];
+	NSLog(@"position: %.1f, %.1f  (was: %.1f, %.1f)", newPosition.x, newPosition.y, self.position.x, self.position.y);
+	self.position = newPosition;
 
+	/*
+	if ([self respondsToSelector:@selector(setFontSize:)])
+	{
+		CGFloat fontSize = [(id)self fontSize];
+		CGFloat newFontSize = fontSize * [CCDirector sharedDirector].contentScaleFactor;
+		if (newFontSize != fontSize)
+		{
+			[(id)self setFontSize:newFontSize];
+			CGPoint pos = self.position;
+			pos.x += self.frame.size.width * 0.25;
+			self.position = pos;
+		}
+	}
+	 */
+	
 	// convert only once
 	[self.userData removeObjectForKey:CCBReaderUserDataKeyForContentSizeType];
 	[self.userData removeObjectForKey:CCBReaderUserDataKeyForScaleType];
@@ -501,10 +521,10 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	switch (positionType.xUnit)
 	{
 		case CCPositionUnitPoints:
-			// no adjustment
+			newPosition.x *= [CCDirector sharedDirector].contentScaleFactor;
 			break;
 		case CCPositionUnitUIPoints:
-			newPosition.x *= [CCDirector sharedDirector].UIScaleFactor;
+			newPosition.x *= [CCDirector sharedDirector].UIScaleFactor * [CCDirector sharedDirector].contentScaleFactor;
 			break;
 		case CCPositionUnitNormalized:
 		{
@@ -521,10 +541,10 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 	switch (positionType.yUnit)
 	{
 		case CCPositionUnitPoints:
-			// no adjustment
+			newPosition.y *= [CCDirector sharedDirector].contentScaleFactor;
 			break;
 		case CCPositionUnitUIPoints:
-			newPosition.y *= [CCDirector sharedDirector].UIScaleFactor;
+			newPosition.y *= [CCDirector sharedDirector].UIScaleFactor * [CCDirector sharedDirector].contentScaleFactor;
 			break;
 		case CCPositionUnitNormalized:
 		{
@@ -537,7 +557,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			[NSException raise:NSInternalInconsistencyException format:@"unsupported positionType for y: %d", positionType.yUnit];
 			break;
 	}
-	
+
 	// Account for reference corner
 	switch (positionType.corner)
 	{
@@ -559,7 +579,7 @@ static NSString* CCBReaderUserDataKeyForLoadedFromCCB = @"CCBSpriteKitReader:loa
 			newPosition.x = [self contentSizeFromParent].width - newPosition.x;
 			break;
 	}
-	
+
 	return newPosition;
 }
 

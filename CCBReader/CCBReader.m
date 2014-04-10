@@ -1079,7 +1079,7 @@ static inline float readFloat(CCBReader *self)
 	{
 		// upscale labels
 		SKLabelNode* label = (SKLabelNode*)node;
-		label.fontSize *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+		label.fontSize *= [CCDirector sharedDirector].contentScaleFactor;
 	}
 	else if ([node isKindOfClass:[SKSpriteNode class]])
 	{
@@ -1087,8 +1087,8 @@ static inline float readFloat(CCBReader *self)
 		if (sprite.texture == nil)
 		{
 			CGSize size = sprite.size;
-			size.width *= [CCDirector sharedDirector].iPadLabelScaleFactor;
-			size.height *= [CCDirector sharedDirector].iPadLabelScaleFactor;
+			size.width *= [CCDirector sharedDirector].contentScaleFactor;
+			size.height *= [CCDirector sharedDirector].contentScaleFactor;
 			sprite.size = size;
 		}
 	}
