@@ -280,6 +280,7 @@ static inline float readFloat(CCBReader *self)
 - (NSString*) readCachedString
 {
     int n = readIntWithSign(self, NO);
+	NSAssert(n < stringCache.count, @"string cache index (%u) out of bounds (%u)", (unsigned)n, (unsigned)stringCache.count);
     return [stringCache objectAtIndex:n];
 }
 
@@ -1183,6 +1184,10 @@ static inline float readFloat(CCBReader *self)
     
     int numSeqs = readIntWithSign(self, NO);
     
+	// read two purely physics related BOOLs here (has & contains physics bodies)
+	readBool(self);
+	readBool(self);
+	
     for (int i = 0; i < numSeqs; i++)
     {
         CCBSequence* seq = [[CCBSequence alloc] init];
