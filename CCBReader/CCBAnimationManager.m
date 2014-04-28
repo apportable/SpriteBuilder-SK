@@ -422,9 +422,8 @@ static NSInteger ccbAnimationManagerID = 0;
 
 - (id) actionForSoundChannel:(CCBSequenceProperty*) channel
 {
-	[NSException raise:NSInternalInconsistencyException format:@"Sprite Kit reader does not support sound channel actions yet"];
-	return nil;
-	/*
+	//[NSException raise:NSInternalInconsistencyException format:@"Sprite Kit reader does not support sound channel actions yet"];
+	
     float lastKeyframeTime = 0;
     
     NSMutableArray* actions = [NSMutableArray array];
@@ -442,14 +441,46 @@ static NSInteger ccbAnimationManagerID = 0;
         float pitch = [[keyframe.value objectAtIndex:1] floatValue];
         float pan = [[keyframe.value objectAtIndex:2] floatValue];
         float gain = [[keyframe.value objectAtIndex:3] floatValue];
-        
-        [actions addObject:[CCBSoundEffect actionWithSoundFile:soundFile pitch:pitch pan:pan gain:gain]];
+		
+		if (pitch != 1.0 || pan != 0.0 || gain != 1.0)
+		{
+			NSLog(@"NOTE: Sprite Kit's playSoundFileNamed: action does not support pitch, pan, gain - these 'Sound effects' timeline properties will have no effect.");
+		}
+
+		// test file in bundle with .caf and .m4a extensions because SB converts to either of these two formats
+		NSString* path = [[CCFileUtils sharedFileUtils] fullPathForFilename:[[soundFile stringByDeletingPathExtension] stringByAppendingPathExtension:@"caf"]];
+		if (path == nil)
+		{
+			path = [[CCFileUtils sharedFileUtils] fullPathForFilename:[[soundFile stringByDeletingPathExtension] stringByAppendingPathExtension:@"m4a"]];
+			if (path == nil)
+			{
+				path = [[CCFileUtils sharedFileUtils] fullPathForFilename:soundFile];
+				NSAssert1(path, @"Could not find audio file %@ (also tried .caf and .mp4 extensions) in main bundle!", soundFile);
+			}
+		}
+		
+		if (path)
+		{
+			// Assumes the audio file is in a project subfolder (ie "Published-iOS")
+			// SK action needs the path relative to main bundle
+			NSString* relativePath = @"";
+			NSArray* pathComponents = [path pathComponents];
+			if (pathComponents.count >= 2)
+			{
+				NSArray* lastTwoPathComponents = [pathComponents subarrayWithRange:NSMakeRange(pathComponents.count - 2, 2)];
+				relativePath = [NSString pathWithComponents:lastTwoPathComponents];
+			}
+			
+			//NSLog(@"path: %@ - exists? %u", relativePath, [[NSFileManager defaultManager] fileExistsAtPath:path]);
+			SKAction* action = [SKAction playSoundFileNamed:relativePath waitForCompletion:NO];
+			NSAssert2(action, @"failed to create playSoundFileNamed: action for sound file '%@' using relative path: '%@'", soundFile, relativePath);
+			[actions addObject:action];
+		}
     }
     
     if (!actions.count) return NULL;
     
     return [CCActionSequence actionWithArray:actions];
-	*/
 }
 
 - (void) runAnimationsForSequenceId:(int)seqId tweenDuration:(float) tweenDuration
@@ -517,9 +548,6 @@ static NSInteger ccbAnimationManagerID = 0;
     
     if (seq.soundChannel)
     {
-		[NSException raise:NSInternalInconsistencyException format:@"Sprite Kit reader does not support sound channels yet"];
-		
-		/*
         // Build sound actions for channel
         CCAction* action = [self actionForSoundChannel:seq.soundChannel];
         if (action)
@@ -527,7 +555,6 @@ static NSInteger ccbAnimationManagerID = 0;
             action.tag = (int)animationManagerId;
             [self.rootNode runAction:action];
         }
-		 */
     }
     
     // Set the running scene

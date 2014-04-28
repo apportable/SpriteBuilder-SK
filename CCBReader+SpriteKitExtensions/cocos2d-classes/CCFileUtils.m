@@ -308,7 +308,7 @@ static CCFileUtils *fileUtils = nil;
 			break;
 	}
 	
-	NSAssert1(fullPath, @"CCFileUtils: Warning: File not found: %@", filename);
+	//NSAssert1(fullPath, @"CCFileUtils: Warning: File not found: %@", filename);
 	
 	if (fullPath)
 	{
@@ -316,6 +316,10 @@ static CCFileUtils *fileUtils = nil;
 		filePath.contentScale = contentScale;
 		[_fullPathCache setObject:filePath forKey:filename];
 		//NSLog(@"CCFileUtils cached: %@", filePath);
+	}
+	else
+	{
+		NSLog(@"CCFileUtils: Warning: File not found: %@", filename);
 	}
 
 	//NSLog(@"%@", filePath);
