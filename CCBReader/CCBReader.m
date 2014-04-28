@@ -280,7 +280,7 @@ static inline float readFloat(CCBReader *self)
 - (NSString*) readCachedString
 {
     int n = readIntWithSign(self, NO);
-	NSAssert(n < stringCache.count, @"string cache index (%u) out of bounds (%u)", (unsigned)n, (unsigned)stringCache.count);
+	NSAssert((unsigned)n < stringCache.count, @"string cache index (%u) out of bounds (%u)", (unsigned)n, (unsigned)stringCache.count);
     return [stringCache objectAtIndex:n];
 }
 
