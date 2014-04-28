@@ -52,6 +52,7 @@
 {
 	NSAssert1(target, @"CCActionCallFunc: target is nil, can't perform selector: %@", NSStringFromSelector(selector));
 	NSAssert1(selector, @"CCActionCallFunc: can't perform nil selector on target: %@", target);
+	NSAssert2([target respondsToSelector:selector], @"CCActionCallFunc: selector '%@' not implemented by target: %@", NSStringFromSelector(selector), target);
 	
 	return [SKAction performSelector:selector onTarget:target];
 }
