@@ -753,7 +753,7 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>182</real>
+							<real>118</real>
 							<real>25</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -824,7 +824,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>I've had enough of this!</string>
+							<string>Enough of this!</string>
 							<false/>
 						</array>
 					</dict>
@@ -956,6 +956,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -1235,8 +1237,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>

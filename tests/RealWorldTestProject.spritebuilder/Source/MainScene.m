@@ -56,4 +56,9 @@
 	//NSLog(@"update: %f", currentTime);
 }
 
+-(void) testCallbackSelector
+{
+	NSLog(@"Callback timeline keyframe successfully ran the selector: %@", NSStringFromSelector(_cmd));
+}
+
 @end

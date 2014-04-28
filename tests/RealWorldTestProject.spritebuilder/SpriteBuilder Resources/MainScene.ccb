@@ -7,7 +7,7 @@
 	<key>centeredOrigin</key>
 	<false/>
 	<key>currentResolution</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>currentSequenceId</key>
 	<integer>0</integer>
 	<key>docDimensionsType</key>
@@ -363,8 +363,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.19823943078517914</real>
-							<real>0.796875</real>
+							<real>0.2282441109418869</real>
+							<real>0.76711392402648926</real>
 							<integer>1</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -382,8 +382,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>50</real>
-							<real>50</real>
+							<real>59</real>
+							<real>59</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -440,8 +440,6 @@
 						<real>1</real>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -669,8 +667,8 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1</real>
-							<real>1</real>
+							<real>0.99599999189376831</real>
+							<real>0.99599999189376831</real>
 							<false/>
 							<integer>0</integer>
 						</array>
@@ -866,7 +864,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Play Without Friends</string>
+							<string>Play</string>
 							<false/>
 						</array>
 					</dict>
@@ -1095,7 +1093,7 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>165</real>
+							<real>112</real>
 							<real>40</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1166,7 +1164,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Show Boring Credits</string>
+							<string>Show Credits</string>
 							<false/>
 						</array>
 					</dict>
@@ -1455,7 +1453,7 @@
 				<key>type</key>
 				<string>StringSimple</string>
 				<key>value</key>
-				<string></string>
+				<string>the main scene</string>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -1498,6 +1496,8 @@
 				</array>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -1554,7 +1554,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>0.3333333432674408</real>
+						<key>type</key>
+						<integer>12</integer>
+						<key>value</key>
+						<array>
+							<string>testCallbackSelector</string>
+							<integer>1</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>11</integer>
 			</dict>
@@ -1567,7 +1584,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>0.40000000596046448</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -1579,7 +1596,26 @@
 				<key>isExpanded</key>
 				<false/>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>0.40000000596046448</real>
+						<key>type</key>
+						<integer>11</integer>
+						<key>value</key>
+						<array>
+							<string>die.wav</string>
+							<real>2</real>
+							<real>1</real>
+							<real>2</real>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
