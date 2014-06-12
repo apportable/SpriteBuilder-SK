@@ -148,9 +148,52 @@ static inline void alignBits(CCBReader *self)
     }
 }
 
+static inline unsigned int readVariableLengthIntFromArray(const uint8_t* buffer, uint32_t * value) {
+    const uint8_t* ptr = buffer;
+    uint32_t b;
+    uint32_t result;
+    
+    b = *(ptr++); result  = (b & 0x7F)      ; if (!(b & 0x80)) goto done;
+    b = *(ptr++); result |= (b & 0x7F) <<  7; if (!(b & 0x80)) goto done;
+    b = *(ptr++); result |= (b & 0x7F) << 14; if (!(b & 0x80)) goto done;
+    b = *(ptr++); result |= (b & 0x7F) << 21; if (!(b & 0x80)) goto done;
+    b = *(ptr++); result |=  b         << 28; if (!(b & 0x80)) goto done;
+    
+done:
+    *value = result;
+    return (unsigned int)(ptr - buffer);
+}
+
+
+static inline int readIntWithSign(CCBReader *self, BOOL pSigned)
+{
+    unsigned int value = 0;
+    self->currentByte += readVariableLengthIntFromArray(self->bytes + self->currentByte, &value);
+    
+    int num = 0;
+    
+    if (pSigned)
+    {
+        if (value & 0x1)
+            num = -(int)((value+1) >> 1);
+        else
+            num = (int)(value >> 1);
+    }
+    else
+    {
+        num = (int)value;
+    }
+    
+    return num;
+}
+
+
 #define REVERSE_BYTE(b) (unsigned char)(((b * 0x0802LU & 0x22110LU) | (b * 0x8020LU & 0x88440LU)) * 0x10101LU >> 16)
 
-static inline int readIntWithSign(CCBReader *self, BOOL sign)
+//DEPRICATED
+//DEPRICATED
+//DEPRICATED
+static inline int readIntWithSignOLD(CCBReader *self, BOOL sign)
 {
     // Good luck groking this!
     // The basic idea is to do as little bit reading as possible and use everything in a byte contexts and avoid loops; espc ones that iterate 8 * bytes-read
@@ -294,7 +337,7 @@ static inline float readFloat(CCBReader *self)
     // Read type and property name
     int type = readIntWithSign(self, NO);
     NSString* name = [self readCachedString];
-
+	
     // Check if the property can be set for this platform
     BOOL setProp = YES;
     
@@ -335,17 +378,17 @@ static inline float readFloat(CCBReader *self)
         int corner = readByte(self);
         int xUnit = readByte(self);
         int yUnit = readByte(self);
-
+		
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%f, %f} (corner: %i unit: %i,%i)", pos.x, pos.y, corner, xUnit, yUnit];
 #endif
-
+		
         if (setProp)
         {
             CCPositionType pType = CCPositionTypeMake(xUnit, yUnit, corner);
             [node setValue:[NSValue valueWithBytes:&pType objCType:@encode(CCPositionType)] forKey:[name stringByAppendingString:@"Type"]];
 			//pos = [node convertPosition:pos positionType:pType];
-
+			
 #ifdef __CC_PLATFORM_IOS
             [node setValue:[NSValue valueWithCGPoint:pos] forKey:name];
 #elif defined (__CC_PLATFORM_MAC)
@@ -374,7 +417,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%f, %f}", x, y];
 #endif
-
+		
         if (setProp)
         {
             CGPoint pt = ccp(x,y);
@@ -391,7 +434,7 @@ static inline float readFloat(CCBReader *self)
 		float h = readFloat(self);
 		int xUnit = readByte(self);
 		int yUnit = readByte(self);
-
+		
 		if (parent == nil && [node isKindOfClass:[CCScene class]])
 		{
 			// don't change size of the scene
@@ -428,7 +471,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%f, %f}", x, y];
 #endif
-
+		
         if (setProp)
         {
             [node setValue:[NSNumber numberWithFloat:x] forKey:[name stringByAppendingString:@"X"]];
@@ -454,7 +497,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%f, %f}", xFloat, yFloat];
 #endif
-
+		
         if (setProp)
         {
             NSString* nameX = [NSString stringWithFormat:@"%@X",name];
@@ -471,7 +514,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%f", f];
 #endif
-
+		
         if (setProp)
         {
             id value = [NSNumber numberWithFloat:f];
@@ -487,11 +530,11 @@ static inline float readFloat(CCBReader *self)
     {
         float f = readFloat(self);
         int sType = readIntWithSign(self, NO);
-
+		
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%f (%i)", f, sType];
 #endif
-
+		
         if (setProp)
         {
             if (sType == 1) f *= [CCDirector sharedDirector].UIScaleFactor;
@@ -506,7 +549,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%d", d];
 #endif
-
+		
         if (setProp)
         {
             [node setValue:[NSNumber numberWithInt:d] forKey:name];
@@ -520,7 +563,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%f (%f)", f, fVar];
 #endif
-
+		
         if (setProp)
         {
             NSString* nameVar = [NSString stringWithFormat:@"%@Var",name];
@@ -535,7 +578,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", b ? @"YES" : @"NO"];
 #endif
-
+		
         if (setProp)
         {
             id value = [NSNumber numberWithBool:b];
@@ -554,7 +597,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", spriteFile];
 #endif
-
+		
         if (setProp && spriteFile.length > 0)
         {
             CCSpriteFrame* spriteFrame = [CCSpriteFrame frameWithImageNamed:spriteFile];
@@ -564,7 +607,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 			valueString = [NSString stringWithFormat:@"%@ (%@)", valueString, spriteFrame];
 #endif
-
+			
             if ([animatedProps containsObject:name])
             {
                 [animationManager setBaseValue:spriteFrame forNode:node propertyName:name];
@@ -578,12 +621,12 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", spriteFile];
 #endif
-
+		
         if (setProp && spriteFile.length > 0)
         {
             CCTexture* texture = [CCTexture textureWithFile:spriteFile];
             [node setValue:texture forKey:name];
-
+			
 #if DEBUG_READER_PROPERTIES
 			valueString = [NSString stringWithFormat:@"%@ (%@)", valueString, texture];
 #endif
@@ -596,7 +639,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%d", byte];
 #endif
-
+		
         if (setProp)
         {
             id value = [NSNumber numberWithInt:byte];
@@ -619,7 +662,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%.2f, %.2f, %.2f, %.2f}", r, g, b, a];
 #endif
-
+		
         if (setProp)
         {
             CCColor* cVal = [CCColor colorWithRed:r green:g blue:b alpha:a];
@@ -642,11 +685,11 @@ static inline float readFloat(CCBReader *self)
         float gVar = readFloat(self);
         float bVar = readFloat(self);
         float aVar = readFloat(self);
-
+		
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%.2f, %.2f, %.2f, %.2f}", r, g, b, a];
 #endif
-
+		
         if (setProp)
         {
             CCColor* cVal = [CCColor colorWithRed:r green:g blue:b alpha:a];;
@@ -665,7 +708,7 @@ static inline float readFloat(CCBReader *self)
 		valueString = [NSString stringWithFormat:@"x:%@", xFlip ? @"YES" : @"NO"];
 		valueString = [NSString stringWithFormat:@"%@ y:%@", valueString, yFlip ? @"YES" : @"NO"];
 #endif
-
+		
         if (setProp)
         {
             NSString* nameX = [NSString stringWithFormat:@"%@X",name];
@@ -682,7 +725,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"{%i, %i}", src, dst];
 #endif
-
+		
         if (setProp)
         {
             ccBlendFunc blend;
@@ -696,7 +739,7 @@ static inline float readFloat(CCBReader *self)
     {
         NSString* fntFile = [self readCachedString];
         [node setValue:fntFile forKey:name];
-
+		
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", fntFile];
 #endif
@@ -710,7 +753,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"\"%@\"", txt];
 #endif
-
+		
         if (localized)
         {
 #if DEBUG_READER_PROPERTIES
@@ -731,7 +774,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", fnt];
 #endif
-
+		
         if (setProp)
         {
             //if ([[fnt lowercaseString] hasSuffix:@".ttf"])
@@ -749,7 +792,7 @@ static inline float readFloat(CCBReader *self)
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"@selector(%@) target:%i", selectorName, selectorTarget];
 #endif
-
+		
         if (setProp)
         {
             // Objective C callbacks
@@ -763,7 +806,7 @@ static inline float readFloat(CCBReader *self)
                 {
                     SEL selector = NSSelectorFromString(selectorName);
                     __unsafe_unretained id t = target;
-
+					
                     void (^block)(id sender);
                     block = ^(id sender) {
                         typedef void (*Func)(id, SEL, id);
@@ -782,7 +825,7 @@ static inline float readFloat(CCBReader *self)
                     {
                         NSLog(@"CCBReader: Failed to set selector/target block for %@",selectorName);
                     }
-
+					
 #if DEBUG_READER_PROPERTIES
 					valueString = [NSString stringWithFormat:@"%@ (%@)", valueString, t];
 #endif
@@ -802,17 +845,17 @@ static inline float readFloat(CCBReader *self)
         if ([ccbFileName hasSuffix:@".ccb"]) ccbFileName = [ccbFileName stringByDeletingPathExtension];
         
         ccbFileName = [NSString stringWithFormat:@"%@.ccbi", ccbFileName];
-
+		
 #if DEBUG_READER_PROPERTIES
 		valueString = [NSString stringWithFormat:@"%@", ccbFileName];
 #endif
-
+		
         // Load sub file
         NSString* path = [[CCFileUtils sharedFileUtils] fullPathForFilename:ccbFileName];
         NSData* d = [NSData dataWithContentsOfFile:path];
-
+		
         NSAssert(d,@"Failed to find ccb file: %@",ccbFileName);
-
+		
         CCBReader* reader = [CCBReader readerWithSize:parent.contentSize];
         reader.animationManager.rootContainerSize = parent.contentSize;
         
@@ -861,7 +904,7 @@ static inline float readFloat(CCBReader *self)
     {
         NSAssert(false, @"CCBReader: Failed to read property type %d",type);
     }
-
+	
 #if DEBUG_READER_PROPERTIES
 	NSLog(@"%@ = %@", name, valueString);
 	//NSLog(@"node dump: %@", [node performSelector:@selector(debugQuickLookObject) withObject:nil]);
@@ -1232,7 +1275,7 @@ static inline float readFloat(CCBReader *self)
     if (magic != CHAR4('c', 'c', 'b', 'i')) return NO;
     
     // Read version
-    int version = readIntWithSign(self, NO);
+	int version = readIntWithSignOLD(self, NO);
     if (version != kCCBVersion)
     {
         NSLog(@"CCBReader: Incompatible ccbi file version (file: %d reader: %d)",version,kCCBVersion);
@@ -1261,10 +1304,10 @@ static inline float readFloat(CCBReader *self)
     actionManagers = am;
     
     CCNode* node = [self readNodeGraphParent:NULL];
-
+	
 	// CC read joints fix: must read int to ensure ccb stream remains in sync with cocos2d
 	readIntWithSign(self, NO);
-
+	
     [actionManagers setObject:self.animationManager forKey:[NSValue valueWithPointer:(__bridge const void *)(node)]];
     
     if (cleanUp)
@@ -1303,13 +1346,13 @@ static inline float readFloat(CCBReader *self)
     
     NSMutableDictionary* animationManagers = [NSMutableDictionary dictionary];
     CCNode* nodeGraph = [self readFileWithCleanUp:YES actionManagers:animationManagers];
-
+	
 	[self.animationManager normalizeValuesForRootNode:nodeGraph];
 	[self readerDidLoadNode:nodeGraph rootNode:nodeGraph];
-
+	
 	// Call didLoadFromCCB
     [CCBReader callDidLoadFromCCBForNodeGraph:nodeGraph];
-
+	
     if (nodeGraph && self.animationManager.autoPlaySequenceId != -1)
     {
         // Auto play animations
@@ -1319,11 +1362,11 @@ static inline float readFloat(CCBReader *self)
     for (NSValue* pointerValue in animationManagers)
     {
         CCNode* node = [pointerValue pointerValue];
-
+		
         CCBAnimationManager* manager = [animationManagers objectForKey:pointerValue];
         node.userObject = manager;
     }
-
+	
     return nodeGraph;
 }
 
@@ -1426,14 +1469,14 @@ static inline float readFloat(CCBReader *self)
 	if (didRunFirstTimeSetup == NO)
 	{
 		didRunFirstTimeSetup = YES;
-
+		
 		// Configure Cocos2d with the options set in SpriteBuilder
 		// TODO: add support for Published-Android support
 		NSString* configPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Published-iOS"];
 		configPath = [configPath stringByAppendingPathComponent:@"configCocos2d.plist"];
 		NSMutableDictionary* options = [NSMutableDictionary dictionaryWithContentsOfFile:configPath];
 		NSAssert1(options, @"could not load config file: %@", configPath);
-
+		
 		// Note: this needs to happen before configureCCFileUtils is called, because we need apportable to correctly setup the screen scale factor.
 #ifdef APPORTABLE
 		if ([options[CCSetupScreenMode] isEqual:CCScreenModeFixed])
